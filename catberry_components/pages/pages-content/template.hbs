@@ -1,0 +1,19 @@
+<div block="page" mix="block:container">
+    <div block="row">
+        <cat-loader id="pages-content-loader"></cat-loader>
+
+        {{#if isActive.main}}
+            <cat-main id="main"></cat-main>
+        {{else}}
+            <cat-breadcrumps id="breadcrumps" cat-store="Breadcrumps"></cat-breadcrumps>
+            {{#if isActive.catalog}}
+                <cat-catalog id="catalog" cat-store="rubrika/Rubrikator"></cat-catalog>
+            {{/if}}
+
+            {{#if isActive.masterRubrika}}
+                <cat-master-rubrika id="master-rubrika" cat-store="master/Rubrika"></cat-master-rubrika>
+            {{/if}}
+        {{/if}}
+
+    </div>
+</div>

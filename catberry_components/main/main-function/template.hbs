@@ -1,0 +1,38 @@
+<div block="main-function">
+    <div elem="inner">
+        <cat-search id="search"></cat-search>
+        <div block="or">или</div>
+        <div block="find-master" mix="block:js-find-master">
+            <a elem="inner" href="/catalog">
+                <div elem="inner-rel">
+                    <span elem="icon"></span>
+
+                    <p elem="title">Выбери Мастера</p>
+                    <span elem="btn">У нас {{countMaster}}</span>
+                </div>
+            </a>
+        </div>
+        <div block="call-back">
+            <a elem="inner" href="/request">
+                <div elem="inner-rel">
+                    <span elem="icon"></span>
+
+                    <p elem="title">Закажи услугу</p>
+
+                    <p elem="text">Мы бесплатно отправим вашу заявку всем подходящим Мастерам</p>
+                    <span elem="btn">Создать заявку</span>
+                </div>
+            </a>
+        </div>
+        <div block="catalogs">
+            <div elem="inner">
+                <div elem="services">
+                    <a href="/catalog" elem="services-link">Весь каталог услуг</a>
+                </div>
+                <div elem="dop">
+                    <cat-dop-catalogs id="dop-catalogs" data-mod="page_main"></cat-dop-catalogs>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

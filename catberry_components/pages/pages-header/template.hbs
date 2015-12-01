@@ -1,0 +1,53 @@
+<header block="header">
+    <div class="container">
+        <div class="row">
+            <div elem="left-col">
+                <div block="logo">
+                    <div elem="img">
+                        <a href="/main" elem="link">
+                            <img alt="Facemaster.ru Logo" src="/img/logo.svg" width="100%">
+                        </a>
+                    </div>
+                    <div block="visitor">
+                        <p elem="count">{{visitCount}}</p>
+
+                        <p elem="mera">в неделю</p>
+                    </div>
+                </div>
+            </div>
+            <div elem="title">
+                <a href="/main" block="title">
+                    <p elem="text" mix="block:h1">ПОИСК МАСТЕРОВ В СФЕРЕ УСЛУГ</p>
+                </a>
+            </div>
+            <div elem="login">
+                {{#if isGuest}}
+                    <div block="login">
+                        <a href="<!--ERROR-->" elem="btn" mix="block:btn">Вход для Мастеров</a>
+                    </div>
+                {{else}}
+                    <div block="login">
+                        <a href="<!--ERROR-->" elem="btn" mix="block:btn"><!--ERROR - username--></a>
+
+                        <div block="menu-user">
+                            <ul elem="ul">
+                                <!--ERROR MENUUSER-->
+                                {{#each authData.menuUser}}
+                                    <li elem="item">
+                                        <a href="{{url}}" elem="item-link">{{{title}}}</a>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+            <div elem="menu">
+                <cat-pages-navigation id="pages-navigation"></cat-pages-navigation>
+            </div>
+            <div elem="social">
+                <cat-social id="social"></cat-social>
+            </div>
+        </div>
+    </div>
+</header>

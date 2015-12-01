@@ -1,0 +1,36 @@
+<div block="container">
+    <div block="inner-top">
+        <div elem="title">
+            <cat-common-h1 id="common-h1" name="{{h1}}"></cat-common-h1>
+        </div>
+
+        <div elem="search">
+           <cat-search id="search" modificator="inner"></cat-search>
+        </div>
+        <div elem="callback">
+            <a block="callback" href="/request">
+                <i elem="icon"></i>
+                Отправить задание мастерам
+            </a>
+        </div>
+    </div>
+    <div block="inner-content">
+        <div elem="left-side">
+            <cat-master-filter id="master-filter"></cat-master-filter>
+            { {> banner/banner_side/banner_side banner_side} }
+        </div>
+        <div elem="right-side">
+            { {> master_recommended/master_recommended master_recommended} }
+            { {> master_list/master_list master-list} }
+        </div>
+    </div>
+    <div block="row">
+        {{#if seoText}}
+            <div block="seo-text">
+                <div elem="text" mix="block:format">
+                    {{{seoText}}}
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</div>

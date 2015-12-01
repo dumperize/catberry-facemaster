@@ -1,0 +1,5 @@
+{
+	"name": "social",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

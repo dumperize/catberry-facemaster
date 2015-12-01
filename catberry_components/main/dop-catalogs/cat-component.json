@@ -1,0 +1,5 @@
+{
+	"name": "dop-catalogs",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

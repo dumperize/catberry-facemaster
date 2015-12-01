@@ -1,0 +1,7 @@
+{
+	"title": "FaceMaster.ru",
+	"isRelease": true,
+	"logger": {
+		"levels": "warn,error"
+	}
+}

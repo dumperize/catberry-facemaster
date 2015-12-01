@@ -1,0 +1,17 @@
+{
+  "title": "FaceMaster.ru",
+  "logger": {
+    "appenders": [
+      {
+        "type": "console",
+        "category": "catberry"
+      }
+    ],
+    "levels": {
+      "catberry": "TRACE"
+    }
+  },
+  "server": {
+    "port": 3000
+  }
+}

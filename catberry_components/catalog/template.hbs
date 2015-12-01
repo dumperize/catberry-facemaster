@@ -1,0 +1,49 @@
+<div block="master-rubrikator-page" mod="collapsed">
+    <cat-common-h1 id="common-h1" name="{{h1}}"></cat-common-h1>
+
+    <div class="row">
+        <div elem="rubriks-columns">
+            <div class="row">
+            <div block="rubriks-column">
+                <div block="rubrika-list" mod="tool-collapsed" mix="block:js-rubrika-collapsed">
+                    <div elem="title">
+                        <p elem="name">Развернуть все рубрики</p>
+                        <i elem="icon"></i>
+                    </div>
+                </div>
+                {{#each rubrikator}}
+
+                    {{#if isNewCol}}
+                    </div>
+                    <div block="rubriks-column">
+                    {{/if}}
+
+                    <div block="rubrika-list">
+                        <div elem="title" mix="block:js-rubrika-list" style="border-right-color: {{color}}">
+                            <p elem="name">{{name}}</p>
+
+                            <p elem="count">{{count}}</p>
+                        </div>
+                        <div elem="list">
+                            <ul>
+                                {{#each podrubriks}}
+                                    <li elem="list-li"><a href="/{{../nameEN}}/{{nameEN}}" elem="list-a">{{name}} <span
+                                            elem="list-count">{{count}}</span></a></li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+            </div>
+        </div>
+        <div elem="dop">
+            <p elem="dop-title">Другие возможности
+                в подборе мастера</p>
+
+            <div elem="dop-catalogs">
+                <cat-dop-catalogs id="dop-catalogs" data-mod="page_rubrikator"></cat-dop-catalogs>
+            </div>
+        </div>
+    </div>
+</div>

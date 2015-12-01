@@ -1,0 +1,5 @@
+{
+	"name": "master-rubrika",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

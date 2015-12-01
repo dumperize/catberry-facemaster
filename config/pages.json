@@ -1,0 +1,58 @@
+{
+  "main": {
+    "title": "Поиск Мастеров в сфере услуг",
+    "description": "Поиск Мастеров в сфере услуг",
+    "keywords": "поиск услуг, мастера, специалисты Тольятти"
+  },
+  "catalog": {
+    "title": "Каталог услуг",
+    "description": "",
+    "keywords": ""
+  },
+  "request": {
+    "title": "Заказать услугу",
+    "description": "",
+    "keywords": ""
+  },
+  "registration": {
+    "title": "Стать Мастером",
+    "description": "",
+    "keywords": ""
+  },
+  "sale": {
+    "title": " Каталог скидки и подарки",
+    "description": "",
+    "keywords": ""
+  },
+  "video": {
+    "title": "Видео Мастеров",
+    "description": "",
+    "keywords": ""
+  },
+  "sovety": {
+    "title": "Секреты мастеров",
+    "description": "",
+    "keywords": ""
+  },
+  "company": {
+    "title": "Каталог компаний",
+    "description": "",
+    "keywords": ""
+  },
+  "recommendation": {
+    "title": "Рекомендации",
+    "description": "",
+    "keywords": ""
+  },
+  "news": {
+    "title": "Новости",
+    "description": "",
+    "keywords": ""
+  },
+  "vacancy": {
+    "title": "Вакансии",
+    "description": "",
+    "keywords": ""
+  }
+
+}

@@ -1,0 +1,27 @@
+<footer block="footer">
+    <div class="container">
+        { {> _common/totop-btn/totop-btn} }
+        <div class="row">
+            <div elem="coordinator">Координатор сайта: {{phone}}</div>
+
+            <div elem="copyright">
+                <p elem="copyright-who">© FaceMaster — Фейсмастер</p>
+                <p elem="copyright-text">При полном или частичном воспроизведении информации
+                    активная ссылка на Фейсмастер обязательна.</p>
+            </div>
+
+
+            <div elem="links">
+                {{#each links}}
+                    <a href="{{url}}" elem="links-a">{{{title}}}</a>&nbsp;
+                {{/each}}
+            </div>
+
+
+            <div elem="counters">
+                <!--{ { > footer/counters/counters counters} }-->
+            </div>
+            <!--<script src="%=staticPrefix=%js/main%=hash=%%=min=%.js"></script>-->
+        </div>
+    </div>
+</footer>

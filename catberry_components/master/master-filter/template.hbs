@@ -1,0 +1,46 @@
+<div block="filter">
+    {{#each filter-section}}
+        <div block="filter-section">
+            <a class="filter-section__title filter-section__title_{{section-name}} {{#if open-section}}active{{/if}}"
+               href="{{url}}" mix="block:js-filter-toggle-btn">
+                <i elem="icon"></i>
+                {{title}}
+                <i elem="arrow-icon {{#if open-section}}down{{/if}}"></i>
+            </a>
+            {{#if open-section}}
+                {{#with open-section}}
+                    <div elem="section" mix="block:js-filter-toggle-section">
+                        {{#if is-sort}}
+                            <div block="sort-by">
+                                <p elem="title">Отсортировать: </p>
+
+                                <form elem="form" action="{{sort-by.url}}" method="{{sort-by.method}}">
+                                    <div block="filter-radio">
+                                        <input elem="input" type="radio" name="sort-by" value="name" id="sort-by-name">
+                                        <label elem="label" for="sort-by-name">по фамилии по алфавиту</label>
+                                    </div>
+                                    <div block="filter-radio">
+                                        <input elem="input" type="radio" name="sort-by" value="recommendation"
+                                               id="sort-by-recommendation">
+                                        <label elem="label" for="sort-by-recommendation">по количеству
+                                            рекомендаций</label>
+                                    </div>
+                                </form>
+                            </div>
+                        {{/if}}
+                        {{#if is-filter}}
+                            <div block="filter-by">
+                                <p elem="title">Отфильтровать:</p>
+                                {{> filter/tags/tags tags-free}}
+                                {{#each tags-group}}
+                                    <p elem="title">{{title}}</p>
+                                    { {> filter/tags/tags list} }
+                                {{/each}}
+                            </div>
+                        {{/if}}
+                    </div>
+                {{/with}}
+            {{/if}}
+        </div>
+    {{/each}}
+</div>
