@@ -35,7 +35,7 @@ Rubrika.prototype.$lifetime = 600000;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 Rubrika.prototype.load = function () {
-
+    console.log(this.$context);
     var podrubrika = this.$context.state.podrubrika;
     if (!podrubrika) {
         return;
@@ -47,8 +47,17 @@ Rubrika.prototype.load = function () {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
             }
-            result.content.podrubrika = podrubrika;
 
+            var seoArr = [];
+            Object.keys(result.content.seo)
+                .forEach(function (d) {
+                    seoArr[result.content.seo[d].section] = result.content.seo[d];
+                });
+            if (true)///вставить правило!
+                result.content.currentSeo = seoArr['master'];
+            //else
+            //    data['currentSeo'] = seoArr[self.$context.state.section];
+            result.content.podrubrika = podrubrika;
 
             return result.content;
         });

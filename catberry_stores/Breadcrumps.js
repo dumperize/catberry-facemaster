@@ -48,42 +48,36 @@ Breadcrumps.prototype.load = function () {
             ]
         }
     }
-
     if (this.$context.state.rubrika) {
         var self = this;
-        return this.$context.getStoreData('rubrika/Rubrikator')
+        return this.$context.getStoreData('rubrika/Rubrika')
             .then(function (data) {
                 var currentRubrika = self.$context.state.rubrika;
                 var currentPodrubrika = self.$context.state.podrubrika;
-                var podrubriks = data[currentRubrika]['podrubriks'];
+                var podrubriks = data.nearby;
                 var linksPodrubriks = [];
-                var links = [
-                    {
-                        title: "Каталог услуг",
-                        url: "catalog"
-                    }
-                ];
-                var leaf;
+                var links = [];
 
                 Object.keys(podrubriks)
                     .forEach(function (num) {
-                        if (currentPodrubrika == podrubriks[num].nameEN) {
-                            leaf = podrubriks[num].name;
-                            return;
-                        }
                         linksPodrubriks.push({
                             title: podrubriks[num].name,
-                            url: '/' + data[currentRubrika]["nameEN"] + '/' + podrubriks[num].nameEN
+                            url: '/' + data.english + '/' + podrubriks[num].english
                         });
                     });
 
                 links.push({
-                    title: data[currentRubrika]["name"],
-                    url: "/" + data[currentRubrika]["nameEN"],
+                    title: "Каталог услуг",
+                    url: "catalog"
+                });
+
+                links.push({
+                    title: data.parent.name,
+                    url: "/" + data.parent.english,
                     links: linksPodrubriks
                 });
                 links.push({
-                    title: leaf
+                    title: data.name
                 });
 
                 return {
@@ -93,7 +87,8 @@ Breadcrumps.prototype.load = function () {
             });
     }
     return null;
-};
+}
+;
 
 /**
  * Handles action named "some-action" from any component.

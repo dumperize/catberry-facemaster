@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = Masters;
+module.exports = MasterList;
 
 /*
  * This is a Catberry Store file.
@@ -9,13 +9,12 @@ module.exports = Masters;
  */
 
 /**
- * Creates new instance of the "master/masters" store.
+ * Creates new instance of the "master/masterList" store.
  * @param {UHR} $uhr Universal HTTP request.
  * @constructor
  */
-function Masters($uhr) {
+function MasterList($uhr) {
     this._uhr = $uhr;
-    this.$context.setDependency('rubrika/Rubrika');
 }
 
 /**
@@ -23,22 +22,33 @@ function Masters($uhr) {
  * @type {UHR}
  * @private
  */
-Masters.prototype._uhr = null;
+MasterList.prototype._uhr = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
  * @type {number} Lifetime in milliseconds.
  */
-Masters.prototype.$lifetime = 60000;
+MasterList.prototype.$lifetime = 60000;
 
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
-Masters.prototype.load = function () {
-    return this.$context.sendAction("rubrika/Rubrika", "getCurrentPodrubrika")
-        .then(function () {
+MasterList.prototype.load = function () {
+    var podrubrika = this.$context.state.podrubrika;
+    if (!podrubrika) {
+        return;
+    }
+    return this._uhr.get(
+            'http://localhost:3000/data-json/master.json'
+        )
+        .then(function (result) {
+            if (result.status.code >= 400 && result.status.code < 600) {
+                throw new Error(result.status.text);
+            }
+            result.content.podrubrika = podrubrika;
 
+            return result.content;
         });
 };
 
@@ -46,7 +56,7 @@ Masters.prototype.load = function () {
  * Handles action named "some-action" from any component.
  * @returns {Promise<Object>|Object|null|undefined} Response to component.
  */
-Masters.prototype.handleSomeAction = function () {
+MasterList.prototype.handleSomeAction = function () {
     // Here you can call this.$context.changed() if you know
     // that remote data source has been changed.
     // Also you can have many handle methods for other actions.

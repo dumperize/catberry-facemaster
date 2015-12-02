@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = Filter;
+module.exports = VideoList;
 
 /*
  * This is a Catberry Store file.
@@ -9,11 +9,11 @@ module.exports = Filter;
  */
 
 /**
- * Creates new instance of the "rubrika/Filter" store.
+ * Creates new instance of the "master/videoList" store.
  * @param {UHR} $uhr Universal HTTP request.
  * @constructor
  */
-function Filter($uhr) {
+function VideoList($uhr) {
 	this._uhr = $uhr;
 }
 
@@ -22,19 +22,19 @@ function Filter($uhr) {
  * @type {UHR}
  * @private
  */
-Filter.prototype._uhr = null;
+VideoList.prototype._uhr = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
  * @type {number} Lifetime in milliseconds.
  */
-Filter.prototype.$lifetime = 60000;
+VideoList.prototype.$lifetime = 60000;
 
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
-Filter.prototype.load = function () {
+VideoList.prototype.load = function () {
 	// Here you can do any HTTP requests using this._uhr.
 	// Please read details here https://github.com/catberry/catberry-uhr.
 };
@@ -43,7 +43,7 @@ Filter.prototype.load = function () {
  * Handles action named "some-action" from any component.
  * @returns {Promise<Object>|Object|null|undefined} Response to component.
  */
-Filter.prototype.handleSomeAction = function () {
+VideoList.prototype.handleSomeAction = function () {
 	// Here you can call this.$context.changed() if you know
 	// that remote data source has been changed.
 	// Also you can have many handle methods for other actions.

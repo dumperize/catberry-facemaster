@@ -42,9 +42,9 @@ Head.prototype.load = function () {
         return this.$context.getStoreData('rubrika/Rubrika')
             .then(function (data) {
                 return {
-                    title: data.title,
-                    description: data.description,
-                    keywords: data.keywords
+                    title: data.currentSeo.title,
+                    description: data.currentSeo.description,
+                    keywords: data.currentSeo.keywords
                 }
             });
 

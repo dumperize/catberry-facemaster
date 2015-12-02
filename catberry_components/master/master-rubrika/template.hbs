@@ -1,7 +1,7 @@
 <div block="container">
     <div block="inner-top">
         <div elem="title">
-            <cat-common-h1 id="common-h1" name="{{h1}}"></cat-common-h1>
+            <cat-common-h1 id="common-h1" name="{{currentSeo.otherTitle}}"></cat-common-h1>
         </div>
 
         <div elem="search">
@@ -16,19 +16,23 @@
     </div>
     <div block="inner-content">
         <div elem="left-side">
-            <cat-master-filter id="master-filter"></cat-master-filter>
+            <cat-master-filter id="master-filter" cat-store="rubrika/Rubrika"></cat-master-filter>
             { {> banner/banner_side/banner_side banner_side} }
         </div>
         <div elem="right-side">
+            {{rubrika}}
+            {{podrubrika}}
+            {{tag}}
+            {{section}}
             { {> master_recommended/master_recommended master_recommended} }
             { {> master_list/master_list master-list} }
         </div>
     </div>
     <div block="row">
-        {{#if seoText}}
+        {{#if currentSeo.text}}
             <div block="seo-text">
                 <div elem="text" mix="block:format">
-                    {{{seoText}}}
+                    {{{currentSeo.text}}}
                 </div>
             </div>
         {{/if}}
