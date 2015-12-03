@@ -18,6 +18,9 @@ module.exports = Head;
 function Head($uhr) {
     this._uhr = $uhr;
     this.currentPage = "main";
+    this.$context.setDependency('Pages');
+    this.$context.setDependency('SeoText');
+    this.$context.setDependency('rubrika/Rubrika');
 }
 
 /**
@@ -38,20 +41,38 @@ Head.prototype.$lifetime = 60000;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 Head.prototype.load = function () {
-    if (this.$context.state.podrubrika)
-        return this.$context.getStoreData('rubrika/Rubrika')
-            .then(function (data) {
-                return {
-                    title: data.currentSeo.title,
-                    description: data.currentSeo.description,
-                    keywords: data.currentSeo.keywords
-                }
-            });
+    var self = this;
+    return this.$context.getStoreData('Pages')
+        .then(function (page) {
+            if (page.pageState.tag)
+                return self.loadForTag();
+            if (page.pageState.rubrika)
+                return self.loadForPodrubrika();
 
-    if (this.$context.state.page)
-        return PAGES[this.$context.state.page];
+            return PAGES[page.pageState.page];
+        });
+};
 
-    return PAGES["main"];
+Head.prototype.loadForTag = function () {
+    return this.$context.getStoreData('SeoText')
+        .then(function (data) {
+            return {
+                title: data.title,
+                description: data.description,
+                keywords: data.keywords
+            }
+        });
+};
+
+Head.prototype.loadForPodrubrika = function () {
+    return this.$context.getStoreData('rubrika/Rubrika')
+        .then(function (data) {
+            return {
+                title: data.currentSeo.title,
+                description: data.currentSeo.description,
+                keywords: data.currentSeo.keywords
+            }
+        });
 };
 
 /**

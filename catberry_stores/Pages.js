@@ -17,7 +17,6 @@ module.exports = Pages;
  */
 function Pages($config) {
     this._config = $config;
-    this.$context.setDependency('rubrika/Rubrikator');
 }
 
 /**
@@ -40,14 +39,15 @@ Pages.prototype.$lifetime = 3600000;
 Pages.prototype.load = function () {
     var self = this;
     var currentPage = self.$context.state.page;
-    var isActivePageRubrika = false;
+    var isPageRubrika = false;
 
-    return Promise.resolve(currentPage)
+    return Promise.resolve(null)
         .then(function () {
             var rubrika = self.$context.state.rubrika;
+
             if (rubrika) {
                 currentPage = rubrika;
-                isActivePageRubrika = true;
+                isPageRubrika = true;
                 return self.$context.getStoreData('rubrika/Rubrikator')
                     .then(function (rubriks) {
                         Object.keys(rubriks)
@@ -57,18 +57,23 @@ Pages.prototype.load = function () {
                         return PAGES;
                     });
             }
+
+            return;
+        })
+        .then(function () {
+
             if (!currentPage) {
                 return self.$context.redirect('/main');
             }
-            return currentPage;
-        })
-        .then(function () {
+
             if (!PAGES.hasOwnProperty(currentPage)) {
                 throw new Error(currentPage + ' page not found');
             }
+
             var result = {
                 current: currentPage,
                 isActive: {},
+                pageState: self.$context.state,
 
                 header: self.getHeaderData(),
                 footer: self.getFooterData()
@@ -77,7 +82,7 @@ Pages.prototype.load = function () {
                 .forEach(function (page) {
                     result.isActive[page] = (currentPage === page);
                 });
-            result.isActive['masterRubrika'] = isActivePageRubrika;
+            result.isActive['masterRubrika'] = isPageRubrika;
 
             return result;
         });

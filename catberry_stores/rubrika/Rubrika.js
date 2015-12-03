@@ -15,6 +15,7 @@ module.exports = Rubrika;
  */
 function Rubrika($uhr) {
     this._uhr = $uhr;
+    this.$context.setDependency('SeoText');
 }
 
 /**
@@ -35,13 +36,14 @@ Rubrika.prototype.$lifetime = 600000;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 Rubrika.prototype.load = function () {
-    console.log(this.$context);
+    var self = this;
     var podrubrika = this.$context.state.podrubrika;
+
     if (!podrubrika) {
         return;
     }
     return this._uhr.get(
-            'http://localhost:3000/data-json/rubrika-' + podrubrika + '.json'
+        'http://localhost:3000/data-json/rubrika-basseiny.json'
         )
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
@@ -53,14 +55,34 @@ Rubrika.prototype.load = function () {
                 .forEach(function (d) {
                     seoArr[result.content.seo[d].section] = result.content.seo[d];
                 });
-            if (true)///вставить правило!
-                result.content.currentSeo = seoArr['master'];
-            //else
-            //    data['currentSeo'] = seoArr[self.$context.state.section];
             result.content.podrubrika = podrubrika;
+            result.content.currentTag = self.$context.state.tag;
+            result.content.currentSection = self.$context.state.section;
 
-            return result.content;
+            return self._getCurrentSeo(result.content.seo).
+            then(function (seo) {
+                result.content.currentSeo = seo;
+
+                return result.content;
+            });
         });
+};
+Rubrika.prototype._getCurrentSeo = function (seoJSON) {
+    var tag = this.$context.state.tag;
+    var section = this.$context.state.section;
+    var seoArr = [];
+    if (tag)
+        return this.$context.getStoreData('SeoText');
+
+    Object.keys(seoJSON)
+        .forEach(function (d) {
+            seoArr[seoJSON[d].section] = seoJSON[d];
+        });
+
+    if (!section)
+        section = 'masters';
+
+    return Promise.resolve(seoArr[section]);
 };
 
 /**
@@ -68,6 +90,6 @@ Rubrika.prototype.load = function () {
  * @returns {Promise<Object>|Object|null|undefined} Response to component.
  */
 
-Rubrika.prototype.handleGetCurrentPodrubrika = function(){
+Rubrika.prototype.handleGetCurrentPodrubrika = function () {
     return this.$context.state.podrubrika;
 }

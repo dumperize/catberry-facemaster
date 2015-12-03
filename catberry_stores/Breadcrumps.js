@@ -48,6 +48,7 @@ Breadcrumps.prototype.load = function () {
             ]
         }
     }
+
     if (this.$context.state.rubrika) {
         var self = this;
         return this.$context.getStoreData('rubrika/Rubrika')
@@ -62,7 +63,7 @@ Breadcrumps.prototype.load = function () {
                     .forEach(function (num) {
                         linksPodrubriks.push({
                             title: podrubriks[num].name,
-                            url: '/' + data.english + '/' + podrubriks[num].english
+                            url: '/' + data.parent.english + '/' + podrubriks[num].english
                         });
                     });
 
@@ -76,9 +77,20 @@ Breadcrumps.prototype.load = function () {
                     url: "/" + data.parent.english,
                     links: linksPodrubriks
                 });
-                links.push({
-                    title: data.name
-                });
+
+                if (self.$context.state.tag) {
+                    links.push({
+                        title: data.name,
+                        url: '/' + data.parent.english + '/' + data.english
+                    });
+                    links.push({
+                        title: self.getNameTag(self.$context.state.tag, data.tags)
+                    });
+                } else {
+                    links.push({
+                        title: data.name
+                    });
+                }
 
                 return {
                     links: links
@@ -87,8 +99,15 @@ Breadcrumps.prototype.load = function () {
             });
     }
     return null;
-}
-;
+};
+
+Breadcrumps.prototype.getNameTag = function (tag, data) {
+    for (var i = 0; i < data.length; ++i) {
+        if (data[i].url == tag)
+            return data[i].name;
+    }
+    return null;
+};
 
 /**
  * Handles action named "some-action" from any component.
