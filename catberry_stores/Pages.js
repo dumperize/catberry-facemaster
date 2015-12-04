@@ -17,6 +17,7 @@ module.exports = Pages;
  */
 function Pages($config) {
     this._config = $config;
+    this.$context.setDependency('rubrika/Rubrika');
 }
 
 /**
@@ -57,7 +58,6 @@ Pages.prototype.load = function () {
                         return PAGES;
                     });
             }
-
             return;
         })
         .then(function () {
@@ -73,7 +73,7 @@ Pages.prototype.load = function () {
             var result = {
                 current: currentPage,
                 isActive: {},
-                pageState: self.$context.state,
+                state: self.$context.state,
 
                 header: self.getHeaderData(),
                 footer: self.getFooterData()

@@ -17,6 +17,8 @@ module.exports = Breadcrumps;
  */
 function Breadcrumps($uhr) {
     this._uhr = $uhr;
+    this.$context.setDependency('Pages');
+    this.$context.setDependency('rubrika/Rubrika');
 }
 
 /**
@@ -37,71 +39,88 @@ Breadcrumps.prototype.$lifetime = 60000;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 Breadcrumps.prototype.load = function () {
+    var self = this;
+    var brcrmp = [];
 
-    if (this.$context.state.page) {
-        var leaf = PAGES[this.$context.state.page].title;
-        return {
-            links: [
-                {
-                    title: leaf
-                }
-            ]
-        }
-    }
+    return this.$context.getStoreData('Pages')
+        .then(function (page) {
 
-    if (this.$context.state.rubrika) {
-        var self = this;
-        return this.$context.getStoreData('rubrika/Rubrika')
-            .then(function (data) {
-                var currentRubrika = self.$context.state.rubrika;
-                var currentPodrubrika = self.$context.state.podrubrika;
-                var podrubriks = data.nearby;
-                var linksPodrubriks = [];
-                var links = [];
+            if (page.state.rubrika)
+                return self._loadForRubrika();
 
-                Object.keys(podrubriks)
-                    .forEach(function (num) {
-                        linksPodrubriks.push({
-                            title: podrubriks[num].name,
-                            url: '/' + data.parent.english + '/' + podrubriks[num].english
-                        });
-                    });
-
-                links.push({
-                    title: "Каталог услуг",
-                    url: "catalog"
-                });
-
-                links.push({
-                    title: data.parent.name,
-                    url: "/" + data.parent.english,
-                    links: linksPodrubriks
-                });
-
-                if (self.$context.state.tag) {
-                    links.push({
-                        title: data.name,
-                        url: '/' + data.parent.english + '/' + data.english
-                    });
-                    links.push({
-                        title: self.getNameTag(self.$context.state.tag, data.tags)
-                    });
-                } else {
-                    links.push({
-                        title: data.name
-                    });
-                }
-
-                return {
-                    links: links
-                };
-
+            brcrmp.push({
+                title: PAGES[page.state.page].title
             });
-    }
-    return null;
+
+            return brcrmp;
+        })
+        .then(function (brcrmp) {
+            return {
+                links: brcrmp
+            };
+        });
 };
 
-Breadcrumps.prototype.getNameTag = function (tag, data) {
+Breadcrumps.prototype._loadForRubrika = function () {
+    var self = this;
+    return this.$context.getStoreData('rubrika/Rubrika')
+        .then(function (rubrika) {
+            var links;
+            if (rubrika.currentSeo.state.tag) {
+                links = self._getForTag(rubrika);
+            } else {
+                links = self._getForRubrika(rubrika);
+            }
+            return links;
+        });
+};
+
+Breadcrumps.prototype._getForTag = function (rubrika) {
+    var links = this._getForRubAndTag(rubrika);
+    links.push({
+        title: rubrika.name,
+        url: '/' + rubrika.parent.english + '/' + rubrika.english
+    });
+    links.push({
+        title: this._getNameTag(rubrika.currentSeo.state.tag, rubrika.tags)
+    });
+    return links;
+};
+
+Breadcrumps.prototype._getForRubrika = function (rubrika) {
+    var links = this._getForRubAndTag(rubrika);
+    links.push({
+        title: rubrika.name
+    });
+    return links;
+};
+Breadcrumps.prototype._getForRubAndTag = function (data) {
+    var podrubriks = data.nearby;
+    var linksPodrubriks = [];
+    var links = [];
+
+    Object.keys(podrubriks)
+        .forEach(function (num) {
+            linksPodrubriks.push({
+                title: podrubriks[num].name,
+                url: '/' + data.parent.english + '/' + podrubriks[num].english
+            });
+        });
+
+    links.push({
+        title: "Каталог услуг",
+        url: "catalog"
+    });
+
+    links.push({
+        title: data.parent.name,
+        url: "/" + data.parent.english,
+        links: linksPodrubriks
+    });
+    return links;
+};
+
+Breadcrumps.prototype._getNameTag = function (tag, data) {
     for (var i = 0; i < data.length; ++i) {
         if (data[i].url == tag)
             return data[i].name;

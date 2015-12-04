@@ -19,7 +19,6 @@ function Head($uhr) {
     this._uhr = $uhr;
     this.currentPage = "main";
     this.$context.setDependency('Pages');
-    this.$context.setDependency('SeoText');
     this.$context.setDependency('rubrika/Rubrika');
 }
 
@@ -44,27 +43,14 @@ Head.prototype.load = function () {
     var self = this;
     return this.$context.getStoreData('Pages')
         .then(function (page) {
-            if (page.pageState.tag)
-                return self.loadForTag();
-            if (page.pageState.rubrika)
-                return self.loadForPodrubrika();
+            if (page.state.rubrika)
+                return self._loadForRubrika();
 
-            return PAGES[page.pageState.page];
+            return PAGES[page.state.page];
         });
 };
 
-Head.prototype.loadForTag = function () {
-    return this.$context.getStoreData('SeoText')
-        .then(function (data) {
-            return {
-                title: data.title,
-                description: data.description,
-                keywords: data.keywords
-            }
-        });
-};
-
-Head.prototype.loadForPodrubrika = function () {
+Head.prototype._loadForRubrika = function () {
     return this.$context.getStoreData('rubrika/Rubrika')
         .then(function (data) {
             return {

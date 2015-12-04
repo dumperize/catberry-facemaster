@@ -11,27 +11,24 @@
 // https://github.com/catberry/catberry/blob/master/docs/index.md#url-route-definition
 
 module.exports = [
-    '/:page[Pages, Breadcrumps]',
-    '/:rubrika[Pages, Breadcrumps]/:podrubrika[rubrika/Rubrika, Breadcrumps]',
+    '/:page[Pages]',
+    '/:rubrika[Pages]/:podrubrika[rubrika/Rubrika]',
     {
-        expression: '/:rubrika[Pages, Breadcrumps]/:podrubrika[rubrika/Rubrika, Breadcrumps]/:param[SeoText, rubrika/Rubrika, Breadcrumps]',
+        expression: '/:rubrika[Pages]/:podrubrika[rubrika/Rubrika]/:param[SeoText]',
         map: function (state) {
             var section = ['video', 'sales', 'secrets', 'company'];
             var isSection;
             for (var i = 0; i < section.length; ++i) {
                 if (state.SeoText.param == section[i]) {
-                    state['rubrika/Rubrika'].section =
-                        state.Breadcrumps.section = section[i];
+                    state.SeoText.section = section[i];
                     isSection = true;
                 }
             }
             if (!isSection) {
-                state['rubrika/Rubrika'].tag =
-                    state.SeoText.tag =
-                        state.Breadcrumps.tag = state.SeoText.param;
+                state.SeoText.tag = state.SeoText.param;
             }
             return state;
         }
     },
-    '/:rubrika[Pages, Breadcrumps]/:podrubrika[rubrika/Rubrika, Breadcrumps]/:tag[SeoText, rubrika/Rubrika,Breadcrumps]/:section[SeoText, rubrika/Rubrika, Breadcrumps]'
+    '/:rubrika[Pages]/:podrubrika[rubrika/Rubrika]/:tag[SeoText]/:section[SeoText]'
 ];

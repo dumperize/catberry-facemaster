@@ -55,34 +55,15 @@ Rubrika.prototype.load = function () {
                 .forEach(function (d) {
                     seoArr[result.content.seo[d].section] = result.content.seo[d];
                 });
-            result.content.podrubrika = podrubrika;
-            result.content.currentTag = self.$context.state.tag;
-            result.content.currentSection = self.$context.state.section;
+            result.content.state = self.$context.state;
 
-            return self._getCurrentSeo(result.content.seo).
-            then(function (seo) {
-                result.content.currentSeo = seo;
-
-                return result.content;
-            });
+            self.$context.sendAction('SeoText', 'setPodrubrika', podrubrika);
+            return self.$context.getStoreData('SeoText')
+                .then(function (seo) {
+                    result.content.currentSeo = seo;
+                    return result.content;
+                });
         });
-};
-Rubrika.prototype._getCurrentSeo = function (seoJSON) {
-    var tag = this.$context.state.tag;
-    var section = this.$context.state.section;
-    var seoArr = [];
-    if (tag)
-        return this.$context.getStoreData('SeoText');
-
-    Object.keys(seoJSON)
-        .forEach(function (d) {
-            seoArr[seoJSON[d].section] = seoJSON[d];
-        });
-
-    if (!section)
-        section = 'masters';
-
-    return Promise.resolve(seoArr[section]);
 };
 
 /**

@@ -1,5 +1,4 @@
 'use strict';
-
 module.exports = MasterFilter;
 
 /*
@@ -24,14 +23,14 @@ function MasterFilter() {
  */
 MasterFilter.prototype.render = function () {
     var self = this;
-    var path, currentTag, currentSection;
+    var path, currentTag;
     var result = [];
 
     return this.$context.getStoreData()
         .then(function (rubrika) {
 
             path = '/' + rubrika.parent.english + '/' + rubrika.english;
-            currentTag = rubrika.currentTag;
+            currentTag = rubrika.state.tag;
 
             return self.$context.getStoreData('master/MasterList')
                 .then(function (master) {
@@ -94,27 +93,24 @@ MasterFilter.prototype.render = function () {
 };
 /**
  * Декарирование открытой секции (добавление тегов, ортировки)
- * @param currentSection текущая секция
  * @param result массив для декорирования
  * @param rubrika рубрика из стора
  * @private
  */
 MasterFilter.prototype._decoreOpenSection = function (result, rubrika) {
-    var currentSection = rubrika.currentSection;
+    var currentSection = rubrika.currentSeo.state.section;
 
     for (var i = 0; i < result.length; ++i) {
         if (result[i].sectionName == currentSection) {
 
             var tags = this._getTags(rubrika);
             result[i].openSection = {tagsGroup: tags};
-
-            if (currentSection == 'master') {
-                result[i].sortBy = {
+            if (currentSection == 'masters') {
+                result[i].openSection.sortBy = {
                     "url": "",
                     "method": "get"
                 };
             }
-
             return;
         }
     }
@@ -131,8 +127,8 @@ MasterFilter.prototype._decoreOpenSection = function (result, rubrika) {
 MasterFilter.prototype._getTags = function (rubrika) {
     var path = '/' + rubrika.parent.english + '/' + rubrika.english;
     var tagsJson = rubrika.tags;
-    var currentTag = rubrika.currentTag;
-    var currentSection = rubrika.currentSection;
+    var currentTag = rubrika.currentSeo.state.tag;
+    var currentSection = rubrika.currentSeo.state.section;
     var tags = [];
 
     Object.keys(tagsJson)
@@ -146,11 +142,10 @@ MasterFilter.prototype._getTags = function (rubrika) {
                 tag.isActive = true;
                 tag.urlBack = path;
             }
-
             if (currentSection == 'masters') {
-                tag.url = path + '/' + tag.url;
+                tag.path = path + '/' + tag.url;
             } else {
-                tag.url = path + '/' + tag.url + '/' + currentSection;
+                tag.path = path + '/' + tag.url + '/' + currentSection;
             }
 
             tags[tag.groupName].push(tag);
@@ -164,7 +159,6 @@ MasterFilter.prototype._getTags = function (rubrika) {
             tags: tags[key]
         });
     });
-
     return tagsGroup;
 };
 
