@@ -1,0 +1,34 @@
+.main-menu {
+  height: 24px;
+  @include font-tuning(14, 24);
+
+  /** element **/
+  &__item {
+    float: left;
+    text-transform: uppercase;
+    padding: 0px 12px;
+    border-right: 1px solid $color-text;
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      border-right: none;
+    }
+    /** resolutions **/
+    @include at(md){
+      padding: 0px 7px;
+    }
+    @include at(sm){
+      padding: 0px 24px;
+      &:last-child {
+        padding-right: 0;
+        text-align: right;
+      }
+    }
+    /** ========== **/
+  }
+  &__item-link {
+    text-decoration: none;
+  }
+  /** ========== **/
+}

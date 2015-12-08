@@ -1,0 +1,20 @@
+.visitor {
+  width: 108px;
+  margin-left: -5px;
+  font-size: 0.7rem;
+  text-align: center;
+  &__mera {
+    opacity: 0;
+    transition: opacity 0.5s;
+    line-height: 1em;
+  }
+  &:hover {
+    .visitor__mera {
+      opacity: 1;
+    }
+  }
+
+  @include to(md){
+    display: none;
+  }
+}

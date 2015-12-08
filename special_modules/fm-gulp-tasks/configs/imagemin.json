@@ -1,8 +1,0 @@
-{
-	"optimizationLevel": 3,
-	"svgoPlugins": [
-		{
-			"removeHiddenElems": false
-		}
-	]
-}

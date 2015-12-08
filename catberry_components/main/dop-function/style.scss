@@ -1,0 +1,170 @@
+.dop-function{
+
+  @extend .col-lg-3;
+  @extend .col-md-4;
+  @extend .col-ms-12;
+  @include from(md){
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  @include from(sm){
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  &__inner {
+    @extend .row;
+  }
+  @include at(xs) {
+    padding: 0;
+  }
+}
+.become-master, .about-company, .bayda {
+  padding-bottom:10px;
+  @extend .col-md-12;
+  @extend .col-sm-4;
+
+  &__inner{
+    background-color: $color-green-light;
+  }
+  &__title {
+    padding: 16px 20px;
+    @include font-tuning(22,26);
+  }
+
+  &__item {
+    @include cf;
+    &-link {
+      display: block;
+      height: 40px;
+      padding: 10px 20px;
+      width: 100%;
+      color: inherit;
+      text-decoration: none;
+      &:hover, &_hover{
+        background-color: #afd962;
+      }
+    }
+  }
+  &__icon{
+    float:left;
+    margin-right: 10px;
+    @extend %icon;
+    @extend %icon_block;
+    @extend %icon_man;
+    @extend %icon_size_small;
+  }
+
+  &__menu-cube {
+    padding: 10px;
+    @include cf;
+  }
+  &__item-cube {
+    display: table;
+    @include font-tuning(12,15);
+    &-link {
+      display: table-cell;
+      color: inherit;
+      text-decoration: none;
+      vertical-align: middle;
+    }
+  }
+  @include from(md){
+    padding-right: 0;
+    padding-left: 0;
+    &__item-cube {
+      float: left;
+      height: 74px;
+      width: 50%;
+      text-align: center;
+      border-color: #58595b;
+      border-image: none;
+      border-style: solid;
+      border-width: 1px 0 0 1px;
+      &:nth-child(2n-1){
+        border-left-width: 0;
+      }
+      &:nth-child(1),&:nth-child(2){
+        border-top-width: 0;
+      }
+      &-link {
+        margin: 0;
+        padding: 6px;
+
+      }
+    }
+  }
+  @include to(md){
+    padding-right: 5px;
+    padding-left: 5px;
+    &__menu, &__menu-cube{
+      display: none;
+    }
+    &__menu-cube{
+      padding:0;
+    }
+    &__item{
+      &-link{
+        padding-top:0;
+        padding-right:0;
+        padding-left: 10px;
+        height:34px;
+        @include font-tuning(12,34);
+      }
+    }
+    &__item-cube{
+      height:34px;
+      width: 100%;
+      @include font-tuning(10,12);
+      &-link{
+        padding-left: 10px;
+      }
+      &:hover, &_hover{
+        background-color: #afd962;
+      }
+    }
+    &__title{
+      padding: 0 20px;
+      cursor: pointer;
+      @include font-tuning(13,34);
+      &:after{
+        content: ' ';
+        display: block;
+        position: absolute;
+        right:10px;
+        top: 12px;
+        @extend %icon;
+        @extend %icon_block;
+        @extend %icon_strelka;
+        @extend %icon_size_xxsmall;
+      }
+    }
+  }
+  @include at(xs){
+    padding-right: 10px;
+    padding-left: 10px;
+    &__inner{
+      padding-top: 3px;
+      padding-bottom: 3px;
+    }
+    &__title{
+      &:after{
+        right:20px;
+        top: 15px;
+      }
+    }
+  }
+
+}
+.bayda{
+  @include from(md){
+    &__title{
+      display:none;
+    }
+  }
+}
+
+.dop-function-block-uncollapse{
+  @include to(md){
+    display:block;
+  }
+}

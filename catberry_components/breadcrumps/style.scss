@@ -1,0 +1,32 @@
+.breadcrumbs {
+  padding-top: 15px;
+  @extend .col-xs-12;
+  @include font-tuning(11, 15);
+  @include at(xs) {
+    padding: 0;
+  }
+  &__header {
+    color: $color-text-blue;
+    font-weight: bold;
+  }
+  &__icon {
+    margin: 0 6px;
+    @extend %icon;
+    @extend %icon_size_xxxsmall;
+    @extend %icon_inline;
+    @extend %icon_arrow-breadcrumbs;
+  }
+  &__list-container {
+    display: none;
+    background-color: $color-bg;
+    padding: 5px 10px 10px 5px;
+    border-left: 1px solid $color-text;
+    position: absolute;
+    z-index: 1000;
+    line-height: 15px;
+  }
+}
+
+.js-parent-rub, .js-parent-rub:hover {
+  text-decoration: underline;
+}

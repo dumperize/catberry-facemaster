@@ -1,0 +1,48 @@
+.social {
+  text-align: justify;
+  line-height: 0;
+  font-size: 1px;
+  &:after {
+    width: 100%;
+    height: 0px;
+    visibility: hidden;
+    overflow: hidden;
+    content: " ";
+    display: inline-block;
+  }
+
+  &__item {
+    display: inline-block;
+    line-height: normal;
+    vertical-align: top;
+    &-link {
+      display: block;
+      width: 26px;
+      height: 26px;
+      font-size: 14px;
+      padding: 4px 0;
+      background-color: $color-bg-grey-medium;
+      &:hover{
+        background-color: $color-bg-grey-dark;
+      }
+    }
+  }
+  &-icon {
+    margin: 0 auto;
+    @extend %icon;
+    @extend %icon_size_xsmall;
+    @extend %icon_block;
+    &_vk {
+      @extend %icon_vk_white;
+    }
+    &_ok {
+      @extend %icon_ok_white;
+    }
+    &_fb {
+      @extend %icon_fb_white;
+    }
+    &_tw {
+      @extend %icon_tw_white;
+    }
+  }
+}

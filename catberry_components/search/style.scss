@@ -1,0 +1,146 @@
+.search {
+  @include cf;
+  &__title, &__field, &__button {
+    height: 94px;
+  }
+  &__title {
+    @extend .col-lg-1;
+    @extend .col-md-2;
+    @extend .col-sm-1;
+    padding-right: 5px;
+  }
+  &__field {
+    padding-right: 5px;
+    @extend .col-lg-9;
+    @extend .col-md-7;
+    @extend .col-sm-8;
+    &-input {
+      color: #666;
+      height: 40px;
+      width: 100%;
+      @include font-tuning(19, 40);
+      @include vertical-align;
+    }
+    @include at(md) {
+      padding-left: 0px;
+    }
+  }
+  &__button {
+    padding-left: 5px;
+    @extend .col-lg-2;
+    @extend .col-sm-3;
+    &-submit {
+      font-weight: normal;
+      height: 40px;
+      width: 100%;
+      padding: 0;
+      background-color: $color-blue;
+      @include font-tuning(15, 14);
+      @extend .btn;
+      @include vertical-align;
+      &:hover {
+        background-color: darken($color-blue, 10%);
+      }
+      @include at(lg) {
+        padding: 0 20px;
+      }
+    }
+  }
+  &__icon-search {
+    @include vertical-align;
+    @extend %icon;
+    @extend %icon_block;
+    @extend %icon_search;
+    @include icon_size(35px);
+    margin: 0 auto;
+  }
+  @include at(sm) {
+    &__title, &__field, &__button {
+      height: 70px;
+
+    }
+    &__field {
+      &-input {
+        height: 30px;
+        @include font-tuning(16, 30);
+      }
+    }
+    &__button {
+      &-submit {
+        height: 30px;
+        @include font-tuning(13, 13);
+      }
+    }
+    &__icon-search {
+      @include icon_size_medium;
+    }
+  }
+  @include at(xs) {
+    &__field, &__title {
+      display: none;
+    }
+    &__icon-search {
+      @include icon_size_small;
+    }
+    &__button {
+      padding-left: 10px;
+      height: 68px;
+      &-submit {
+        display:block;
+        top: 10px;
+        transform:none;
+      }
+    }
+  }
+  &_inner {
+    background-color: #5DC8ED;
+
+    .search {
+      &__title, &__field, &__button {
+        height: 60px;
+        @include at(xs) {
+          height: 40px;
+        }
+      }
+      &__button {
+        &-submit {
+          background-color: #8ed8f2;
+          @include at(xs){
+            background-color: transparent;
+
+          }
+          &:hover {
+            background-color: lighten(#8ed8f2, 10%);
+            @include at(xs){
+              background-color: transparent;
+            }
+          }
+
+        }
+      }
+      &__title {
+        @include at(sm) {
+          display: none;
+        }
+        @include at(md) {
+          @extend .col-md-2;
+        }
+      }
+      &__field {
+        @extend .col-sm-9;
+        @extend .col-md-7;
+        @extend .col-lg-8;
+        @include at(sm) {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}
+.search-note {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: $color-blue-light;
+  color: $color-text-blue;
+  border: 1px solid $color-text-blue;
+}

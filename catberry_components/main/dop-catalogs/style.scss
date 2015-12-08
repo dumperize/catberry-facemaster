@@ -1,0 +1,110 @@
+.catalogs-dop {
+
+  &__item {
+    &-link {
+      color: inherit;
+      display: block;
+      text-decoration: none;
+    }
+  }
+  &__icon {
+    float: left;
+    margin-right: 10px;
+    @include vertical-align;
+    @include icon_size_small;
+    @extend %icon;
+    @extend %icon_block;
+    &_gift {
+      @extend %icon_gift;
+    }
+    &_video {
+      @extend %icon_video;
+    }
+    &_qwestion {
+      @extend %icon_qwestion;
+    }
+    &_case {
+      @extend %icon_case;
+    }
+
+  }
+  @include at(lg) {
+    &__item {
+      &-link {
+        height: 50px;
+        @include vertical-align;
+      }
+    }
+  }
+
+  @include to(lg) {
+    padding: 10px 10px 0 10px;
+    &__item {
+      padding: 0;
+      &-link {
+        height: 30px;
+        padding: 5px 0 5px 10px;
+        @include font-tuning(11, 14);
+      }
+    }
+    &__icon {
+      @include icon_size_xsmall;
+    }
+  }
+
+  &_page_main {
+    @extend .row;
+    .catalogs-dop {
+      &__item {
+        @extend .col-lg-3;
+        @extend .col-sm-4;
+        @include at(sm) {
+          padding: 0 5px 10px;
+        }
+        &-link {
+          border: 1px solid transparent;
+          @include font-tuning(12, 16);
+          &:hover {
+            border: 1px solid $color-text;
+            color: inherit;
+          }
+          @include at(sm){
+            padding-left: 5px;
+          }
+        }
+      }
+      &__icon {
+        @include at(sm) {
+          margin-right: 5px;
+          @include icon_size_xxsmall;
+        }
+      }
+
+      @include at(lg) {
+        &__item {
+          height: 75px;
+          &-link {
+            padding: 10px;
+            height: 50px;
+            @include vertical-align;
+          }
+        }
+      }
+    }
+    @include at(sm) {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+  &_page_rubrikator {
+    .catalogs-dop {
+      &__item {
+        height: 50px;
+        @include font-tuning(17, 17);
+        &-link {
+          padding: 17px 0px;
+        }
+      }
+    }
+  }
+}

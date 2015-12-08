@@ -1,0 +1,41 @@
+.login {
+  background: $color-bg-grey-medium;
+  height: 30px;
+  position: relative;
+  &:hover {
+    background: $color-bg-grey-dark;
+    .menu-user {
+      display: block;
+    }
+
+  }
+  &__btn {
+    text-align: right;
+    display: block;
+    height: 30px;
+    padding-right: 10px;
+    background: url('%=staticPrefixForCss=%assets/header/homeIcon.png') no-repeat 8px 9px;
+    text-decoration: none;
+    color: #fff;
+    @include font-tuning(11,30);
+    &:visited, &:hover {
+      color: #fff;
+    }
+  }
+}
+.menu-user {
+  display: none;
+  width: 100%;
+  background-color: $color-bg-grey-medium;
+  padding: 10px;
+  position: absolute;
+  top: 30px;
+  z-index: 20;
+  &__item {
+    padding-bottom: 5px;
+  }
+  &__item-link {
+    color: #FFFFFF;
+    @include font-tuning(15, 15)
+  }
+}

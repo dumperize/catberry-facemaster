@@ -1,0 +1,313 @@
+.main-function {
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  @extend .col-lg-9;
+  @extend .col-md-8;
+  &__inner {
+    @extend .row;
+    background-color: $color-blue-light;
+    padding-bottom: 10px;
+  }
+  @include at(xs) {
+    padding-right: 10px;
+    padding-left: 10px;
+    &__inner{
+      position:relative;
+      padding-bottom: 60px;
+    }
+  }
+}
+
+.or {
+  position: absolute;
+  top: 70px;
+  right: 33.33%;
+  height: 52px;
+  width: 52px;
+  border-radius: 50%;
+  background-color: $color-blue-light;
+  z-index: 10;
+  padding-top: 17px;
+  text-align: center;
+  font-weight: bold;
+  transform: translateX(25px);
+  @include to(lg) {
+    right: 50%;
+  }
+  @include at(sm) {
+    height: 44px;
+    width: 44px;
+    top: 50px;
+    padding-top: 13px;
+    font-weight: normal;
+    transform: translateX(22px);
+  }
+  @include at(xs) {
+    background-color: transparent;
+    height: auto;
+    text-align: center;
+    padding-top: 0;
+    right: 0;
+    top: 50px;
+    width: 100%;
+    transform: none;
+    margin: 2px 0;
+    @include font-tuning(12, 15);
+  }
+}
+
+.find-master, .call-back {
+  &__inner {
+    display: block;
+    color: $color-text;
+    text-decoration: none;
+    padding: 25px 20px 20px 20px;
+    &-rel {
+      height: 225px;
+      position: relative;
+    }
+    &:hover {
+      color: $color-text;
+    }
+    @include at(md) {
+      padding: 25px 15px 15px 15px;
+      &-rel {
+        height: 210px;
+      }
+    }
+    @include at(sm) {
+      padding: 25px 10px 10px 10px;
+      &-rel {
+        height: 100px;
+      }
+    }
+    @include at(xs) {
+      padding: 5px;
+      &-rel {
+        height: 25px;
+      }
+    }
+  }
+}
+
+.find-master {
+  padding-right: 5px;
+  @extend .col-lg-8;
+  @extend .col-sm-6;
+  @extend .col-xs-12;
+  @include at(xs) {
+    padding-right: 10px;
+    margin-bottom: 10px;
+  }
+  &__inner {
+    background-color: $color-green;
+    border-top: 5px solid $color-green-deep;
+    &-rel {
+      padding-top: 25px;
+      @include to(lg) {
+        padding-top: 0;
+      }
+    }
+  }
+  &__title {
+    text-transform: uppercase;
+    color: #fff;
+    padding-left: 200px;
+    text-align: center;
+    @include font-tuning(46, 50);
+    @include at(md) {
+      padding-left: 0px;
+      @include font-tuning(33, 33);
+    }
+    @include at(sm) {
+      margin-left: 60px;
+      padding: 0;
+      text-align: left;
+      @include font-tuning(22, 24);
+    }
+    @include at(xs) {
+      margin: 0 0 0 35px;
+      padding: 0;
+      text-align: left;
+      text-transform: none;
+      @include font-tuning(16, 25);
+    }
+  }
+  &__btn {
+    width: 100%;
+    display: block;
+    height: 46px;
+    background-color: rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    color: $color-text-dark;
+    @include font-tuning(18, 46);
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+    @include at(md) {
+      @include font-tuning(15, 46);
+    }
+    @include at(sm) {
+      height: 30px;
+      @include font-tuning(15, 30);
+    }
+    @include at(xs) {
+      display: none;
+    }
+  }
+  &__icon {
+    float: left;
+    margin-left: 30px;
+    margin-top: -20px;
+    @extend %icon;
+    @extend %icon_block;
+    @extend %icon_man-in-sun_white;
+    @include icon_size_xxxbig;
+    @include at(md) {
+      @include icon_size_xbig;
+      float: none;
+      margin: 0 auto;
+      margin-bottom: 5px;
+    }
+    @include at(sm) {
+      margin: 0;
+      @include icon_size_big;
+    }
+    @include at(xs) {
+      margin: 0;
+      @include icon_size_small;
+    }
+  }
+  @include at(xs){
+    &__inner{
+      padding-top: 6px;
+      padding-bottom: 9px;
+      border-width: 2px;
+    }
+    &:after{
+      @extend .or;
+      content: 'или';
+      display: block;
+      position: absolute;
+      bottom: -17px;
+      top: auto;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.call-back {
+  padding-left: 5px;
+  color: $color-text-dark;
+  @extend .col-lg-4;
+  @extend .col-sm-6;
+  @extend .col-xs-12;
+  &__inner {
+    background-color: $color-yellow;
+    border-top: 5px solid $color-yellow-deep;
+  }
+  &__title {
+    text-transform: uppercase;
+    text-align: center;
+    @include font-tuning(31, 34);
+    @include at(md) {
+      @include font-tuning(23, 27);
+    }
+    @include at(sm) {
+      margin-left: 60px;
+      text-align: left;
+      @include font-tuning(22, 24);
+    }
+    @include at(xs) {
+      margin: 0 0 0 35px;
+      padding: 0;
+      text-align: left;
+      text-transform: none;
+      @include font-tuning(16, 25);
+    }
+  }
+  &__text {
+    text-align: center;
+    @include font-tuning(12, 16);
+    @include to(md) {
+      display: none;
+    }
+  }
+  &__btn {
+    @extend .find-master__btn;
+  }
+  &__icon {
+    margin: 0 auto;
+    @extend %icon;
+    @extend %icon_size_big;
+    @extend %icon_block;
+    @extend %icon_star-in-sun;
+    @include at(md){
+      @include icon_size_xbig;
+      margin-bottom: 5px;
+    }
+    @include at(sm) {
+      margin: 0;
+      float: left;
+      @include icon_size_big;
+    }
+    @include at(xs) {
+      margin: 0;
+      float: left;
+      @include icon_size_small;
+    }
+  }
+  @include at(xs) {
+    padding-left: 10px;
+    position: absolute;
+    bottom: 10px;
+    &__inner{
+      padding-top: 6px;
+      padding-bottom: 9px;
+      border-width: 2px;
+    }
+  }
+}
+
+.catalogs {
+  padding-top: 10px;
+  @extend .col-xs-12;
+  &__inner {
+    @extend .row;
+  }
+  &__services {
+    text-align: center;
+    font-weight: bold;
+    padding-right: 0;
+    @include font-tuning(19, 21);
+    @extend .col-lg-2;
+    @extend .col-xs-12;
+    &-link {
+      color: inherit;
+      padding-top: 5px;
+      height: 75px;
+      display: block;
+      background-color: $color-blue;
+    }
+    @include to(lg) {
+      padding-right: 10px;
+      @include font-tuning(15, 25);
+      &-link {
+        padding-top: 0;
+        height: auto;
+      }
+    }
+  }
+  &__dop {
+    @extend .col-lg-10;
+    @extend .col-xs-12;
+  }
+  @include at(xs){
+    display: none;
+  }
+}

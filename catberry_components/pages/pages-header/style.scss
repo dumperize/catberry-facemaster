@@ -1,0 +1,58 @@
+.header {
+  padding: 10px 0;
+  height: 115px;
+  @extend .bg_grey;
+  @include at(sm){
+    height: 105px;
+  }
+  @include at(xs){
+    height: 145px;
+    padding: 0;
+    background: none;
+  }
+  &__left-col{
+    @extend .col-sm-3;
+    @extend .col-md-2;
+
+    @include at(xs){
+      display: none;
+    }
+  }
+  &__title{
+    padding-top: 15px;
+    @extend .col-sm-5;
+    @extend .col-md-7;
+    @extend .col-lg-8;
+    @include at(sm){
+      padding-top: 7px;
+    }
+    @include at(xs){
+      padding: 0px;
+    }
+  }
+  &__menu{
+    @extend .col-sm-12;
+    @extend .col-md-7;
+    @extend .col-lg-8;
+    @include at(xs){
+      display: none;
+    }
+  }
+
+  &__login{
+    margin: 15px 0;
+    @extend .col-sm-4;
+    @extend .col-md-3;
+    @extend .col-lg-2;
+    @include at(xs){
+      padding: 0px;
+    }
+  }
+  &__social{
+    @extend .col-md-3;
+    @extend .col-lg-2;
+    @include to(md){
+      display: none;
+    }
+  }
+}

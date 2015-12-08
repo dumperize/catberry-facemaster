@@ -1,0 +1,34 @@
+.title {
+  display: block;
+  text-decoration: none;
+  &__text {
+    letter-spacing: 0.05em;
+    @include at(lg) {
+      @include font-tuning(23, 30);
+    }
+    @include at(md) {
+      @include font-tuning(21, 30);
+    }
+    @include at(sm) {
+      @include font-tuning(18, 25);
+    }
+  }
+  &:hover{
+    color: $color-a;
+  }
+  @include at(xs){
+    padding-top:60px;
+    padding-bottom: 10px;
+    background-image: url(http://facemaster.ru/design/v_2.1/img/facemasterLogoMini.png);
+    background-color: $color-orange;
+    background-position: center 10px;
+    background-repeat: no-repeat;
+    &__text {
+      text-align: center;
+      color: #fff;
+      @include font-tuning(10,16);
+    }
+  }
+}
+
+

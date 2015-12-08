@@ -1,0 +1,98 @@
+.master-rubrikator-page {
+  @extend .col-xs-12;
+  @include at(xs){
+    padding:0;
+  }
+  &_collapsed {
+    .rubrika-list {
+      &__list {
+        display: none;
+      }
+    }
+  }
+  &__rubriks-columns {
+    @extend .col-lg-9;
+    @extend .col-xs-12;
+  }
+  &__dop{
+    @extend .col-lg-3;
+    &-title{
+      font-weight: bold;
+      @include font-tuning(19,24);
+    }
+    @include to(lg){
+      display:none;
+    }
+  }
+}
+.rubriks-column {
+  @extend .col-md-4;
+  @extend .col-sm-6;
+  @extend .col-xs-12;
+  &:nth-child(2) {
+    @include at(sm){
+      float: right;
+    }
+  }
+}
+.rubrika-list {
+  margin-bottom: 20px;
+  &__title {
+    height: 50px;
+    background-color: $color-bg-grey-xmedium;
+    border-right-width: 50px;
+    border-right-style: solid;
+    padding-left: 15px;
+    position: relative;
+    cursor: pointer;
+  }
+  &__name {
+    @include font-tuning(15, 18);
+    @include vertical-align;
+  }
+  &__count {
+    width: 50px;
+    text-align: center;
+    right: -50px;
+    color: #fff;
+    @include vertical-align;
+    position: absolute;
+  }
+  &__list {
+    padding: 6px 8px 0 15px;
+    &-li {
+      margin: 5px 0;
+      @include font-tuning(12, 14);
+    }
+    &-a {
+      text-decoration: none;
+    }
+    &-count {
+      margin-left: 8px;
+    }
+  }
+  &_tool-collapsed {
+    @include at(xs){
+      display: none;
+    }
+    .rubrika-list {
+      &__title {
+        background-color: transparent;
+        border: 1px solid $color-bg-grey-xmedium;
+        padding-right: 50px;
+      }
+      &__icon {
+        position: absolute;
+        top:12px;
+        right: 8px;
+        @extend %icon;
+        @extend %icon_block;
+        @extend %icon_size_small;
+        @extend %icon_strelka;
+        &_rotate{
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+	"name": "catberry-l10n-handlebars-helper",
+	"version": "1.0.4",
+	"author": "Denis Rechkunov <denis.rechkunov@gmail.com>",
+	"description": "Handlebars helper for Catberry localization plugin",
+	"homepage": "https://github.com/catberry/catberry-l10n-handlebars-helper",
+	"keywords": [
+		"catberry", "localization",
+		"l10n", "pluralization", "plural",
+		"language", "Handlebars", "helper"
+	],
+	"bugs": {
+		"url": "https://github.com/catberry/catberry-l10n-handlebars-helper/issues",
+		"email": "denis.rechkunov@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/catberry/catberry-l10n-handlebars-helper.git"
+	},
+	"main": "./index.js",
+	"dependencies": {
+		"digits": "0.1.4"
+	},
+	"peerDependencies": {
+		"catberry-l10n": "^3.0.0 || ^4.0.0",
+		"catberry-handlebars": "^1.0.0"
+	},
+	"devDependencies": {
+		"jscs": "^2.5.1",
+		"jshint": "^2.8.0"
+	},
+
+	"engines": {
+		"node": ">=0.10"
+	},
+
+	"scripts": {
+		"test": "make"
+	},
+
+	"license": "MIT"
+}
