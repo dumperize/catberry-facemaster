@@ -1,23 +1,15 @@
-<svg role="img" title="icon_add-page">
-    <use xlink:href="icon-svg/svg-symbols.svg#icon_add-page"/>
-</svg>
-{{{capitalizeFirst "sdfsdf"}}}
-
 <div block="page" mix="block:container">
     <div block="row">
         <cat-loader id="pages-content-loader"></cat-loader>
 
-        {{#if isActive.main}}
-            <cat-main id="main"></cat-main>
-        {{else}}
+        {{#unless isActive.main}}
             <cat-breadcrumps id="breadcrumps" cat-store="Breadcrumps"></cat-breadcrumps>
-            {{#if isActive.catalog}}
-                <cat-catalog id="catalog" cat-store="rubrika/Rubrikator"></cat-catalog>
-            {{/if}}
+        {{/unless}}
 
-            {{#if isActive.masterRubrika}}
-                <cat-master-rubrika id="master-rubrika" cat-store="rubrika/Rubrika"></cat-master-rubrika>
-            {{/if}}
+        {{#if isActive.masterRubrika}}
+            <cat-page-master-rubrika id="page-current-master-rubrika"></cat-page-master-rubrika>
+        {{else}}
+            <cat-page-{{current}} id="page-current-{{current}}"></cat-page-{{current}}>
         {{/if}}
 
     </div>

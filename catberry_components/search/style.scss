@@ -8,6 +8,11 @@
     @extend .col-md-2;
     @extend .col-sm-1;
     padding-right: 5px;
+    .icon {
+      @include vertical-align;
+      @include icon_size(35px);
+      text-align: center;
+    }
   }
   &__field {
     padding-right: 5px;
@@ -46,18 +51,10 @@
       }
     }
   }
-  &__icon-search {
-    @include vertical-align;
-    @extend %icon;
-    @extend %icon_block;
-    @extend %icon_search;
-    @include icon_size(35px);
-    margin: 0 auto;
-  }
+
   @include at(sm) {
     &__title, &__field, &__button {
       height: 70px;
-
     }
     &__field {
       &-input {
@@ -71,16 +68,24 @@
         @include font-tuning(13, 13);
       }
     }
-    &__icon-search {
-      @include icon_size_medium;
+    &__title{
+      .icon {
+        @include icon_size(25px);
+      }
     }
   }
   @include at(xs) {
-    &__field, &__title {
+    &__field{
       display: none;
     }
-    &__icon-search {
-      @include icon_size_small;
+    &__title{
+      position: absolute;
+      z-index:2;
+      height: 60px;
+      left:5px;
+      .icon {
+        @include icon_size(18px);
+      }
     }
     &__button {
       padding-left: 10px;
@@ -94,7 +99,6 @@
   }
   &_inner {
     background-color: #5DC8ED;
-
     .search {
       &__title, &__field, &__button {
         height: 60px;

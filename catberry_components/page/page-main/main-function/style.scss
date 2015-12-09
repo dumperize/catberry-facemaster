@@ -12,8 +12,8 @@
   @include at(xs) {
     padding-right: 10px;
     padding-left: 10px;
-    &__inner{
-      position:relative;
+    &__inner {
+      position: relative;
       padding-bottom: 60px;
     }
   }
@@ -163,32 +163,38 @@
     float: left;
     margin-left: 30px;
     margin-top: -20px;
-    @extend %icon;
-    @extend %icon_block;
-    @extend %icon_man-in-sun_white;
-    @include icon_size_xxxbig;
+    .icon {
+      display: block;
+      @include icon_size(128px);
+    }
     @include at(md) {
-      @include icon_size_xbig;
+      .icon {
+        @include icon_size(64px);
+        margin: 0 auto;
+      }
       float: none;
-      margin: 0 auto;
-      margin-bottom: 5px;
+      margin: 0 0 10px 0;
     }
     @include at(sm) {
+      .icon {
+        @include icon_size(48px);
+      }
       margin: 0;
-      @include icon_size_big;
     }
     @include at(xs) {
       margin: 0;
-      @include icon_size_small;
+      .icon {
+        @include icon_size(24px);
+      }
     }
   }
-  @include at(xs){
-    &__inner{
+  @include at(xs) {
+    &__inner {
       padding-top: 6px;
       padding-bottom: 9px;
       border-width: 2px;
     }
-    &:after{
+    &:after {
       @extend .or;
       content: 'или';
       display: block;
@@ -242,31 +248,48 @@
     @extend .find-master__btn;
   }
   &__icon {
-    margin: 0 auto;
-    @extend %icon;
-    @extend %icon_size_big;
-    @extend %icon_block;
-    @extend %icon_star-in-sun;
-    @include at(md){
-      @include icon_size_xbig;
-      margin-bottom: 5px;
-    }
-    @include at(sm) {
-      margin: 0;
-      float: left;
-      @include icon_size_big;
-    }
-    @include at(xs) {
-      margin: 0;
-      float: left;
-      @include icon_size_small;
+    .icon {
+      display: block;
+      margin: 0 auto;
+      @include icon_size(48px);
+      &_star-in-sun {
+        display: none;
+      }
+      @include to(lg) {
+        &_star-line {
+          display: none;
+        }
+        &_star-in-sun {
+          display: block;
+        }
+      }
+      @include at(md) {
+        margin-bottom: 10px;
+        @include icon_size(64px);
+      }
+      @include at(sm) {
+        margin: 0;
+        float: left;
+        @include icon_size(48px);
+      }
+      @include at(xs) {
+        margin: 0;
+        float: left;
+        @include icon_size(24px);
+        &_star-line {
+          display: block;
+        }
+        &_star-in-sun {
+          display: none;
+        }
+      }
     }
   }
   @include at(xs) {
     padding-left: 10px;
     position: absolute;
     bottom: 10px;
-    &__inner{
+    &__inner {
       padding-top: 6px;
       padding-bottom: 9px;
       border-width: 2px;
@@ -307,7 +330,7 @@
     @extend .col-lg-10;
     @extend .col-xs-12;
   }
-  @include at(xs){
+  @include at(xs) {
     display: none;
   }
 }

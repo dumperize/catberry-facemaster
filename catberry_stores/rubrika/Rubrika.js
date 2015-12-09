@@ -43,25 +43,30 @@ Rubrika.prototype.load = function () {
         return;
     }
     return this._uhr.get(
-        'http://localhost:3000/data-json/rubrika-basseiny.json'
+            'http://api-fm.present-tlt.ru/rubrika/index?filter=%5B%5B%22%3D%22%2C%22unique%22%2C%22' + podrubrika + '%22%5D%5D&expand=tags'
         )
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
             }
 
-            var seoArr = [];
-            Object.keys(result.content.seo)
-                .forEach(function (d) {
-                    seoArr[result.content.seo[d].section] = result.content.seo[d];
-                });
-            result.content.state = self.$context.state;
+            var data = result.content[0];
+            data.state = self.$context.state;
 
             self.$context.sendAction('SeoText', 'setPodrubrika', podrubrika);
             return self.$context.getStoreData('SeoText')
                 .then(function (seo) {
-                    result.content.currentSeo = seo;
-                    return result.content;
+                    data.currentSeo = seo;
+
+                    //!!!!!!!!!!!!!!!!!!
+                    data.parent = {
+                        'unique': 'stroitelstwo',
+                        'name': 'Строительство'
+                    };
+                    data.nearby = {
+
+                    };
+                    return data;
                 });
         });
 };

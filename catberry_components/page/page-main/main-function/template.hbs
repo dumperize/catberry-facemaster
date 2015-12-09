@@ -5,7 +5,9 @@
         <div block="find-master" mix="block:js-find-master">
             <a elem="inner" href="/catalog">
                 <div elem="inner-rel">
-                    <span elem="icon"></span>
+                    <div elem="icon">
+                        {{icon "man-in-sun" "icon_white"}}
+                    </div>
 
                     <p elem="title">Выбери Мастера</p>
                     <span elem="btn">У нас {{countMaster}}</span>
@@ -15,7 +17,10 @@
         <div block="call-back">
             <a elem="inner" href="/request">
                 <div elem="inner-rel">
-                    <span elem="icon"></span>
+                    <div elem="icon">
+                        {{icon "star-in-sun"}}
+                        {{icon "star-line"}}
+                    </div>
 
                     <p elem="title">Закажи услугу</p>
 
@@ -30,7 +35,7 @@
                     <a href="/catalog" elem="services-link">Весь каталог услуг</a>
                 </div>
                 <div elem="dop">
-                    <cat-dop-catalogs id="dop-catalogs" data-mod="page_main"></cat-dop-catalogs>
+                    <cat-catalog-list id="catalog-list" data-mod="page_main"></cat-catalog-list>
                 </div>
             </div>
         </div>

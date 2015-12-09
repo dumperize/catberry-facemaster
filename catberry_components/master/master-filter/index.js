@@ -28,9 +28,7 @@ MasterFilter.prototype.render = function () {
 
     return this.$context.getStoreData()
         .then(function (rubrika) {
-
-            path = '/' + rubrika.parent.english + '/' + rubrika.english;
-            currentTag = rubrika.state.tag;
+            path = '/' + rubrika.parent.unique + '/' + rubrika.unique;
 
             return self.$context.getStoreData('master/MasterList')
                 .then(function (master) {
@@ -125,7 +123,7 @@ MasterFilter.prototype._decoreOpenSection = function (result, rubrika) {
  * @private
  */
 MasterFilter.prototype._getTags = function (rubrika) {
-    var path = '/' + rubrika.parent.english + '/' + rubrika.english;
+    var path = '/' + rubrika.parent.unique + '/' + rubrika.unique;
     var tagsJson = rubrika.tags;
     var currentTag = rubrika.currentSeo.state.tag;
     var currentSection = rubrika.currentSeo.state.section;
@@ -135,20 +133,20 @@ MasterFilter.prototype._getTags = function (rubrika) {
         .forEach(function (n) {
             var tag = tagsJson[n];
 
-            if (!tags[tag.groupName])
-                tags[tag.groupName] = [];
+            if (!tags[tag.group])
+                tags[tag.group] = [];
 
-            if (tag.url == currentTag) {
+            if (tag.unique == currentTag) {
                 tag.isActive = true;
                 tag.urlBack = path;
             }
             if (currentSection == 'masters') {
-                tag.path = path + '/' + tag.url;
+                tag.path = path + '/' + tag.unique;
             } else {
-                tag.path = path + '/' + tag.url + '/' + currentSection;
+                tag.path = path + '/' + tag.unique + '/' + currentSection;
             }
 
-            tags[tag.groupName].push(tag);
+            tags[tag.group].push(tag);
         });
 
     //сортируем

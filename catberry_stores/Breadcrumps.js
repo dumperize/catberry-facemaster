@@ -94,6 +94,7 @@ Breadcrumps.prototype._getForRubrika = function (rubrika) {
     });
     return links;
 };
+
 Breadcrumps.prototype._getForRubAndTag = function (data) {
     var podrubriks = data.nearby;
     var linksPodrubriks = [];
@@ -103,13 +104,13 @@ Breadcrumps.prototype._getForRubAndTag = function (data) {
         .forEach(function (num) {
             linksPodrubriks.push({
                 title: podrubriks[num].name,
-                url: '/' + data.parent.english + '/' + podrubriks[num].english
+                url: '/' + data.parent.unique + '/' + podrubriks[num].unique
             });
         });
 
     links.push({
         title: "Каталог услуг",
-        url: "catalog"
+        url: "/catalog"
     });
 
     links.push({

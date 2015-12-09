@@ -53,6 +53,7 @@ scssFilesToConcatinate.push(
     scssFolderPath + '/fonts.{scss,sass}',
     scssFolderPath + '/vars.{scss,sass}',
     scssFolderPath + '/GUI.{scss,sass}',
+    scssFolderPath + '/icons.{scss,sass}',
     scssFolderPath + '/common.{scss,sass,css}',
     scssFolderPath + '/plugins/**/*.{scss,sass,css}',
     modulesFolderPath + '/**/*.{scss,sass}',

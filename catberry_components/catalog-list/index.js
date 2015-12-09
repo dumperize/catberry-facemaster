@@ -29,22 +29,22 @@ DopCatalogs.prototype.render = function () {
         catalogs: [
             {
                 url: "/sale",
-                icon: "gift",
+                ico: "gift",
                 title: "Поиск по скидке"
             },
             {
                 url: "/video",
-                icon: "video",
+                ico: "video",
                 title: "Поиск по видео"
             },
             {
                 url: "/sovety",
-                icon: "qwestion",
+                ico: "qwestion",
                 title: "Секреты Мастеров"
             },
             {
                 url: "/company",
-                icon: "case",
+                ico: "case",
                 title: "Каталог фирм"
             }
         ]

@@ -2,7 +2,7 @@
 
 module.exports = Rubrikator;
 
-var README_URL = 'http://localhost:3000/data-json/rubrikator.json';
+var URL = 'http://api-fm.present-tlt.ru/rubrika/index?filter=%5B%5B%22%3D%22%2C+%22status%22%2C+%221%22%5D%5D&limit=200';
 /*
  * This is a Catberry Store file.
  * More details can be found here
@@ -36,12 +36,29 @@ Rubrikator.prototype.$lifetime = 600000;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 Rubrikator.prototype.load = function () {
-    return this._uhr.get(README_URL)
+    return this._uhr.get(URL)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
             }
-            return result.content;
+            var data = result.content;
+            var dataTree = {};
+
+            Object.keys(data)
+                .forEach(function (key) {
+                    var el = data[key];
+                    if (el.parentID == 0) {
+                        if (!dataTree[el.id])
+                            dataTree[el.id] = {el: {}, podrubriks: []};
+                        dataTree[el.id].el = el;
+                    } else {
+                        if (!dataTree[el.parentID])
+                            dataTree[el.parentID] = {el: {}, podrubriks: []};
+                        dataTree[el.parentID].podrubriks.push(el);
+                    }
+                });
+
+            return dataTree;
         });
 };
 

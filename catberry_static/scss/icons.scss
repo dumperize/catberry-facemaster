@@ -1,0 +1,15 @@
+.icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  fill: #58595B;
+  &_white{
+    fill: #fff;
+  }
+
+}
+
+@mixin icon_size($size){
+  width: $size;
+  height: $size;
+}

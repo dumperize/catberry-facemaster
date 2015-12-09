@@ -53,7 +53,7 @@ Pages.prototype.load = function () {
                     .then(function (rubriks) {
                         Object.keys(rubriks)
                             .forEach(function (num) {
-                                PAGES[rubriks[num]['nameEN']] = rubriks[num]['name'];
+                                PAGES[rubriks[num].el.unique] = rubriks[num].el.unique;
                             });
                         return PAGES;
                     });

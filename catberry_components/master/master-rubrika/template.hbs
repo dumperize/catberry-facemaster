@@ -1,36 +1,34 @@
-<div block="container">
-    <div block="inner-top">
-        <div elem="title">
-            <cat-common-h1 id="common-h1" name="{{currentSeo.otherTitle}}"></cat-common-h1>
-        </div>
+<div block="inner-top">
+    <div elem="title">
+        <cat-common-h1 id="common-h1" name="{{currentSeo.otherTitle}}"></cat-common-h1>
+    </div>
 
-        <div elem="search">
-           <cat-search id="search" modificator="inner"></cat-search>
-        </div>
-        <div elem="callback">
-            <a block="callback" href="/request">
-                <i elem="icon"></i>
-                Отправить задание мастерам
-            </a>
-        </div>
+    <div elem="search">
+        <cat-search id="search" modificator="inner"></cat-search>
     </div>
-    <div block="inner-content">
-        <div elem="left-side">
-            <cat-master-filter id="master-filter" cat-store="rubrika/Rubrika"></cat-master-filter>
-            { {> banner/banner_side/banner_side banner_side} }
-        </div>
-        <div elem="right-side">
-            <cat-master-recommended id="master-recommended" cat-store="master/Recommended"></cat-master-recommended>
-            { {> master_list/master_list master-list} }
-        </div>
+    <div elem="callback">
+        <a block="callback" href="/request">
+            <i elem="icon"></i>
+            Отправить задание мастерам
+        </a>
     </div>
-    <div block="row">
-        {{#if currentSeo.text}}
-            <div block="seo-text">
-                <div elem="text" mix="block:format">
-                    {{{currentSeo.text}}}
-                </div>
+</div>
+<div block="inner-content">
+    <div elem="left-side">
+        <cat-master-filter id="master-filter" cat-store="rubrika/Rubrika"></cat-master-filter>
+        { {> banner/banner_side/banner_side banner_side} }
+    </div>
+    <div elem="right-side">
+        <cat-master-recommended id="master-recommended" cat-store="master/Recommended"></cat-master-recommended>
+        { {> master_list/master_list master-list} }
+    </div>
+</div>
+<div block="row">
+    {{#if currentSeo.text}}
+        <div block="seo-text">
+            <div elem="text" mix="block:format">
+                {{{currentSeo.text}}}
             </div>
-        {{/if}}
-    </div>
+        </div>
+    {{/if}}
 </div>

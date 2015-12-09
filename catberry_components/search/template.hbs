@@ -1,6 +1,8 @@
 <div block="search" class="search {{#if modificator}} search_{{modificator}} {{/if}}">
     <form elem="form" action="{{url}}" method="{{method}}">
-        <div elem="title"><span elem="icon-search"></span></div>
+        <div elem="title">
+            {{icon "search"}}
+        </div>
         <div elem="field">
             <input type="text" name="search" elem="field-input" mix="block:input-text">
         </div>

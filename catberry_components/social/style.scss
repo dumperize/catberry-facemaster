@@ -22,27 +22,10 @@
       font-size: 14px;
       padding: 4px 0;
       background-color: $color-bg-grey-medium;
+      text-align: center;
       &:hover{
         background-color: $color-bg-grey-dark;
       }
-    }
-  }
-  &-icon {
-    margin: 0 auto;
-    @extend %icon;
-    @extend %icon_size_xsmall;
-    @extend %icon_block;
-    &_vk {
-      @extend %icon_vk_white;
-    }
-    &_ok {
-      @extend %icon_ok_white;
-    }
-    &_fb {
-      @extend %icon_fb_white;
-    }
-    &_tw {
-      @extend %icon_tw_white;
     }
   }
 }

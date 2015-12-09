@@ -26,8 +26,7 @@ Catalog.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
             return {
-                rubrikator: data,
-                h1: "Каталог услуг"
+                rubrikator: data
             }
         });
 };

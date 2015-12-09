@@ -1,30 +1,4 @@
-.master-rubrikator-page {
-  @extend .col-xs-12;
-  @include at(xs){
-    padding:0;
-  }
-  &_collapsed {
-    .rubrika-list {
-      &__list {
-        display: none;
-      }
-    }
-  }
-  &__rubriks-columns {
-    @extend .col-lg-9;
-    @extend .col-xs-12;
-  }
-  &__dop{
-    @extend .col-lg-3;
-    &-title{
-      font-weight: bold;
-      @include font-tuning(19,24);
-    }
-    @include to(lg){
-      display:none;
-    }
-  }
-}
+
 .rubriks-column {
   @extend .col-md-4;
   @extend .col-sm-6;
