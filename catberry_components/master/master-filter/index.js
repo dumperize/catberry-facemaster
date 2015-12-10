@@ -35,8 +35,9 @@ MasterFilter.prototype.render = function () {
                     if (Object.keys(master).length > 0)
                         result.push({
                             url: path,
-                            sectionName: "masters",
-                            title: "Мастера"
+                            sectionName: "master",
+                            title: "Мастера",
+                            ico: "man"
                         });
                 })
                 .then(function () {
@@ -47,7 +48,8 @@ MasterFilter.prototype.render = function () {
                     result.push({
                         url: path + '/video',
                         sectionName: "video",
-                        title: "Видео Мастеров"
+                        title: "Видео Мастеров",
+                        ico: "video"
                     });
                 })
                 .then(function () {
@@ -56,9 +58,10 @@ MasterFilter.prototype.render = function () {
                 .then(function (sales) {
                     //if (Object.keys(master).length > 0)
                     result.push({
-                        url: path + '/sales',
-                        sectionName: "sales",
-                        title: "Скидки Мастеров"
+                        url: path + '/sale',
+                        sectionName: "sale",
+                        title: "Скидки Мастеров",
+                        ico: "gift"
                     });
                 })
                 .then(function () {
@@ -67,9 +70,10 @@ MasterFilter.prototype.render = function () {
                 .then(function (secrets) {
                     //if (Object.keys(master).length > 0)
                     result.push({
-                        url: path + '/secrets',
-                        sectionName: "secrets",
-                        title: "Секреты Мастеров"
+                        url: path + '/sovety',
+                        sectionName: "sovety",
+                        title: "Секреты Мастеров",
+                        ico: "qwestion"
                     });
                 })
                 .then(function () {
@@ -80,7 +84,8 @@ MasterFilter.prototype.render = function () {
                     result.push({
                         url: path + '/company',
                         sectionName: "company",
-                        title: "Каталог фирм"
+                        title: "Каталог фирм",
+                        ico: "case"
                     });
                 })
                 .then(function () {

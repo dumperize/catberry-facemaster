@@ -1,10 +1,15 @@
 .seo-text {
   padding-top: 20px;
   @extend .col-sm-12;
-  &__text{
+  &__text {
     background-color: $color-bg-grey-light;
     padding: 20px;
     color: $color-bg-grey-dark;
     @include font-tuning(13, 16);
+    &.format {
+      li {
+        margin-bottom: 0;
+      }
+    }
   }
 }

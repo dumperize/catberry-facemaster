@@ -15,116 +15,72 @@
       background-color: darken($color-bg-grey-xmedium, 5%);
       color: $color-text-dark;
     }
-    &_masters {
-      .filter-section {
-        &__icon {
-          @extend %icon_man;
-        }
-      }
+    &_master {
       &.active {
         background-color: $color-green;
         color: #FFFFFF;
         &:hover {
           background-color: darken($color-green, 5%);
         }
-        .filter-section__icon {
-          @extend %icon_man_white;
-        }
       }
     }
     &_video {
-      .filter-section {
-        &__icon {
-          @extend %icon_video;
-        }
-      }
       &.active {
         background-color: $color-purpur;
         color: #FFFFFF;
         &:hover {
           background-color: darken($color-purpur, 5%);
         }
-        .filter-section__icon {
-          @extend %icon_video_white;
-        }
       }
     }
-    &_sales {
-      .filter-section {
-        &__icon {
-          @extend %icon_gift;
-        }
-      }
+    &_sale {
       &.active {
         background-color: $color-orange;
         color: #FFFFFF;
         &:hover {
           background-color: darken($color-orange, 5%);
         }
-        .filter-section__icon {
-          @extend %icon_gift_white;
-        }
       }
     }
-    &_secrets {
-      .filter-section {
-        &__icon {
-          @extend %icon_qwestion;
-        }
-      }
+    &_sovety {
       &.active {
         background-color: $color-blue-dark;
         color: #FFFFFF;
         &:hover {
           background-color: darken($color-blue-dark, 5%);
         }
-        .filter-section__icon {
-          @extend %icon_qwestion_white;
-        }
       }
     }
     &_company {
-      .filter-section {
-        &__icon {
-          @extend %icon_case;
-        }
-      }
       &.active {
         background-color: $color-brown;
         color: #FFFFFF;
         &:hover {
           background-color: darken($color-brown, 5%);
         }
-        .filter-section__icon {
-          @extend %icon_case_white;
-        }
-      }
-    }
-
-    &.active {
-      .filter-section__arrow-icon {
-        @extend %icon_strelka_white;
       }
     }
   }
   &__icon {
-    @extend %icon;
-    @extend %icon_block;
-    @extend %icon_size_xsmall;
+    .icon {
+      display: block;
+      @include icon_size(18px);
+    }
     @include vertical-align;
     float: left;
     margin-right: 10px;
     color: #ffffff;
   }
-  &__arrow-icon {
-    @extend %icon;
-    @extend %icon_block;
-    @extend %icon_size_xxsmall;
-    @extend %icon_strelka;
-    @include vertical-align;
+  &__arrow {
     float: right;
-    &.down {
-      transform: rotate(90deg) translateX(-50%);
+    @include vertical-align;
+    .icon {
+      display: block;
+      @include icon_size(12px);
+      &.down {
+        transform: rotate(90deg);
+        fill: #fff;
+      }
     }
   }
   &__section {
@@ -168,6 +124,16 @@
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
+    &-link {
+      display: block;
+    }
+    &-icon {
+      .icon {
+        @include icon_size(8px);
+        fill: #fff;
+      }
+    }
   }
-
 }
+
+

@@ -244,7 +244,7 @@ module.exports = function (Handlebars) {
 
             return new Handlebars.SafeString(
                 '<svg role="img" title="icon_' + name + '" class="' + cl + '">' +
-                '<use xlink:href="icon-svg/svg-symbols.svg#icon_' + name + '"/>' +
+                '<use xlink:href="/icon-svg/svg-symbols.svg#icon_' + name + '"/>' +
                 '</svg>'
             );
         }

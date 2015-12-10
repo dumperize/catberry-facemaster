@@ -1,0 +1,35 @@
+.paginator{
+  text-align: right;
+  padding: 20px 0;
+  &__title{
+    @include at(xs){
+      margin-bottom:5px;
+      display: block;
+    }
+  }
+  &__list{
+    white-space: nowrap;
+    display: inline;
+  }
+  &__page{
+    display: inline;
+    padding-right:0px;
+    &_selected{
+      .paginator{
+        &__number{
+          background-color: $color-orange;
+          color: #fff;
+        }
+      }
+    }
+  }
+  &__number{
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    text-align: center;
+    background-color: #fff;
+    text-decoration: none;
+    @include font-tuning(14,24);
+  }
+}

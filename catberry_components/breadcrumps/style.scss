@@ -11,10 +11,9 @@
   }
   &__icon {
     margin: 0 6px;
-    @extend %icon;
-    @extend %icon_size_xxxsmall;
-    @extend %icon_inline;
-    @extend %icon_arrow-breadcrumbs;
+    .icon {
+      @include icon_size(8px);
+    }
   }
   &__list-container {
     display: none;

@@ -25,9 +25,9 @@
   }
 
   &_page_main {
+    @include font-tuning(12, 18);
     @include at(md) {
       margin-top: 5px;
-
     }
 
     .catalog-list {

@@ -1,0 +1,30 @@
+.recommendation{
+  @extend .news;
+  &__inner{
+    @extend .news__inner;
+  }
+  &__img-wr{
+    @extend .col-sm-3;
+  }
+  &__content {
+    @extend .col-sm-9;
+    padding-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    @include from(sm){
+      min-height: 205px;
+    }
+  }
+  &__img{
+    width:100%;
+  }
+  &__title{
+    @extend .news__title;
+  }
+  &__intro{
+    @extend .news__intro;
+  }
+  &__date{
+    @extend .news__date
+  }
+}

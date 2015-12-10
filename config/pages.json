@@ -19,6 +19,11 @@
     "description": "",
     "keywords": ""
   },
+  "login": {
+    "title": "Вход для Мастеров",
+    "description": "",
+    "keywords": ""
+  },
   "sale": {
     "title": " Каталог скидки и подарки",
     "description": "",
@@ -40,9 +45,9 @@
     "keywords": ""
   },
   "recommendation": {
-    "title": "Рекомендации",
-    "description": "",
-    "keywords": ""
+    "title": "Рекомендации Мастеров",
+    "description": "Рекомендации Мастеров",
+    "keywords": "отзывы, рекомендации"
   },
   "news": {
     "title": "Новости",

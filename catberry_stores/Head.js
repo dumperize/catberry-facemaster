@@ -45,8 +45,12 @@ Head.prototype.load = function () {
         .then(function (page) {
             if (page.state.rubrika)
                 return self._loadForRubrika();
-
-            return PAGES[page.state.page];
+            var data =PAGES[page.state.page];
+            return {
+                title: data.title + ' FaceMaster.ru. Специалисты Тольятти',
+                description: data.description,
+                keywords: data.keywords
+            }
         });
 };
 
@@ -54,7 +58,7 @@ Head.prototype._loadForRubrika = function () {
     return this.$context.getStoreData('rubrika/Rubrika')
         .then(function (data) {
             return {
-                title: data.currentSeo.title,
+                title: data.currentSeo.headTitle,
                 description: data.currentSeo.description,
                 keywords: data.currentSeo.keywords
             }

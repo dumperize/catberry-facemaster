@@ -79,7 +79,7 @@ Breadcrumps.prototype._getForTag = function (rubrika) {
     var links = this._getForRubAndTag(rubrika);
     links.push({
         title: rubrika.name,
-        url: '/' + rubrika.parent.english + '/' + rubrika.english
+        url: '/' + rubrika.parent.unique + '/' + rubrika.unique
     });
     links.push({
         title: this._getNameTag(rubrika.currentSeo.state.tag, rubrika.tags)
@@ -115,7 +115,7 @@ Breadcrumps.prototype._getForRubAndTag = function (data) {
 
     links.push({
         title: data.parent.name,
-        url: "/" + data.parent.english,
+        url: "/" + data.parent.unique,
         links: linksPodrubriks
     });
     return links;
@@ -123,7 +123,7 @@ Breadcrumps.prototype._getForRubAndTag = function (data) {
 
 Breadcrumps.prototype._getNameTag = function (tag, data) {
     for (var i = 0; i < data.length; ++i) {
-        if (data[i].url == tag)
+        if (data[i].unique == tag)
             return data[i].name;
     }
     return null;
