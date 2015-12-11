@@ -8,7 +8,7 @@
 
 var Dates = module.exports = {};
 
-Dates.padNumber = function(num, count, padCharacter) {
+Dates.padNumber = function (num, count, padCharacter) {
 
     if (typeof padCharacter === 'undefined') {
         padCharacter = '0';
@@ -25,18 +25,18 @@ Dates.padNumber = function(num, count, padCharacter) {
     return padding + num;
 };
 
-Dates.dayOfYear = function(date) {
+Dates.dayOfYear = function (date) {
     var oneJan = new Date(date.getFullYear(), 0, 1);
 
     return Math.ceil((date - oneJan) / 86400000);
 };
 
-Dates.weekOfYear = function(date) {
+Dates.weekOfYear = function (date) {
     var oneJan = new Date(date.getFullYear(), 0, 1);
     return Math.ceil((((date - oneJan) / 86400000) + oneJan.getDay() + 1) / 7);
 };
 
-Dates.isoWeekOfYear = function(date) {
+Dates.isoWeekOfYear = function (date) {
     var target = new Date(date.valueOf());
     var dayNr = (date.getDay() + 6) % 7;
     target.setDate(target.getDate() - dayNr + 3);
@@ -46,7 +46,7 @@ Dates.isoWeekOfYear = function(date) {
     return 1 + Math.ceil(dayDiff / 7);
 };
 
-Dates.tweleveHour = function(date) {
+Dates.tweleveHour = function (date) {
     if (date.getHours() > 12) {
         return date.getHours() - 12;
     }
@@ -54,16 +54,16 @@ Dates.tweleveHour = function(date) {
     return date.getHours();
 };
 
-Dates.timeZoneOffset = function(date) {
+Dates.timeZoneOffset = function (date) {
     var hoursDiff = -date.getTimezoneOffset() / 60;
     var result = Dates.padNumber(Math.abs(hoursDiff), 4);
 
     return (hoursDiff > 0 ? '+' : '-') + result;
 };
 
-Dates.format = function(date, format) {
+Dates.format = function (date, format) {
     var match = null;
-    return format.replace(Dates.formats, function(m, p) {
+    return format.replace(Dates.formats, function (m, p) {
         switch (p) {
             case 'a':
                 return Dates.abbreviatedWeekdays[date.getDay()];
@@ -72,7 +72,7 @@ Dates.format = function(date, format) {
             case 'b':
                 return Dates.abbreviatedMonths[date.getMonth()];
             case 'B':
-                return Dates.fullMonths[date.getMonth()];
+                return Dates.getFullMounth(date.getMonth(), "Ru");
             case 'c':
                 return date.toLocaleString();
             case 'C':
@@ -153,16 +153,27 @@ Dates.format = function(date, format) {
                 return date.getFullYear();
             case 'z':
                 return Dates.timeZoneOffset(date);
+            case 'Z':
+                return Dates.fullMonthsRuP[date.getMonth()];
             default:
                 return match;
         }
     });
 };
 
-Dates.formats = /%(a|A|b|B|c|C|d|D|e|F|h|H|I|j|k|l|L|m|M|n|p|P|r|R|s|S|t|T|u|U|v|V|W|w|x|X|y|Y|z)/g;
+Dates.formats = /%(a|A|b|B|c|C|d|D|e|E|F|h|H|I|j|k|l|L|m|M|n|p|P|r|R|s|S|t|T|u|U|v|V|W|w|x|X|y|Y|z|Z)/g;
 
 Dates.abbreviatedWeekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
 Dates.fullWeekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 Dates.abbreviatedMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 Dates.fullMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+Dates.fullMonthsRuP = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+Dates.fullMonthsRu = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+
+Dates.getFullMounth = function (num, lang) {
+    if (lang == "Ru")
+        return Dates.fullMonthsRu;
+    return Dates.fullMonths;
+}
 

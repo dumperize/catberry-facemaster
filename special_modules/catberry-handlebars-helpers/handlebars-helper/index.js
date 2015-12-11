@@ -178,6 +178,15 @@ module.exports = function (Handlebars) {
             return new Handlebars.SafeString(content);
         },
 
+        stripTags: function (str) {
+            str = str.replace(/<!--[^]*-->/g, '');
+            return str.replace(/<\/?[^>]+>/gi, '');
+        },
+
+        stripStyle: function (str) {
+            return str.replace(/ style="[^"]*"/g, '')
+        },
+
         /**
          * {{formatData}}
          * Port of formatDate-js library (http://bit.ly/18eo2xw)
@@ -238,7 +247,7 @@ module.exports = function (Handlebars) {
         icon: function (name, selector, sys) {
             var cl = 'icon icon_' + name;
 
-            if ( typeof selector == "string") {
+            if (typeof selector == "string") {
                 cl += " " + selector;
             }
 

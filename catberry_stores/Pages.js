@@ -45,7 +45,7 @@ Pages.prototype.load = function () {
     return Promise.resolve(null)
         .then(function () {
             var rubrika = self.$context.state.rubrika;
-            console.log(self.$context);
+
             if (rubrika) {
                 currentPage = rubrika;
                 isPageRubrika = true;
@@ -55,13 +55,11 @@ Pages.prototype.load = function () {
                             .forEach(function (num) {
                                 PAGES[rubriks[num].el.unique] = rubriks[num].el.unique;
                             });
-                        return PAGES;
                     });
             }
-            return;
         })
-        .then(function () {
 
+        .then(function () {
             if (!currentPage) {
                 return self.$context.redirect('/main');
             }

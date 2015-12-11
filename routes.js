@@ -59,5 +59,21 @@ module.exports = [
                 }
             };
         }
+    },
+    {
+        expression: /^\/news\/item\/\d+/i,
+        map: function (urlPath) {
+            console.log(urlPath.path);
+            var matches = urlPath.path.match(/^\/news\/item\/\d+/i);
+            var posID = urlPath.path.indexOf('/item/') + 6;
+            return {
+                Pages: {
+                    news: "news-item"
+                },
+                'other/NewsItem': {
+                    id: urlPath.path.slice(posID)
+                }
+            };
+        }
     }
 ];
