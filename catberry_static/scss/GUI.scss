@@ -1,0 +1,297 @@
+// GUI stylies of the project
+// For example, styles of the links, buttons and so on.
+
+a {
+  color: $color-a;
+  text-decoration: underline
+}
+
+a:hover {
+  color: $color-a-hover;
+  text-decoration: none
+}
+
+a:active {
+  color: $color-a-hover;
+  text-decoration: none
+}
+
+/* углы */
+.corner {
+  position: relative;
+  &:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 22px;
+    height: 20px;
+    border-top-width: 20px;
+    border-right-width: 10px;
+    border-left-width: 10px;
+    border-bottom-width: 0;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-style: solid;
+  }
+  &_grey {
+    &:after {
+      border-top-color: $color-bg-grey-light;
+    }
+  }
+  &_bg {
+    &:after {
+      border-top-color: $color-bg;
+    }
+  }
+  &_orange {
+    &:after {
+      border-top-color: $color-orange;
+    }
+  }
+}
+
+/* углы конец */
+
+/* иконки */
+//@mixin icon_size($size) {
+//    $koef: strip-unit($size)/strip-unit($base-icon-size);
+//    @include svg-sprite-size($people, $koef);
+//}
+@mixin icon_size_xxxbig {
+  @include icon_size(128px);
+}
+
+@mixin icon_size_xbig {
+  @include icon_size(64px);
+}
+
+@mixin icon_size_big {
+  @include icon_size(48px);
+}
+
+@mixin icon_size_medium {
+  @include icon_size(32px);
+}
+
+@mixin icon_size_small {
+  @include icon_size(24px);
+}
+
+@mixin icon_size_xsmall {
+  @include icon_size(18px);
+}
+
+@mixin icon_size_xxsmall {
+  @include icon_size(12px);
+}
+
+@mixin icon_size_xxxsmall {
+  @include icon_size(8px);
+}
+
+//%icon {
+//    //base scale 64x64
+//    @include bg-svg-image($people); //переделать \!/!
+//    &_size_xbig {
+//        @include icon_size_xbig;
+//    }
+//    &_size_big {
+//        @include icon_size_big;
+//    }
+//    &_size_medium {
+//        @include icon_size_medium;
+//    }
+//    &_size_small {
+//        @include icon_size_small;
+//    }
+//    &_size_xsmall {
+//        @include icon_size_xsmall;
+//    }
+//    &_size_xxsmall {
+//        @include icon_size_xxsmall;
+//    }
+//    &_size_xxxsmall {
+//        @include icon_size_xxxsmall;
+//    }
+//
+//    &_block {
+//        display: block;
+//    }
+//    &_inline {
+//        display: inline-block;
+//    }
+//}
+
+/* иконки конец */
+
+.form {
+  input[type="text"], input[type="password"] {
+    @extend .input-text;
+  }
+}
+
+.input-text {
+  width: 100%;
+  padding: 5px 10px;
+  border: none;
+  height: 37px;
+  line-height: 37px;
+  border: 1px solid #fff;
+  &.error {
+    border: 1px solid $color-red;
+    background-color: lighten($color-red, 37%);
+  }
+}
+
+.textarea {
+  width: 100%;
+  padding: 5px 10px;
+  border: none;
+  border: 1px solid #fff;
+  resize: vertical;
+  &.error {
+    border: 1px solid $color-red;
+    background-color: lighten($color-red, 37%);
+  }
+}
+
+.label {
+  min-height: 37px;
+  text-align: left;
+  &:before {
+    content: '';
+    display: inline-block;
+    min-height: inherit;
+    height: 100%;
+    vertical-align: middle;
+  }
+  &__text {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1.2em;
+  }
+}
+
+.labeled-input {
+  padding-bottom: 10px;
+  @extend .row;
+  &__label {
+    @extend .col-md-4;
+  }
+  &__input {
+    @extend .col-md-8;
+  }
+  &__submit {
+    @extend .col-md-4;
+    @extend .col-md-offset-4;
+
+  }
+}
+
+.filter-radio {
+  position: relative;
+  padding-bottom: 3px;
+
+  &__input {
+    position: absolute;
+    left: 0;
+    top: 0.50em; // Величина сдвига подобрана для line-height: 1.2
+    margin: -4px 0 0;
+    outline: none;
+  }
+
+  &__label {
+    margin-left: 18px;
+  }
+}
+
+.error-summary {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid $color-red;
+  @include font-tuning(14, 16);
+}
+
+.btn {
+  width: 100%;
+  border: none;
+  font-weight: normal;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  &_color_black {
+    color: #fff;
+    background-color: $color-bg-black-light;
+    &:hover {
+      background-color: lighten($color-bg-black-light, 5%);
+      color: #fff;
+    }
+  }
+
+  &_color_pink {
+    color: #fff;
+    background-color: $color-pink;
+    &:hover {
+      background-color: darken($color-pink, 5%);
+      color: #fff;
+    }
+  }
+  &_color_red {
+    color: #fff;
+    background-color: $color-red;
+    &:hover {
+      background-color: darken($color-red, 10%);
+      color: #fff;
+    }
+  }
+  &_color_orange {
+    color: #fff;
+    background-color: $color-orange;
+    &:hover {
+      background-color: lighten($color-orange, 5%);
+      color: #fff;
+    }
+  }
+  &_size_big {
+    height: 50px;
+    line-height: 50px;
+  }
+  &_size_medium {
+    height: 40px;
+    line-height: 40px;
+  }
+  &_size_xmedium {
+    height: 32px;
+    line-height: 32px;
+  }
+  &_uppercase {
+    text-transform: uppercase;
+  }
+  &-accent {
+    @extend .btn;
+    @extend .btn_size_medium;
+    @extend .btn_color_orange;
+    @extend .btn_uppercase;
+  }
+}
+
+
+.tooltip {
+  padding: 10px;
+  background-color: $color-blue-light;
+  color: #3786A1;
+  @include font-tuning(12, 14);
+
+}
+
+.success_response {
+  display: none;
+  padding: 20px 0;
+  color: $color-orange;
+  text-align: center;
+  @include font-tuning(20, 24);
+}

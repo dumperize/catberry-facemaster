@@ -1,0 +1,5 @@
+{
+	"name": "other-recommendation",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

@@ -1,0 +1,5 @@
+{
+	"name": "rubrikator-list",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

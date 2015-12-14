@@ -1,0 +1,93 @@
+{
+  "_args": [
+    [
+      "catberry-assets",
+      "/home/kuzishkina/Проекты/catberry"
+    ]
+  ],
+  "_from": "catberry-assets@*",
+  "_id": "catberry-assets@1.0.5",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/catberry-assets",
+  "_nodeVersion": "1.8.4",
+  "_npmUser": {
+    "email": "denis.rechkunov@gmail.com",
+    "name": "pragmadash"
+  },
+  "_npmVersion": "3.3.9",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "catberry-assets",
+    "raw": "catberry-assets",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/catberry-assets/-/catberry-assets-1.0.5.tgz",
+  "_shasum": "81039cc9171bb6fafca85c9bb8c0d8402a66dda2",
+  "_shrinkwrap": null,
+  "_spec": "catberry-assets",
+  "_where": "/home/kuzishkina/Проекты/catberry",
+  "author": {
+    "email": "denis.rechkunov@gmail.com",
+    "name": "Denis Rechkunov"
+  },
+  "bugs": {
+    "email": "denis.rechkunov@gmail.com",
+    "url": "https://github.com/catberry/catberry-assets/issues"
+  },
+  "contributors": [],
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "digits": "^0.2.0"
+  },
+  "description": "Plugin for Catberry Framework that builds assets for every cat-component using Gulp.",
+  "devDependencies": {
+    "jscs": "^2.5.1",
+    "jshint": "^2.8.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "81039cc9171bb6fafca85c9bb8c0d8402a66dda2",
+    "tarball": "http://registry.npmjs.org/catberry-assets/-/catberry-assets-1.0.5.tgz"
+  },
+  "engines": {
+    "node": ">=0.10"
+  },
+  "gitHead": "380c843f4c9d9b81e18d3d523bb62f79d4d44d9b",
+  "homepage": "https://github.com/catberry/catberry-assets",
+  "keywords": [
+    "catberry",
+    "component",
+    "css",
+    "gulp",
+    "plugin"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "pragmadash",
+      "email": "denis.rechkunov@gmail.com"
+    }
+  ],
+  "name": "catberry-assets",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "catberry": "^5.0.0 || ^6.0.0 || ^7.0.0"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/catberry/catberry-assets.git"
+  },
+  "scripts": {
+    "test": "jshint ./ && ./node_modules/.bin/jscs ./"
+  },
+  "version": "1.0.5"
+}

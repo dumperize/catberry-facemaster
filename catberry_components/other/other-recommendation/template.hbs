@@ -1,0 +1,18 @@
+<div block="recommendation-list">
+    {{#each recommendation}}
+        <div block="recommendation">
+            <div elem="inner">
+                <div elem="img-wr">
+                    <img src="{{photo}}" alt="{{title}}" elem="img">
+                </div>
+                <div elem="content">
+                    <p elem="title">{{title}}</p>
+
+                    <div elem="intro">{{{stripStyle text}}}</div>
+
+                    <p elem="date">ERROR{{date}}</p>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

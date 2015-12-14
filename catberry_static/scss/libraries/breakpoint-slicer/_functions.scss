@@ -1,0 +1,132 @@
+// FUNCTIONS
+// -----------------------------------------------
+
+//@import "variables";
+
+// breakpoint-names()
+//
+// Accepts no arguments.
+//
+// Returns the slices names
+@function breakpoint-names(){
+    @return map-keys($slicer-breakpoints);
+}
+
+
+// total-slices()
+//
+// Accepts no arguments.
+//
+// Returns total number of slices
+// (which is equal to total number of breakpoints).
+@function total-slices(){
+    @return length($slicer-breakpoints)
+}
+
+
+// nth-breakpoint-name($slice)
+// - $slice : <slice number> A number of a slice. Should be positive integer.
+//
+// Returns the name of the n-th slice
+@function nth-breakpoint-name($slice){
+    $min: 1;
+    $max: total-slices();
+
+    // Making sure that the slice provided is valid
+    @if ($slice < $min) or ($slice > $max){
+        @warn "Wrong Slice number provided: #{$slice}. Should be between #{$min} and #{$max}."
+    } @else {
+        @return nth(breakpoint-names(), $slice);
+    }
+}
+
+
+// index-of-breakpoint-name($slice-name)
+// - $slice-name : <slice name> A name of a slice.
+//
+// Returns the index of a slice
+@function index-of-breakpoint-name($slice-name){
+    @return index(breakpoint-names(), $slice-name);
+}
+
+
+// last-breakpoint-name()
+//
+// Accepts no arguments.
+//
+// Returns the last slice names
+@function last-breakpoint-name(){
+    @return nth-breakpoint-name(total-slices());
+}
+
+// Returns a correction value for the given breakpoint
+// to prevent media query overlapping.
+//
+// Relies on the global variable $slicer-anti-overlap-corrections
+// that should contain a list of allowed correction values.
+//
+// Returns either only positive or only negative value.
+//
+// anti-overlap-correction($bp, $positive: true)
+//   - $bp       : a breakpoint, e. g. 800px or 20em
+//   - $positive : whether to return only positive or only negative values
+//                 * true - return only positive correction value (default)
+//                 * false - return only negative correction value //
+@function anti-overlap-correction($bp, $positive: true) {
+    @each $correction in $slicer-anti-overlap-corrections {
+        @if (unit($bp) == unit($correction)) and (($correction > 0) == $positive) {
+            @return $correction;
+        }
+    }
+    @return 0;
+}
+
+// left-bp-of-slice($slice-name)
+// - $slice-name : <slice name> A name of a slice.
+//
+// Returns the left breakpoint of an Nth slice, e. g. `600px`.
+@function left-bp-of-slice($slice-name) {
+
+    $min: 0;
+    $max: total-slices();
+    $slice: index-of-breakpoint-name($slice-name);
+    //@debug('left slice #{$slice-name} n°#{$slice}');
+
+    // Making sure that the slice provided is valid
+    @if ($slice < $min) or ($slice > $max) {
+        @warn "Wrong left slice name provided: #{$slice}. Should be between #{nth-breakpoint-name($min)} and #{nth-breakpoint-name($max)}.";
+    } @else {
+
+        // Returning the left edge of the slice
+        $left: map_get($slicer-breakpoints, nth-breakpoint-name($slice));
+        $left: $left + anti-overlap-correction($left, false);
+
+        @return $left
+
+    }
+}
+
+
+// right-bp-of-slice($slice-name)
+// - $slice-name : <slice name> A name of a slice.
+//
+// Returns the right breakpoint of an Nth slice, e. g. `800px`.
+@function right-bp-of-slice($slice-name){
+
+    $min: 1;
+    $max: total-slices();
+    $slice: index-of-breakpoint-name($slice-name);
+    //@debug('right slice #{$slice-name} n°#{$slice}');
+
+
+    // Making sure that the slice provided is valid
+    @if ($slice < $min) or ($slice > $max) {
+        @warn "Wrong right slice name provided: #{$slice}. Should be between #{nth-breakpoint-name($min)} and #{nth-breakpoint-name($max)}.";
+    } @else {
+        // Reading the right edge of the slice
+        $right-bp: map_get($slicer-breakpoints, nth-breakpoint-name($slice));
+        //@debug('right limit #{$right-bp}');
+        @return $right-bp - anti-overlap-correction($right-bp, true);
+    }
+
+}

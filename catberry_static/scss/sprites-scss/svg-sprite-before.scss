@@ -1,0 +1,19 @@
+@mixin svg-sprite-position-before($svg-sprite) {
+    $svg-sprite-offset-x: nth($svg-sprite, 1) / nth($svg-sprite, 5) * 100%;
+    $svg-sprite-offset-y: nth($svg-sprite, 2) / nth($svg-sprite, 6) * 100%;
+    transform: translate($svg-sprite-offset-x, $svg-sprite-offset-y);
+}
+@mixin svg-sprite-position-bg-percent($koef, $svg-sprite) {
+    $svg-sprite-offset-x: nth($svg-sprite, 1) * $koef;
+    $svg-sprite-offset-y: nth($svg-sprite, 2) * $koef;
+    background-position: $svg-sprite-offset-x $svg-sprite-offset-y;
+}
+@mixin bg-svg-before(/*$svg-sprite, */$repeat: no-repeat) {
+    background-image: url('%=staticPrefixForCss=%svg-sprite/sprite.svg');
+    background-repeat: $repeat;
+}
+
+@mixin svg-sprite-before-h-w($koef, $svg-sprite) {
+    width: nth($svg-sprite, 5) * $koef;
+    height: nth($svg-sprite, 6) * $koef;
+}

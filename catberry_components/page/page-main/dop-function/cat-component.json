@@ -1,0 +1,5 @@
+{
+	"name": "dop-function",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

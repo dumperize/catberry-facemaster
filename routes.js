@@ -48,7 +48,7 @@ module.exports = [
         map: function (urlPath) {
             console.log(urlPath.path);
             var matches = urlPath.path.match(/^\/\w+\/page\/\d+/i);
-            var posPage = urlPath.path.indexOf('/page/')
+            var posPage = urlPath.path.indexOf('/page/');
             var posID = posPage + 6;
             return {
                 Pages: {

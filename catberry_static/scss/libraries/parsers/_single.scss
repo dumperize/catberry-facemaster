@@ -1,0 +1,38 @@
+//////////////////////////////
+// Import Pieces
+//////////////////////////////
+@function breakpoint-parse-default($feature) {
+    $default: breakpoint-get('default feature');
+
+    // Set Context
+    $context-setter: private-breakpoint-set-context($default, $feature);
+
+    @if (breakpoint-get('to ems') == true) and (type-of($feature) == 'number') {
+        @return '#{$default}: #{breakpoint-to-base-em($feature)}';
+    }
+    @else {
+        @return '#{$default}: #{$feature}';
+    }
+}
+
+@function breakpoint-parse-single($feature, $empty-media, $first) {
+    $parsed: '';
+    $leader: '';
+    // If we're forcing
+    @if not ($empty-media) or not ($first) {
+        $leader: 'and ';
+    }
+
+    // If it's a single feature that can stand alone, we let it
+    @if (breakpoint-single-string($feature)) {
+        $parsed: $feature;
+        // Set Context
+        $context-setter: private-breakpoint-set-context($feature, $feature);
+    }
+        // If it's not a stand alone feature, we pass it off to the default handler.
+    @else {
+        $parsed: breakpoint-parse-default($feature);
+    }
+
+    @return $leader + '(' + $parsed + ')';
+}

@@ -1,0 +1,38 @@
+/* Your custom fonts here */
+
+/* Example
+
+@font-face {
+    font-family: 'CustomFont';
+    src: url('../fonts/Custom-Font.eot');
+    src: url('../fonts/Custom-Font.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Custom-Font.woff') format('woff'),
+         url('../fonts/Custom-Font.svg#custom_font') format('svg');
+    font-weight: 400;       // For normal width. It could has another value   
+    font-style: normal;     // Also could has another value
+    }
+
+
+// Var for using custom font
+$CustomFont: 'CustomFont', Helvetica, Arial, sans-serif;
+*/
+@font-face {
+    font-family: 'PT Sans Caption';
+    src: local('PT Sans Caption'),
+    url('/fonts/font__pt-sans_caption.ttf') format('truetype'),
+    url('/fonts/font__pt-sans_caption.eot') format('embedded-opentype'),
+    url('/fonts/font__pt-sans_caption.woff') format('woff'),
+    url('/fonts/font__pt-sans_caption.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PT Sans Caption';
+    src: local('PT Sans Caption Bold Regular'),
+    url('/fonts/font__pt-sans_bold_regular.ttf') format('truetype'),
+    url('/fonts/font__pt-sans_bold_regular.eot') format('embedded-opentype'),
+    url('/fonts/font__pt-sans_bold_regular.woff') format('woff'),
+    url('/fonts/font__pt-sans_bold_regular.svg') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}

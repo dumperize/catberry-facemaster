@@ -1,0 +1,25 @@
+{{#if is-recommended-masters}}
+    <div block="master_recommended">
+        <h2 elem="title">
+            Этих<br>
+            Мастеров<br>
+            рекомендуют
+        </h2>
+
+        <div elem="slider">
+            {{#each recommended-master}}
+                <a href="{{master-url}}" elem="master">
+                    <img elem="master-photo" src="{{src}}" alt="{{alt}}">
+
+                    <p elem="master-name">
+                        {{master-name}}
+                    </p>
+
+                    <p elem="master-recommendations">
+                        {{recommendation-number}}
+                    </p>
+                </a>
+            {{/each}}
+        </div>
+    </div>
+{{/if}}

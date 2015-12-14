@@ -1,0 +1,53 @@
+//////////////////////////////
+// Import Pieces
+//////////////////////////////
+@function breakpoint-parse-triple-default($feature, $first, $second) {
+
+    // Sort into min and max
+    $min: min($first, $second);
+    $max: max($first, $second);
+
+    // Set Context
+    $context-setter: private-breakpoint-set-context(min-#{$feature}, $min);
+    $context-setter: private-breakpoint-set-context(max-#{$feature}, $max);
+
+    // Make them EMs if need be
+    @if (breakpoint-get('to ems') == true) {
+        $min: breakpoint-to-base-em($min);
+        $max: breakpoint-to-base-em($max);
+    }
+
+    @return '(min-#{$feature}: #{$min}) and (max-#{$feature}: #{$max})';
+}
+
+@function breakpoint-parse-triple($feature, $empty-media, $first) {
+    $parsed: '';
+    $leader: '';
+
+    // If we're forcing
+    @if not ($empty-media) or not ($first) {
+        $leader: 'and ';
+    }
+
+    // separate the string features from the value numbers
+    $string: null;
+    $numbers: null;
+    @each $val in $feature {
+        @if type-of($val) == string {
+            $string: $val;
+        }
+        @else {
+            @if type-of($numbers) == 'null' {
+                $numbers: $val;
+            }
+            @else {
+                $numbers: append($numbers, $val);
+            }
+        }
+    }
+
+    $parsed: breakpoint-parse-triple-default($string, nth($numbers, 1), nth($numbers, 2));
+
+    @return $leader + $parsed;
+
+}
