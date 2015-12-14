@@ -12,18 +12,6 @@
 
 module.exports = [
     '/:page[Pages]',
-    {
-        expression: /^\/\w+\/page\/\d+/i,
-        map: function (uri) {
-            var matches = uri.path.match(/^\/\w+\/page\/\d+/i);
-            console.log(matches);
-            return {
-                Pages: {
-                    orderId: Number(matches[2])
-                }
-            };
-        }
-    },
     '/:rubrika[Pages]/:podrubrika[rubrika/Rubrika]',
     {
         expression: '/:rubrika[Pages]/:podrubrika[rubrika/Rubrika]/:param[SeoText]',
@@ -63,7 +51,11 @@ module.exports = [
     {
         expression: /^\/news\/item\/\d+/i,
         map: function (urlPath) {
+            console.log("");
+            console.log("");
+            console.log("");
             console.log(urlPath.path);
+            console.log("");
             var matches = urlPath.path.match(/^\/news\/item\/\d+/i);
             var posID = urlPath.path.indexOf('/item/') + 6;
             return {

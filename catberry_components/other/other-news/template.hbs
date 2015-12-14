@@ -1,5 +1,5 @@
 <div block="news-list">
-    {{#each news}}
+    {{#each data}}
         <div block="news">
             <div elem="inner">
                 <div elem="img-wr">
@@ -8,18 +8,18 @@
                 <div elem="content">
                     <p elem="title">{{title}}</p>
 
-                    <p elem="intro"> {{{stripTags preview}}}</p>
+                    <p elem="intro">{{{stripTags preview}}}</p>
 
                     <p elem="date">{{formatDate date "%d %Z %Y"}}</p>
 
-                    <a elem="more" href="{{url}}">
+                    <a elem="more" href="/news/item/{{id}}">
                         подробнее
                         <i elem="icon">{{icon "strelka"}}</i>
                     </a>
                 </div>
                 <div elem="autor">
                     <p>
-                        Новость добавил: <br>
+                        Новость добавил: <br> ERROR
                         {{autor}}
                     </p>
                 </div>

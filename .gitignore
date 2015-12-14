@@ -2,14 +2,13 @@ node_modules
 .DS_Store
 ._.DS_Store
 
-.tmpTemplater
-.tmpPreproc
-
 .idea
 npm-debug.log
 phantomjsdriver.log
 /nbproject/*
 
-**/sprite_96.*
-**/svg-fallback-sprite.*
-**/svg-sprite.*
+__BrowserBundle.js
+node_modules
+public/bundle.js
+
+bower_components

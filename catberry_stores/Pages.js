@@ -38,6 +38,8 @@ Pages.prototype.$lifetime = 3600000;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 Pages.prototype.load = function () {
+    console.log(this.$context);
+    console.log(this.$context.location);
     var self = this;
     var currentPage = self.$context.state.page;
     var isPageRubrika = false;
