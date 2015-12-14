@@ -1,0 +1,57 @@
+{
+  "name": "fm",
+  "description": "Example Application based on Catberry Framework",
+  "main": "./server.js",
+  "authors": [
+    "Lena"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/dumperize/catberry-facemaster",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "fancybox": "~2.1.5",
+    "svg4everybody": "~2.0.0",
+    "slick-carousel": "~1.5.9"
+  },
+  "overrides": {
+    "jquery": {
+      "main": "dist/jquery.min.js"
+    },
+    "fancybox": {
+      "main": [
+        "source/jquery.fancybox.pack.js",
+        "source/jquery.fancybox.css",
+        "source/helpers/jquery.fancybox-buttons.js",
+        "source/helpers/jquery.fancybox-buttons.css",
+        "source/helpers/jquery.fancybox-thumbs.js",
+        "source/helpers/jquery.fancybox-thumbs.css",
+        "source/helpers/jquery.fancybox-media.js"
+      ],
+      "dependencies": {
+        "jquery": "~2.1.4",
+        "jquery-mousewheel": "~3.1.13"
+      }
+    },
+    "slick-carousel": {
+      "main": ["slick/slick.min.js"],
+      "dependencies": {
+        "jquery": ">=1.7"
+      }
+    },
+    "svg4everybody": {
+      "main": "dist/svg4everybody.js"
+    }
+  },
+  "devDependencies": {
+    "jquery-mousewheel": "~3.1.13"
+  }
+}
