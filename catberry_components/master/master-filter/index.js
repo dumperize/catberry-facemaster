@@ -27,8 +27,8 @@ MasterFilter.prototype.render = function () {
     var result = [];
 
     return this.$context.getStoreData()
-        .then(function (rubrika) {
-            path = '/' + rubrika.parent.unique + '/' + rubrika.unique;
+        .then(function (data) {
+            path = '/' + data.rubrika.parent.unique + '/' + data.rubrika.unique;
 
             return self.$context.getStoreData('master/MasterList')
                 .then(function (master) {
@@ -89,7 +89,7 @@ MasterFilter.prototype.render = function () {
                     });
                 })
                 .then(function () {
-                    self._decoreOpenSection(result, rubrika);
+                    self._decoreOpenSection(result, data);
                     return {filterSection: result};
                 })
         });
@@ -100,13 +100,13 @@ MasterFilter.prototype.render = function () {
  * @param rubrika рубрика из стора
  * @private
  */
-MasterFilter.prototype._decoreOpenSection = function (result, rubrika) {
-    var currentSection = rubrika.currentSeo.state.section;
+MasterFilter.prototype._decoreOpenSection = function (result, data) {
+    var currentSection = data.section;
 
     for (var i = 0; i < result.length; ++i) {
         if (result[i].sectionName == currentSection) {
 
-            var tags = this._getTags(rubrika);
+            var tags = this._getTags(data);
             result[i].openSection = {tagsGroup: tags};
             if (currentSection == 'masters') {
                 result[i].openSection.sortBy = {
@@ -127,16 +127,17 @@ MasterFilter.prototype._decoreOpenSection = function (result, rubrika) {
  * @returns {Array} теги разбитые по группам
  * @private
  */
-MasterFilter.prototype._getTags = function (rubrika) {
-    var path = '/' + rubrika.parent.unique + '/' + rubrika.unique;
-    var tagsJson = rubrika.tags;
-    var currentTag = rubrika.currentSeo.state.tag;
-    var currentSection = rubrika.currentSeo.state.section;
+MasterFilter.prototype._getTags = function (data) {
+    var path = '/' + data.rubrika.parent.unique + '/' + data.rubrika.unique;
+    var tagsJson = data.rubrika.tags;
+    var currentTag = data.tag.unique ;
+    var currentSection = data.section;
     var tags = [];
 
     Object.keys(tagsJson)
         .forEach(function (n) {
             var tag = tagsJson[n];
+            tag.isActive = false;
 
             if (!tags[tag.group])
                 tags[tag.group] = [];
@@ -145,7 +146,7 @@ MasterFilter.prototype._getTags = function (rubrika) {
                 tag.isActive = true;
                 tag.urlBack = path;
             }
-            if (currentSection == 'masters') {
+            if (currentSection == 'master') {
                 tag.path = path + '/' + tag.unique;
             } else {
                 tag.path = path + '/' + tag.unique + '/' + currentSection;

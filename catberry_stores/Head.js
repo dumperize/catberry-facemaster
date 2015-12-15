@@ -40,22 +40,22 @@ Head.prototype.$lifetime = 60000;
  */
 Head.prototype.load = function () {
     var self = this;
-    return {};
-    //return this.$context.getStoreData('Pages')
-    //    .then(function (page) {
-    //        if (page.state.rubrika)
-    //            return self._loadForRubrika();
-    //        var data =PAGES[page.state.page];
-    //        return {
-    //            title: data.title + ' FaceMaster.ru. Специалисты Тольятти',
-    //            description: data.description,
-    //            keywords: data.keywords
-    //        }
-    //    });
+    return this.$context.getStoreData('Pages')
+        .then(function (page) {
+            if (page.current == "rubrika")
+                return self._loadForRubrika();
+
+            var data = PAGES[page.current];
+            return {
+                title: data.title + '. FaceMaster.ru. Специалисты Тольятти',
+                description: data.description,
+                keywords: data.keywords
+            }
+        });
 };
 
 Head.prototype._loadForRubrika = function () {
-    return this.$context.getStoreData('rubrika/Rubrika')
+    return this.$context.getStoreData('Tag')
         .then(function (data) {
             return {
                 title: data.currentSeo.headTitle,

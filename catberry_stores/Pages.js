@@ -66,8 +66,7 @@ Pages.prototype.load = function () {
 
             var result = {
                 current: currentPage,
-                isActive: {},
-                state: self.$context.state,
+                isActive: isActive,
 
                 header: self.getHeaderData(),
                 footer: self.getFooterData()
