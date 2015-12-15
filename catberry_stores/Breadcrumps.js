@@ -18,7 +18,6 @@ module.exports = Breadcrumps;
 function Breadcrumps($uhr) {
     this._uhr = $uhr;
     this.$context.setDependency('Pages');
-    this.$context.setDependency('rubrika/Rubrika');
 }
 
 /**
@@ -41,24 +40,24 @@ Breadcrumps.prototype.$lifetime = 60000;
 Breadcrumps.prototype.load = function () {
     var self = this;
     var brcrmp = [];
-
-    return this.$context.getStoreData('Pages')
-        .then(function (page) {
-
-            if (page.state.rubrika)
-                return self._loadForRubrika();
-
-            brcrmp.push({
-                title: PAGES[page.state.page].title
-            });
-
-            return brcrmp;
-        })
-        .then(function (brcrmp) {
-            return {
-                links: brcrmp
-            };
-        });
+    return {};
+    //return this.$context.getStoreData('Pages')
+    //    .then(function (page) {
+    //
+    //        if (page.state.rubrika)
+    //            return self._loadForRubrika();
+    //
+    //        brcrmp.push({
+    //            title: PAGES[page.state.page].title
+    //        });
+    //
+    //        return brcrmp;
+    //    })
+    //    .then(function (brcrmp) {
+    //        return {
+    //            links: brcrmp
+    //        };
+    //    });
 };
 
 Breadcrumps.prototype._loadForRubrika = function () {

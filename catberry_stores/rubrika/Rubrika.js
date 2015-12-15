@@ -15,7 +15,6 @@ module.exports = Rubrika;
  */
 function Rubrika($uhr) {
     this._uhr = $uhr;
-    this.$context.setDependency('SeoText');
 }
 
 /**
@@ -37,30 +36,30 @@ Rubrika.prototype.$lifetime = 60000;
  */
 Rubrika.prototype.load = function () {
     var self = this;
+    var rubrika = this.$context.state.rubrika;
     var podrubrika = this.$context.state.podrubrika;
 
     if (!podrubrika) {
-        return;
+        self.$context.notFound();
     }
+
     var url = 'http://api-fm.present-tlt.ru/rubrika/index?filter=%5B%5B%22%3D%22%2C%22unique%22%2C%22' + podrubrika + '%22%5D%5D&expand=tags,parent,nearby,seo';
     return this._uhr.get(url)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
             }
-            var data = result.content[0];
-            data.state = self.$context.state;
+            if (result.content.length == 0)
+                self.$context.notFound();
 
-            self.$context.sendAction('SeoText', 'setPodrubrikaSeo', {
-                id: data.id,
-                name: data.name,
-                seo: data.seo
-            });
-            return self.$context.getStoreData('SeoText')
-                .then(function (seo) {
-                    data.currentSeo = seo;
-                    return data;
-                });
+            var data = result.content[0];
+
+            if (rubrika != data.parent.unique)
+                self.$context.notFound();
+
+            data.podrubrika = podrubrika;
+            data.rubrika = rubrika;
+            return data;
         });
 };
 
@@ -68,7 +67,3 @@ Rubrika.prototype.load = function () {
  * Handles action named "some-action" from any component.
  * @returns {Promise<Object>|Object|null|undefined} Response to component.
  */
-
-Rubrika.prototype.handleGetCurrentPodrubrika = function () {
-    return this.$context.state.podrubrika;
-}

@@ -42,6 +42,7 @@ var stores = [
 {name: 'Pages', constructor: require('./catberry_stores/Pages.js')},
 {name: 'Paginator', constructor: require('./catberry_stores/Paginator.js')},
 {name: 'SeoText', constructor: require('./catberry_stores/SeoText.js')},
+{name: 'Tag', constructor: require('./catberry_stores/Tag.js')},
 {name: 'master/MasterList', constructor: require('./catberry_stores/master/MasterList.js')},
 {name: 'master/Recommended', constructor: require('./catberry_stores/master/Recommended.js')},
 {name: 'master/VideoList', constructor: require('./catberry_stores/master/VideoList.js')},

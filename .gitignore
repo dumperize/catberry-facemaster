@@ -8,7 +8,6 @@ phantomjsdriver.log
 /nbproject/*
 
 __BrowserBundle.js
-node_modules
 public/bundle.js
 
 bower_components

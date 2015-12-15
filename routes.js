@@ -12,25 +12,38 @@
 
 module.exports = [
     '/:page[Pages]',
-    '/:rubrika[Pages]/:podrubrika[rubrika/Rubrika]',
     {
-        expression: '/:rubrika[Pages]/:podrubrika[rubrika/Rubrika]/:param[SeoText]',
+        expression: '/:rubrika[rubrika/Rubrika]/:podrubrika[rubrika/Rubrika]',
+        map: function (state) {
+            state.Pages = {page: "rubrika"};
+            return state;
+        }
+    },
+    {
+        expression: '/:rubrika[rubrika/Rubrika]/:podrubrika[rubrika/Rubrika]/:param[Tag]',
         map: function (state) {
             var section = ['video', 'sale', 'sovety', 'company'];
             var isSection;
             for (var i = 0; i < section.length; ++i) {
-                if (state.SeoText.param == section[i]) {
-                    state.SeoText.section = section[i];
+                if (state.Tag.param == section[i]) {
+                    state.Tag.section = section[i];
                     isSection = true;
                 }
             }
             if (!isSection) {
-                state.SeoText.tag = state.SeoText.param;
+                state.Tag.tag = state.Tag.param;
             }
+            state.Pages = {page: "rubrika"};
             return state;
         }
     },
-    '/:rubrika[Pages]/:podrubrika[rubrika/Rubrika]/:tag[SeoText]/:section[SeoText]',
+    {
+        expression: '/:rubrika[rubrika/Rubrika]/:podrubrika[rubrika/Rubrika]/:tag[Tag]/:section[Tag]',
+        map: function (state) {
+            state.Pages = {page: "rubrika"};
+            return state;
+        }
+    },
     {
         expression: /^\/\w+\/page\/\d+/i,
         map: function (urlPath) {

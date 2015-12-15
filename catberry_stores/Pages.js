@@ -17,7 +17,7 @@ module.exports = Pages;
  */
 function Pages($config) {
     this._config = $config;
-    this.$context.setDependency('rubrika/Rubrika');
+    this.$context.setDependency('Tag');
 }
 
 /**
@@ -38,36 +38,30 @@ Pages.prototype.$lifetime = 3600000;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 Pages.prototype.load = function () {
-    console.log(this.$context);
-    console.log(this.$context.location);
     var self = this;
     var currentPage = self.$context.state.page;
-    var isPageRubrika = false;
+    var specificPage = false;
+    var isActive = {};
 
-    return Promise.resolve(null)
+    return Promise.resolve(1)
         .then(function () {
-            var rubrika = self.$context.state.rubrika;
-
-            if (rubrika) {
-                currentPage = rubrika;
-                isPageRubrika = true;
-                return self.$context.getStoreData('rubrika/Rubrikator')
-                    .then(function (rubriks) {
-                        Object.keys(rubriks)
-                            .forEach(function (num) {
-                                PAGES[rubriks[num].el.unique] = rubriks[num].el.unique;
-                            });
-                    });
+            if (currentPage == "rubrika") {
+                specificPage = true;
+                isActive.masterRubrika = true;
+                return self.$context.getStoreData('Tag');
             }
         })
+        .then(function () {
+            var news = self.$context.state.news;
 
+        })
         .then(function () {
             if (!currentPage) {
                 return self.$context.redirect('/main');
             }
 
-            if (!PAGES.hasOwnProperty(currentPage)) {
-                throw new Error(currentPage + ' page not found');
+            if (!specificPage && !PAGES.hasOwnProperty(currentPage)) {
+                self.$context.notFound();
             }
 
             var result = {
@@ -82,8 +76,6 @@ Pages.prototype.load = function () {
                 .forEach(function (page) {
                     result.isActive[page] = (currentPage === page);
                 });
-            result.isActive['masterRubrika'] = isPageRubrika;
-
             return result;
         });
 }
