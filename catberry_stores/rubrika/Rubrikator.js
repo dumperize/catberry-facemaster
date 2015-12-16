@@ -2,7 +2,7 @@
 
 module.exports = Rubrikator;
 
-var URL = 'http://api-fm.present-tlt.ru/rubrika/index?filter=%5B%5B%22%3D%22%2C+%22status%22%2C+%221%22%5D%5D&limit=200';
+var URL = 'http://api-fm.present-tlt.ru/rubrika/index?filter=%5B%5B%22%3D%22%2C+%22status%22%2C+%221%22%5D%5D&order=sort&limit=200';
 /*
  * This is a Catberry Store file.
  * More details can be found here
@@ -42,23 +42,29 @@ Rubrikator.prototype.load = function () {
                 throw new Error(result.status.text);
             }
             var data = result.content;
-            var dataTree = {};
+            var podrubriksTree = {};
+            var rootTree = {};
 
             Object.keys(data)
                 .forEach(function (key) {
                     var el = data[key];
                     if (el.parentID == 0) {
-                        if (!dataTree[el.id])
-                            dataTree[el.id] = {el: {}, podrubriks: []};
-                        dataTree[el.id].el = el;
+                        rootTree[el.sort] = {el: el};
                     } else {
-                        if (!dataTree[el.parentID])
-                            dataTree[el.parentID] = {el: {}, podrubriks: []};
-                        dataTree[el.parentID].podrubriks.push(el);
+                        if (!podrubriksTree[el.parentID])
+                            podrubriksTree[el.parentID] = [];
+                        podrubriksTree[el.parentID].push(el);
                     }
                 });
 
-            return dataTree;
+            Object.keys(rootTree)
+                .forEach(function (key) {
+                    podrubriksTree[rootTree[key].el.id].sort(function (a, b) {
+                        return a.name > b.name;
+                    });
+                    rootTree[key].podrubriks = podrubriksTree[rootTree[key].el.id];
+                });
+            return rootTree;
         });
 };
 

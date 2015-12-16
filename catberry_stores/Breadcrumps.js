@@ -42,7 +42,7 @@ Breadcrumps.prototype.load = function () {
     var brcrmp = [];
     return this.$context.getStoreData('Pages')
         .then(function (page) {
-            if (page.current == "rubrika")
+            if (page.current == "master-rubrika")
                 return self._loadForRubrika();
 
             brcrmp.push({

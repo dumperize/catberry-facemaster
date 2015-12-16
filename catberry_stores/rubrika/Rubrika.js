@@ -54,6 +54,9 @@ Rubrika.prototype.load = function () {
 
             var data = result.content[0];
 
+            if (data.parentID == 0)
+                self.$context.notFound();
+
             if (rubrika != data.parent.unique)
                 self.$context.notFound();
 

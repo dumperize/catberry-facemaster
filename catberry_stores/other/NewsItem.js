@@ -14,7 +14,7 @@ module.exports = NewsItem;
  * @constructor
  */
 function NewsItem($uhr) {
-	this._uhr = $uhr;
+    this._uhr = $uhr;
 }
 
 /**
@@ -35,8 +35,24 @@ NewsItem.prototype.$lifetime = 60000;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 NewsItem.prototype.load = function () {
-	// Here you can do any HTTP requests using this._uhr.
-	// Please read details here https://github.com/catberry/catberry-uhr.
+    var self = this;
+    var item = this.$context.state.item;
+    //var path = 'http://api-fm.present-tlt.ru/about-news?' + encodeURIComponent('filter=[["=","id","' + item + '"]]');
+    var path = 'http://api-fm.present-tlt.ru/about-news?filter=%5B%5B%22%3D%22%2C%22id%22%2C%22' + item + '%22%5D%5D';
+
+    if (!item)
+        return;
+
+    return this._uhr.get(path)
+        .then(function (result) {
+            if (result.status.code >= 400 && result.status.code < 600) {
+                throw new Error(result.status.text);
+            }
+            if (result.content.length == 0)
+                self.$context.notFound();
+
+            return result.content;
+        });
 };
 
 /**
@@ -44,7 +60,8 @@ NewsItem.prototype.load = function () {
  * @returns {Promise<Object>|Object|null|undefined} Response to component.
  */
 NewsItem.prototype.handleSomeAction = function () {
-	// Here you can call this.$context.changed() if you know
-	// that remote data source has been changed.
-	// Also you can have many handle methods for other actions.
+
+    // Here you can call this.$context.changed() if you know
+    // that remote data source has been changed.
+    // Also you can have many handle methods for other actions.
 };

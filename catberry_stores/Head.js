@@ -42,7 +42,7 @@ Head.prototype.load = function () {
     var self = this;
     return this.$context.getStoreData('Pages')
         .then(function (page) {
-            if (page.current == "rubrika")
+            if (page.current == "master-rubrika")
                 return self._loadForRubrika();
 
             var data = PAGES[page.current];

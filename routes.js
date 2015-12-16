@@ -12,73 +12,110 @@
 
 module.exports = [
     '/:page[Pages]',
+    //id мастера
     {
-        expression: '/:rubrika[rubrika/Rubrika]/:podrubrika[rubrika/Rubrika]',
-        map: function (state) {
-            state.Pages = {page: "rubrika"};
-            return state;
-        }
-    },
-    {
-        expression: '/:rubrika[rubrika/Rubrika]/:podrubrika[rubrika/Rubrika]/:param[Tag]',
-        map: function (state) {
-            var section = ['video', 'sale', 'sovety', 'company'];
-            var isSection;
-            for (var i = 0; i < section.length; ++i) {
-                if (state.Tag.param == section[i]) {
-                    state.Tag.section = section[i];
-                    isSection = true;
-                }
-            }
-            if (!isSection) {
-                state.Tag.tag = state.Tag.param;
-            }
-            state.Pages = {page: "rubrika"};
-            return state;
-        }
-    },
-    {
-        expression: '/:rubrika[rubrika/Rubrika]/:podrubrika[rubrika/Rubrika]/:tag[Tag]/:section[Tag]',
-        map: function (state) {
-            state.Pages = {page: "rubrika"};
-            return state;
-        }
-    },
-    {
-        expression: /^\/\w+\/page\/\d+/i,
+        expression: '/\/([\/\d]+)$/i',
         map: function (urlPath) {
-            console.log(urlPath.path);
-            var matches = urlPath.path.match(/^\/\w+\/page\/\d+/i);
-            var posPage = urlPath.path.indexOf('/page/');
-            var posID = posPage + 6;
             return {
                 Pages: {
-                    page: urlPath.path.slice(1, posPage)
+                    page: "master-page"
+                }
+            }
+        }
+    },
+    //статья мастера
+    {
+        expression: '/\/([\/\d]+)\/article\/([\/\d]+)$/i',
+        map: function (urlPath) {
+            return {
+                Pages: {
+                    page: "master-article"
+                }
+            }
+        }
+    },
+    // путь: рубрика/подрубрика
+    // путь: рубрика/подрубрика/тег
+    // путь: рубрика/подрубрика/секция
+    // путь: рубрика/подрубрика/тег/секция
+    {
+        expression: /^\/([^\/\d]+)\/([^\/\d]+)\/?((?!video|sale|sovety|company)[^\/\d]+)?\/?(video|sale|sovety|company)?$/i,
+        map: function (urlPath) {
+            var matches = urlPath.path.match(/^\/([^\/\d]+)\/([^\/\d]+)\/?((?!video|sale|sovety|company)[^\/\d]+)?\/?(video|sale|sovety|company)?$/i);
+            return {
+                'rubrika/Rubrika': {
+                    rubrika: matches[1],
+                    podrubrika: matches[2]
+                },
+                Tag: {
+                    tag: matches[3],
+                    section: matches[4]
+                },
+                Pages: {
+                    page: "master-rubrika"
+                }
+            }
+        }
+    },
+    // путь: /__/page/:id
+    {
+        expression: /^\/([^\/\d]+)\/page\/(\d+)/i,
+        map: function (urlPath) {
+            var matches = urlPath.path.match(/^\/([^\/\d]+)\/page\/(\d+)/i);
+            return {
+                Pages: {
+                    page: matches[1]
                 },
                 Paginator: {
-                    currentPage: urlPath.path.slice(posID)
+                    currentPage: matches[2]
                 }
             };
         }
     },
+    // путь: /sale
+    // путь: /sovety
+    // путь: /video
+    // путь: /__/page/:id
+    // путь: /__/category/:id
+    // путь: /__/category/:id/page/:id
     {
-        expression: /^\/news\/item\/\d+/i,
+        expression: /^\/(sale|sovety|video)(\/catalog\/(\d+))?(\/page\/(\d+))?$/i,
         map: function (urlPath) {
-            console.log("");
-            console.log("");
-            console.log("");
-            console.log(urlPath.path);
-            console.log("");
-            var matches = urlPath.path.match(/^\/news\/item\/\d+/i);
-            var posID = urlPath.path.indexOf('/item/') + 6;
-            return {
-                Pages: {
-                    news: "news-item"
-                },
-                'other/NewsItem': {
-                    id: urlPath.path.slice(posID)
-                }
+            var matches = urlPath.path.match(/^\/(sale|sovety|video)(\/catalog\/(\d+))?(\/page\/(\d+))?$/i);
+            var state = {};
+
+            state.Pages = {
+                page: matches[1]
             };
+            state['master/Master' + matches[1]] = {
+                catalog: matches[3]
+            };
+            state.Paginator = {
+                currentPage: matches[5]
+            };
+
+            return state;
+        }
+    },
+    // путь: /news/item/:id
+    // путь: /vacancy/item/:id
+    // путь: /konkurs/item/:id
+    {
+        expression: /^\/(news|vacancy|konkurs)\/item\/(\d+)$/i,
+        map: function (urlPath) {
+            var matches = urlPath.path.match(/^\/(news|vacancy|konkurs)\/item\/(\d+)$/i);
+            var state = {};
+
+            var string = matches[1];
+
+            state.Pages = {
+                page: string + "-item"
+            };
+            state['other/' + string.charAt(0).toUpperCase() + string.slice(1) + "Item"] = {
+                item: matches[2]
+            };
+            console.log(state);
+            return state;
         }
     }
 ];

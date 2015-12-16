@@ -40,33 +40,26 @@ Pages.prototype.$lifetime = 3600000;
 Pages.prototype.load = function () {
     var self = this;
     var currentPage = self.$context.state.page;
-    var specificPage = false;
-    var isActive = {};
 
     return Promise.resolve(1)
         .then(function () {
-            if (currentPage == "rubrika") {
-                specificPage = true;
-                isActive.masterRubrika = true;
+            if (currentPage == "master-rubrika")
                 return self.$context.getStoreData('Tag');
-            }
-        })
-        .then(function () {
-            var news = self.$context.state.news;
-
+            if (currentPage == "news-item")
+                return self.$context.getStoreData('other/NewsItem');
         })
         .then(function () {
             if (!currentPage) {
                 return self.$context.redirect('/main');
             }
 
-            if (!specificPage && !PAGES.hasOwnProperty(currentPage)) {
+            if (!PAGES.hasOwnProperty(currentPage)) {
                 self.$context.notFound();
             }
 
             var result = {
                 current: currentPage,
-                isActive: isActive,
+                isActive: {},
 
                 header: self.getHeaderData(),
                 footer: self.getFooterData()

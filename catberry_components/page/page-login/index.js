@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = PageNewsItem;
+module.exports = PageLogin;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = PageNewsItem;
  */
 
 /**
- * Creates new instance of the "page-news-item" component.
+ * Creates new instance of the "page-login" component.
  * @constructor
  */
-function PageNewsItem() {
+function PageLogin() {
 
 }
 
@@ -22,8 +22,8 @@ function PageNewsItem() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-PageNewsItem.prototype.render = function () {
-    return this.$context.getStoreData();
+PageLogin.prototype.render = function () {
+
 };
 
 /**
@@ -31,7 +31,7 @@ PageNewsItem.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-PageNewsItem.prototype.bind = function () {
+PageLogin.prototype.bind = function () {
 
 };
 
@@ -40,6 +40,6 @@ PageNewsItem.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-PageNewsItem.prototype.unbind = function () {
+PageLogin.prototype.unbind = function () {
 
 };

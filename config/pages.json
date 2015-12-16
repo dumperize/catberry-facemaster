@@ -58,6 +58,9 @@
     "title": "Вакансии",
     "description": "",
     "keywords": ""
-  }
-
+  },
+  "master-rubrika": {},
+  "news-item": {},
+  "vacancy-item": {},
+  "konkurs-item": {}
 }
