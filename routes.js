@@ -14,9 +14,13 @@ module.exports = [
     '/:page[Pages]',
     //id мастера
     {
-        expression: '/\/([\/\d]+)$/i',
+        expression: /\/([\/\d]+)$/i,
         map: function (urlPath) {
+            var matches = urlPath.path.match(/\/([\/\d]+)$/i);
             return {
+                'master/MasterItem': {
+                    item: matches[1]
+                },
                 Pages: {
                     page: "master-page"
                 }

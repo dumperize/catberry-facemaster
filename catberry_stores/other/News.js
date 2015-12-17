@@ -9,6 +9,12 @@ util.inherits(News, StorePaginator);
 
 function News() {
     StorePaginator.call(this);
-    this._path = encodeURI('http://api-fm.present-tlt.ru/about-news/index?filter=[["=","status","1"]]&page=');
+    this._path = 'http://api-fm.present-tlt.ru/about-news';
+    this._options = {
+        data: {
+            filter: '[["=","status","1"]]',
+            order: 'date DESC'
+        }
+    };
     this._url = "/news/page/";
 }

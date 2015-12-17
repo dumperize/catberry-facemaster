@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = OtherNewsItem;
+module.exports = PageMasterPage;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = OtherNewsItem;
  */
 
 /**
- * Creates new instance of the "other-news-item" component.
+ * Creates new instance of the "page-master-page" component.
  * @constructor
  */
-function OtherNewsItem() {
+function PageMasterPage() {
 
 }
 
@@ -22,8 +22,8 @@ function OtherNewsItem() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-OtherNewsItem.prototype.render = function () {
-    return this.$context.getStoreData();
+PageMasterPage.prototype.render = function () {
+
 };
 
 /**
@@ -31,7 +31,7 @@ OtherNewsItem.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-OtherNewsItem.prototype.bind = function () {
+PageMasterPage.prototype.bind = function () {
 
 };
 
@@ -40,6 +40,6 @@ OtherNewsItem.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-OtherNewsItem.prototype.unbind = function () {
+PageMasterPage.prototype.unbind = function () {
 
 };

@@ -37,21 +37,27 @@ NewsItem.prototype.$lifetime = 60000;
 NewsItem.prototype.load = function () {
     var self = this;
     var item = this.$context.state.item;
-    //var path = 'http://api-fm.present-tlt.ru/about-news?' + encodeURIComponent('filter=[["=","id","' + item + '"]]');
-    var path = 'http://api-fm.present-tlt.ru/about-news?filter=%5B%5B%22%3D%22%2C%22id%22%2C%22' + item + '%22%5D%5D';
+    var path = 'http://api-fm.present-tlt.ru/about-news';
+    //var path = 'http://api-fm.present-tlt.ru/about-news?filter=%5B%5B%22%3D%22%2C%22id%22%2C%22' + item + '%22%5D%5D';
 
     if (!item)
         return;
 
-    return this._uhr.get(path)
+    var option = {
+        data: {
+            filter: '[["=","id","' + item + '"],["=", "status", "1"]]'
+        }
+    };
+    return this._uhr.get(path, option)
         .then(function (result) {
+            console.log(result);
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
             }
             if (result.content.length == 0)
                 self.$context.notFound();
 
-            return result.content;
+            return result.content[0];
         });
 };
 

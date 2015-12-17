@@ -2,7 +2,6 @@
 
 module.exports = Rubrikator;
 
-var URL = 'http://api-fm.present-tlt.ru/rubrika/index?filter=%5B%5B%22%3D%22%2C+%22status%22%2C+%221%22%5D%5D&order=sort&limit=200';
 /*
  * This is a Catberry Store file.
  * More details can be found here
@@ -16,6 +15,14 @@ var URL = 'http://api-fm.present-tlt.ru/rubrika/index?filter=%5B%5B%22%3D%22%2C+
  */
 function Rubrikator($uhr) {
     this._uhr = $uhr;
+    this._path = 'http://api-fm.present-tlt.ru/rubrika';
+    this._options = {
+        data: {
+            filter: '[["=", "status", "1"]]',
+            order: 'sort',
+            limit: 200
+        }
+    };
 }
 
 /**
@@ -35,8 +42,9 @@ Rubrikator.prototype.$lifetime = 600000;
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
+
 Rubrikator.prototype.load = function () {
-    return this._uhr.get(URL)
+    return this._uhr.get(this._path, this._options)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);

@@ -6,11 +6,7 @@
             <cat-breadcrumps id="breadcrumps" cat-store="Breadcrumps"></cat-breadcrumps>
         {{/unless}}
 
-        {{#if isActive.masterRubrika}}
-            <cat-page-master-rubrika id="page-current-master-rubrika"></cat-page-master-rubrika>
-        {{else}}
-            <cat-page-{{current}} id="page-current-{{current}}"></cat-page-{{current}}>
-        {{/if}}
+        <cat-page-{{current}} id="page-current-{{current}}"></cat-page-{{current}}>
 
     </div>
 </div>

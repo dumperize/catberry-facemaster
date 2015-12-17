@@ -47,8 +47,14 @@ Tag.prototype.load = function () {
         })
         .then(function () {
             if (tag) {
-                var path = 'http://api-fm.present-tlt.ru/tag/index?filter=%5B%5B%22%3D%22%2C%22unique%22%2C%22' + tag + '%22%5D%5D&expand=seo';
-                return self._uhr.get(path)
+                var path = 'http://api-fm.present-tlt.ru/tag';
+                var option = {
+                    data: {
+                        filter: '[["=", "unique", "' + tag + '"]]',
+                        expand: 'seo'
+                    }
+                };
+                return self._uhr.get(path, option)
                     .then(function (result) {
                         if (result.status.code >= 400 && result.status.code < 600) {
                             throw new Error(result.status.text);
@@ -59,13 +65,13 @@ Tag.prototype.load = function () {
 
             return {};
         })
-        .then(function (tagData){
+        .then(function (tagData) {
             if (tag && tagData == {})
                 self.$context.notFound();
 
             data.tag = tagData;
             data.section = section;
-            data.currentSeo = tag ? self._getCurrentSeo(data.tag, data.section) : self._getCurrentSeo(data.rubrika, data.section) ;
+            data.currentSeo = tag ? self._getCurrentSeo(data.tag, data.section) : self._getCurrentSeo(data.rubrika, data.section);
             return data;
         });
 };

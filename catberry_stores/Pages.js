@@ -45,6 +45,8 @@ Pages.prototype.load = function () {
         .then(function () {
             if (currentPage == "master-rubrika")
                 return self.$context.getStoreData('Tag');
+            if (currentPage == "master-page")
+                return self.$context.getStoreData('master/MasterItem');
             if (currentPage == "news-item")
                 return self.$context.getStoreData('other/NewsItem');
         })

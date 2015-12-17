@@ -57,6 +57,5 @@ CommonPaginator.prototype.unbind = function () {
 
 };
 CommonPaginator.prototype._handleClick = function(){
-    console.log('asdasdasd');
     window.scrollTo(0,0);
 };

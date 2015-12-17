@@ -44,6 +44,8 @@ Head.prototype.load = function () {
         .then(function (page) {
             if (page.current == "master-rubrika")
                 return self._loadForRubrika();
+            if (page.current == "news-item")
+                return self._loadForNewsItem();
 
             var data = PAGES[page.current];
             return {
@@ -65,6 +67,16 @@ Head.prototype._loadForRubrika = function () {
         });
 };
 
+Head.prototype._loadForNewsItem = function () {
+    return this.$context.getStoreData('other/NewsItem')
+        .then(function (data) {
+            return {
+                title: data.title,
+                description: data.preview,
+                keywords: 'новость, facemaster'
+            }
+        });
+};
 /**
  * Handles action named "some-action" from any component.
  * @returns {Promise<Object>|Object|null|undefined} Response to component.

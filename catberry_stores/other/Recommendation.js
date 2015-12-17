@@ -9,6 +9,6 @@ util.inherits(Recommendation, StorePaginator);
 
 function Recommendation() {
     StorePaginator.call(this);
-    this._path = 'http://api-fm.present-tlt.ru/about-comment?page='
+    this._path = 'http://api-fm.present-tlt.ru/about-comment';
     this._url = "/recommendation/page/";
 }

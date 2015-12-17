@@ -45,6 +45,9 @@ Breadcrumps.prototype.load = function () {
             if (page.current == "master-rubrika")
                 return self._loadForRubrika();
 
+            if (page.current == "news-item")
+                return self._loadForNewsItem();
+
             brcrmp.push({
                 title: PAGES[page.current].title
             });
@@ -112,6 +115,21 @@ Breadcrumps.prototype._getForRubAndTag = function (data) {
     return links;
 };
 
+Breadcrumps.prototype._loadForNewsItem = function () {
+    var self = this;
+    return this.$context.getStoreData('other/NewsItem')
+        .then(function (data) {
+            var links = [];
+            links.push({
+                title: "Новости",
+                url: "/news"
+            });
+            links.push({
+                title: data.title
+            });
+            return links;
+        });
+};
 /**
  * Handles action named "some-action" from any component.
  * @returns {Promise<Object>|Object|null|undefined} Response to component.

@@ -1,5 +1,5 @@
 {
-	"name": "page-video-catalog",
+	"name": "page-vacancy",
 	"template": "./template.hbs",
 	"errorTemplate": "./error.hbs"
 }
