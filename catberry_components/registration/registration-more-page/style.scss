@@ -1,0 +1,231 @@
+.more-page-wr {
+  @extend .bg_grey;
+  @include to(md) {
+    background-color: transparent;
+  }
+}
+
+.more-page {
+  padding: 50px 0;
+  counter-reset: count;
+  @extend .col-xs-12;
+  &__item {
+    padding-top: 50px;
+    @extend .row;
+  }
+  &__pic {
+    @extend .col-lg-offset-1;
+    @extend .col-lg-5;
+    @extend .col-md-offset-0;
+    @extend .col-md-6;
+    &-img {
+      &_offset-1 {
+        padding-right: 22%;
+      }
+    }
+  }
+  &__line {
+    border-top: 1px solid $color-bg-grey-medium;
+  }
+  &__text {
+    @extend .col-lg-5;
+    @extend .col-md-6;
+
+    &-title {
+      &:after {
+        content: ' ';
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        display: none;
+        @extend %icon;
+        @extend %icon_block;
+        @extend %icon_size_small;
+        @extend %icon_strelka;
+      }
+      &-count {
+        &:before {
+          display: block;
+          border: 2px solid $color-text;
+          width: 60px;
+          height: 60px;
+          counter-increment: count;
+          content: counter(count);
+          text-align: center;
+          font-weight: bold;
+          padding-top: 7px;
+          @include font-tuning(33, 39);
+        }
+      }
+      &-header {
+        margin-top: 20px;
+        text-transform: uppercase;
+        text-decoration: underline;
+        font-weight: bold;
+        @include font-tuning(33, 39);
+      }
+      &-sub-header {
+        @include font-tuning(21, 29);
+      }
+    }
+  }
+  &__paragraph {
+    margin-top: 20px;
+    &-title {
+      @include font-tuning(21, 29);
+    }
+    &-text {
+      @include font-tuning(13, 18);
+    }
+  }
+  @include at(md) {
+    &__text {
+      &-title {
+        &-header {
+          @include font-tuning(28, 35);
+        }
+        &-sub-header {
+          @include font-tuning(18, 27);
+        }
+      }
+    }
+    &__paragraph {
+      &-title {
+        @include font-tuning(18, 27);
+      }
+    }
+  }
+  @include at(sm) {
+    background-color: $color-bg-grey-light;
+    &__item {
+      position: relative;
+      padding-bottom: 15px;
+    }
+    &__pic {
+      margin-top: 80px;
+      &-img {
+        padding: 0 15%;
+        &_offset-1 {
+          padding: 0 25%;
+        }
+      }
+    }
+    &__text {
+      position: static;
+      &-title {
+        position: absolute;
+        top: 50px;
+        left: 90px;
+        width: 300px;
+        height: 50px;
+        &-header {
+          margin: 0;
+          @include vertical-align;
+          @include font-tuning(22, 25);
+          &_no-valign {
+            top: 0;
+            transform: translate(0);
+          }
+        }
+        &-sub-header {
+          @include font-tuning(13, 25);
+        }
+        &-count {
+          float: left;
+          margin-right: 10px;
+          &:before {
+            width: 48px;
+            height: 48px;
+            padding: 0;
+            @include font-tuning(25, 48);
+          }
+        }
+      }
+    }
+    &__paragraph {
+      padding: 0 10px;
+      text-align: center;
+    }
+  }
+  @include at(xs) {
+    padding: 0 0 10px 0;
+    &__item {
+      padding-top: 0;
+      position: relative;
+      padding-bottom: 15px;
+      background-color: $color-bg-grey-light;
+      margin: 10px 0;
+      min-height: 57px;
+      &_uncollapse {
+        .more-page {
+          &__text{
+            &-title {
+              &:after {
+                transform: rotate(90deg);
+              }
+            }
+          }
+          &__pic {
+            display: block;
+          }
+          &__paragraph {
+            display: block;
+
+          }
+        }
+      }
+    }
+    &__pic {
+      margin-top: 60px;
+      display: none;
+
+      &-img {
+        &_offset-1 {
+          padding: 0 30px;
+        }
+      }
+
+    }
+    &__line {
+      border: none;
+    }
+    &__text {
+      position: static;
+      &-title {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 240px;
+        height: 50px;
+        cursor: pointer;
+        &:after {
+          display: block;
+        }
+        &-header {
+          margin: 0;
+          @include font-tuning(16, 20);
+        }
+        &-sub-header {
+          @include font-tuning(9, 17);
+        }
+        &-count {
+          float: left;
+          margin-right: 10px;
+          &:before {
+            width: 35px;
+            height: 35px;
+            padding: 0;
+            @include font-tuning(18, 35);
+          }
+        }
+      }
+    }
+    &__paragraph {
+      display: none;
+      text-align: center;
+      &-title {
+        @include font-tuning(18, 23);
+      }
+    }
+  }
+}

@@ -1,0 +1,111 @@
+.section-reg {
+  z-index: 9;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  @extend .bg_orange;
+  @include to(md) {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background: none;
+  }
+  @include at(xs) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    &:after {
+      border-top-color: transparent;
+    }
+  }
+  @include at(sm) {
+    &:after {
+      border-top-color: $color-yellow;
+    }
+  }
+}
+
+.form_reg-master {
+  width: 600px;
+  margin: 0 auto;
+  position: relative;
+  @include from(md) {
+    &:before, &:after {
+      content: ' ';
+      display: block;
+      position: absolute;
+    }
+    &:before {
+      background: url(%=staticPrefixForCss=%registration/arrow.png) no-repeat 0 0;
+      width: 140px;
+      height: 253px;
+      top: 30px;
+      left: -120px;
+      z-index: 3;
+    }
+    &:after {
+      background: url(%=staticPrefixForCss=%registration/earth.png) no-repeat 0 0;
+      width: 185px;
+      height: 338px;
+      top: -75px;
+      right: -120px;
+      z-index: 1;
+    }
+  }
+  @include to(md) {
+    width: 100%;
+  }
+
+  .form {
+    &__cont {
+      min-height: 305px;
+      position: relative;
+      background-color: $color-yellow;
+      padding: 25px;
+      z-index: 2;
+      @include from(sm) {
+        &:after {
+          content: ' ';
+          display: block;
+          position: absolute;
+          background: url(%=staticPrefixForCss=%registration/wheel.png) no-repeat 0 0;
+          width: 94px;
+          height: 59px;
+          top: -28px;
+          right: 60px;
+
+        }
+      }
+      @include at(sm) {
+        &:after {
+          top: 10px;
+          right: -35px;
+        }
+      }
+      @include at(xs) {
+        padding: 15px;
+      }
+    }
+
+    &__title {
+      margin-top: 0;
+      text-align: center;
+      color: #585452; //not good - disigner fail
+      @include font-tuning(25, 30);
+      @include at(xs) {
+        margin-bottom: 0;
+        @include font-tuning(18, 25);
+      }
+    }
+    &__row {
+      padding-top: 10px;
+      &_half {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        @extend .col-md-6;
+      }
+    }
+    &__btn {
+      @extend .btn_color_red;
+      @extend .btn_size_big;
+    }
+
+  }
+}

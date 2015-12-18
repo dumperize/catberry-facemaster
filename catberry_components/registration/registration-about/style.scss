@@ -1,0 +1,143 @@
+/* описание - шаги */
+.about-wr {
+  z-index: 10;
+  @include to(md) {
+    background-color: transparent;
+  }
+}
+
+.about {
+  @extend .col-lg-offset-1;
+  @extend .col-lg-10;
+
+  @include from(md) {
+    padding-top: 70px;
+    padding-bottom: 55px;
+  }
+  @include at(sm) {
+    background-color: $color-bg-grey-light;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  @include at(xs) {
+    background-color: $color-bg-grey-light;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+
+
+.about-list-item {
+  @extend .col-md-4;
+  @extend .col-xs-12;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  &__text-ver-al {
+    width: 100%;
+    height: 40px;
+    vertical-align: middle;
+    display: table-cell;
+  }
+  &__text {
+    width: 100%;
+    display: table;
+  }
+  &__icon-wr {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    border-radius: 50%;
+    border: 1px solid $color-orange;
+    .icon {
+      margin: 0 auto;
+      display: block;
+      @include vertical-align;
+    }
+  }
+  &__arrow {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 65%;
+    right: -14px;
+    .icon {
+      fill: $color-orange;
+      @include icon_size(24px);
+    }
+    @include at(sm) {
+      top: auto;
+      bottom: -10px;
+      right: auto;
+      left: 180px;
+      transform: rotate(90deg);
+    }
+    @include at(xs) {
+      display: none;
+    }
+  }
+
+  @include at(lg) {
+    &__icon-wr {
+      width: 105px;
+      height: 105px;
+      margin-top: 35px;
+      .icon {
+        @include icon_size(48px);
+      }
+    }
+  }
+  @include at(md) {
+    &__icon-wr {
+      height: 95px;
+      width: 95px;
+      margin-top: 25px;
+      .icon {
+        @include icon_size(48px);
+      }
+    }
+  }
+  @include at(sm) {
+    height: 90px;
+    &__icon-wr {
+      margin-top: 0;
+      height: 77px;
+      width: 77px;
+      left: 80px;
+      .icon {
+        @include icon_size(32px);
+      }
+    }
+    &__text {
+      height: 75px;
+      padding-left: 175px;
+    }
+  }
+  @include at(xs) {
+    height: 60px;
+    &__icon-wr {
+      margin-top: 0;
+      height: 50px;
+      width: 50px;
+      left: 10px;
+      .icon {
+        @include icon_size(24px);
+      }
+    }
+    &__text {
+      height: 50px;
+      padding-left: 77px;
+    }
+  }
+  @include to(md) {
+    position: relative;
+    &__icon-wr {
+      position: absolute;
+      top: 0;
+    }
+    &__text {
+      text-align: left;
+    }
+  }
+}

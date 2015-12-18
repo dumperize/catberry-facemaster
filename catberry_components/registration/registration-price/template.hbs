@@ -1,0 +1,436 @@
+<div block="price-wr" mix="block:corner, mod:bg">
+    <div class="container">
+        <div class="row">
+            <section block="price">
+                <p block="page-title" mod="landing">Сколько стоит предложение?</p>
+
+                <p block="sub-title" mod="landing">Выберите нужную закладку:</p>
+
+                <!--<div id="horizontalTab">-->
+                    <!--<ul block="price-tabs-list" mix="block:resp-tabs-list hor_1">-->
+                        <!--<li elem="item">Условия для физических лиц</li>-->
+                        <!--<li elem="item">Условия для юридических лиц</li>-->
+                    <!--</ul>-->
+                    <div block="price-tabs" mix="block:resp-tabs-container hor_1">
+                        <div block="tab-content" mod="active">
+                            <div elem="name">
+                                {{icon "strelka"}}
+                                Условия для физических лиц
+                            </div>
+                            <div block="ofers-block">
+                                <div elem="item">
+                                    <div block="description-tarif">
+                                        <div elem="part-1">
+                                            <div elem="medals">
+                                                <div block="ofers-block-medals">
+                                                    <i elem="icon">{{icon "medal_color"}}</i>
+                                                </div>
+                                            </div>
+                                            <p elem="title">Старт</p>
+
+                                            <p elem="sub-title">Бесплатно</p>
+                                        </div>
+                                        <div elem="part-2">
+                                            <div block="ofers-block-plus" mod="single">
+                                                <div elem="item" mod="single">
+                                                    <i elem="icon">{{icon "mini-page_color"}}</i>
+
+                                                    <p elem="text">Мини<br>страница</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div elem="part-3">
+                                            <div elem="btn">
+                                                <a block="btn btn_reg-plus" href="#form2" mix="block:js-scrollto">Выбрать</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div elem="item">
+                                    <div block="description-tarif">
+                                        <div elem="part-1">
+                                            <div elem="medals">
+                                                <div block="ofers-block-medals">
+                                                    <i elem="icon">{{icon "medal_color"}}</i>
+                                                    <i elem="icon">{{icon "medal_color"}}</i>
+                                                </div>
+                                            </div>
+                                            <p elem="title">Специалист</p>
+
+                                            <p elem="sub-title">8 руб. в день</p>
+                                        </div>
+
+                                        <div elem="part-2">
+                                            <div block="ofers-block-plus">
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "mini-page_color"}}</i>
+
+                                                    <p elem="text">Мини<br>страница</p>
+                                                </div>
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "page_color"}}</i>
+
+                                                    <p elem="text">Личная страница</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div elem="part-3">
+                                            <div elem="btn">
+                                                <a block="btn btn_reg-plus" href="#form2" mix="block:js-scrollto">Выбрать</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div elem="item">
+                                    <div block="description-tarif">
+                                        <div elem="part-1">
+                                            <div elem="medals">
+                                                <div block="ofers-block-medals">
+                                                    <i elem="icon">{{icon "medal_color"}}</i>
+                                                    <i elem="icon">{{icon "medal_color"}}</i>
+                                                    <i elem="icon">{{icon "medal_color"}}</i>
+                                                </div>
+                                            </div>
+                                            <p elem="title">Профессионал</p>
+
+                                            <p elem="sub-title">16 руб. в день</p>
+                                        </div>
+                                        <div elem="part-2">
+                                            <div block="ofers-block-plus" mod="prof">
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "mini-page_color"}}</i>
+
+                                                    <p elem="text">Мини<br>страница</p>
+                                                </div>
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "page_color"}}</i>
+
+                                                    <p elem="text">Личная страница</p>
+                                                </div>
+                                            </div>
+                                            <div block="ofers-block-plus-dop">
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "video"}}</i>
+                                                </div>
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "gift"}}</i>
+                                                </div>
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "picture"}}</i>
+                                                </div>
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "dialog"}}</i>
+                                                </div>
+                                            </div>
+                                            <div elem="descr-text">
+                                                Скидки + фото + видео + отзывы
+                                            </div>
+                                        </div>
+                                        <div elem="part-3">
+                                            <div elem="btn">
+                                                <a block="btn btn_reg-plus" href="#form2" mix="block:js-scrollto">Выбрать</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table block="price-table">
+                                <thead elem="head">
+                                <th elem="empty" mix="block:price-table-first-column">&nbsp;</th>
+                                <th elem="head-text" mix="block:price-table-second-column">Новичок</th>
+                                <th elem="head-text" mix="block:price-table-third-column">Специалист</th>
+                                <th elem="head-text" mix="block:price-table-forth-column">Профессионал</th>
+                                </thead>
+                                <tbody elem="body">
+                                <tr elem="tr">
+                                    <td elem="td">90 дней</td>
+                                    <td elem="td">Бесплатно</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">1 500 руб.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">180 дней</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">1 450 руб.</td>
+                                    <td elem="td">2 700 руб.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">360дней</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">2 600 руб.</td>
+                                    <td elem="td">4 800 руб.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Мини-страница</td>
+                                    <td elem="td"><span elem="round" mod="green">+</span></td>
+                                    <td elem="td"><span elem="round" mod="green">+</span></td>
+                                    <td elem="td"><span elem="round" mod="green">+</span></td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Личная страница</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td"><span elem="round" mod="green">+</span></td>
+                                    <td elem="td"><span elem="round" mod="green">+</span></td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Ассортимент услуг</td>
+                                    <td elem="td">5шт.</td>
+                                    <td elem="td">8шт.</td>
+                                    <td elem="td">8шт.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Скидки и подарки + размещение в каталоге "Скидки и подарки"</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">2шт.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Фотоальбом</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">3шт.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Видеоролик + размещение в каталоге Видео</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">2шт.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Статья + размещение в каталоге Советов Мастеров</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">2шт.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Лайки, отзывы, рекомендации</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">вкл.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">&nbsp;</td>
+                                    <td elem="td"><a href="#form2" elem="btn" mix="block:js-scrollto">Мне подходит!</a></td>
+                                    <td elem="td"><a href="#form2" elem="btn" mix="block:js-scrollto">Мне подходит!</a></td>
+                                    <td elem="td"><a href="#form2" elem="btn" mix="block:js-scrollto">Мне подходит!</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div block="tab-content">
+                            <div elem="name">
+                                {{icon "strelka"}}
+                                Условия для юридических лиц
+                            </div>
+                            <div block="ofers-block">
+                                <div elem="item">
+                                    <div block="description-tarif" mod="long">
+                                        <div elem="part-1">
+                                            <div elem="medals">
+                                                <div block="ofers-block-medals">
+                                                    <i elem="icon">{{icon "medal_color"}}</i>
+                                                </div>
+                                            </div>
+                                            <p elem="title">Старт<br>Бизнес</p>
+
+                                            <p elem="sub-title">16 руб. в день</p>
+                                        </div>
+                                        <div elem="part-2">
+                                            <div block="ofers-block-plus" mod="single">
+                                                <div elem="item" mod="single">
+                                                    <i elem="icon">{{icon "mini-page_color"}}</i>
+
+                                                    <p elem="text">Мини<br>страница</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div elem="part-3">
+                                            <div elem="btn">
+                                                <a block="btn btn_reg-plus" href="#form2" mix="block:js-scrollto">Выбрать</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div elem="item">
+                                    <div block="description-tarif" mod="long">
+                                        <div elem="part-1">
+                                            <div elem="medals">
+                                                <div block="ofers-block-medals">
+                                                    <i elem="icon">{{icon "medal_color"}}</i>
+                                                    <i elem="icon">{{icon "medal_color"}}</i>
+                                                </div>
+                                            </div>
+                                            <p elem="title">Специалист Бизнес</p>
+
+                                            <p elem="sub-title">25 руб. в день</p>
+                                        </div>
+
+                                        <div elem="part-2">
+                                            <div block="ofers-block-plus">
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "mini-page_color"}}</i>
+
+                                                    <p elem="text">Мини<br>страница</p>
+                                                </div>
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "page_color"}}</i>
+
+                                                    <p elem="text">Личная страница</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div elem="part-3">
+                                            <div elem="btn">
+                                                <a block="btn btn_reg-plus" href="#form2" mix="block:js-scrollto">Выбрать</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div elem="item">
+                                    <div block="description-tarif" mod="long">
+                                        <div elem="part-1">
+                                            <div elem="medals">
+                                                <div block="ofers-block-medals">
+                                                    <i elem="icon">{{icon "medal_color"}}</i>
+                                                    <i elem="icon">{{icon "medal_color"}}</i>
+                                                    <i elem="icon">{{icon "medal_color"}}</i>
+                                                </div>
+                                            </div>
+                                            <p elem="title">Профессионал Бизнес</p>
+
+                                            <p elem="sub-title">33 руб. в день</p>
+                                        </div>
+                                        <div elem="part-2">
+                                            <div block="ofers-block-plus" mod="prof">
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "mini-page_color"}}</i>
+
+                                                    <p elem="text">Мини<br>страница</p>
+                                                </div>
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "page_color"}}</i>
+
+                                                    <p elem="text">Личная страница</p>
+                                                </div>
+                                            </div>
+                                            <div block="ofers-block-plus-dop">
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "video"}}</i>
+                                                </div>
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "gift"}}</i>
+                                                </div>
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "picture"}}</i>
+                                                </div>
+                                                <div elem="item">
+                                                    <i elem="icon">{{icon "dialog"}}</i>
+                                                </div>
+                                            </div>
+                                            <div elem="descr-text">
+                                                Скидки + фото + видео + отзывы
+                                            </div>
+                                        </div>
+                                        <div elem="part-3">
+                                            <div elem="btn">
+                                                <a block="btn btn_reg-plus" href="#form2" mix="block:js-scrollto">Выбрать</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table block="price-table">
+                                <thead elem="head">
+                                <th elem="empty" mix="block:price-table-first-column">&nbsp;</th>
+                                <th elem="head-text" mix="block:price-table-second-column">Старт<br>Бизнес</th>
+                                <th elem="head-text" mix="block:price-table-third-column">Специалист Бизнес</th>
+                                <th elem="head-text" mix="block:price-table-forth-column">Профессионал Бизнес</th>
+                                </thead>
+                                <tbody elem="body">
+                                <tr elem="tr">
+                                    <td elem="td">90 дней</td>
+                                    <td elem="td">1 500 руб.</td>
+                                    <td elem="td">2 250 руб.</td>
+                                    <td elem="td">3 000 руб.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">180 дней</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">4 050 руб.</td>
+                                    <td elem="td">5 400 руб.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">360дней</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">7 200 руб.</td>
+                                    <td elem="td">9 600 руб.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Мини-страница</td>
+                                    <td elem="td"><span elem="round" mod="green">+</span></td>
+                                    <td elem="td"><span elem="round" mod="green">+</span></td>
+                                    <td elem="td"><span elem="round" mod="green">+</span></td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Личная страница</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td"><span elem="round" mod="green">+</span></td>
+                                    <td elem="td"><span elem="round" mod="green">+</span></td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Ассортимент услуг</td>
+                                    <td elem="td">5шт.</td>
+                                    <td elem="td">8шт.</td>
+                                    <td elem="td">8шт.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Логотип компании + размещение в каталоге компаний</td>
+                                    <td elem="td"><span elem="round" mod="green">+</span></td>
+                                    <td elem="td"><span elem="round" mod="green">+</span></td>
+                                    <td elem="td"><span elem="round" mod="green">+</span></td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Скидки и подарки + размещение в каталоге "Скидки и подарки"</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">2шт.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Фотоальбом</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">3шт.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Видеоролик + размещение в каталоге Видео</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">2шт.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Статья + размещение в каталоге Советов Мастеров</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">2шт.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">Лайки, отзывы, рекомендации</td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td"><span elem="round" mod="grey">-</span></td>
+                                    <td elem="td">вкл.</td>
+                                </tr>
+                                <tr elem="tr">
+                                    <td elem="td">&nbsp;</td>
+                                    <td elem="td"><a href="#form2" elem="btn" mix="block:js-scrollto">Мне подходит!</a></td>
+                                    <td elem="td"><a href="#form2" elem="btn" mix="block:js-scrollto">Мне подходит!</a></td>
+                                    <td elem="td"><a href="#form2" elem="btn" mix="block:js-scrollto">Мне подходит!</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <!--</div>-->
+            </section>
+        </div>
+    </div>
+</div>

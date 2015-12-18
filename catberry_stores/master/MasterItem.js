@@ -1,5 +1,7 @@
 'use strict';
 
+var dateFormat = require('../../lib/util/DateFormat');
+
 module.exports = MasterItem;
 
 /*
@@ -40,24 +42,45 @@ MasterItem.prototype.load = function () {
     if (!id)
         return;
 
-    return
-    //var path = 'http://api-fm.present-tlt.ru/master';
-    //var option = {
-    //    data: {
-    //        filter: '[["=", "id", "' + id + '"]]',
-    //        expand: 'contacts,articles,comments,districts,albums,sales,schedule,videos,workCondition,callbacks,page,vkLikes,rubrika,tags'
-    //    }
-    //};
-    //return this._uhr.get(path, option)
-    //    .then(function (result) {
-    //        if (result.status.code >= 400 && result.status.code < 600) {
-    //            throw new Error(result.status.text);
-    //        }
-    //        if (result.content.length == 0)
-    //            self.$context.notFound();
-    //
-    //        return result.content[0];
-    //    });
+    var now = Date.now();
+    now = dateFormat(now, "yyyy-mm-dd");
+    var path = 'http://api-fm.present-tlt.ru/master-page';
+    var options = {
+        data: {
+            filter: '[["=","number", "' + id + '"],["<=", "dateStart", "' + now + '"],[">=", "dateEnd", "' + now + '"]]'
+        }
+    };
+    return this._uhr.get(path, options)
+        .then(function (result) {
+            console.log(result);
+            if (result.status.code >= 400 && result.status.code < 600) {
+                throw new Error(result.status.text);
+            }
+            if (result.content.length == 0)
+                self.$context.notFound();
+
+            return result.content[0];
+        })
+        .then(function (data) {
+            console.log(data);
+            var pathM = 'http://api-fm.present-tlt.ru/master';
+            var optionM = {
+                data: {
+                    filter: '[["=", "id", "' + data.masterID + '"],["=","publicStatus", "1"]]',
+                    expand: 'contacts,articles,comments,districts,albums,sales,schedule,videos,workCondition,callbacks,vkLikes,rubrika,tags'
+                }
+            };
+            return self._uhr.get(pathM, optionM)
+                .then(function (result) {
+                    if (result.status.code >= 400 && result.status.code < 600) {
+                        throw new Error(result.status.text);
+                    }
+                    if (result.content.length == 0)
+                        self.$context.notFound();
+
+                    return result.content[0];
+                });
+        });
 };
 
 /**

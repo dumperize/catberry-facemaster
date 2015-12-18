@@ -1,0 +1,75 @@
+.why-we-wr {
+  z-index: 8;
+  @extend .bg_grey;
+  @include to(md) {
+    background: none;
+  }
+}
+
+.why-we {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  @extend .col-xs-12;
+  &__list {
+    padding-top: 45px;
+  }
+  @include to(md){
+    background-color: $color-bg-grey-light;
+  }
+  @include at(xs) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    &__list {
+      padding-top: 10px;
+    }
+  }
+}
+
+.our-plus {
+  @extend .col-md-4;
+  @include from(sm) {
+    &:after {
+      content: ' ';
+      display: block;
+      position: absolute;
+      height: 33px;
+      width: 185px;
+      bottom: 0;
+      right: 50%;
+      box-shadow: 0px -8px 8px -8px rgba(0, 0, 0, .4);
+      transform: translate(50%);
+      @extend .bg_grey;
+    }
+    &__round {
+      padding-top: 55px;
+      color: $color-yellow;
+      text-align: center;
+      width: 165px;
+      height: 165px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background-color: #424143;
+    }
+  }
+  @include at(xs) {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    @include cf();
+  }
+  &__title {
+    font-weight: bold;
+    @include font-tuning(41, 41);
+
+    @include at(xs) {
+      float: left;
+      width: 145px;
+      @include font-tuning(38, 38);
+    }
+  }
+  &__text {
+    @include font-tuning(12, 15);
+    @include at(xs) {
+      padding-top: 5px;
+    }
+  }
+}

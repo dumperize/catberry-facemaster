@@ -1,0 +1,5 @@
+{
+	"name": "registration-about",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}
