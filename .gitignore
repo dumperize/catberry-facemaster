@@ -11,5 +11,6 @@ phantomjsdriver.log
 
 __BrowserBundle.js
 public/bundle.js
+public/css/*.css
 
 bower_components
