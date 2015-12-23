@@ -23,7 +23,6 @@ function PageVideoCatalog() {
  * for template engine.
  */
 PageVideoCatalog.prototype.render = function () {
-
 };
 
 /**
