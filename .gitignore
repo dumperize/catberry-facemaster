@@ -5,6 +5,7 @@ node_modules
 ._.DS_Store
 
 .idea
+.idea/**/*.*
 npm-debug.log
 phantomjsdriver.log
 /nbproject/*
