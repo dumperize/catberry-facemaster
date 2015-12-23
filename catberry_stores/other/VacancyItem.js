@@ -2,7 +2,7 @@
 
 var dateFormat = require('../../lib/util/DateFormat');
 
-module.exports = MasterItem;
+module.exports = VacancyItem;
 
 /*
  * This is a Catberry Store file.
@@ -11,11 +11,11 @@ module.exports = MasterItem;
  */
 
 /**
- * Creates new instance of the "master/MasterItem" store.
+ * Creates new instance of the "other/vacancyItem" store.
  * @param {UHR} $uhr Universal HTTP request.
  * @constructor
  */
-function MasterItem($uhr) {
+function VacancyItem($uhr) {
     this._uhr = $uhr;
 }
 
@@ -24,33 +24,34 @@ function MasterItem($uhr) {
  * @type {UHR}
  * @private
  */
-MasterItem.prototype._uhr = null;
+VacancyItem.prototype._uhr = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
  * @type {number} Lifetime in milliseconds.
  */
-MasterItem.prototype.$lifetime = 60000;
+VacancyItem.prototype.$lifetime = 60000;
 
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
-MasterItem.prototype.load = function () {
+VacancyItem.prototype.load = function () {
     var self = this;
     var id = this.$context.state.item;
     if (!id)
         return;
-
+    console.log(id);
+    var path = 'http://api-fm.present-tlt.ru/about-vacancy';
     var now = Date.now();
     now = dateFormat(now, "yyyy-mm-dd");
-    var path = 'http://api-fm.present-tlt.ru/master-page';
-    var options = {
+
+    var option = {
         data: {
-            filter: '[["=","number", "' + id + '"],["<=", "dateStart", "' + now + '"],[">=", "dateEnd", "' + now + '"]]'
+            filter: '[["=", "id", "' + id + '"],["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
         }
     };
-    return this._uhr.get(path, options)
+    return this._uhr.get(path, option)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
@@ -59,25 +60,6 @@ MasterItem.prototype.load = function () {
                 self.$context.notFound();
 
             return result.content[0];
-        })
-        .then(function (data) {
-            var pathM = 'http://api-fm.present-tlt.ru/master';
-            var optionM = {
-                data: {
-                    filter: '[["=", "id", "' + data.masterID + '"],["=","publicStatus", "1"]]',
-                    expand: 'contacts,articles,comments,districts,albums,sales,schedule,videos,workCondition,callbacks,vkLikes,rubrika,tags'
-                }
-            };
-            return self._uhr.get(pathM, optionM)
-                .then(function (result) {
-                    if (result.status.code >= 400 && result.status.code < 600) {
-                        throw new Error(result.status.text);
-                    }
-                    if (result.content.length == 0)
-                        self.$context.notFound();
-
-                    return result.content[0];
-                });
         });
 };
 
@@ -85,7 +67,7 @@ MasterItem.prototype.load = function () {
  * Handles action named "some-action" from any component.
  * @returns {Promise<Object>|Object|null|undefined} Response to component.
  */
-MasterItem.prototype.handleSomeAction = function () {
+VacancyItem.prototype.handleSomeAction = function () {
     // Here you can call this.$context.changed() if you know
     // that remote data source has been changed.
     // Also you can have many handle methods for other actions.

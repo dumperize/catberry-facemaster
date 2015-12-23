@@ -19,6 +19,7 @@ function Rubrikator($uhr) {
     this._options = {
         data: {
             filter: '[["=", "status", "1"]]',
+            expand: 'masterCount',
             order: 'sort',
             limit: 200
         }
@@ -52,6 +53,7 @@ Rubrikator.prototype.load = function () {
             var data = result.content;
             var podrubriksTree = {};
             var rootTree = {};
+            var rootTreeCount = {};
 
             Object.keys(data)
                 .forEach(function (key) {
@@ -62,6 +64,7 @@ Rubrikator.prototype.load = function () {
                         if (!podrubriksTree[el.parentID])
                             podrubriksTree[el.parentID] = [];
                         podrubriksTree[el.parentID].push(el);
+                        rootTreeCount[el.parentID] = +el.masterCount + (rootTreeCount[el.parentID] ? rootTreeCount[el.parentID] :  0);
                     }
                 });
 
@@ -71,6 +74,7 @@ Rubrikator.prototype.load = function () {
                         return a.name > b.name;
                     });
                     rootTree[key].podrubriks = podrubriksTree[rootTree[key].el.id];
+                    rootTree[key].count = rootTreeCount[rootTree[key].el.id];
                 });
             return rootTree;
         });

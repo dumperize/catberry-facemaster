@@ -118,7 +118,6 @@ module.exports = [
             state['other/' + string.charAt(0).toUpperCase() + string.slice(1) + "Item"] = {
                 item: matches[2]
             };
-            console.log(state);
             return state;
         }
     }

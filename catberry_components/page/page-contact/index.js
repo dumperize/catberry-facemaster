@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = Footer;
+module.exports = PageContact;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = Footer;
  */
 
 /**
- * Creates new instance of the "pages-footer" component.
+ * Creates new instance of the "page-contact" component.
  * @constructor
  */
-function Footer() {
+function PageContact() {
 
 }
 
@@ -22,23 +22,8 @@ function Footer() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-Footer.prototype.render = function () {
-    return {
-        links: [
-            {
-                "url": "/oferta",
-                "title": "Оферта"
-            },
-            {
-                "url": "/contact",
-                "title": "Контакты"
-            },
-            {
-                "url": "/feedback",
-                "title": "Обратная связь"
-            }
-        ]
-    }
+PageContact.prototype.render = function () {
+
 };
 
 /**
@@ -46,7 +31,7 @@ Footer.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-Footer.prototype.bind = function () {
+PageContact.prototype.bind = function () {
 
 };
 
@@ -55,6 +40,6 @@ Footer.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-Footer.prototype.unbind = function () {
+PageContact.prototype.unbind = function () {
 
 };

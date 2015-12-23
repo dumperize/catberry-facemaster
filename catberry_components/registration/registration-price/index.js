@@ -32,7 +32,11 @@ RegistrationPrice.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 RegistrationPrice.prototype.bind = function () {
-
+    return {
+        click: {
+            '.tab-content__name': this._clickHandle
+        }
+    }
 };
 
 /**
@@ -42,4 +46,16 @@ RegistrationPrice.prototype.bind = function () {
  */
 RegistrationPrice.prototype.unbind = function () {
 
+};
+
+RegistrationPrice.prototype._clickHandle = function (obj) {
+    var el = $(obj.target);
+    if (!el.hasClass('tab-content__name'))
+        el = el.parents('.tab-content__name');
+
+    var parent = el.parents('.tab-content');
+    if (parent.hasClass('tab-content_active'))
+        return;
+    $('.tab-content_active').removeClass('tab-content_active');
+    parent.addClass('tab-content_active');
 };

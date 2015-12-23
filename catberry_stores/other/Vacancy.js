@@ -1,6 +1,7 @@
 'use strict';
+var dateFormat = require('../../lib/util/DateFormat');
 
-module.exports = NewsItem;
+module.exports = Vacancy;
 
 /*
  * This is a Catberry Store file.
@@ -9,11 +10,11 @@ module.exports = NewsItem;
  */
 
 /**
- * Creates new instance of the "other/NewsItem" store.
+ * Creates new instance of the "other/vacancy" store.
  * @param {UHR} $uhr Universal HTTP request.
  * @constructor
  */
-function NewsItem($uhr) {
+function Vacancy($uhr) {
     this._uhr = $uhr;
 }
 
@@ -22,40 +23,35 @@ function NewsItem($uhr) {
  * @type {UHR}
  * @private
  */
-NewsItem.prototype._uhr = null;
+Vacancy.prototype._uhr = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
  * @type {number} Lifetime in milliseconds.
  */
-NewsItem.prototype.$lifetime = 60000;
+Vacancy.prototype.$lifetime = 60000;
 
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
-NewsItem.prototype.load = function () {
-    var self = this;
-    var item = this.$context.state.item;
-    var path = 'http://api-fm.present-tlt.ru/about-news';
-    if (!item)
-        return;
+Vacancy.prototype.load = function () {
+    var path = 'http://api-fm.present-tlt.ru/about-vacancy';
+    var now = Date.now();
+    now = dateFormat(now, "yyyy-mm-dd");
 
     var option = {
         data: {
-            filter: '[["=","id","' + item + '"],["=", "status", "1"]]'
+            filter: '[["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
         }
     };
     return this._uhr.get(path, option)
         .then(function (result) {
-            console.log(result);
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
             }
-            if (result.content.length == 0)
-                self.$context.notFound();
 
-            return result.content[0];
+            return result.content;
         });
 };
 
@@ -63,8 +59,7 @@ NewsItem.prototype.load = function () {
  * Handles action named "some-action" from any component.
  * @returns {Promise<Object>|Object|null|undefined} Response to component.
  */
-NewsItem.prototype.handleSomeAction = function () {
-
+Vacancy.prototype.handleSomeAction = function () {
     // Here you can call this.$context.changed() if you know
     // that remote data source has been changed.
     // Also you can have many handle methods for other actions.

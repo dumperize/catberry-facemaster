@@ -59,6 +59,21 @@
     "description": "",
     "keywords": ""
   },
+  "oferta": {
+    "title": "Оферта",
+    "description": "",
+    "keywords": ""
+  },
+  "contact": {
+    "title": "Контакты",
+    "description": "",
+    "keywords": ""
+  },
+  "feedback": {
+    "title": "Обратная связь",
+    "description": "",
+    "keywords": ""
+  },
   "master-rubrika": {},
   "master-page": {},
   "news-item": {},
