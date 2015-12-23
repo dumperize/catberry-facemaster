@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = MasterList;
+module.exports = MasterMinicard;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = MasterList;
  */
 
 /**
- * Creates new instance of the "master-list" component.
+ * Creates new instance of the "master-minicard" component.
  * @constructor
  */
-function MasterList() {
+function MasterMinicard() {
 
 }
 
@@ -22,9 +22,8 @@ function MasterList() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-MasterList.prototype.render = function () {
-    //return this.$context.getStoreData();
-    return [
+MasterMinicard.prototype.render = function () {
+    var data = [
         {
             "id": 1003,
             "userID": 20682,
@@ -144,6 +143,14 @@ MasterList.prototype.render = function () {
             "page": {}
         }
     ];
+    var master = data.filter(function (el) {
+        return (el.id == this.$context.attributes['master-id']);
+    }.bind(this));
+    master[0]['services'] = JSON.parse(master[0]['services']);
+    if (master[0].page.sales || master[0].page.albums || master[0].page.videos || master[0].page.comments) {
+        master[0].isWidget = true;
+    }
+    return master[0];
 };
 
 /**
@@ -151,42 +158,28 @@ MasterList.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-MasterList.prototype.bind = function () {
-    var window = this.$context.locator.resolve('window');
-    window.addEventListener('resize', this._allMinicardServicesCut);
+MasterMinicard.prototype.bind = function () {
+    this._minicardServicesCut();
+    return {};
 };
-MasterList.prototype._allMinicardServicesCut = function () {
-    $('.master-minicard').each(function () {
-        var minicardServices = $(this).find('.master-minicard__services');
-        var servicesList = minicardServices.find('li');
-        var maxHeight =
-            $(this).height() - ($(this).find('.master-minicard__name').height() + $(this).find('.master-minicard__spec').height());
-        var servicesCount = minicardServices.find('li').length;
+MasterMinicard.prototype._minicardServicesCut = function () {
+    var minicard = $('#' + this.$context.element.id);
+    var minicardServices = minicard.find('.master-minicard__services');
+    var maxHeight =
+        minicard.find('.master-minicard').height() - (minicard.find('.master-minicard__name').height() + minicard.find('.master-minicard__spec').height());
+    var servicesCount = minicardServices.find('li').length;
 
-        console.log('maxHeight = ' + maxHeight);
-        if (minicardServices.height() > maxHeight) {
-            while (minicardServices.height() > maxHeight && servicesCount >= 0) {
-                $(servicesList[servicesCount - 1]).hide();
-                servicesCount--;
-            }
-        } else if ((minicardServices.height() + 10) < maxHeight) {
-            var i = 0;
-            while (minicardServices.height() < maxHeight && i < servicesCount + 1) {
-                $(servicesList[i]).show();
-                i++;
-            }
-            if (minicardServices.height() > maxHeight) {
-                $(servicesList[i - 1]).hide();
-            }
-        }
-    });
+    while (minicardServices.height() > maxHeight) {
+        $(minicardServices.find('li')[servicesCount]).hide();
+        servicesCount--;
+    }
+    console.log(servicesCount);
 };
 /**
  * Does cleaning for everything that have NOT been set by .bind() method.
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-MasterList.prototype.unbind = function () {
-    var window = this.$context.locator.resolve('window');
-    window.removeEventLister('resize');
+MasterMinicard.prototype.unbind = function () {
+
 };

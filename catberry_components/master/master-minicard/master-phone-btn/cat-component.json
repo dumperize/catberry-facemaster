@@ -1,0 +1,5 @@
+{
+	"name": "master-phone-btn",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

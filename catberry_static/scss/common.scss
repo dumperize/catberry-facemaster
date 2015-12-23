@@ -2,6 +2,8 @@
 *, :before, :after {
     box-sizing: border-box;
 }
+html {font-size: 62.5%}
+body {font-size: 1.4rem; font-family: 'PT Sans Caption', sans-serif;} /* 1rem = 10px */
 
 html, body {
     height: 100%;
@@ -66,7 +68,6 @@ p {
 }
 
 .page {
-
 }
 
 .page__wrapper {
@@ -82,7 +83,6 @@ p {
     height: 50px;
     width: 40px;
 }
-
 //
 // Grid system
 // --------------------------------------------------
