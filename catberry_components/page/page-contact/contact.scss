@@ -1,0 +1,16 @@
+.contact-page{
+    @extend .col-xs-12;
+}
+
+.contact-block{
+    padding: 20px;
+    font-size: 1.4rem;
+    @extend .bg_grey;
+    &__name{
+        padding-right:5px;
+        color: #000;
+    }
+    p {
+        margin-bottom: 4px;
+    }
+}

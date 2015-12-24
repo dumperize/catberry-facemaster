@@ -1,0 +1,44 @@
+.feedback-page {
+    @extend .col-xs-12;
+}
+.feedback-block {
+    @extend .bg_grey;
+    @extend .col-lg-6;
+    @extend .col-md-8;
+    padding: 15px;
+    &__success-msg{
+        padding-bottom: 10px;
+        color: $color-green-deep;
+        font-size: 1.8rem;
+    }
+    &__form {
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        span {
+            display: block;
+            float: left;
+            width: 160px;
+            height: 28px;
+            line-height: 28px;
+        }
+        input {
+            border: none;
+            padding: 3px 6px;
+            width: 290px;
+        }
+        input[type=submit] {
+            margin-left: 160px;
+            display: inline-block;
+            width: auto;
+            padding: 0 24px;
+        }
+        textarea {
+            width: 290px;
+            border: none;
+            padding: 3px 6px;
+            resize: vertical;
+        }
+    }
+}

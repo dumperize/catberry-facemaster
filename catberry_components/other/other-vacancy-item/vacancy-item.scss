@@ -1,0 +1,9 @@
+.vacancy-one-page{
+    @extend .vacancy-page;
+    &__img{
+        @extend .vacancy-page__img;
+    }
+    &__text{
+        margin-bottom:20px; 
+    }
+}

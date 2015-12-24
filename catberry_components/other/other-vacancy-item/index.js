@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = PageContact;
+module.exports = OtherVacancyItem;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = PageContact;
  */
 
 /**
- * Creates new instance of the "page-contact" component.
+ * Creates new instance of the "other-vacancy-item" component.
  * @constructor
  */
-function PageContact() {
+function OtherVacancyItem() {
 
 }
 
@@ -22,12 +22,8 @@ function PageContact() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-PageContact.prototype.render = function () {
-    return {
-        "phone": "(8482) 741-147",
-        "email": "info@facemaster.ru",
-        "adress": "г. Тольятти, ул. Автостроителей 41А-1"
-    }
+OtherVacancyItem.prototype.render = function () {
+    return this.$context.getStoreData();
 };
 
 /**
@@ -35,7 +31,7 @@ PageContact.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-PageContact.prototype.bind = function () {
+OtherVacancyItem.prototype.bind = function () {
 
 };
 
@@ -44,6 +40,6 @@ PageContact.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-PageContact.prototype.unbind = function () {
+OtherVacancyItem.prototype.unbind = function () {
 
 };

@@ -44,8 +44,7 @@ html, body {
 }
 
 h1, .h1 {
-    font-size: 25px; /*ie8*/
-    font-size: 1.5625rem;
+    font-size: 2.4rem;
     font-weight: normal;
 }
 
@@ -55,12 +54,11 @@ h1, .h1 {
     font-weight: bold
 }
 h2, .h2{
-    font-size: 22px; /*ie8*/
     font-weight: bold;
     margin-bottom: 5px;
     color: $color-text;
     text-transform: uppercase;
-    @include font-tuning(22, 26);
+    font-size: 2.2rem;
 }
 
 p {

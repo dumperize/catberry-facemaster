@@ -39,10 +39,11 @@ Vacancy.prototype.load = function () {
     var path = 'http://api-fm.present-tlt.ru/about-vacancy';
     var now = Date.now();
     now = dateFormat(now, "yyyy-mm-dd");
+    now = "2014-03-20"; //для теста - убрать!
 
     var option = {
         data: {
-            filter: '[["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
+            filter: '["and",["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
         }
     };
     return this._uhr.get(path, option)

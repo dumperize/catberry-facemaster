@@ -1,1 +1,24 @@
-Обратная связь
+<div block="feedback-page">
+    <h1 block="h1" mod="style">Обратная связь</h1>
+
+    <div block="feedback-block">
+        <form id="feedback-form" elem="form" action="{{url}}" method="{{method}}">
+            <label>
+                <span>Ваше имя</span>
+                <input type="text" name="feedback[name]" autofocus="">
+            </label>
+
+            <label>
+                <span>Ваш e-mail</span>
+                <input type="text" name="feedback[email]">
+            </label>
+
+            <label>
+                <span>Ваше сообщение</span>
+                <textarea name="feedback[text]"></textarea>
+            </label>
+
+            <input block="btn-accent" type="submit" value="Отправить">
+        </form>
+    </div>
+</div>

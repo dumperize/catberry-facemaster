@@ -49,6 +49,8 @@ Pages.prototype.load = function () {
                 return self.$context.getStoreData('master/MasterItem');
             if (currentPage == "news-item")
                 return self.$context.getStoreData('other/NewsItem');
+            if (currentPage == "vacancy-item")
+                return self.$context.getStoreData('other/VacancyItem');
         })
         .then(function () {
             if (!currentPage) {
@@ -72,17 +74,17 @@ Pages.prototype.load = function () {
                 });
             return result;
         });
-}
+};
 
 Pages.prototype.getHeaderData = function () {
     return {
         visitCount: '12 323 посещений',
         isGuest: true
     };
-}
+};
 
 Pages.prototype.getFooterData = function () {
     return {
         phone: '(8482) 74-44-19'
     };
-}
+};

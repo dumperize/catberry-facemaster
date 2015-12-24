@@ -41,14 +41,14 @@ VacancyItem.prototype.load = function () {
     var id = this.$context.state.item;
     if (!id)
         return;
-    console.log(id);
     var path = 'http://api-fm.present-tlt.ru/about-vacancy';
     var now = Date.now();
     now = dateFormat(now, "yyyy-mm-dd");
+    now = "2014-03-20"; //для теста - убрать!
 
     var option = {
         data: {
-            filter: '[["=", "id", "' + id + '"],["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
+            filter: '["and",["=", "id", "' + id + '"],["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
         }
     };
     return this._uhr.get(path, option)
@@ -58,7 +58,7 @@ VacancyItem.prototype.load = function () {
             }
             if (result.content.length == 0)
                 self.$context.notFound();
-
+            console.log(result.content[0]);
             return result.content[0];
         });
 };
