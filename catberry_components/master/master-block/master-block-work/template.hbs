@@ -1,0 +1,14 @@
+<h4>условия работы</h4>
+<p>расписание</p>
+{{#each schedule}}
+    <p>{{day}} - {{open}} - {{close}}</p>
+{{/each}}
+<p>Районы</p>
+{{#each district}}
+    <p>{{type}} - {{name}}</p>
+{{/each}}
+<p>Условия</p>
+!!переделает илья
+Условия оплаты: {{workCondition.paymentForm}}
+Условия оплаты: {{workCondition.coopForm}}
+Выезд на дом: {{workCondition.comming}}

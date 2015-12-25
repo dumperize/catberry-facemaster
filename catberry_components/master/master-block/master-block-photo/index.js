@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = MasterPage;
+module.exports = MasterBlockPhoto;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = MasterPage;
  */
 
 /**
- * Creates new instance of the "master-page" component.
+ * Creates new instance of the "master-block-photo" component.
  * @constructor
  */
-function MasterPage() {
+function MasterBlockPhoto() {
 
 }
 
@@ -22,8 +22,8 @@ function MasterPage() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-MasterPage.prototype.render = function () {
-    return this.$context.getStoreData();
+MasterBlockPhoto.prototype.render = function () {
+
 };
 
 /**
@@ -31,7 +31,8 @@ MasterPage.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-MasterPage.prototype.bind = function () {
+MasterBlockPhoto.prototype.bind = function () {
+
 };
 
 /**
@@ -39,6 +40,6 @@ MasterPage.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-MasterPage.prototype.unbind = function () {
+MasterBlockPhoto.prototype.unbind = function () {
 
 };

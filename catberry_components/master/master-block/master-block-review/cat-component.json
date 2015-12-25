@@ -1,0 +1,5 @@
+{
+	"name": "master-block-review",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}
