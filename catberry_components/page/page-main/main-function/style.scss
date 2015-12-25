@@ -53,7 +53,7 @@
     width: 100%;
     transform: none;
     margin: 2px 0;
-    @include font-tuning(12, 15);
+    font-size: 1.2rem;
   }
 }
 
@@ -115,28 +115,34 @@
     color: #fff;
     padding-left: 200px;
     text-align: center;
-    @include font-tuning(46, 50);
+    line-height: 50px;
+    font-size: 4.6rem;
     @include at(md) {
-      padding-left: 0px;
-      @include font-tuning(33, 33);
+      padding-left: 0;
+      font-size: 3.3rem;
+      line-height: 1;
     }
     @include at(sm) {
       margin-left: 60px;
       padding: 0;
       text-align: left;
-      @include font-tuning(22, 24);
+      font-size: 2.2rem;
+      line-height: 1.1em;
     }
     @include at(xs) {
       margin: 0 0 0 35px;
       padding: 0;
       text-align: left;
       text-transform: none;
-      @include font-tuning(16, 25);
+      font-size: 1.6rem;
+      line-height: 1.5em;
     }
   }
   &__btn {
     width: 100%;
     display: block;
+    font-size: 1.8rem;
+    line-height: 46px;
     height: 46px;
     background-color: rgba(255, 255, 255, 0.3);
     text-decoration: none;
@@ -144,16 +150,17 @@
     position: absolute;
     bottom: 0;
     color: $color-text-dark;
-    @include font-tuning(18, 46);
     &:hover {
       background-color: rgba(255, 255, 255, 0.5);
     }
     @include at(md) {
       @include font-tuning(15, 46);
+      font-size: 1.5rem;
     }
     @include at(sm) {
       height: 30px;
-      @include font-tuning(15, 30);
+      line-height: 30px;
+      font-size: 1.5rem;
     }
     @include at(xs) {
       display: none;
@@ -220,26 +227,28 @@
   &__title {
     text-transform: uppercase;
     text-align: center;
-    @include font-tuning(31, 34);
+    font-size: 3.1rem;
+    line-height: 1.1em;
     @include at(md) {
-      @include font-tuning(23, 27);
+      font-size: 2.3rem;
     }
     @include at(sm) {
       margin-left: 60px;
       text-align: left;
-      @include font-tuning(22, 24);
+      font-size: 2.2rem;
     }
     @include at(xs) {
       margin: 0 0 0 35px;
       padding: 0;
       text-align: left;
       text-transform: none;
-      @include font-tuning(16, 25);
+      font-size: 1.6rem;
+      line-height: 25px;
     }
   }
   &__text {
     text-align: center;
-    @include font-tuning(12, 16);
+    font-size: 1.2rem;
     @include to(md) {
       display: none;
     }
@@ -307,7 +316,8 @@
     text-align: center;
     font-weight: bold;
     padding-right: 0;
-    @include font-tuning(19, 21);
+    font-size: 1.9rem;
+    line-height: 1.1em;
     @extend .col-lg-2;
     @extend .col-xs-12;
     &-link {
@@ -319,7 +329,8 @@
     }
     @include to(lg) {
       padding-right: 10px;
-      @include font-tuning(15, 25);
+      font-size: 1.5rem;
+      line-height: 25px;
       &-link {
         padding-top: 0;
         height: auto;

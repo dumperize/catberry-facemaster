@@ -5,7 +5,7 @@
     background-color: $color-bg-grey-light;
     padding: 20px;
     color: $color-bg-grey-dark;
-    @include font-tuning(13, 16);
+    font-size: 1.3rem;
     &.format {
       li {
         margin-bottom: 0;

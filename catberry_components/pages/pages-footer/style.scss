@@ -1,6 +1,6 @@
 .footer {
   margin: 50px 0 20px 0;
-  @include font-tuning(12.5, 16);
+  font-size: 1.25rem;
   &__coordinator {
     padding-bottom: 20px;
     @extend .col-xs-12;
@@ -10,7 +10,7 @@
     @extend .col-md-6;
     @extend .col-xs-12;
     &-text {
-      @include font-tuning(11, 16);
+      font-size: 1.1rem;
     }
   }
   &__links {

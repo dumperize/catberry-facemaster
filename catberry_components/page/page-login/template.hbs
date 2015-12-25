@@ -1,8 +1,48 @@
 <div block="page-login">
     <h1 block="h1" mod="style">Вход / регистрация</h1>
-    <div class="row">
-        <div elem="form">
-            тест
+
+    <form block="login-form" method="{{method}}" action="{{url}}">
+        <input elem="input-text" type="text" placeholder="Эл. почта или телефон" name="loginForm[login]">
+        <input elem="input-text" type="password" placeholder="Пароль" name="loginForm[password]">
+        <label elem="label-checkbox"><input type="checkbox" id="remember-me"><span>Запомнить меня</span></label>
+        <input elem="btn" type="submit" value="Войти">
+
+        <p elem="href-cont">
+            <a elem="recovery" href="{{recovery-url}}">Забыли пароль?</a>
+            <a elem="registration" href="#" id="reg-link">Регистрация</a>
+            <br>
+        </p>
+    </form>
+
+    <form block="registration-form" method="{{method}}" action="{{url}}">
+        <input elem="input-text" type="email" placeholder="Эл. почта" name="regForm[login]">
+        <input elem="input-text" type="text" placeholder="Имя Фамилия" name="regForm[name]">
+        <input elem="input-text" type="password" placeholder="Пароль" name="regForm[password]">
+
+        <div elem="capcha" mod="registration">
+            <div elem="code-img">
+                <img src="img/assets/recovery-password/captcha.png" alt="capcha">
+            </div>
+            <a elem="reload-link" href="{{capcha.reload-url}}">Получить новый код</a>
         </div>
-    </div>
+
+        <input elem="input-text" type="text" placeholder="Код с картинки" name="regForm[code]">
+        <input elem="btn" mod="long-text" type="submit" value="Зарегистрироваться">
+        <p elem="entry"><a href="#" id="entry-link">Войти</a></p>
+    </form>
+
+    <form block="recovery-pass-form" method="{{method}}" action="{{url}}">
+        <input elem="input-text" type="text" placeholder="Эл. почта или телефон" name="recovery-password[login]" autofocus="">
+
+        <div elem="capcha" mod="registration">
+            <div elem="code-img">
+                <img src="img/assets/recovery-password/captcha.png" alt="capcha">
+            </div>
+            <a elem="reload-link" href="{{capcha.reload-url}}">Получить новый код</a>
+        </div>
+
+        <input elem="input-text" type="text" placeholder="Код с картинки" name="recovery-password[code]">
+        <input elem="btn" type="submit" value="Восстановить">
+    </form>
+
 </div>

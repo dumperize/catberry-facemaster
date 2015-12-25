@@ -88,10 +88,10 @@
       margin-top: 0;
       text-align: center;
       color: #585452; //not good - disigner fail
-      @include font-tuning(25, 30);
+      font-size: 2.5rem;
       @include at(xs) {
         margin-bottom: 0;
-        @include font-tuning(18, 25);
+        font-size: 1.8rem;
       }
     }
     &__row {
