@@ -47,7 +47,7 @@ MasterItem.prototype.load = function () {
     var path = 'http://api-fm.present-tlt.ru/master-page';
     var options = {
         data: {
-            filter: '[["=","number", "' + id + '"],["<=", "dateStart", "' + now + '"],[">=", "dateEnd", "' + now + '"]]'
+            filter: '["and", ["=","number", "' + id + '"],["<=", "dateStart", "' + now + '"],[">=", "dateEnd", "' + now + '"]]'
         }
     };
     return this._uhr.get(path, options)
@@ -60,11 +60,11 @@ MasterItem.prototype.load = function () {
 
             return result.content[0];
         })
-        .then(function (data) {
+        .then(function (page) {
             var pathM = 'http://api-fm.present-tlt.ru/master';
             var optionM = {
                 data: {
-                    filter: '[["=", "id", "' + data.masterID + '"],["=","publicStatus", "1"]]',
+                    filter: '["and", ["=", "id", "' + page.masterID + '"],["=","publicStatus", "1"]]',
                     expand: 'contacts,articles,comments,districts,albums,sales,schedule,videos,workCondition,callbacks,vkLikes,rubrika,tags'
                 }
             };
@@ -76,7 +76,56 @@ MasterItem.prototype.load = function () {
                     if (result.content.length == 0)
                         self.$context.notFound();
 
-                    return result.content[0];
+                    var data = result.content[0];
+                    data.services = JSON.parse(data.services);
+                    data.isBlock = {
+                        service: {
+                            access: page.services,
+                            name: "Услуги",
+                            active: true
+                        },
+                        work: {
+                            access: true,
+                            name: "Условия работы",
+                            active: true
+                        },
+                        sale: {
+                            access: page.sales,
+                            name: "Скидки и подарки",
+                            active: (data.sales.length > 0)
+                        },
+                        about: {
+                            access: true,
+                            name: "О себе",
+                            active: data.aboutEduc || data.aboutExp ||data.aboutAddInfo
+                        },
+                        article: {
+                            access: page.articles,
+                            name: "Полезно почитать",
+                            active: (data.articles.length > 0)
+                        },
+                        photo: {
+                            access: page.albums,
+                            name: "Фото",
+                            active: (data.albums.length > 0)
+                        },
+                        video: {
+                            access: page.videos,
+                            name: "Видео",
+                            active: (data.videos.length > 0)
+                        },
+                        link: {
+                            access: page.links,
+                            name: "Ссылки",
+                            active: (data.links)
+                        },
+                        review: {
+                            access: page.comments,
+                            name: "Отзывы и рекомендации",
+                            active: true
+                        }
+                    };
+                    return data;
                 });
         });
 };
