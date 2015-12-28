@@ -48,7 +48,7 @@ VacancyItem.prototype.load = function () {
 
     var option = {
         data: {
-            filter: '[["=", "id", "' + id + '"],["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
+            filter: '["and",["=", "id", "' + id + '"],["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
         }
     };
     return this._uhr.get(path, option)

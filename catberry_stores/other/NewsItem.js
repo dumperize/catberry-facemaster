@@ -43,7 +43,7 @@ NewsItem.prototype.load = function () {
 
     var option = {
         data: {
-            filter: '[["=","id","' + item + '"],["=", "status", "1"]]'
+            filter: '["and",["=","id","' + item + '"],["=", "status", "1"]]'
         }
     };
     return this._uhr.get(path, option)

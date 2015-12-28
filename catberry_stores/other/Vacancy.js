@@ -42,7 +42,7 @@ Vacancy.prototype.load = function () {
 
     var option = {
         data: {
-            filter: '[["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
+            filter: '["and",["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
         }
     };
     return this._uhr.get(path, option)

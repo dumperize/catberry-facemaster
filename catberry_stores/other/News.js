@@ -12,7 +12,7 @@ function News() {
     this._path = 'http://api-fm.present-tlt.ru/about-news';
     this._options = {
         data: {
-            filter: '[["=","status","1"]]',
+            filter: '["and",["=","status","1"]]',
             order: 'date DESC'
         }
     };
