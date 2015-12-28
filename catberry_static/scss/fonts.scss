@@ -19,20 +19,20 @@ $CustomFont: 'CustomFont', Helvetica, Arial, sans-serif;
 @font-face {
     font-family: 'PT Sans Caption';
     src: local('PT Sans Caption'),
-    url('/fonts/font__pt-sans_caption.ttf') format('truetype'),
-    url('/fonts/font__pt-sans_caption.eot') format('embedded-opentype'),
-    url('/fonts/font__pt-sans_caption.woff') format('woff'),
-    url('/fonts/font__pt-sans_caption.svg') format('svg');
+    url('/fonts/pt-sans-caption/regular/pt-sans-caption-regular.ttf') format('truetype'),
+    url('/fonts/pt-sans-caption/regular/pt-sans-caption-regular.eot') format('embedded-opentype'),
+    url('/fonts/pt-sans-caption/regular/pt-sans-caption-regular.woff') format('woff'),
+    url('/fonts/pt-sans-caption/regular/pt-sans-caption-regular.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'PT Sans Caption';
     src: local('PT Sans Caption Bold Regular'),
-    url('/fonts/font__pt-sans_bold_regular.ttf') format('truetype'),
-    url('/fonts/font__pt-sans_bold_regular.eot') format('embedded-opentype'),
-    url('/fonts/font__pt-sans_bold_regular.woff') format('woff'),
-    url('/fonts/font__pt-sans_bold_regular.svg') format('svg');
+    url('/fonts/pt-sans-caption/bold/pt-sans-caption-bold.ttf') format('truetype'),
+    url('/fonts/pt-sans-caption/bold/pt-sans-caption-bold.eot') format('embedded-opentype'),
+    url('/fonts/pt-sans-caption/bold/pt-sans-caption-bold.woff') format('woff'),
+    url('/fonts/pt-sans-caption/bold/pt-sans-caption-bold.svg') format('svg');
     font-weight: bold;
     font-style: normal;
 }

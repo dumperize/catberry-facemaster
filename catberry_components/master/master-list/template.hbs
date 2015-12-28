@@ -1,1 +1,7 @@
-мастер лист
+<div block="master-list">
+    {{#each this}}
+        <div elem="item">
+            <cat-master-minicard id="master-minicard-{{id}}" master-id="{{id}}"></cat-master-minicard>
+        </div>
+    {{/each}}
+</div><!--master-list-->

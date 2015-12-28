@@ -13,11 +13,12 @@
     text-align: right;
     display: block;
     height: 30px;
+    line-height: 30px;
+    font-size: 1.1rem;
     padding-right: 10px;
     background: url('%=staticPrefixForCss=%assets/header/homeIcon.png') no-repeat 8px 9px;
     text-decoration: none;
     color: #fff;
-    @include font-tuning(11,30);
     &:visited, &:hover {
       color: #fff;
     }
@@ -36,6 +37,7 @@
   }
   &__item-link {
     color: #FFFFFF;
-    @include font-tuning(15, 15)
+    font-size: 1.5rem;
+    line-height: 1;
   }
 }

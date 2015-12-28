@@ -8,7 +8,7 @@
     padding: 20px 0;
     &-title {
       position: relative;
-      @include font-tuning(21, 29);
+      font-size: 2.1rem;
       &:after {
         content: ' ';
         position: absolute;
@@ -23,16 +23,17 @@
     }
     &-text {
       padding-top: 10px;
-      @include font-tuning(15, 19);
+      font-size: 1.5rem;
     }
     @include to(md) {
       text-align: center;
       &-title {
-        @include font-tuning(17, 20);
+        font-size: 1.7rem;
+        line-height: 20px;
       }
       &-text {
         padding-top: 10px;
-        @include font-tuning(15, 19);
+        font-size: 1.5rem;
       }
     }
   }

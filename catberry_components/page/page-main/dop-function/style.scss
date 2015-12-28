@@ -28,7 +28,7 @@
   }
   &__title {
     padding: 16px 20px;
-    @include font-tuning(22,26);
+    font-size: 2.2rem;
   }
 
   &__item {
@@ -60,7 +60,7 @@
   }
   &__item-cube {
     display: table;
-    @include font-tuning(12,15);
+    font-size: 1.2rem;
     &-link {
       display: table-cell;
       color: inherit;
@@ -108,13 +108,14 @@
         padding-right:0;
         padding-left: 10px;
         height:34px;
-        @include font-tuning(12,34);
+        line-height: 34px;
+        font-size: 1.2rem;
       }
     }
     &__item-cube{
       height:34px;
       width: 100%;
-      @include font-tuning(10,12);
+      font-size: 1rem;
       &-link{
         padding-left: 10px;
       }
@@ -125,7 +126,8 @@
     &__title{
       padding: 0 20px;
       cursor: pointer;
-      @include font-tuning(13,34);
+      line-height: 34px;
+      font-size: 1.3rem;
       &:after{
         content: ' ';
         display: block;

@@ -54,7 +54,8 @@
           text-align: center;
           font-weight: bold;
           padding-top: 7px;
-          @include font-tuning(33, 39);
+          font-size: 3.3rem;
+          line-height: 39px;
         }
       }
       &-header {
@@ -62,36 +63,38 @@
         text-transform: uppercase;
         text-decoration: underline;
         font-weight: bold;
-        @include font-tuning(33, 39);
+        font-size: 3.3rem;
+        line-height: 39px;
+
       }
       &-sub-header {
-        @include font-tuning(21, 29);
+        font-size: 2.1rem;
       }
     }
   }
   &__paragraph {
     margin-top: 20px;
     &-title {
-      @include font-tuning(21, 29);
+      font-size: 2.1rem;
     }
     &-text {
-      @include font-tuning(13, 18);
+      font-size: 1.3rem;
     }
   }
   @include at(md) {
     &__text {
       &-title {
         &-header {
-          @include font-tuning(28, 35);
+          font-size: 2.8rem;
         }
         &-sub-header {
-          @include font-tuning(18, 27);
+          font-size: 1.8rem;
         }
       }
     }
     &__paragraph {
       &-title {
-        @include font-tuning(18, 27);
+        font-size: 1.8rem;
       }
     }
   }
@@ -121,14 +124,16 @@
         &-header {
           margin: 0;
           @include vertical-align;
-          @include font-tuning(22, 25);
+          font-size: 2.2rem;
+          line-height: 25px;
           &_no-valign {
             top: 0;
             transform: translate(0);
           }
         }
         &-sub-header {
-          @include font-tuning(13, 25);
+          font-size: 1.3rem;
+          line-height: 25px;
         }
         &-count {
           float: left;
@@ -136,8 +141,9 @@
           &:before {
             width: 48px;
             height: 48px;
+            line-height: 48px;
             padding: 0;
-            @include font-tuning(25, 48);
+            font-size: 2.5rem;
           }
         }
       }
@@ -203,10 +209,11 @@
         }
         &-header {
           margin: 0;
-          @include font-tuning(16, 20);
+          font-size: 1.6rem;
         }
         &-sub-header {
-          @include font-tuning(9, 17);
+          font-size: 0.9rem;
+          line-height: 17px;
         }
         &-count {
           float: left;
@@ -214,8 +221,9 @@
           &:before {
             width: 35px;
             height: 35px;
+            line-height: 35px;
+            font-size: 1.8rem;
             padding: 0;
-            @include font-tuning(18, 35);
           }
         }
       }
@@ -224,7 +232,7 @@
       display: none;
       text-align: center;
       &-title {
-        @include font-tuning(18, 23);
+        font-size: 1.8rem;
       }
     }
   }

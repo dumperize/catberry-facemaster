@@ -16,6 +16,56 @@ a:active {
   text-decoration: none
 }
 
+/* Размеры обычной кнопки */
+@mixin button-mid () {
+  width: $button-mid-width;
+  height: $button-mid-height;
+}
+.basic-button-mid, .basic-button-auto {
+  width: $button-mid-width;
+  height: $button-mid-height;
+  line-height: $button-mid-height;
+  display: block;
+  text-decoration: none;
+  color: #FFF;
+  background-color: $color-orange;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  &:hover {
+    text-decoration: none;
+    background-color: $color-orange + #111111;
+  }
+}
+.basic-button-auto {
+  width: auto;
+  display: inline-block;
+  padding: 0 24px;
+}
+/* Ограничение размера изображения */
+@mixin img-max-size ($max-width, $max-height) {
+  max-width: $max-width;
+  max-height: $max-height;
+  width: auto;
+  height: auto;
+}
+/* Стиль стандартной ошибки */
+.standard-error {
+  padding: 8px 10px;
+  background-color: $color-bg-warning;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+/* Стиль стандартного инпута */
+.basic-input {
+  padding: 3px 6px;
+  width: 100%;
+  border: none;
+}
+
+
+
 /* углы */
 .corner {
   position: relative;

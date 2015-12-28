@@ -18,7 +18,7 @@
     @extend .col-lg-3;
     &-title{
       font-weight: bold;
-      @include font-tuning(19,24);
+      font-size: 1.9rem;
     }
     @include to(lg){
       display:none;

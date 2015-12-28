@@ -58,16 +58,18 @@
   }
   &__title {
     font-weight: bold;
-    @include font-tuning(41, 41);
+    font-size: 4.1rem;
+    line-height: 1;
 
     @include at(xs) {
       float: left;
       width: 145px;
-      @include font-tuning(38, 38);
+      font-size: 3.8rem;
     }
   }
   &__text {
-    @include font-tuning(12, 15);
+    font-size: 1.2rem;
+    line-height: 15px;
     @include at(xs) {
       padding-top: 5px;
     }

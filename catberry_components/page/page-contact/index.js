@@ -23,7 +23,11 @@ function PageContact() {
  * for template engine.
  */
 PageContact.prototype.render = function () {
-
+    return {
+        "phone": "(8482) 741-147",
+        "email": "info@facemaster.ru",
+        "adress": "г. Тольятти, ул. Автостроителей 41А-1"
+    }
 };
 
 /**

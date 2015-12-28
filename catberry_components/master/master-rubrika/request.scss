@@ -1,12 +1,13 @@
 .request {
   display: block;
   height: 60px;
+  line-height: 21px;
+  font-size: 1.4rem;
   padding: 10px;
   background-color: #eed200;
   font-weight: bold;
   text-decoration: none;
   color: $color-text-dark;
-  @include font-tuning(14, 21);
   @include cf;
   @include at(xs) {
     height: 40px;

@@ -6,10 +6,11 @@
   &__title {
     display: block;
     height: 42px;
+    line-height: 42px;
+    font-size: 1.2rem;
     background-color: $color-bg-grey-xmedium;
     color: $color-text-dark;
     text-decoration: none;
-    @include font-tuning(12, 42);
     padding: 0 10px 0 15px;
     &:hover {
       background-color: darken($color-bg-grey-xmedium, 5%);
@@ -85,7 +86,7 @@
   }
   &__section {
     padding: 10px;
-    @include font-tuning(12, 15);
+    font-size: 1.2rem;
   }
 
 }

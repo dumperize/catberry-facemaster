@@ -1,0 +1,218 @@
+<!--<div block="master_minicard" mod="premium">
+    <div class="row">
+        <div elem="left-column">
+            <div block="master_photo-and-contacts">
+                <div elem="photo-wrap">
+                    <img elem="photo" src="/img/assets/master_minicard/6461.jpg" alt="{{master-photo.alt}}">
+                </div>
+                <div elem="contact-wrap">
+                    <cat-master-phone-btn id="master-phone-btn-{{id}}"></cat-master-phone-btn>
+
+                    <div block="tip" mix="block:js-tip">
+                        <p elem="text">Пожалуйста скажите мастеру что нашли его на нашем сайте</p>
+                        <i elem="close" mix="block:js-close-tip"></i>
+                    </div>
+
+                    <a elem="to-page" href="/{{page.number}}">На страницу мастера<i elem="icon"></i></a>
+                    <a elem="show-services" href="#" mix="block:js-services-toggle">Показать услуги</a>
+                </div>
+            </div>
+        </div>
+        <div elem="right-column">
+
+            <div class="row">
+
+                {{#if company}}
+                <div block="master_name-and-spec" mod="half">
+                {{else}}
+                <div block="master_name-and-spec" mod="wide">
+                {{/if}}
+                <p elem="name">
+                    {{name}}
+                </p>
+                {{#if spec}}
+                    <p elem="spec">
+                        {{spec}}
+                    </p>
+                {{/if}}
+    {{#if company}}
+                </div>
+                {{else}}
+                </div>
+                {{/if}}
+
+    {{#if company}}
+                    <div block="master_company">
+                        <img elem="logo" src="{{company.logo}}" alt="{{company.name}}">
+
+                        <p elem="name">
+                            {{company.name}}
+                        </p>
+                    </div>
+                {{/if}}
+
+    {{#if have-content}}
+                <div block="master_services" mod="half" class="format">
+                {{else}}
+                <div block="master_services" mod="wide" class="format">
+                {{/if}}
+                <ul elem="service-list" mix="block:js-services-cut">
+                    {{#if search-note}}
+                        <div block="search-note">
+                            <strong>Текст найден на странице Мастера:</strong>
+                            {{{search-note}}}
+                        </div>
+                    {{/if}}
+    {{#each services}}
+                        <li elem="service">
+                            {{this}}
+                        </li>
+                    {{/each}}
+                </ul>
+                {{#if have-content}}
+                </div>
+                {{else}}
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div block="master_presentation">
+        { {> master_have-content-icons/master_have-content-icons have-content-icons} }
+
+        {{#with have-content}}
+    {{#if gift}}
+                <div block="master_have-content-widget" mod="gift">
+                    <div elem="main">
+                        <p class="title">{{{gift.title}}}</p>
+                    </div>
+                    <p elem="desc">
+                        {{{gift.desc}}}
+                    </p>
+                </div>
+            {{/if}}
+    {{#if photo}}
+                <div block="master_have-content-widget" mod="photo">
+                    <div elem="main">
+                        <p class="title">
+                            У Мастера:<br>
+                            <span class="count">{{{photo.count}}}</span>
+                        </p>
+                    </div>
+                    <p elem="desc">
+                        {{{photo.desc}}}
+                    </p>
+                </div>
+            {{/if}}
+    {{#if video}}
+                <div block="master_have-content-widget" mod="video">
+                    <a href="{{{video.url}}}">
+                        <div elem="main">
+                            <img src="{{{video.preview}}}">
+                        </div>
+                    </a>
+
+                    <p elem="desc">
+                        {{{video.desc}}}
+                    </p>
+                </div>
+            {{/if}}
+    {{#if comments}}
+                <div block="master_have-content-widget" mod="comments">
+                    <div elem="main">
+                        <p class="title">У Мастера:<br>
+                            <span class="count">{{{comments.recommendations}}}</span><br>
+                            <span class="count">{{{comments.comments}}}</span>
+                        </p>
+                    </div>
+                    <p elem="desc">
+                        {{{comments.desc}}}
+                    </p>
+                </div>
+            {{/if}}
+{{/with}}
+    </div>
+</div>-->
+
+<div block="master-minicard" class="{{#unless page.id}}master-minicard_free{{/unless}}">
+
+    <div elem="photo-cont">
+        <img elem="photo" src="/img/assets/master_minicard/6461.jpg" alt="">
+        <i elem="like">{{icon "like"}} 29</i>
+    </div>
+
+    <div elem="contact-wrap">
+        <cat-master-phone-btn id="master-phone-btn-{{id}}"></cat-master-phone-btn>
+
+        {{#if page.number}}
+        <a elem="to-page" href="/{{page.number}}">На страницу мастера<i>{{icon "strelka"}}</i></a>
+        {{/if}}
+        <a elem="show-services" href="#" mix="block:js-services-toggle">Показать услуги</a>
+    </div>
+
+    <p elem="company">
+        <span><img elem="logo" src="/img/assets/master_minicard/1022.png" alt=""></span>
+        <span>Компания Мера</span>
+    </p>
+
+    <p elem="name">Хархавкина Евгения Длинноотчевствовая</p>
+
+    <p elem="spec">Продажа домов под ключ Продажа домов под ключ Продажа домов под ключ</p>
+
+    <ul elem="services" mix="block: js-minicard-services-cut" class="{{#if isWidget}}master-minicard__services_half{{/if}}">
+        {{#each services}}
+            <li>{{this}}</li>
+        {{/each}}
+    </ul>
+
+
+    {{#if page.id}}
+    <ul block="master-content-widget">
+        <li elem="gift" class="act">
+            <i>{{icon "gift"}}</i>
+
+            <div>
+                <p></p>
+
+                <p></p>
+            </div>
+        </li>
+        <li elem="photo" class="act">
+            <i>{{icon "picture"}}</i>
+
+            <div>
+                <p></p>
+
+                <p></p>
+            </div>
+        </li>
+        <li elem="video" class="act">
+            <i>{{icon "video"}}</i>
+
+            <div>
+                <p></p>
+
+                <p></p>
+            </div>
+        </li>
+        <li elem="comment" class="act">
+            <i>{{icon "dialog"}}</i>
+
+            <div>
+                <p elem="info"><span>У Мастера:<br><strong>1 рекомендация<br>5 отзывов</strong></span></p>
+
+                <p elem="text">«Мы обратились к Сергею когда надо было доделать ремонт, объем работ оставался небольшой
+                    и непросто было найти рабочих. ...»</p>
+            </div>
+        </li>
+    </ul>
+    {{/if}}
+
+</div>
+
+
+<div class="frame callback">
+
+</div>
+
+

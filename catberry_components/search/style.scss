@@ -23,11 +23,12 @@
       color: #666;
       height: 40px;
       width: 100%;
-      @include font-tuning(19, 40);
+      font-size: 1.9rem;
+      line-height: 40px;
       @include vertical-align;
     }
     @include at(md) {
-      padding-left: 0px;
+      padding-left: 0;
     }
   }
   &__button {
@@ -40,7 +41,8 @@
       width: 100%;
       padding: 0;
       background-color: $color-blue;
-      @include font-tuning(15, 14);
+      font-size: 1.5rem;
+      line-height: 1;
       @extend .btn;
       @include vertical-align;
       &:hover {
@@ -59,13 +61,15 @@
     &__field {
       &-input {
         height: 30px;
-        @include font-tuning(16, 30);
+        font-size: 1.6rem;
+        line-height: 30px;
       }
     }
     &__button {
       &-submit {
         height: 30px;
-        @include font-tuning(13, 13);
+        font-size: 1.3rem;
+        line-height: 1;
       }
     }
     &__title{

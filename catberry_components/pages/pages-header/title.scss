@@ -4,13 +4,16 @@
   &__text {
     letter-spacing: 0.05em;
     @include at(lg) {
-      @include font-tuning(23, 30);
+      font-size: 2.3rem;
+      line-height: 30px;
     }
     @include at(md) {
-      @include font-tuning(21, 30);
+      font-size: 2.1rem;
+      line-height: 30px;
     }
     @include at(sm) {
-      @include font-tuning(18, 25);
+      font-size: 1.8rem;
+      line-height: 25px;
     }
   }
   &:hover{
@@ -27,6 +30,8 @@
       text-align: center;
       color: #fff;
       @include font-tuning(10,16);
+      font-size: 1rem;
+      line-height: 16px;
     }
   }
 }

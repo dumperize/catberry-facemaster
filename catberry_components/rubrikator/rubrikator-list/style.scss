@@ -21,7 +21,8 @@
     cursor: pointer;
   }
   &__name {
-    @include font-tuning(15, 18);
+    font-size: 1.5rem;
+    line-height: 18px;
     @include vertical-align;
   }
   &__count {
@@ -37,7 +38,8 @@
     padding: 6px 8px 0 15px;
     &-li {
       margin: 5px 0;
-      @include font-tuning(12, 14);
+      font-size: 1.2rem;
+      line-height: 14px;
     }
     &-a {
       text-decoration: none;

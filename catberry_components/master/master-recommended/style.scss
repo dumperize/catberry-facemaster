@@ -27,7 +27,7 @@
     left: 12px;
     top: 15px;
     text-transform: uppercase;
-    @include font-tuning(18, 23);
+    font-size: 1.8rem;
   }
   &__master {
     display: block;
@@ -42,8 +42,7 @@
     &-name, &-recommendations {
       text-decoration: none;
       color: $color-text;
-      @include font-tuning(11, 15);
-
+      font-size: 1.1rem;
     }
     &-name {
       height: 17px;

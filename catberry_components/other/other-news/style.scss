@@ -33,7 +33,7 @@
     padding-top: 10px;
     padding-left: 20px;
     @extend .col-lg-3;
-    @include font-tuning(12, 16);
+    font-size: 1.2rem;
     min-height: 222px;
     @include to(lg) {
       display: none;
@@ -49,15 +49,15 @@
   &__title {
     font-weight: bold;
     padding: 0 0 10px 0;
-    @include font-tuning(18, 21);
+    font-size: 1.8rem;
     @include at(xs) {
-      @include font-tuning(13, 17);
+      font-size: 1.3rem;
     }
   }
   &__intro {
-    @include font-tuning(12, 14);
+    font-size: 1.2rem;
     @include at(lg) {
-      @include font-tuning(14, 17);
+      font-size: 1.4rem;
     }
     @include at(xs) {
       //display:none;
@@ -65,19 +65,21 @@
   }
   &__date {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     @include at(xs) {
-      @include font-tuning(12, 12);
+      font-size: 1.2rem;
+      line-height: 1;
     }
   }
   &__more {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     right: 20px;
     color: $color-text-red;
     text-transform: uppercase;
     padding-right: 20px;
-    @include font-tuning(14, 14);
+    font-size: 1.4rem;
+    line-height: 1;
     &:hover {
       color: $color-text-red;
     }
