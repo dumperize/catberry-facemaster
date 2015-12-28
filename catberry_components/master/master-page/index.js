@@ -32,7 +32,6 @@ MasterPage.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterPage.prototype.bind = function () {
-
 };
 
 /**

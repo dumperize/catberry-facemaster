@@ -42,13 +42,15 @@ Paginator.prototype.load = function () {
     var currentPage = this.$context.state.currentPage || 1;
 
     return Promise.resolve(1)
-        .then(function(){
+        .then(function () {
             return self.$context.getStoreData(self._model);
         })
         .then(function () {
             return self.$context.sendAction(self._model, "getPaginator")
         })
         .then(function (data) {
+            if (data['is-paginator'] == false)
+                return data;
             var start = data.current - 4 < 0 ? 1 : data.current - 4;
             var end = start + 9 < data.count ? start + 9 : data.count;
             var list = [];
@@ -81,6 +83,6 @@ Paginator.prototype.load = function () {
 Paginator.prototype.handleSetModel = function (model) {
     this._model = model;
 };
-Paginator.prototype.handleGetCurrentPage = function(){
+Paginator.prototype.handleGetCurrentPage = function () {
     return this.$context.state.currentPage || 1;
 }

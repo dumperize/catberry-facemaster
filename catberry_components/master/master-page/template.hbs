@@ -1,6 +1,25 @@
 {{id}}
 {{name}}
 {{imgID}}
-{{services}}
 
-содержимое
+<h3>Меню</h3>
+<div>
+    {{#each isBlock}}
+        <p>Имя - {{name}} - присутствие в блоке {{access}} - активность {{active}}</p>
+    {{/each}}
+</div>
+
+<h3>Блоки</h3>
+<div>
+    {{#each isBlock}}
+        {{#if access}}
+            {{#if active}}
+                <div>
+                    <cat-master-block-{{@key}} id="master-block-{{@key}}"
+                                               cat-store="master/MasterItem"
+                                               master-page="true"></cat-master-block-{{@key}}>
+                </div>
+            {{/if}}
+        {{/if}}
+    {{/each}}
+</div>

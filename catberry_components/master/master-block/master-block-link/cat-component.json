@@ -1,0 +1,5 @@
+{
+	"name": "master-block-link",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

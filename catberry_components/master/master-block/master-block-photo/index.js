@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = PageVideoCatalog;
+module.exports = MasterBlockPhoto;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = PageVideoCatalog;
  */
 
 /**
- * Creates new instance of the "page-video-catalog" component.
+ * Creates new instance of the "master-block-photo" component.
  * @constructor
  */
-function PageVideoCatalog() {
+function MasterBlockPhoto() {
 
 }
 
@@ -22,7 +22,8 @@ function PageVideoCatalog() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-PageVideoCatalog.prototype.render = function () {
+MasterBlockPhoto.prototype.render = function () {
+
 };
 
 /**
@@ -30,7 +31,7 @@ PageVideoCatalog.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-PageVideoCatalog.prototype.bind = function () {
+MasterBlockPhoto.prototype.bind = function () {
 
 };
 
@@ -39,6 +40,6 @@ PageVideoCatalog.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-PageVideoCatalog.prototype.unbind = function () {
+MasterBlockPhoto.prototype.unbind = function () {
 
 };
