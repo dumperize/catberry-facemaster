@@ -18,7 +18,7 @@ function Rubrikator($uhr) {
     this._path = 'http://api-fm.present-tlt.ru/rubrika';
     this._options = {
         data: {
-            filter: '[["=", "status", "1"]]',
+            filter: '["and",["=", "status", "1"]]',
             expand: 'masterCount',
             order: 'sort',
             limit: 200

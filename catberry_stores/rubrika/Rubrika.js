@@ -46,7 +46,7 @@ Rubrika.prototype.load = function () {
     var url = 'http://api-fm.present-tlt.ru/rubrika';
     var options = {
         data: {
-            filter: '[["=", "unique", "' + podrubrika + '"]]',
+            filter: '["and", ["=", "unique", "' + podrubrika + '"]]',
             expand: "tags,parent,nearby,seo"
         }
     };

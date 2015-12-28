@@ -38,7 +38,7 @@ RubrikatorParent.prototype.load = function () {
     var path = 'http://api-fm.present-tlt.ru/rubrika';
     var options = {
         data: {
-            filter: '[["=", "parentID", "0"]]',
+            filter: '["and",["=", "parentID", "0"]]',
             order: 'name',
             limit: 200
         }
