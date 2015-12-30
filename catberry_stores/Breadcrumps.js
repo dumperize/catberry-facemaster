@@ -96,10 +96,11 @@ Breadcrumps.prototype._getForRubAndTag = function (data) {
 
     Object.keys(podrubriks)
         .forEach(function (num) {
-            linksPodrubriks.push({
-                title: podrubriks[num].name,
-                url: '/' + data.rubrika.parent.unique + '/' + podrubriks[num].unique
-            });
+            if (podrubriks[num].status == 1)
+                linksPodrubriks.push({
+                    title: podrubriks[num].name,
+                    url: '/' + data.rubrika.parent.unique + '/' + podrubriks[num].unique
+                });
         });
 
     links.push({

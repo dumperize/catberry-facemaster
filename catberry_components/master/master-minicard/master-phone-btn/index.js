@@ -23,35 +23,7 @@ function MasterPhoneBtn() {
  * for template engine.
  */
 MasterPhoneBtn.prototype.render = function () {
-    return {
-        "contacts": {
-            "id": 439,
-            "ownerType": 1,
-            "ownerID": 1005,
-            "phone": "365151",
-            "workPhone": "",
-            "email": "avista-tlt@yandex.ru",
-            "addr": "Степана Разина 4А, 3 этаж, оф. 4, Дон",
-            "addrCoord": "",
-            "skype": "",
-            "icq": ""
-        },
-        "page": {
-            "id": 4395,
-            "masterID": 1005,
-            "transactionID": 0,
-            "dateStart": "2015-07-01",
-            "dateEnd": "2015-12-28",
-            "number": 1005,
-            "sales": 0,
-            "articles": 0,
-            "albums": 0,
-            "videos": 0,
-            "comments": 1,
-            "services": 8,
-            "links": 0
-        }
-    }
+    return this.$context.attributes;
 };
 
 /**
