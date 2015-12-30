@@ -1,0 +1,60 @@
+.master-card-mp {
+  height: inherit;
+  margin-left: 225px;
+  padding: 18px;
+  padding-top: 14px;
+  background-color: $color-bg-grey-light;
+  position: relative;
+  @include at(xs) {
+    margin-left: 0;
+  }
+  &__name {
+    margin: 0;
+    font-size: 2.9rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+    @include to(md) {
+      font-size: 2.4rem;
+    }
+  }
+  &__spec {
+
+  }
+  &__company {
+    float: left;
+    @include to(lg) {
+      display: none;
+    }
+    display: table;
+    max-width: 214px;
+    height: 60px;
+    overflow: hidden;
+    position: absolute;
+    left: 18px;
+    bottom: 14px;
+    span {
+      display: table-cell;
+      //width: 100px;
+      text-align: left;
+      vertical-align: middle;
+    }
+    span:first-child {
+      width: auto;
+    }
+    span:nth-child(2) {
+      padding: 8px;
+    }
+    &__logo {
+      max-height: 60px;
+      max-width: 204px;
+      height: auto;
+      width: auto;
+    }
+  }
+  &__master-number {
+    position: absolute;
+    right: 18px;
+    bottom: 10px;
+    width: 112px;
+  }
+}

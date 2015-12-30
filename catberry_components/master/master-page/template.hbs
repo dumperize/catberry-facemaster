@@ -1,25 +1,104 @@
-{{id}}
-{{name}}
-{{imgID}}
+<div block="master-page"><!-- mp - master-page {{id}}-->
+    <div elem="row">
 
-<h3>Меню</h3>
-<div>
-    {{#each isBlock}}
-        <p>Имя - {{name}} - присутствие в блоке {{access}} - активность {{active}}</p>
-    {{/each}}
-</div>
+        <div elem="master-card">
 
-<h3>Блоки</h3>
-<div>
-    {{#each isBlock}}
-        {{#if access}}
-            {{#if active}}
-                <div>
-                    <cat-master-block-{{@key}} id="master-block-{{@key}}"
-                                               cat-store="master/MasterItem"
-                                               master-page="true"></cat-master-block-{{@key}}>
+            <div elem="avatar-cont">
+                <img src="http://api-fm.present-tlt.ru/files?key={{imgID}}" alt="{{name}}">
+            </div>
+
+            <div block="master-card-mp">
+                <h1 elem="name">{{name}}</h1>
+
+                <p elem="spec">{{spec}}</p>
+
+                {{#if company}}
+                <p elem="company">
+                    <span><img elem="logo" src="{{company.imgID}}" alt="{{company.name}}"></span>
+                    <span>{{company.name}}</span>
+                </p>
+                {{/if}}
+
+
+                <div elem="master-number">
+                    <p block="master-number">
+                        <span elem="title">личный номер Мастера</span>
+                        <span elem="number">№{{page.number}}</span>
+                        <span elem="print"><a href="#" elem="print">распечатать визитку</a></span>
+                    </p>
                 </div>
+
+            </div>
+
+        </div>
+
+        <div elem="contact-cont">
+            <div block="contacts-mp">
+                <div elem="cap" style="display: none">
+                    <p>
+                        <i>{{icon "phone"}}</i><br>
+                        <span>+7 (***) ***-**-**</span>
+                    </p>
+
+                    <a href="#" elem="show-contact">Показать контакты</a>
+                </div>
+
+
+                <ul elem="list">
+                    {{#if contacts.phone}}
+                        <li><i>{{icon "phone"}}</i><span>{{contacts.phone}}</span></li>
+                    {{/if}}
+
+                    {{#if contacts.email}}
+                        <li><i>{{icon "email"}}</i>
+                            <a href="mailto:{{contacts.email}}" elem="anch">{{contacts.email}}</a>
+                        </li>
+                    {{/if}}
+
+                    {{#if contacts.skype}}
+                        <li><i>{{icon "skype"}}</i>{{contacts.skype}}</li>
+                    {{/if}}
+
+                    {{#if contacts.icq}}
+                        <li><i>{{icon "icq"}}</i>{{contacts.icq}}</li>
+                    {{/if}}
+
+                    {{#if contacts.addr}}
+                        <li><i>{{icon "placemark"}}</i>{{contacts.addr}}<br>
+                            <span elem="onmap"><a href="#" elem="anch">на карте</a> →</span>
+                        </li>
+                    {{/if}}
+                </ul>
+
+                {{contacts.links}}
+
+                <a href="#" elem="a-callback">заказать звонок</a>
+            </div>
+        </div>
+    </div>
+
+    <ul block="menu-mp">
+        {{#each isBlock}}
+            {{#if access}}
+                <li>{{#if active}}<a href="#">{{name}}</a>{{else}}<span>{{name}}</span>{{/if}}</li>
             {{/if}}
-        {{/if}}
-    {{/each}}
+        {{/each}}
+    </ul><!-- menu-mp -->
+
+    <div elem="content">
+
+        {{#each isBlock}}
+            {{#if access}}
+                {{#if active}}
+                    <p elem="section-title">{{name}}</p>
+                    <div elem="section-cont">
+                        <cat-master-block-{{@key}} id="master-block-{{@key}}"
+                                                   cat-store="master/MasterItem"
+                                                   master-page="true"></cat-master-block-{{@key}}>
+                    </div>
+                {{/if}}
+            {{/if}}
+        {{/each}}
+    </div>
 </div>
+<!-- master-page -->

@@ -1,0 +1,31 @@
+.master-number {
+  width: 112px;
+  color: $color-orange;
+  text-align: center;
+  @include to(lg) {
+    display: none;
+  }
+  span {
+    display: block;
+  }
+  &__title {
+    font-size: 0.9rem;
+  }
+  &__number {
+    border: 1px solid $color-orange;
+    font-size: 2.4rem;
+    font-weight: bold;
+    padding: 8px 0;
+  }
+  &__print {
+    font-size: 0.9rem;
+    color: $color-a;
+    padding-right: 6px;
+    a:after {
+      content: ' →';
+      position: absolute;
+      right: 1px;
+      font-size: 1.2rem;
+    }
+  }
+}

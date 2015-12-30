@@ -1,0 +1,97 @@
+.master-page {
+  position: relative;
+  div {
+    //border: 1px solid blue;
+  }
+  &__avatar-cont {
+    overflow: hidden;
+    float: left;
+    width: 225px;
+    height: inherit;
+    @include at(xs) {
+      float: none;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      vertical-align: middle;
+    }
+  }
+  &__master-card {
+    @extend .col-lg-9;
+    @include at(md) {
+      @extend .col-md-8;
+    }
+    @include to(sm) {
+      @extend .col-xs-12;
+    }
+    position: relative;;
+    height: 100%;
+    margin-bottom: 20px;
+  }
+  &__contact-cont {
+    @extend .col-lg-3;
+    @include at(md) {
+      @extend .col-md-4;
+    }
+    @include to(md) {
+      @extend .col-xs-12;
+    }
+    height: inherit;
+  }
+  &__row {
+    @extend .row;
+    @include from(sm) {
+      height: 225px;
+    }
+  }
+  &__content {
+    @include from(md) {
+      margin-left: 245px;
+    }
+  }
+  &__section-title {
+    clear: left;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    font-weight: bold;
+    letter-spacing: 0.025em;
+    margin-bottom: 18px;
+  }
+  &__section-cont {
+    margin-bottom: 30px;
+  }
+}
+
+.menu-mp {
+  width: 225px;
+  position: absolute;
+  top: 245px;
+  left: 0;
+  @include to(md) {
+    display: none;
+  }
+  li {
+    height: 42px;
+    line-height: 42px;
+    overflow: hidden;
+    background-color: $color-bg-grey-light;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    //letter-spacing: 0.05em;
+  }
+  a {
+    height: 42px;
+    display: block;
+    text-decoration: none;
+    padding-left: 18px;
+    &:hover {
+      background-color: $color-bg-grey-medium;
+      color: #FFF;
+    }
+  }
+  span {
+    padding-left: 18px;
+    color: $color-bg-grey-medium;
+  }
+}
