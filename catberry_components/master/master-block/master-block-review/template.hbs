@@ -1,1 +1,13 @@
-отзывы
+<div block="reviews-cont-md">
+
+    {{#each comments}}
+        <div elem="item-cont">
+
+            <p elem="name">{{authorName}}<span elem="date">{{formatDate date "%d %Z %Y | %R"}}</span></p>
+
+            <p elem="text">{{text}}</p>
+
+        </div><!--review-cont-->
+    {{/each}}
+
+</div><!--mde-reviews-->

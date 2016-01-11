@@ -1,1 +1,21 @@
-статьи
+<div block="article-cont-md">
+
+    {{#each articles}}
+        <div elem="item-cont">
+
+            <div block="article">
+                <a href="#{{id}}" elem="link" mix="block:js-open-article">
+                    <div elem="pic">
+                        <img elem="img" src="{{imgSrc imgID}}" alt="{{text}}">
+                    </div>
+                    <div elem="text">
+                        <p>{{title}}</p>
+                    </div>
+                    <p elem="author">{{author}}</p>
+                </a>
+            </div>
+
+        </div>
+    {{/each}}
+
+</div>

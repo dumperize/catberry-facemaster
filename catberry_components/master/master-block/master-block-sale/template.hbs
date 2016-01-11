@@ -1,1 +1,31 @@
-скидки
+<div block="sale-cont-md">
+
+    {{#each sales}}
+    <div elem="item-cont">
+
+        <div block="sale">
+            <a href="#{{id}}" elem="link" mix="block:js-open-sale">
+                <p elem="title">
+                    {{#is type "==" 1}}
+                        Подарок
+                    {{/is}}
+                    {{#is type "==" 2}}
+                        Скидка {{discount}}%
+                    {{/is}}
+                    {{#is type "==" 3}}
+                        -{{discount}} руб.
+                    {{/is}}
+                </p>
+                <div elem="pic">
+                    <img elem="img" src="{{imgSrc imgID}}" alt="{{text}}">
+                </div>
+                <div elem="text">
+                    <p>{{text}}</p>
+                </div>
+            </a>
+        </div>
+
+    </div>
+    {{/each}}
+
+</div>

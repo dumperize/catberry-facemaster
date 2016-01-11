@@ -36,6 +36,7 @@
     }
     @include to(md) {
       @extend .col-xs-12;
+      margin-bottom: 20px;
     }
     height: inherit;
   }

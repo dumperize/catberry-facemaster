@@ -2,9 +2,8 @@
   &__timetable {
     height: 51px;
     border-top: 3px solid #58595b;
-    margin: 10px 0;
+    margin: 10px 0 20px 0;
     border-collapse: separate;
-    margin-bottom: 20px;
     thead td {
       border-bottom: 1px solid #d5d7d8;
       text-transform: uppercase;
@@ -22,6 +21,10 @@
       background-color: #e6e7e8;
       border-left: 1px solid #d5d7d8;
       position: relative;
+      @include at(xs) {
+        font-size: 0.9rem;
+        padding: 6px 4px;
+      }
     }
   }
   &__day_today {

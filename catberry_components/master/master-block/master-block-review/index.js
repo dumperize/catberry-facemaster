@@ -23,7 +23,15 @@ function MasterBlockReview() {
  * for template engine.
  */
 MasterBlockReview.prototype.render = function () {
-
+    if (this.$context.attributes['master-page']) {
+        return this.$context.getStoreData()
+            .then(function (data) {
+                console.log(data.comments);
+                return {
+                    comments: data.comments
+                }
+            });
+    }
 };
 
 /**

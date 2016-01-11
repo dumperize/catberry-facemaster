@@ -1,0 +1,25 @@
+.reviews-cont-md {
+  &__item-cont {
+    border-top: 1px solid #999;
+    padding-bottom: 14px;
+    padding-top: 14px;
+    position: relative;
+    &:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+  }
+  &__name {
+    font-weight: bold;
+    color: $color-orange;
+    margin-bottom: 6px;
+  }
+  &__date {
+    color: #666;
+    margin-left: 20px;
+    float: right;
+  }
+  &__text {
+    font-size: 1.3rem;
+  }
+}

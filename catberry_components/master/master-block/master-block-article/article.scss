@@ -1,0 +1,52 @@
+.article-cont-md {
+  @extend .row;
+  margin-bottom: -20px;
+  &__item-cont {
+    @extend .col-lg-4;
+    padding-bottom: 20px;
+    @include to(lg) {
+      @extend .col-sm-6;
+    }
+    @include to(lg) {
+      @extend .col-sm-6;
+    }
+    @include at(xs) {
+      @extend .col-xs-12;
+    }
+  }
+}
+.article {
+  padding: 10px;
+  background-color: $color-bg-grey-light;
+  max-height: 330px;
+  position: relative;
+  overflow: hidden;
+  &:hover {
+    background-color: $color-bg-grey-xmedium;
+    .sale__title {
+      background-color: $color-orange - #111111;
+    }
+  }
+  &__pic {
+    max-height: 205px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  &__img {
+    width: 100%;
+  }
+  &__text {
+    height: 90px;
+    font-size: 1.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__link {
+    text-decoration: none;
+  }
+  &__author {
+    font-size: 1.1rem;
+    position: absolute;
+    bottom: 8px;
+  }
+}

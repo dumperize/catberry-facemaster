@@ -26,7 +26,13 @@ MasterBlockArticle.prototype.render = function () {
     if (this.$context.attributes['master-page']) {
         return this.$context.getStoreData()
             .then(function (data) {
-                return  data.articles
+                data.articles.forEach(function (item) {
+                    item.author = data.name; //добавляем автора для каждой статьи
+                });
+                //console.log(data.articles);
+                return {
+                    articles: data.articles
+                }
             });
     }
 };

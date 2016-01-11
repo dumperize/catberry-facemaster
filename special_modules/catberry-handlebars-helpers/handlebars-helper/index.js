@@ -256,6 +256,11 @@ module.exports = function (Handlebars) {
                 '<use xlink:href="/icon-svg/svg-symbols.svg#icon_' + name + '"/>' +
                 '</svg>'
             );
+        },
+        imgSrc: function (imgId) {
+            var imgSrc = 'http://api-fm.present-tlt.ru/files?key=' + imgId;
+
+            return new Handlebars.SafeString(imgSrc);
         }
     };
 };
