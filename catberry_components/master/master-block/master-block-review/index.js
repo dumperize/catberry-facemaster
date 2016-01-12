@@ -26,9 +26,14 @@ MasterBlockReview.prototype.render = function () {
     if (this.$context.attributes['master-page']) {
         return this.$context.getStoreData()
             .then(function (data) {
-                console.log(data.comments);
+                data.vkLikes.data = JSON.parse(data.vkLikes.data);
+                data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов
+                console.log(data);
                 return {
-                    comments: data.comments
+                    comments: data.comments,
+                    vkLikes: data.vkLikes,
+                    name: data.name,
+                    imgID: data.imgID
                 }
             });
     }
