@@ -1,1 +1,29 @@
-фото
+<div block="photo-md">
+
+    <!-- ERROR -->
+    <p style="color: red; font-weight: bold">------ ERROR! ------</p>
+    !!!фото. API - недостаточно данных
+    <!-- ERROR -->
+
+    {{#each albums}}
+        <div elem="album-cover" mix="block: js-select-album">
+            <a href="/master-data-edit/json3.json">
+                <img src="{{imgSrc photos.0.imgID 200}}" alt="{{name}}"><br>
+                <span>{{name}}</span>
+            </a>
+        </div>
+    {{/each}}
+
+    {{#each albums-content}}
+        <div elem="album-cont">
+            <p elem="album-title">{{title}}</p>
+
+            {{#each img-prev}}
+                <a href="#" elem="img-prev">
+                    <img src="{{src}}" alt="{{alt}}"><br>
+                </a>
+            {{/each}}
+
+        </div><!--album-cont-->
+    {{/each}}
+</div><!--mde-photo-->

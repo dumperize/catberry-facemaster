@@ -23,7 +23,125 @@ function MasterBlockPhoto() {
  * for template engine.
  */
 MasterBlockPhoto.prototype.render = function () {
-
+    if (this.$context.attributes['master-page']) {
+        return this.$context.getStoreData()
+            .then(function (data) {
+                console.log(data.albums);
+                console.log(data.videos);
+                return {
+                    albums: [
+                        {
+                            "id": 1991,
+                            "ownerType": 1,
+                            "ownerID": 1019,
+                            "name": "Альбом №1",
+                            "status": 1,
+                            "photos": [
+                                {
+                                    "id": 63853,
+                                    "albumID": 1991,
+                                    "imgID": "5693458623041",
+                                    "description": null
+                                },
+                                {
+                                    "id": 63854,
+                                    "albumID": 1991,
+                                    "imgID": "569345868bbb3",
+                                    "description": null
+                                },
+                                {
+                                    "id": 63855,
+                                    "albumID": 1991,
+                                    "imgID": "5693458701367",
+                                    "description": null
+                                },
+                                {
+                                    "id": 63856,
+                                    "albumID": 1991,
+                                    "imgID": "5693458771840",
+                                    "description": null
+                                },
+                                {
+                                    "id": 63857,
+                                    "albumID": 1991,
+                                    "imgID": "56934587d8e05",
+                                    "description": null
+                                },
+                                {
+                                    "id": 63858,
+                                    "albumID": 1991,
+                                    "imgID": "5693458845eb4",
+                                    "description": null
+                                },
+                                {
+                                    "id": 63859,
+                                    "albumID": 1991,
+                                    "imgID": "56934588af766",
+                                    "description": null
+                                }
+                            ]
+                        },
+                        {
+                            "id": 1993,
+                            "ownerType": 1,
+                            "ownerID": 1058,
+                            "name": "Сертификаты",
+                            "status": 1,
+                            "photos": [
+                                {
+                                    "id": 64068,
+                                    "albumID": 1993,
+                                    "imgID": "569345ba20dc9",
+                                    "description": null
+                                },
+                                {
+                                    "id": 64069,
+                                    "albumID": 1993,
+                                    "imgID": "569345ba80f84",
+                                    "description": null
+                                },
+                                {
+                                    "id": 64070,
+                                    "albumID": 1993,
+                                    "imgID": "569345baeb4d9",
+                                    "description": ""
+                                },
+                                {
+                                    "id": 64071,
+                                    "albumID": 1993,
+                                    "imgID": "569345bb5f92a",
+                                    "description": null
+                                },
+                                {
+                                    "id": 64072,
+                                    "albumID": 1993,
+                                    "imgID": "569345bc6aee8",
+                                    "description": null
+                                },
+                                {
+                                    "id": 88332,
+                                    "albumID": 1993,
+                                    "imgID": "5693503e61284",
+                                    "description": null
+                                },
+                                {
+                                    "id": 88333,
+                                    "albumID": 1993,
+                                    "imgID": "5693503ec5377",
+                                    "description": null
+                                },
+                                {
+                                    "id": 119761,
+                                    "albumID": 1993,
+                                    "imgID": "56936e0849ae9",
+                                    "description": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            });
+    }
 };
 
 /**

@@ -28,7 +28,7 @@ MasterBlockReview.prototype.render = function () {
             .then(function (data) {
                 data.vkLikes.data = JSON.parse(data.vkLikes.data);
                 data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов
-                console.log(data);
+                //console.log(data);
                 return {
                     comments: data.comments,
                     vkLikes: data.vkLikes,

@@ -18,7 +18,8 @@
 .sale {
   padding: 0 10px 10px 10px;
   background-color: $color-bg-grey-light;
-  max-height: 282px;
+  height: 288px;
+  max-height: 288px;
   position: relative;
   overflow: hidden;
   &:hover {
@@ -36,7 +37,7 @@
     width: 100%;
   }
   &__text {
-    height: 90px;
+    height: 94px;
     font-size: 1.3rem;
     overflow: hidden;
     text-overflow: ellipsis;
