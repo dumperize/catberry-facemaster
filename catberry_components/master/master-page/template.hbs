@@ -14,7 +14,7 @@
 
                 {{#if company}}
                 <p elem="company">
-                    <span><img elem="logo" src="{{company.imgID}}" alt="{{company.name}}"></span>
+                    <span><img elem="logo" src="{{imgSrc company.imgID null 70}}" alt="{{company.name}}"></span>
                     <span>{{company.name}}</span>
                 </p>
                 {{/if}}
@@ -86,6 +86,16 @@
     </ul><!-- menu-mp -->
 
     <div elem="content">
+
+        <!-- Удалить когда заработают услуги -->
+        <p elem="section-title">Услуги</p>
+        <div elem="section-cont">
+            <cat-master-block-service id="master-block-service"
+                                       cat-store="master/MasterItem"
+                                       master-page="true"></cat-master-block-service>
+        </div>
+        <!-- Удалить когда заработают услуги - конец -->
+
 
         {{#each isBlock}}
             {{#if access}}

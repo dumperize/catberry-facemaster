@@ -1,1 +1,12 @@
-видео
+<div block="video-md">
+
+    {{#each videos}}
+        <div elem="video-cont">
+            <a href="{{url}}" elem="video-cover">
+                <span elem="title-prev">{{title}}</span><br>
+                <span elem="img-cont"><img src="{{prev.src}}" alt="{{prev.alt}}"></span>
+            </a>
+        </div>
+    {{/each}}
+
+</div><!-- video-md -->

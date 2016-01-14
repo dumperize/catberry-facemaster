@@ -266,7 +266,7 @@ module.exports = function (Handlebars) {
             if (typeof(height) != "undefined" && typeof(height) == "number") {
                 imgSrc = imgSrc + '&height=' + height;
             }
-            console.log(imgSrc);
+            //console.log(imgSrc);
             return new Handlebars.SafeString(imgSrc);
         }
     };

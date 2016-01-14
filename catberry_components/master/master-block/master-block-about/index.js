@@ -26,6 +26,9 @@ MasterBlockAbout.prototype.render = function () {
     if (this.$context.attributes['master-page']) {
         return this.$context.getStoreData()
             .then(function (data) {
+                data.aboutEduc = data.aboutEduc.replace(/\n/g, "<br>");
+                data.aboutExp = data.aboutExp.replace(/\n/g, "<br>");
+                data.aboutAddInfo = data.aboutAddInfo.replace(/\n/g, "<br>");
                 return {
                     aboutEduc: data.aboutEduc,
                     aboutExp: data.aboutExp,

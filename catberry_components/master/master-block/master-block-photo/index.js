@@ -26,8 +26,7 @@ MasterBlockPhoto.prototype.render = function () {
     if (this.$context.attributes['master-page']) {
         return this.$context.getStoreData()
             .then(function (data) {
-                console.log(data.albums);
-                console.log(data.videos);
+                //console.log(data.albums);
                 return {
                     albums: [
                         {

@@ -1,0 +1,85 @@
+.photo-md {
+  @include at(xs) {
+    text-align: center;
+  }
+  &__album-cover, &__img-prev {
+    display: inline-block;
+    padding: 5px;
+    background-color: $color-bg-grey-light;
+    //width: 156px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid $color-bg-grey-medium;
+    font-size: 1.2rem;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    vertical-align: top;
+    position: relative;
+    @include between(sm, md) {
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+    &:hover {
+      background-color: $color-orange + #111111;
+      > a {
+        color: #333;
+      }
+    }
+    img {
+      @include img-max-size(160px, 160px);
+      vertical-align: middle;
+      @include to(lg) {
+        @include img-max-size(140px, 140px);
+      }
+      @include at(xs) {
+        @include img-max-size(200px, 200px);
+      }
+    }
+    > a span {
+      display: inline-block;
+      max-height: 30px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+  }
+  &__img-prev {
+    //width: 148px;
+    img {
+      @include img-max-size(146px, 146px);
+      vertical-align: middle;
+      @include to(lg) {
+        @include img-max-size(120px, 120px);
+      }
+      @include at(xs) {
+        @include img-max-size(194px, 194px);
+      }
+    }
+  }
+  &__album-title {
+    color: #444;
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+  &__album-cont {
+    padding: 20px;
+    padding-right: 10px;
+    background-color: $color-bg-grey-xmedium;
+    margin-top: 10px;
+    @include to(lg) {
+      padding: 16px;
+    }
+    @include at(xs) {
+      padding: 12px;
+    }
+  }
+  &__album-cover {
+    &_act {
+      background-color: $color-orange + #111111;
+      border: 1px solid #666;
+      > a {
+        color: #333;
+      }
+    }
+  }
+}

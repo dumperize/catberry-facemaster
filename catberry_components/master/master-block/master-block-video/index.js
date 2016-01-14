@@ -23,7 +23,15 @@ function MasterBlockVideo() {
  * for template engine.
  */
 MasterBlockVideo.prototype.render = function () {
-
+    if (this.$context.attributes['master-page']) {
+        return this.$context.getStoreData()
+            .then(function (data) {
+                //console.log(data.videos);
+                return {
+                    videos: data.videos
+                }
+            });
+    }
 };
 
 /**

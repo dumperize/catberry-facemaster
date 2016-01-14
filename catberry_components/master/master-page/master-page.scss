@@ -96,3 +96,8 @@
     color: $color-bg-grey-medium;
   }
 }
+.menu-mp.fixed {
+  position: fixed;
+  top: 20px;
+  left: auto;
+}

@@ -24,7 +24,7 @@ function MasterPage() {
  */
 MasterPage.prototype.render = function () {
     return this.$context.getStoreData().then(function (data) {
-        //console.log(data);
+        console.log(data.company);
         return data;
     });
 };
@@ -35,6 +35,14 @@ MasterPage.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterPage.prototype.bind = function () {
+    var offset = $('.menu-mp').offset();
+    $(window).bind('scroll', function () {
+        if ($(window).scrollTop() + 30 > offset.top) {
+            $('.menu-mp').addClass('fixed');
+        } else {
+            $('.menu-mp').removeClass('fixed');
+        }
+    });
 };
 
 /**
@@ -43,5 +51,5 @@ MasterPage.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 MasterPage.prototype.unbind = function () {
-
+    $(window).unbind('scroll');
 };

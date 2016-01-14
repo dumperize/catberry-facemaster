@@ -3,6 +3,7 @@
     <!-- ERROR -->
     <p style="color: red; font-weight: bold">------ ERROR! ------</p>
     !!!фото. API - недостаточно данных
+    <br><br><br>
     <!-- ERROR -->
 
     {{#each albums}}
@@ -14,16 +15,18 @@
         </div>
     {{/each}}
 
-    {{#each albums-content}}
+    {{#each albums}}
         <div elem="album-cont">
-            <p elem="album-title">{{title}}</p>
+            <p elem="album-title">{{name}}</p>
 
-            {{#each img-prev}}
-                <a href="#" elem="img-prev">
-                    <img src="{{src}}" alt="{{alt}}"><br>
-                </a>
-            {{/each}}
+            <div elem="wrapper">
+                {{#each photos}}
+                    <a href="#" elem="img-prev">
+                        <img src="{{imgSrc imgID 200}}" alt="{{description}}"><br>
+                    </a>
+                {{/each}}
+            </div>
 
-        </div><!--album-cont-->
+        </div>
     {{/each}}
-</div><!--mde-photo-->
+</div><!-- photo-md -->
