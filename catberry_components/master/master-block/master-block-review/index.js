@@ -30,7 +30,7 @@ MasterBlockReview.prototype.render = function () {
                 data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов
                 //console.log(data.comments);
                 return {
-                    comments: data.comments,
+                    comments: data.comments.reverse(),
                     vkLikes: data.vkLikes,
                     name: data.name,
                     imgID: data.imgID

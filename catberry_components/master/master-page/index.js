@@ -24,7 +24,7 @@ function MasterPage() {
  */
 MasterPage.prototype.render = function () {
     return this.$context.getStoreData().then(function (data) {
-        console.log(data.company);
+        //console.log(data.company);
         return data;
     });
 };
@@ -35,14 +35,60 @@ MasterPage.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterPage.prototype.bind = function () {
-    var offset = $('.menu-mp').offset();
-    $(window).bind('scroll', function () {
-        if ($(window).scrollTop() + 30 > offset.top) {
-            $('.menu-mp').addClass('fixed');
+    var menu = $('.menu-mp');
+    var menuOffset = menu.offset();
+
+    $(window).bind('scroll', fixedSectionMenu);
+    $(window).bind('scroll', menuHighlight);
+    menu.find('a').bind('click', scrollToSection);
+    $('.contacts-mp__show-contact').bind('click', showContact);
+    $('.js-show-callback-popup').bind('click', showCallbackPopup);
+
+    //показать контакты
+    function showContact() {
+        $(this).closest('.contacts-mp__cap').hide();
+        return false;
+    }
+    //плавающего меню
+    function fixedSectionMenu() {
+        if ($(window).scrollTop() + 30 > menuOffset.top) {
+            menu.addClass('fixed');
         } else {
-            $('.menu-mp').removeClass('fixed');
+            menu.removeClass('fixed');
         }
-    });
+    }
+    //скролл до секции
+    function menuHighlight() {
+        $('.master-page__section-cont').each(function () {
+            if ($(window).scrollTop() + 50 > $(this).offset().top && $(window).scrollTop() + 30 < $(this).offset().top + $(this).innerHeight()) {
+                menu.find('.act').removeClass('act');
+                menu.find('[href=#' + $(this).children().attr('id') + ']').addClass('act');
+            }
+        });
+    }
+    //навигации внутри страницы мастера
+    function scrollToSection() {
+        $(window).unbind('scroll', menuHighlight);
+        setTimeout(function () {
+            $(window).bind('scroll', menuHighlight);
+        }, 1050);
+        menu.find('.act').removeClass('act');
+        $(this).addClass('act');
+        $('html, body').animate({
+            scrollTop: $($(this).attr('href')).offset().top - 50
+        }, 1000);
+        return false;
+    }
+    //показать popup - заказать звонок
+    function showCallbackPopup() {
+        var form = $('.callback-popup');
+        if (form.length > 0) {
+            $.fancybox.open(form, {
+                padding: 0
+            });
+        }
+        return false;
+    }
 };
 
 /**
@@ -52,4 +98,7 @@ MasterPage.prototype.bind = function () {
  */
 MasterPage.prototype.unbind = function () {
     $(window).unbind('scroll');
+    $('.menu-mp').find('a').unbind('click');
+    $('.contacts-mp__show-contact').unbind('click');
+    $('.js-show-callback-popup').unbind('click');
 };

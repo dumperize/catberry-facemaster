@@ -17,6 +17,22 @@
       vertical-align: middle;
     }
   }
+  &__like {
+    background-color: rgba(148, 149, 153, 0.7);
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: inline-block;
+    font-style: normal;
+    padding: 2px 8px 3px 8px;
+    text-align: center;
+    color: #FFF;
+    svg {
+      fill: #FFF;
+      position: relative;
+      top: 3px;
+    }
+  }
   &__master-card {
     @extend .col-lg-9;
     @include at(md) {
@@ -57,47 +73,38 @@
     font-size: 2.2rem;
     font-weight: bold;
     letter-spacing: 0.025em;
-    margin-bottom: 18px;
+    margin-bottom: 8px;
   }
   &__section-cont {
+    padding-top: 10px;
     margin-bottom: 30px;
+    position: relative;
   }
 }
-
-.menu-mp {
-  width: 225px;
-  position: absolute;
-  top: 245px;
-  left: 0;
-  @include to(md) {
-    display: none;
+.callback-popup {
+  background-color: $color-bg-grey-light;
+  padding: 20px;
+  display: none;
+  &__form {
+    width: 210px;
   }
-  li {
-    height: 42px;
-    line-height: 42px;
-    overflow: hidden;
-    background-color: $color-bg-grey-light;
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    //letter-spacing: 0.05em;
+  &__input-text {
+    @extend .basic-input;
+    padding: 8px 10px;
+    margin-bottom: 20px;
+    width: 210px;
   }
-  a {
-    height: 42px;
+  &__textarea {
+    @extend .basic-input;
+    padding: 8px 10px;
+    margin-bottom: 20px;
+    width: 210px;
     display: block;
-    text-decoration: none;
-    padding-left: 18px;
-    &:hover {
-      background-color: $color-bg-grey-medium;
-      color: #FFF;
-    }
+    resize: vertical;
+    min-height: 80px;
   }
-  span {
-    padding-left: 18px;
-    color: $color-bg-grey-medium;
+  &__btn {
+    @extend .basic-button-mid;
+    width: 210px;
   }
-}
-.menu-mp.fixed {
-  position: fixed;
-  top: 20px;
-  left: auto;
 }

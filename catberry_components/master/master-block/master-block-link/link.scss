@@ -1,0 +1,18 @@
+.link-mp {
+  a {
+    display: block;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    line-height: 1;
+    span {
+      vertical-align: middle;
+    }
+  }
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    height: 18px;
+    width: 18px;
+  }
+}
