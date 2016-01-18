@@ -12,7 +12,7 @@ function RubrikatorCompany() {
 	this._path = 'http://api-fm.present-tlt.ru/rubrika-company';
 	this._options = {
 		data: {
-			filter: '[["=", "status", "1"]]',
+			filter: '["and",["=", "status", "1"]]',
 			order: 'sort',
 			limit: 200
 		}

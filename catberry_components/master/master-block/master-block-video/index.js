@@ -44,7 +44,6 @@ MasterBlockVideo.prototype.bind = function () {
     video.bind('click', showVideo);
 
     function showVideo() {
-        console.log(this);
         $.fancybox.open(this, {
             padding: 0,
             type: 'iframe',

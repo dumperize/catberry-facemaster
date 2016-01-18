@@ -26,7 +26,7 @@ MasterBlockSale.prototype.render = function () {
     if (this.$context.attributes['master-page']) {
         return this.$context.getStoreData()
             .then(function (data) {
-                console.log(data.sales);
+                //console.log(data.sales);
                 return {
                     sales: data.sales
                 }

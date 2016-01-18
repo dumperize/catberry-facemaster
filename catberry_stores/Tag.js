@@ -50,7 +50,7 @@ Tag.prototype.load = function () {
                 var path = 'http://api-fm.present-tlt.ru/tag';
                 var option = {
                     data: {
-                        filter: '[["=", "unique", "' + tag + '"]]',
+                        filter: '["and",["=", "unique", "' + tag + '"],["=","status","1"]]',
                         expand: 'seo'
                     }
                 };
