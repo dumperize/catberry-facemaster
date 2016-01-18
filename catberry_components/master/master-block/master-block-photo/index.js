@@ -149,7 +149,32 @@ MasterBlockPhoto.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterBlockPhoto.prototype.bind = function () {
+    var album = $('.photo-md__album-cover');
+    var albumCont = $('.photo-md__album-cont');
+    var albumPhotos = $('.photo-md__img-prev');
+    album.bind('click', showAlbum);
+    albumPhotos.bind('click', showAlbumImg);
 
+    function showAlbum() {
+        albumCont.hide();
+        album.removeClass('act');
+        $(this).addClass('act');
+        $('#cont-' + ($(this).attr('id'))).show();
+        return false;
+    }
+
+    function showAlbumImg() {
+        $.fancybox(albumPhotos, {
+            type: 'image',
+            index : albumPhotos.index(this),
+            helpers: {
+                overlay: {
+                    locked: false
+                }
+            }
+        });
+        return false;
+    }
 };
 
 /**
@@ -158,5 +183,9 @@ MasterBlockPhoto.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 MasterBlockPhoto.prototype.unbind = function () {
+    var album = $('.photo-md__album-cover');
+    var albumPhotos = $('.photo-md__img-prev');
 
+    album.unbind('click');
+    albumPhotos.unbind('click');
 };

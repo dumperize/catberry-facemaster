@@ -20,7 +20,7 @@
   &__like {
     background-color: rgba(148, 149, 153, 0.7);
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
     left: 10px;
     display: inline-block;
     font-style: normal;
@@ -102,6 +102,7 @@
     display: block;
     resize: vertical;
     min-height: 80px;
+    max-height: 240px;
   }
   &__btn {
     @extend .basic-button-mid;

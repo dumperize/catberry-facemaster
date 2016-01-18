@@ -15,6 +15,7 @@
     }
   }
 }
+
 .sale {
   padding: 0 10px 10px 10px;
   background-color: $color-bg-grey-light;
@@ -58,5 +59,31 @@
     font-size: 1.5rem;
     letter-spacing: 0.075em;
     margin-bottom: 10px;
+  }
+}
+
+.sale.popup {
+  max-width: 420px;
+  height: auto;
+  max-height: 420px;
+  &:hover {
+    color: inherit;
+    background-color: $color-bg-grey-light;
+  }
+  .sale {
+    &__title {
+      padding: 14px;
+      font-size: 1.8rem;
+    }
+    &__pic {
+      max-width: 205px;
+      margin-right: 10px;
+      float: left;
+    }
+    &__text {
+      height: auto;
+      font-size: 1.3rem;
+      overflow: visible;
+    }
   }
 }

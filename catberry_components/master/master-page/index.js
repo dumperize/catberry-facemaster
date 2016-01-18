@@ -37,18 +37,21 @@ MasterPage.prototype.render = function () {
 MasterPage.prototype.bind = function () {
     var menu = $('.menu-mp');
     var menuOffset = menu.offset();
+    var ta = $('textarea');
 
     $(window).bind('scroll', fixedSectionMenu);
     $(window).bind('scroll', menuHighlight);
     menu.find('a').bind('click', scrollToSection);
     $('.contacts-mp__show-contact').bind('click', showContact);
     $('.js-show-callback-popup').bind('click', showCallbackPopup);
+    autosize(ta);
 
     //показать контакты
     function showContact() {
         $(this).closest('.contacts-mp__cap').hide();
         return false;
     }
+
     //плавающего меню
     function fixedSectionMenu() {
         if ($(window).scrollTop() + 30 > menuOffset.top) {
@@ -57,6 +60,7 @@ MasterPage.prototype.bind = function () {
             menu.removeClass('fixed');
         }
     }
+
     //скролл до секции
     function menuHighlight() {
         $('.master-page__section-cont').each(function () {
@@ -66,6 +70,7 @@ MasterPage.prototype.bind = function () {
             }
         });
     }
+
     //навигации внутри страницы мастера
     function scrollToSection() {
         $(window).unbind('scroll', menuHighlight);
@@ -79,14 +84,13 @@ MasterPage.prototype.bind = function () {
         }, 1000);
         return false;
     }
+
     //показать popup - заказать звонок
     function showCallbackPopup() {
         var form = $('.callback-popup');
-        if (form.length > 0) {
-            $.fancybox.open(form, {
-                padding: 0
-            });
-        }
+        $.fancybox.open(form, {
+            padding: 0
+        });
         return false;
     }
 };
@@ -97,8 +101,13 @@ MasterPage.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 MasterPage.prototype.unbind = function () {
+    var ta = $('textarea');
+    var evt = document.createEvent('Event');
+
     $(window).unbind('scroll');
     $('.menu-mp').find('a').unbind('click');
     $('.contacts-mp__show-contact').unbind('click');
     $('.js-show-callback-popup').unbind('click');
+    evt.initEvent('autosize:destroy', true, false);
+    ta.dispatchEvent(evt);
 };

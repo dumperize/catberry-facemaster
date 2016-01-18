@@ -66,6 +66,10 @@
     padding-right: 10px;
     background-color: $color-bg-grey-xmedium;
     margin-top: 10px;
+    display: none;
+    &:first-child {
+      display: block;
+    }
     @include to(lg) {
       padding: 16px;
     }
@@ -73,13 +77,11 @@
       padding: 12px;
     }
   }
-  &__album-cover {
-    &_act {
-      background-color: $color-orange + #111111;
-      border: 1px solid #666;
-      > a {
-        color: #333;
-      }
+  &__album-cover.act {
+    background-color: $color-orange + #111111;
+    border: 1px solid #666;
+    > a {
+      color: #333;
     }
   }
 }
