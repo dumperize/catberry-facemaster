@@ -158,6 +158,8 @@ SaleByRubrika.prototype._getDataForRubrikaPage = function (currentRubrika) {
                         listID.push(rubrika.id);
                     } else {
                         rubrika.active = false;
+                        if (child.root)
+                            child.root.active = false;
                     }
                 });
             }

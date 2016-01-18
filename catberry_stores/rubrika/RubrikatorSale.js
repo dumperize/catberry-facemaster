@@ -59,6 +59,7 @@ function RubrikatorSale($uhr) {
         }
     ];
     this._parentToGroup = {};
+    this.loadRubriks = false;
     var self = this;
     for (var i = 0; i < this._groups.length; ++i) {
         var el = this._groups[i];
@@ -87,7 +88,30 @@ RubrikatorSale.prototype.$lifetime = 60000;
  */
 RubrikatorSale.prototype.load = function () {
     var self = this;
-    var currentRubrika = this.$context.state.catalog;
+    var currentRubrika = self.$context.state.catalog;
+
+    if (self.loadRubriks) {
+        return {
+            active: currentRubrika,
+            list: self._groups
+        }
+    }
+    return this._loadData()
+        .then(function () {
+            self.loadRubriks = true;
+            return {
+                active: currentRubrika,
+                list: self._groups
+            }
+        });
+};
+/**
+ * Загрузка рубрикатора и перестройка под нужный формат
+ * @returns {*}
+ * @private
+ */
+RubrikatorSale.prototype._loadData = function () {
+    var self = this;
 
     return this._uhr.get(this._path, this._options)
         .then(function (result) {
@@ -97,6 +121,7 @@ RubrikatorSale.prototype.load = function () {
             var data = result.content;
             var dataLevel = {};
 
+            //сначата выстраиваем древовидную структуру
             data.forEach(function (el) {
                 if (el.parentID == 0) {
                     if (!dataLevel[el.id])
@@ -115,6 +140,7 @@ RubrikatorSale.prototype.load = function () {
                 }
             });
 
+            //затем прицепляем к главному дереву
             self._groups.forEach(function (el) {
                 el.children = [];
                 el.saleCount = 0;
@@ -131,13 +157,8 @@ RubrikatorSale.prototype.load = function () {
                     });
                 }
             });
-            return {
-                active: currentRubrika,
-                list: self._groups
-            }
         });
 };
-
 /**
  * Handles action named "some-action" from any component.
  * @returns {Promise<Object>|Object|null|undefined} Response to component.
