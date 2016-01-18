@@ -100,7 +100,8 @@
   }
   &__textarea {
     width: 100%;
-    height: 100px;
+    min-height: 100px;
+    max-height: 200px;
     padding: 5px 10px;
     margin-bottom: 10px;
     background-color: $color-bg-grey-light;

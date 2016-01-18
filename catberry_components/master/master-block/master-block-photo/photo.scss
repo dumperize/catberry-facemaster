@@ -9,7 +9,6 @@
     //width: 156px;
     text-align: center;
     text-decoration: none;
-    border: 1px solid $color-bg-grey-medium;
     font-size: 1.2rem;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -22,6 +21,7 @@
     }
     &:hover {
       background-color: $color-orange + #111111;
+      cursor: pointer;
       > a {
         color: #333;
       }
@@ -45,6 +45,7 @@
   }
   &__img-prev {
     //width: 148px;
+    border: 1px solid $color-bg-grey-medium;
     img {
       @include img-max-size(146px, 146px);
       vertical-align: middle;
@@ -79,7 +80,6 @@
   }
   &__album-cover.act {
     background-color: $color-orange + #111111;
-    border: 1px solid #666;
     > a {
       color: #333;
     }

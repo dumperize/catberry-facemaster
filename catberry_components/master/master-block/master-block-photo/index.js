@@ -154,6 +154,7 @@ MasterBlockPhoto.prototype.bind = function () {
     var albumPhotos = $('.photo-md__img-prev');
     album.bind('click', showAlbum);
     albumPhotos.bind('click', showAlbumImg);
+    album.first().addClass('act');
 
     function showAlbum() {
         albumCont.hide();

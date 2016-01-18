@@ -66,24 +66,32 @@
   max-width: 420px;
   height: auto;
   max-height: 420px;
+  padding-bottom: 30px;
   &:hover {
     color: inherit;
     background-color: $color-bg-grey-light;
   }
   .sale {
     &__title {
-      padding: 14px;
-      font-size: 1.8rem;
+      padding: 16px;
+      font-size: 2.4rem;
+      background-color: $color-orange;
     }
     &__pic {
       max-width: 205px;
+      max-height: 205px;
       margin-right: 10px;
+      margin-bottom: 0;
       float: left;
     }
     &__text {
       height: auto;
       font-size: 1.3rem;
       overflow: visible;
+    }
+    &__link {
+      color: #808285;
+      cursor: default;
     }
   }
 }
