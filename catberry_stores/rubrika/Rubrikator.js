@@ -21,7 +21,7 @@ function Rubrikator($uhr) {
             filter: '["and",["=", "status", "1"]]',
             expand: 'masterCount',
             order: 'sort',
-            limit: 200
+            limit: 300
         }
     };
 }

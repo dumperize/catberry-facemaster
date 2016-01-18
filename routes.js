@@ -92,13 +92,12 @@ module.exports = [
             state.Pages = {
                 page: matches[1]
             };
-            state['master/Master' + nameCapitalizeFirstLetter] = {
+            state['rubrika/Rubrikator' + nameCapitalizeFirstLetter] = {
                 catalog: matches[3]
             };
             state.Paginator = {
                 currentPage: matches[5]
             };
-
             return state;
         }
     },

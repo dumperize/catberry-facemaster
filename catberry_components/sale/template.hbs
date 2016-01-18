@@ -1,0 +1,64 @@
+данный hbs сделан так для примера его можно разбить для удобства по блокам
+
+{{#if currentRubrika}}
+    <h2>Рубрикатор</h2>
+
+    {{#each rubrikator}}
+        {{#if active}}
+            <p>{{name}} {{saleCount}}</p>
+            {{#each children}}
+                {{#if root}}
+                    <p>---<a href="/sale/catalog/{{root.id}}">{{root.name}}</a> {{saleCount}}</p>
+                    {{#if root.active}}
+                        {{#each child}}
+                            <p>
+                                ------<a href="/sale/catalog/{{id}}">{{name}}</a> {{saleCount}}
+                                {{#if active}}
+                                    активная
+                                {{/if}}
+                            </p>
+                        {{/each}}
+                    {{/if}}
+                {{else}}
+                    {{#each child}}
+                        <p>---<a href="/sale/catalog/{{id}}">{{name}}</a> {{saleCount}}</p>
+                    {{/each}}
+                {{/if}}
+            {{/each}}
+
+        {{/if}}
+    {{/each}}
+    <h2>Скидки</h2>
+    {{#each sale}}
+        <div>
+            {{title}}
+        </div>
+    {{/each}}
+    <cat-common-paginator id="common-paginator" cat-store="Paginator" model="sale/SaleByRubrika"></cat-common-paginator>
+{{else}}
+
+    {{#each this}}
+        <p>{{name}} {{saleCount}}</p>
+        <div>
+            <p>подрубрики:</p>
+            {{#each children}}
+                {{#if root}}
+                    <p>---<a href="/sale/catalog/{{root.id}}">{{root.name}}</a> {{saleCount}}</p>
+                {{else}}
+                    {{#each child}}
+                        <p>---<a href="/sale/catalog/{{id}}">{{name}}</a> {{saleCount}}</p>
+                    {{/each}}
+                {{/if}}
+            {{/each}}
+        </div>
+        <div>
+            <p>акции</p>
+            {{#each sale}}
+                <p>{{title}}</p>
+            {{/each}}
+        </div>
+        <hr>
+    {{/each}}
+
+{{/if}}
+
