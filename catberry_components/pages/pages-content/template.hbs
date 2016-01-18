@@ -1,12 +1,13 @@
 <div block="page" mix="block:container">
-    <div block="row">
+    <div elem="row">
         <cat-loader id="pages-content-loader"></cat-loader>
 
         {{#unless isActive.main}}
             <cat-breadcrumps id="breadcrumps" cat-store="Breadcrumps"></cat-breadcrumps>
         {{/unless}}
 
-        <cat-page-{{current}} id="page-current-{{current}}"></cat-page-{{current}}>
-
+        <div block="content">
+            <cat-page-{{current}} id="page-current-{{current}}"></cat-page-{{current}}>
+        </div>
     </div>
 </div>

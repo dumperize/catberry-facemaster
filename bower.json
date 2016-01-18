@@ -20,6 +20,7 @@
     "jquery": "~2.1.4",
     "fancybox": "~2.1.5",
     "svg4everybody": "~2.0.0",
+    "autosize": "2.0.1",
     "slick-carousel": "~1.5.9"
   },
   "overrides": {
@@ -42,13 +43,16 @@
       }
     },
     "slick-carousel": {
-      "main": ["slick/slick.min.js"],
+      "main": "slick/slick.min.js",
       "dependencies": {
         "jquery": ">=1.7"
       }
     },
     "svg4everybody": {
       "main": "dist/svg4everybody.js"
+    },
+    "autosize": {
+      "main": "src/autosize.js"
     }
   },
   "devDependencies": {

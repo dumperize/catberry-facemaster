@@ -1,14 +1,99 @@
-<h4>условия работы</h4>
-<p>расписание</p>
-{{#each schedule}}
-    <p>{{day}} - {{open}} - {{close}}</p>
-{{/each}}
-<p>Районы</p>
-{{#each district}}
-    <p>{{type}} - {{name}}</p>
-{{/each}}
-<p>Условия</p>
-!!переделает илья
-Условия оплаты: {{workCondition.paymentForm}}
-Условия оплаты: {{workCondition.coopForm}}
-Выезд на дом: {{workCondition.comming}}
+<div block="time-and-work-mp">
+
+    <table elem="timetable">
+        <thead>
+        <tr>
+            <td elem="day">Пн</td>
+            <td elem="day">Вт</td>
+            <td elem="day">Ср</td>
+            <td elem="day" mod="today">Чт</td>
+            <td elem="day">Пт</td>
+            <td elem="day">Сб</td>
+            <td elem="day">Вс</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {{#each schedule}}
+                <td>{{open}}<br>{{close}}</td>
+            {{/each}}
+        </tr>
+        </tbody>
+    </table>
+
+    <p elem="list-caption">Выезд на дом</p>
+    <ul elem="list">
+        <li>Бесплатно по городу</li>
+        <li>Выезд за город платно</li>
+    </ul>
+
+
+    <div elem="list-big-cont">
+        <p elem="list-caption">Районы обслуживания</p>
+
+        <div elem="list-cont">
+            <p elem="list-caption" mod="mini">Город</p>
+            <ul elem="list">
+                {{#each district}}
+                    {{#is type "==" 1}}
+                        <li>{{name}}</li>
+                    {{/is}}
+                {{/each}}
+            </ul>
+        </div><!--list-cont-->
+
+        <div elem="list-cont">
+            <p elem="list-caption" mod="mini">Пригород</p>
+            <ul elem="list">
+                {{#each district}}
+                    {{#is type "==" 2}}
+                        <li>{{name}}</li>
+                    {{/is}}
+                {{/each}}
+            </ul>
+        </div><!--list-cont-->
+
+        <br elem="clear">
+    </div><!--list-big-cont-->
+
+
+    <div elem="list-big-cont">
+        <p elem="list-caption">Оплата</p>
+
+
+        <div elem="list-cont">
+            <p elem="list-caption" mod="mini">Форма сотрудни&shy;чества</p>
+            <ul elem="list">
+                <li>Предоплата</li>
+                <li>По факту выполненных работ</li>
+                <li>Рассрочка платежа</li>
+            </ul>
+        </div><!--list-cont-->
+
+        <div elem="list-cont">
+            <p elem="list-caption" mod="mini">Способы оплаты</p>
+            <ul elem="list">
+                <li>Наличный</li>
+                <li>Безналичный
+                    <ul>
+                        <li>Оплата через электронные платежные системы</li>
+                        <li>Оплата по кредитной/дебетовой карте</li>
+                        <li>Оплата через терминалы</li>
+                        <li>Банковский перевод</li>
+                        <li>Предоставление рассрочки</li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--list-cont-->
+        <br elem="clear">
+    </div><!--list-cont-->
+    <br elem="clear">
+
+    <!-- ERROR -->
+    <p style="color: red; font-weight: bold">------ ERROR! (условия - выезд на дом, оплата) ------</p>
+    !!переделает илья
+    Условия оплаты: {{workCondition.paymentForm}}
+    Условия оплаты: {{workCondition.coopForm}}
+    Выезд на дом: {{workCondition.comming}}
+    <!-- ERROR -->
+</div>

@@ -1,0 +1,41 @@
+.menu-mp {
+  width: 225px;
+  position: absolute;
+  top: 245px;
+  left: 0;
+  @include to(md) {
+    display: none;
+  }
+  li {
+    height: 42px;
+    line-height: 42px;
+    overflow: hidden;
+    background-color: $color-bg-grey-light;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    //letter-spacing: 0.05em;
+  }
+  a {
+    height: 42px;
+    display: block;
+    text-decoration: none;
+    padding-left: 18px;
+    &:hover {
+      background-color: $color-bg-grey-medium;
+      color: #FFF;
+    }
+  }
+  a.act {
+    background-color: $color-bg-grey-medium;
+    color: #FFF;
+  }
+  span {
+    padding-left: 18px;
+    color: $color-bg-grey-medium;
+  }
+}
+.menu-mp.fixed {
+  position: fixed;
+  top: 20px;
+  left: auto;
+}

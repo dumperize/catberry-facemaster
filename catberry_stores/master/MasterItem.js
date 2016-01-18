@@ -65,7 +65,7 @@ MasterItem.prototype.load = function () {
             var optionM = {
                 data: {
                     filter: '["and", ["=", "id", "' + page.masterID + '"],["=","publicStatus", "1"]]',
-                    expand: 'contacts,articles,comments,districts,albums,sales,schedule,videos,workCondition,vkLikes,rubrika,tags'
+                    expand: 'contacts,articles,comments,districts,albums,sales,schedule,videos,workCondition,callbacks,vkLikes,rubrika,tags,company'
                 }
             };
             return self._uhr.get(pathM, optionM)
@@ -125,6 +125,7 @@ MasterItem.prototype.load = function () {
                             active: true
                         }
                     };
+                    data.page = page;
                     return data;
                 });
         });

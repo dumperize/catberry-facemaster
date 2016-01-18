@@ -23,7 +23,15 @@ function MasterBlockSale() {
  * for template engine.
  */
 MasterBlockSale.prototype.render = function () {
-
+    if (this.$context.attributes['master-page']) {
+        return this.$context.getStoreData()
+            .then(function (data) {
+                console.log(data.sales);
+                return {
+                    sales: data.sales
+                }
+            });
+    }
 };
 
 /**
@@ -32,7 +40,22 @@ MasterBlockSale.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterBlockSale.prototype.bind = function () {
+    var sale = $('.sale');
+    sale.find('a').bind('click', showSalePopup);
 
+    function showSalePopup() {
+        var tmp = $(this).parent().clone();
+        tmp.addClass('popup');
+        $.fancybox.open(tmp, {
+            padding: 0,
+            helpers: {
+                overlay: {
+                    locked: false
+                }
+            }
+        });
+        return false;
+    }
 };
 
 /**

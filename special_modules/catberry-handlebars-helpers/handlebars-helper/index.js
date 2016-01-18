@@ -256,6 +256,18 @@ module.exports = function (Handlebars) {
                 '<use xlink:href="/icon-svg/svg-symbols.svg#icon_' + name + '"/>' +
                 '</svg>'
             );
+        },
+        imgSrc: function (imgId, width, height) {
+            var imgSrc = 'http://api-fm.present-tlt.ru/files?key=' + imgId;
+
+            if (typeof(width) != "undefined" && typeof(width) == "number") {
+                imgSrc = imgSrc + '&width=' + width;
+            }
+            if (typeof(height) != "undefined" && typeof(height) == "number") {
+                imgSrc = imgSrc + '&height=' + height;
+            }
+            //console.log(imgSrc);
+            return new Handlebars.SafeString(imgSrc);
         }
     };
 };
