@@ -38,8 +38,12 @@ MasterMinicard.prototype.render = function () {
         .then(function (master) {
             if (!master)
                 return;
-
-            if (master.page && (master.page.sales || master.page.albums || master.page.videos || master.page.comments)) {
+            if (master.page && (
+                    (master.page.sales && master.sales[0]) ||
+                    (master.page.albums && master.albums[0]) ||
+                    (master.page.videos && master.videos[0]) ||
+                    (master.page.comments && master.comments[0])
+                )) {
                 master.isWidget = true;
             }
             if (master.page && master.page.albums && master.albums) {
@@ -53,6 +57,14 @@ MasterMinicard.prototype.render = function () {
             if (master.page && master.page.comments && master.comments) {
                 master.commentsCount = master.comments.length;
             }
+            var servicesNormally = [];
+            Object.keys(master.services).forEach(function (item, i, arr) {
+                var service = master.services[item];
+                service = service.replace(/\u00A0/g, " ");
+                servicesNormally.push(service);
+            });
+            master.services = servicesNormally;
+            //console.log(Object.keys(master.services));
             return master;
         });
 };
@@ -63,6 +75,18 @@ MasterMinicard.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterMinicard.prototype.bind = function () {
+    $('.master-content-widget li').bind('mouseenter', showWidgetTab);
+
+    $('.master-content-widget').each(function () {
+        $(this).find('.act').first().addClass('show');
+    });
+    function showWidgetTab() {
+        if ($(this).hasClass('act')) {
+            $(this).siblings().removeClass('show');
+            $(this).addClass('show');
+        }
+    }
+
     this._minicardServicesCut();
     return {};
 };
@@ -84,5 +108,5 @@ MasterMinicard.prototype._minicardServicesCut = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 MasterMinicard.prototype.unbind = function () {
-
+    $('.master-content-widget li').unbind('mouseenter');
 };

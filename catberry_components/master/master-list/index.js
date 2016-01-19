@@ -16,7 +16,7 @@ function MasterList($serviceLocator) {
 // we can use window from the locator in a browser only
     if (this.$context.isBrowser) {
         this._window = $serviceLocator.resolve('window');
-        this._handleScroll = this._handleScroll.bind(this);
+        this._handlerScroll = this._handlerScroll.bind(this);
     }
 }
 
@@ -37,12 +37,12 @@ MasterList.prototype.render = function () {
  */
 MasterList.prototype.bind = function () {
     this._window.addEventListener('resize', this._allMinicardServicesCut);
-    this._window.addEventListener('scroll', this._handleScroll);
+    this._window.addEventListener('scroll', this._handlerScroll);
 };
 
 MasterList.prototype.unbind = function () {
     this._window.removeEventListener('resize', this._allMinicardServicesCut);
-    this._window.removeEventListener('scroll', this._handleScroll);
+    this._window.removeEventListener('scroll', this._handlerScroll);
     this.$context.collectGarbage();
 };
 
@@ -50,14 +50,16 @@ MasterList.prototype.unbind = function () {
  * Handles window scroll for infinite scroll loading.
  * @private
  */
-MasterList.prototype._handleScroll = function () {
+MasterList.prototype._handlerScroll = function () {
     var windowHeight = this._window.innerHeight,
         scrollTop = this._window.pageYOffset,
         doc = this._window.document.documentElement;
     try {
         // when scroll to the bottom of the page load more items
+        //console.log(scrollTop + ' - ' + (doc.scrollHeight - windowHeight));
         if (scrollTop >= (doc.scrollHeight - windowHeight) ||
             doc.scrollHeight <= windowHeight) {
+            console.log('loadMoreItems');
             this._loadMoreItems();
         }
     } catch (e) {

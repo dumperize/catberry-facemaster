@@ -2,7 +2,9 @@
 
     <div elem="photo-cont">
         <img elem="photo" src="http://api-fm.present-tlt.ru/files?key={{imgID}}" alt="{{name}}">
-        <i elem="like">{{icon "like"}} {{vkLikes.countLikes}}</i>
+        {{#if page}}
+            <i elem="like">{{icon "like"}} {{vkLikes.countLikes}}</i>
+        {{/if}}
     </div>
 
     <div elem="contact-wrap">
@@ -20,7 +22,7 @@
 
     {{#if company}}
         <p elem="company">
-            <span><img elem="logo" src="{{company.imgID}}" alt=""></span>
+            <span><img elem="logo" src="{{imgSrc company.imgID null 70}}" alt=""></span>
             <span>{{company.name}}</span>
         </p>
     {{/if}}
@@ -41,17 +43,26 @@
                 <i>{{icon "gift"}}</i>
 
                 <div>
-                    <p elem="info">{{sales.0.title}}</p>
+                    <p elem="info"><span>
+                        {{#is sales.0.type "==" 1}}
+                            Подарок
+                        {{/is}}
+                        {{#is sales.0.type "==" 2}}
+                            Скидка {{sales.0.discount}}%
+                        {{/is}}
+                        {{#is sales.0.type "==" 3}}
+                            -{{sales.0.discount}} руб.
+                        {{/is}}
+                    </span></p>
 
-                    <p elem="text">{{sales.0.text}}</p>
+                    <p elem="text">{{sales.0.title}}</p>
                 </div>
-
             </li>
-            <li elem="photo" class="{{#if page.albums}}{{#if sales.0.title}}act{{/if}}{{/if}}">
+            <li elem="photo" class="{{#if page.albums}}{{#if albums.0.name}}act{{/if}}{{/if}}">
                 <i>{{icon "picture"}}</i>
 
                 <div>
-                    <p elem="info">{{albumsCount}} фотоальбомов</p>
+                    <p elem="info"><span>{{albumsCount}} фотоальбомов</span></p>
 
                     <p elem="text">{{albumsTitle}}</p>
                 </div>
@@ -60,7 +71,7 @@
                 <i>{{icon "video"}}</i>
 
                 <div>
-                    <p elem="info">{{imgID}}</p>
+                    <p elem="info"><span>{{imgID}}</span></p>
 
                     <p elem="text">{{videos.0.title}}</p>
                 </div>
