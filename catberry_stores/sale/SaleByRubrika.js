@@ -21,7 +21,6 @@ util.inherits(SaleByRubrika, StorePaginator);
  */
 function SaleByRubrika($uhr) {
     StorePaginator.call(this);
-
     this.$context.setDependency("rubrika/RubrikatorSale");
     this._path = 'http://api-fm.present-tlt.ru/sale/active';
     this._options = {
@@ -139,6 +138,8 @@ SaleByRubrika.prototype._getDataForRubrikaPage = function (currentRubrika) {
         el.active = false;
 
         el.children.forEach(function (child) {
+            if (child.root)
+                child.root.active = false;
             if (child.root && child.root.id == currentRubrika) {
                 el.active = true;
                 child.root.active = true;
@@ -158,8 +159,6 @@ SaleByRubrika.prototype._getDataForRubrikaPage = function (currentRubrika) {
                         listID.push(rubrika.id);
                     } else {
                         rubrika.active = false;
-                        if (child.root)
-                            child.root.active = false;
                     }
                 });
             }
@@ -202,15 +201,4 @@ SaleByRubrika.prototype._getSaleData = function (id) {
             }
             return result.content;
         });
-};
-
-
-/**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
- */
-SaleByRubrika.prototype.handleSomeAction = function () {
-    // Here you can call this.$context.changed() if you know
-    // that remote data source has been changed.
-    // Also you can have many handle methods for other actions.
 };

@@ -15,7 +15,6 @@ module.exports = Paginator;
  */
 function Paginator($uhr) {
     this._uhr = $uhr;
-    this._model;
 }
 
 /**
@@ -29,29 +28,31 @@ Paginator.prototype._uhr = null;
  * Current lifetime of data (in milliseconds) that is returned by this store.
  * @type {number} Lifetime in milliseconds.
  */
-Paginator.prototype.$lifetime = 60000;
+Paginator.prototype.$lifetime = 0;
 
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 Paginator.prototype.load = function () {
+    //если не определена модель то вернем пустоту
     if (!this._model)
         return null;
+
     var self = this;
     var currentPage = this.$context.state.currentPage || 1;
 
-    return Promise.resolve(1)
+    //заставляем модель взять для себя данные (если она этого еще не сделала)
+    return self.$context.getStoreData(self._model)
         .then(function () {
-            return self.$context.getStoreData(self._model);
-        })
-        .then(function () {
+            //шлём сигнал "получить пагинатор"
             return self.$context.sendAction(self._model, "getPaginator")
         })
         .then(function (data) {
             if (data['is-paginator'] == false)
                 return data;
-            var start = data.current - 4 < 0 ? 1 : data.current - 4;
+            //устанавливаем начальную и конечную страницу
+            var start = data.current - 4 <= 0 ? 1 : data.current - 4;
             var end = start + 9 < data.count ? start + 9 : data.count;
             var list = [];
             for (var i = start; i <= end; ++i) {
@@ -61,7 +62,7 @@ Paginator.prototype.load = function () {
                     "number": i
                 });
             }
-
+            //возвращаем данные
             return {
                 model: self._model,
                 "is-paginator": true,
@@ -77,12 +78,16 @@ Paginator.prototype.load = function () {
 };
 
 /**
- * Handles action named "some-action" from any component.
+ * Устанавливаем название текущей модели
  * @returns {Promise<Object>|Object|null|undefined} Response to component.
  */
 Paginator.prototype.handleSetModel = function (model) {
     this._model = model;
 };
+/**
+ * Забрать текущую страницу
+ * @returns {*|string|number}
+ */
 Paginator.prototype.handleGetCurrentPage = function () {
     return this.$context.state.currentPage || 1;
-}
+};
