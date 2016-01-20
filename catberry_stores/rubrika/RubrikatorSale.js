@@ -121,7 +121,7 @@ RubrikatorSale.prototype._loadData = function () {
             var data = result.content;
             var dataLevel = {};
 
-            //сначата выстраиваем древовидную структуру
+            //сначала выстраиваем древовидную структуру
             data.forEach(function (el) {
                 if (el.parentID == 0) {
                     if (!dataLevel[el.id])
