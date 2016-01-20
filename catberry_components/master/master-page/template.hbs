@@ -1,25 +1,171 @@
-{{id}}
-{{name}}
-{{imgID}}
+<div block="master-page"><!-- mp - master-page -->
+    <div elem="row">
 
-<h3>Меню</h3>
-<div>
-    {{#each isBlock}}
-        <p>Имя - {{name}} - присутствие в блоке {{access}} - активность {{active}}</p>
-    {{/each}}
-</div>
+        <div elem="master-card">
 
-<h3>Блоки</h3>
-<div>
-    {{#each isBlock}}
-        {{#if access}}
-            {{#if active}}
-                <div>
-                    <cat-master-block-{{@key}} id="master-block-{{@key}}"
-                                               cat-store="master/MasterItem"
-                                               master-page="true"></cat-master-block-{{@key}}>
+            <div elem="avatar-cont">
+                <img src="{{imgSrc imgID}}" alt="{{name}}">
+                <i elem="like" style="color: red; font-weight: bold">{{icon "like"}} 129</i>
+            </div>
+
+            <div block="master-card-mp">
+                <h1 elem="name">{{name}}</h1>
+
+                <p elem="spec">{{spec}}</p>
+
+                {{#if company}}
+                    <p elem="company">
+                        <span><img elem="logo" src="{{imgSrc company.imgID null 70}}" alt="{{company.name}}"></span>
+                        <span>{{company.name}}</span>
+                    </p>
+                {{/if}}
+
+
+                <div elem="master-number">
+                    <p block="master-number">
+                        <span elem="title">личный номер Мастера</span>
+                        <span elem="number">№{{page.number}}</span>
+                        <span elem="print"><a href="#" elem="print">распечатать визитку</a></span>
+                    </p>
                 </div>
+            </div>
+        </div>
+
+        <div elem="contact-cont">
+            <div block="contacts-mp">
+                <div elem="cap">
+                    <p>
+                        <i>{{icon "phone"}}</i><br>
+                        <span>+7 *** ***-**-**</span>
+                    </p>
+
+                    <a href="" elem="show-contact">Показать контакты</a>
+                </div>
+
+
+                <ul elem="list">
+
+                    <li>
+                        <i>{{icon "phone"}}</i>
+                        {{#if contacts.phone}}
+                            {{contacts.phone}}<br>
+                            <span style="color: red; font-weight: bold">workPhone - ERROR!</span>
+                        {{else}}
+                            не указано
+                        {{/if}}
+                    </li>
+
+                    <li>
+                        <i>{{icon "email"}}</i>
+                        {{#if contacts.email}}
+                            <a href="mailto:{{contacts.email}}" elem="anch">{{contacts.email}}</a>
+                        {{else}}
+                            не указано
+                        {{/if}}
+                    </li>
+
+                    <li><i>{{icon "skype"}}</i>
+                        {{#if contacts.skype}}
+                            {{contacts.skype}}
+                        {{else}}
+                            не указано
+                        {{/if}}
+                    </li>
+
+                    <li><i>{{icon "icq"}}</i>
+                        {{#if contacts.icq}}
+                            {{contacts.icq}}
+                        {{else}}
+                            не указано
+                        {{/if}}
+                    </li>
+
+                    <li><i>{{icon "placemark"}}</i>
+                        {{#if contacts.addr}}
+                            {{contacts.addr}}<br>
+                            <span elem="onmap"><a href="#" elem="anch">на карте</a> →</span>
+                        {{else}}
+                            не указано
+                        {{/if}}
+                    </li>
+                </ul>
+
+                <a href="#callback-request-popup" elem="a-callback" mix="block:js-show-callback-popup">заказать
+                    звонок</a>
+            </div>
+        </div>
+    </div>
+
+    <div block="callback-popup">
+        <form elem="form" id="callback-request-popup-form" method="" action="">
+            <input elem="input-text" type="text" placeholder="Ваше имя" name="callbackRequestForm[name]">
+            <input elem="input-text" type="text" placeholder="Ваш телефон" name="callbackRequestForm[phone]">
+            <textarea elem="textarea"
+                      placeholder="Ваш комментарий"
+                      name="callbackRequestForm[text]"></textarea>
+            <input elem="btn" type="submit" value="отправить заявку">
+            <span style="color: red; font-weight: bold">Отправка формы не работает - ERROR!</span>
+        </form>
+        <div block="success_response">
+            Ваша заявка отправлена Мастеру
+        </div>
+    </div>
+
+    <ul block="menu-mp">
+        {{#each isBlock}}
+            {{#if access}}
+                <li>{{#if active}}<a href="#master-block-{{@key}}">{{name}}</a>{{else}}<span>{{name}}</span>{{/if}}</li>
             {{/if}}
-        {{/if}}
-    {{/each}}
+        {{/each}}
+    </ul>
+    <!-- menu-mp -->
+
+    <div elem="content">
+
+        <!-- Удалить когда заработают услуги -->
+        <p elem="section-title">Услуги</p>
+
+        <div elem="section-cont">
+            <cat-master-block-service id="master-block-service"
+                                      cat-store="master/MasterItem"
+                                      master-page="true"></cat-master-block-service>
+            <!-- ERROR -->
+            <br>
+            <p style="color: red; font-weight: bold">------ ERROR! (Услуги) ------</p>
+            !!переделает илья
+            <!-- ERROR -->
+        </div>
+        <!-- Удалить когда заработают услуги - конец -->
+
+        <!-- Удалить когда заработают ссылки -->
+        <p elem="section-title">Ссылки</p>
+
+        <div elem="section-cont">
+            <cat-master-block-link id="master-block-link"
+                                      cat-store="master/MasterItem"
+                                      master-page="true"></cat-master-block-link>
+            <!-- ERROR -->
+            <br>
+            <p style="color: red; font-weight: bold">------ ERROR! (Линки) ------</p>
+            !!переделает илья
+            <!-- ERROR -->
+        </div>
+        <!-- Удалить когда заработают ссылки - конец -->
+
+
+        {{#each isBlock}}
+            {{#if access}}
+                {{#if active}}
+                    <p elem="section-title">{{name}}</p>
+
+                    <div elem="section-cont">
+                        <cat-master-block-{{@key}} id="master-block-{{@key}}"
+                                                   cat-store="master/MasterItem"
+                                                   master-page="true"></cat-master-block-{{@key}}>
+                    </div>
+                {{/if}}
+            {{/if}}
+        {{/each}}
+    </div>
 </div>
+<!-- master-page -->

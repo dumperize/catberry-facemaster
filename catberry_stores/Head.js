@@ -49,9 +49,9 @@ Head.prototype.load = function () {
 
             var data = PAGES[page.current];
             return {
-                title: data.title + '. FaceMaster.ru. Специалисты Тольятти',
-                description: data.description,
-                keywords: data.keywords
+                //title: data.title + '. FaceMaster.ru. Специалисты Тольятти',
+                //description: data.description,
+                //keywords: data.keywords
             }
         });
 };

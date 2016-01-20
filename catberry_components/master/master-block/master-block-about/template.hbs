@@ -1,4 +1,20 @@
-<h4>о себе</h4>
-{{aboutEduc}}
-{{aboutExp}}
-{{aboutAddInfo}}
+<div block="about-md">
+    {{#if aboutEduc}}
+        <p elem="text-caption">Образование:</p>
+        <p elem="text">{{{aboutEduc}}}</p>
+    {{/if}}
+
+    {{#if aboutExp}}
+        <p elem="text-caption">Опыт работы:</p>
+        <p elem="text">{{{aboutExp}}}</p>
+    {{/if}}
+
+    {{#if aboutAddInfo}}
+        <p elem="text-caption">Дополнительная информация:</p>
+        <p elem="text">{{{aboutAddInfo}}}</p>
+    {{/if}}
+</div><!-- about-md -->
+
+
+
+

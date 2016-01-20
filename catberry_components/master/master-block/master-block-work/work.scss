@@ -1,0 +1,72 @@
+.time-and-work-mp {
+  &__timetable {
+    height: 51px;
+    border-top: 3px solid #58595b;
+    margin: 10px 0 20px 0;
+    border-collapse: separate;
+    thead td {
+      border-bottom: 1px solid #d5d7d8;
+      text-transform: uppercase;
+      color: #000000;
+      font-weight: bold;
+    }
+    td:first-child {border-left: none}
+    td {
+      width: 50px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 1.1rem;
+      line-height: 1.3em;
+      padding: 6px 10px;
+      background-color: #e6e7e8;
+      border-left: 1px solid #d5d7d8;
+      position: relative;
+      @include at(xs) {
+        font-size: 0.9rem;
+        padding: 6px 4px;
+      }
+    }
+  }
+  &__day_today {
+    &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 0;
+      height: 0;
+      margin-left: -0.44rem;
+      border: 0.44rem solid transparent;
+      border-top: 0.44rem solid #58595b;
+    }
+  }
+  &__list-caption {
+    color: #444;
+    font-size: 1.6rem;
+    //    clear: both;
+    margin-bottom: 8px;
+    font-weight: bold;
+    &_mini {
+      color: #666;
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+  }
+  &__list-big-cont {
+    float: left;
+    width: 50%;
+    min-width: 230px;
+  }
+  &__list-cont {
+    float: left;
+    width: 50%;
+    padding-right: 20px;
+  }
+  &__list {
+    font-size: 1.2rem;
+    padding-bottom: 20px;
+  }
+  &__list li li {padding-left: 10px; font-size: 1.1rem}
+  &__clear {clear: left}
+}

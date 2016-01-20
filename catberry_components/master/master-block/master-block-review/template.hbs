@@ -1,1 +1,75 @@
-отзывы
+<div block="reviews-cont-md">
+
+    <div block="recommendations">
+        {{#is vkLikes.countLikes ">" 0}}
+            <p elem="total">Мастера рекомендуют <span elem="total-count">{{vkLikes.countLikes}} человек</span></p>
+
+            <div elem="list">
+                {{#each vkLikes.data}}
+                    <a elem="item" target="_blank" href="http://vk.com/id{{uid}}">
+                        <img src="{{photo_100}}" alt="{{first_name}} {{last_name}}">
+                    </a>
+                {{/each}}
+            </div>
+        {{/is}}
+
+        <div elem="buttons-block">
+            <p elem="buttons-block-title">Порекомендуйте мастера:</p>
+
+            <div></div>
+        </div>
+    </div>
+
+    <p elem="title">Оставить отзыв</p>
+
+    <div elem="row">
+        <form block="add-comment" method="POST" action="">
+            <input elem="text-input" type="text" placeholder="Ваше имя" name="comment_form[name]">
+            <input elem="text-input" type="text" placeholder="Ваш номер телефона" name="comment_form[phone]">
+            <textarea elem="textarea" placeholder="Текст отзыва" name="comment_form[comment_text]"></textarea>
+            <input elem="btn" type="submit" value="отправить">
+
+            <p elem="success">
+                Ваш отзыв успешно отправлен, спасибо!
+            </p>
+        </form>
+
+        <div block="social-links">
+            <div elem="wrapper">
+                <p elem="title">Разместить ссылку на&nbsp;стра&shy;ницу Мастера в&nbsp;соц.&nbsp;сети:</p>
+
+                <div elem="master">
+                    <div elem="photo-cont">
+                        <img src="{{imgSrc imgID}}" alt="{{name}}">
+                    </div>
+
+                    <p elem="name">{{name}}</p>
+                </div>
+                <p elem="note">Порекомендуйте этого специалиста своим друзям в&nbsp;социальной сети</p>
+
+                <div elem="buttons">
+                    <p style="color:red">Ссылки! VK, OK, FB, TW</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    {{#if comments}}
+        <p elem="title">Мои отзывы</p>
+
+        <div elem="comments">
+            {{#each comments}}
+                <div elem="item-cont">
+
+                    <p elem="name">{{authorName}}<span elem="date">{{formatDate date "%R | %d %Z %Y"}}</span></p>
+
+                    <p elem="text">{{text}}</p>
+
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+
+</div><!--mde-reviews-->

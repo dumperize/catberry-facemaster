@@ -1,0 +1,97 @@
+.sale-cont-md {
+  @extend .row;
+  margin-bottom: -20px;
+  &__item-cont {
+    @extend .col-lg-4;
+    padding-bottom: 20px;
+    @include to(lg) {
+      @extend .col-sm-6;
+    }
+    @include to(lg) {
+      @extend .col-sm-6;
+    }
+    @include at(xs) {
+      @extend .col-xs-12;
+    }
+  }
+}
+
+.sale {
+  padding: 0 10px 10px 10px;
+  background-color: $color-bg-grey-light;
+  height: 288px;
+  max-height: 288px;
+  position: relative;
+  overflow: hidden;
+  &:hover {
+    background-color: $color-bg-grey-xmedium;
+    .sale__title {
+      background-color: $color-orange - #111111;
+    }
+  }
+  &__pic {
+    max-height: 126px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  &__img {
+    width: 100%;
+  }
+  &__text {
+    height: 94px;
+    font-size: 1.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__link {
+    text-decoration: none;
+  }
+  &__title {
+    background-color: $color-orange;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    width: 100%;
+    box-sizing: content-box;
+    text-align: center;
+    margin-left: -10px;
+    font-size: 1.5rem;
+    letter-spacing: 0.075em;
+    margin-bottom: 10px;
+  }
+}
+
+.sale.popup {
+  max-width: 420px;
+  height: auto;
+  max-height: 420px;
+  padding-bottom: 30px;
+  &:hover {
+    color: inherit;
+    background-color: $color-bg-grey-light;
+  }
+  .sale {
+    &__title {
+      padding: 16px;
+      font-size: 2.4rem;
+      background-color: $color-orange;
+    }
+    &__pic {
+      max-width: 205px;
+      max-height: 205px;
+      margin-right: 10px;
+      margin-bottom: 0;
+      float: left;
+    }
+    &__text {
+      height: auto;
+      font-size: 1.3rem;
+      overflow: visible;
+    }
+    &__link {
+      color: #808285;
+      cursor: default;
+    }
+  }
+}

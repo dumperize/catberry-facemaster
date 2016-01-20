@@ -1,0 +1,23 @@
+.service-md {
+  &__list {
+    float: left;
+    width: 50%;
+    padding-right: 20px;
+    min-width: 200px;
+    li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 4px;
+      font-size: 1.4rem;
+      @include to(lg) {
+        font-size: 1.3rem;
+      }
+    }
+    li::before {
+      content: "—";
+      position: absolute;
+      left: 0px;
+    }
+  }
+  &__clear {clear: left}
+}
