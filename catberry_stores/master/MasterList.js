@@ -113,7 +113,7 @@ MasterList.prototype._strucrurResult = function (result) {
  */
 MasterList.prototype.handleGetNextPage = function () {
     if (this._isFinished) {
-        return;
+        return null;
     }
     var self = this;
     return Promise.resolve()

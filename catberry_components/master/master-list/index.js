@@ -16,7 +16,7 @@ function MasterList($serviceLocator) {
 // we can use window from the locator in a browser only
     if (this.$context.isBrowser) {
         this._window = $serviceLocator.resolve('window');
-        this._handlerScroll = this._handlerScroll.bind(this);
+        this._handleScroll = this._handleScroll.bind(this);
     }
 }
 
@@ -37,12 +37,12 @@ MasterList.prototype.render = function () {
  */
 MasterList.prototype.bind = function () {
     this._window.addEventListener('resize', this._allMinicardServicesCut);
-    this._window.addEventListener('scroll', this._handlerScroll);
+    this._window.addEventListener('scroll', this._handleScroll);
 };
 
 MasterList.prototype.unbind = function () {
     this._window.removeEventListener('resize', this._allMinicardServicesCut);
-    this._window.removeEventListener('scroll', this._handlerScroll);
+    this._window.removeEventListener('scroll', this._handleScroll);
     this.$context.collectGarbage();
 };
 
@@ -50,28 +50,43 @@ MasterList.prototype.unbind = function () {
  * Handles window scroll for infinite scroll loading.
  * @private
  */
-MasterList.prototype._handlerScroll = function () {
+MasterList.prototype._handleScroll = function () {
+    var self = this;
     var windowHeight = this._window.innerHeight,
         scrollTop = this._window.pageYOffset,
         doc = this._window.document.documentElement;
     try {
         // when scroll to the bottom of the page load more items
-        if (scrollTop >= (doc.scrollHeight - windowHeight * 1.5) ||
-            doc.scrollHeight <= windowHeight) {
-            //console.log('loadMoreItems');
-            this._loadMoreItems();
+        if (
+            !this._isBusy &&
+            (scrollTop >= (doc.scrollHeight - windowHeight * 2) ||
+            doc.scrollHeight <= windowHeight)
+        ) {
+            this._isBusy = true;
+            if (!this._isFinish) {
+                $('#wait-spinner').show();
+                this._loadMoreItems()
+                    .then(function (finish) {
+                        if (finish === null) {
+                            self._isFinish = true;
+                        }
+                        self._isBusy = false;
+                        $('#wait-spinner').fadeOut(800);
+                    });
+            }
         }
     } catch (e) {
         // do nothing
     }
 };
-
+MasterList.prototype._isBusy = false;
+MasterList.prototype._isFinish = false;
 /**
  * Loads more items to feed.
  * @private
  */
 MasterList.prototype._loadMoreItems = function () {
-    this.$context.sendAction('getNextPage');
+    return this.$context.sendAction('getNextPage');
 };
 
 MasterList.prototype._allMinicardServicesCut = function () {

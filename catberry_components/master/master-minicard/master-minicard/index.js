@@ -97,7 +97,7 @@ MasterMinicard.prototype._minicardServicesCut = function () {
         minicard.find('.master-minicard').height() - (minicard.find('.master-minicard__name').height() + minicard.find('.master-minicard__spec').height());
     var servicesCount = minicardServices.find('li').length;
 
-    while (minicardServices.height() > maxHeight) {
+    while (minicardServices.height() > maxHeight && servicesCount != 0) {
         $(minicardServices.find('li')[servicesCount]).hide();
         servicesCount--;
     }
