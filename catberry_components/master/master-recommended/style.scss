@@ -6,6 +6,7 @@
   height: 125px;
   padding: 6px 15px 0 250px;
   position: relative;
+  overflow: hidden;
   @include cf;
   &__slider {
     padding: 0 30px;

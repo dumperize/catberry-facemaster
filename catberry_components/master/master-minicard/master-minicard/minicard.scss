@@ -4,6 +4,7 @@
   @extend .bg_grey;
   padding: 20px;
   position: relative;
+  //height: 20px;
   height: 298px;
   overflow: hidden;
   color: $color-text;
@@ -72,7 +73,7 @@
     @include at(xs) {
       display: none;
     }
-      &:hover {
+    &:hover {
       color: #FFF;
       background-color: #ea5159 + #111111;
     }
@@ -99,11 +100,14 @@
     font-size: 1.8rem;
     line-height: 1.2em;
     margin-bottom: 5px;
+    text-transform: capitalize;
   }
   &__spec {
     font-size: 1.4rem;
   }
   &__services {
+    //border: 1px solid blue;
+    //word-break: break-all;
     position: relative;
     margin-left: 164px + 20px;
     padding: 10px 0;
@@ -155,8 +159,10 @@
       display: table-cell;
       //float: left;
       width: 100px;
-      text-align: center;
+      //text-align: left;
       vertical-align: middle;
+      font-size: 1.3rem;
+      line-height: 1.2em;
     }
     span:first-child {
       width: auto;
@@ -183,6 +189,7 @@
     padding-left: 0 !important;
   }
 }
+
 .master-content-widget {
   position: absolute;
   right: 0;
@@ -224,12 +231,8 @@
     float: right;
     clear: right;
   }
-  li.act:hover {
-    background-color: #FFF;
+  li.act {
     margin-left: 170px;
-    i + div {
-      display: block;
-    }
   }
   i {
     width: 46px;
@@ -260,15 +263,25 @@
     height: 70px;
     display: table;
     color: #FFF;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     > span {
       display: table-cell;
       vertical-align: middle;
       text-align: center;
-      padding: 10px;
+      padding: 0 10px;
+      overflow: hidden;
     }
   }
   &__text {
     font-size: 1rem;
+    //border: 1px solid blue;
+    height: 90px;
+    overflow: hidden;
+  }
+  li.act.show {
+    background-color: #FFF;
+    i + div {
+      display: block;
+    }
   }
 }

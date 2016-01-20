@@ -51,26 +51,42 @@ MasterList.prototype.unbind = function () {
  * @private
  */
 MasterList.prototype._handleScroll = function () {
+    var self = this;
     var windowHeight = this._window.innerHeight,
         scrollTop = this._window.pageYOffset,
         doc = this._window.document.documentElement;
     try {
         // when scroll to the bottom of the page load more items
-        if (scrollTop >= (doc.scrollHeight - windowHeight) ||
-            doc.scrollHeight <= windowHeight) {
-            this._loadMoreItems();
+        if (
+            !this._isBusy &&
+            (scrollTop >= (doc.scrollHeight - windowHeight * 2) ||
+            doc.scrollHeight <= windowHeight)
+        ) {
+            this._isBusy = true;
+            if (!this._isFinish) {
+                $('#wait-spinner').show();
+                this._loadMoreItems()
+                    .then(function (finish) {
+                        if (finish === null) {
+                            self._isFinish = true;
+                        }
+                        self._isBusy = false;
+                        $('#wait-spinner').fadeOut(800);
+                    });
+            }
         }
     } catch (e) {
         // do nothing
     }
 };
-
+MasterList.prototype._isBusy = false;
+MasterList.prototype._isFinish = false;
 /**
  * Loads more items to feed.
  * @private
  */
 MasterList.prototype._loadMoreItems = function () {
-    this.$context.sendAction('getNextPage');
+    return this.$context.sendAction('getNextPage');
 };
 
 MasterList.prototype._allMinicardServicesCut = function () {

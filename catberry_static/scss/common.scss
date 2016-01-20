@@ -80,6 +80,25 @@ p {
     height: 50px;
     width: 40px;
 }
+.wait-spinner {
+    text-align: center;
+    &__animate {
+        display: inline-block;
+        width: 48px;
+        height: 48px;
+        vertical-align: middle;
+        animation: spin 1s steps(12) infinite;
+    }
+    @keyframes spin {
+        0%   { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .icon_spinner {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto;
+    }
+}
 //
 // Grid system
 // --------------------------------------------------

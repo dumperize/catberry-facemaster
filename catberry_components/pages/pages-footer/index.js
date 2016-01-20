@@ -47,7 +47,24 @@ Footer.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 Footer.prototype.bind = function () {
+    var windowHeight = $(window).height();
+    $('.to-top').children('a').bind('click', scrollToTop);
+    $(window).bind('scroll', isVisibleToTop);
 
+    function scrollToTop() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 1000);
+        return false;
+    }
+
+    function isVisibleToTop() {
+        if (windowHeight / 2 > $(window).scrollTop()) {
+            $('.to-top').fadeOut(400);
+        } else {
+            $('.to-top').fadeIn(400);
+        }
+    }
 };
 
 /**
@@ -56,5 +73,6 @@ Footer.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 Footer.prototype.unbind = function () {
-
+    $('.to-top').children('a').unbind('click');
+    $(window).unbind('scroll');
 };

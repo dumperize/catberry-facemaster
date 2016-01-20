@@ -29,6 +29,7 @@ MasterPage.prototype.render = function () {
     });
 };
 
+MasterPage.prototype._ta = null;
 /**
  * Returns event binding settings for the component.
  * This method is optional.
@@ -41,7 +42,7 @@ MasterPage.prototype.bind = function () {
 
     $(window).bind('scroll', fixedSectionMenu);
     $(window).bind('scroll', menuHighlight);
-    menu.find('a').bind('click', scrollToSection);
+    $('.menu-mp a').bind('click', scrollToSection);
     $('.contacts-mp__show-contact').bind('click', showContact);
     $('.js-show-callback-popup').bind('click', showCallbackPopup);
     autosize(ta);
@@ -101,7 +102,7 @@ MasterPage.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 MasterPage.prototype.unbind = function () {
-    var ta = $('textarea');
+    var ta = document.querySelector('textarea');
     var evt = document.createEvent('Event');
 
     $(window).unbind('scroll');
