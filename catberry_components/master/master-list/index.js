@@ -56,10 +56,9 @@ MasterList.prototype._handlerScroll = function () {
         doc = this._window.document.documentElement;
     try {
         // when scroll to the bottom of the page load more items
-        //console.log(scrollTop + ' - ' + (doc.scrollHeight - windowHeight));
-        if (scrollTop >= (doc.scrollHeight - windowHeight) ||
+        if (scrollTop >= (doc.scrollHeight - windowHeight * 1.5) ||
             doc.scrollHeight <= windowHeight) {
-            console.log('loadMoreItems');
+            //console.log('loadMoreItems');
             this._loadMoreItems();
         }
     } catch (e) {
