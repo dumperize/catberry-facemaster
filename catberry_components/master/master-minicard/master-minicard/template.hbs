@@ -62,7 +62,12 @@
                 <i>{{icon "picture"}}</i>
 
                 <div>
-                    <p elem="info"><span>{{albumsCount}} фотоальбомов</span></p>
+                    <p elem="info">
+                        <span>
+                            У Мастера:<br>
+                            <strong>{{getNumEnding albumsCount "фотоальбом, фотоальбома, фотоальбомов"}}</strong>
+                        </span>
+                    </p>
 
                     <p elem="text">{{albumsTitle}}</p>
                 </div>
@@ -80,8 +85,15 @@
                 <i>{{icon "dialog"}}</i>
 
                 <div>
-                    <p elem="info"><span>У Мастера:<br><strong>{{vkLikes.countLikes}} рекомендация<br>{{commentsCount}}
-                        отзывов</strong></span></p>
+                    <p elem="info">
+                        <span>
+                            У Мастера:<br>
+                            <strong>
+                                {{getNumEnding vkLikes.countLikes "рекомендация, рекомендации, рекомендаций"}}<br>
+                                {{getNumEnding commentsCount "отзыв, отзыва, отзывов"}}
+                            </strong>
+                        </span>
+                    </p>
 
                     <p elem="text">«{{comments.0.text}}»</p>
                 </div>
