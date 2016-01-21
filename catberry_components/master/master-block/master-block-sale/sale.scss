@@ -29,6 +29,28 @@
       background-color: $color-orange - #111111;
     }
   }
+  &_catalog {
+    padding: 0;
+    background-color: #FFF;
+    height: 250px;
+    max-height: 250px;
+    &:hover {
+      background-color: #FFF;
+    }
+    .sale {
+      &__title {
+        margin-bottom: 0;
+      }
+      &__pic {
+        margin-bottom: 8px;
+      }
+      &__text {
+        padding: 0 8px 5px 8px;
+        height: 68px;
+        //border: 1px solid blue;
+      }
+    }
+  }
   &__pic {
     max-height: 126px;
     margin-bottom: 10px;

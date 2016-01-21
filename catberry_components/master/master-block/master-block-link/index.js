@@ -27,8 +27,9 @@ MasterBlockLink.prototype.render = function () {
         return this.$context.getStoreData()
             .then(function (data) {
                 //console.log(data.contacts);
+                data.contacts.links = JSON.parse(data.contacts.links);
                 return {
-                    contacts: data.contacts
+                    links: data.contacts.links
                 }
             });
     }

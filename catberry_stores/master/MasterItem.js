@@ -117,7 +117,7 @@ MasterItem.prototype.load = function () {
                         link: {
                             access: page.links,
                             name: "Ссылки",
-                            active: (data.links)
+                            active: (data.contacts.links)
                         },
                         review: {
                             access: page.comments,

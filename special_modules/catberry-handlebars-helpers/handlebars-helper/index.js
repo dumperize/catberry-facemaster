@@ -257,14 +257,21 @@ module.exports = function (Handlebars) {
                 '</svg>'
             );
         },
-        imgSrc: function (imgId, width, height) {
+        imgSrc: function (imgId, width, height, sys) {
             var imgSrc = 'http://api-fm.present-tlt.ru/files?key=' + imgId;
+            var typeWidth = typeof width;
+            var widthNumber = (typeof width) == "number";
+            var heightNumber = (typeof height) == "number";
 
-            if (typeof(width) != "undefined" && typeof(width) == "number") {
-                imgSrc = imgSrc + '&width=' + width;
-            }
-            if (typeof(height) != "undefined" && typeof(height) == "number") {
-                imgSrc = imgSrc + '&height=' + height;
+            if (widthNumber && heightNumber && (width == height)) {
+                imgSrc = imgSrc + '&square=' + height;
+            } else {
+                if ((typeWidth != "undefined") && heightNumber) {
+                    imgSrc = imgSrc + '&width=' + width;
+                }
+                if ((typeWidth != "undefined") && heightNumber) {
+                    imgSrc = imgSrc + '&height=' + height;
+                }
             }
             //console.log(imgSrc);
             return new Handlebars.SafeString(imgSrc);
