@@ -24,16 +24,25 @@
   }
   &__subhead {
     //border: 1px solid red;
-    @extend .col-lg-3;
+    @extend .col-md-3;
+    @include to(md) {
+      display: none;
+    }
     padding: 10px 10px 20px 10px;
   }
   &__shares {
     //border: 1px solid orange;
-    @extend .col-lg-9;
+    @extend .col-md-9;
+    @include at(sm) {
+      @extend .col-xs-12;
+    }
     padding: 10px 5px 0 5px;
   }
   &__sale-item {
     @extend .col-lg-3;
+    @include at(md) {
+      @extend .col-sm-4;
+    }
     padding: 0 5px 20px 5px;
   }
   &__list {
