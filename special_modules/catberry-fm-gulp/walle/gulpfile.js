@@ -65,7 +65,7 @@ gulp.task('build-dev', function (cb) {
     runSequence(
         [
             'css:compile-css',
-            'bower:compile-vendor-js', 'bower:compile-vendor-css',
+            'bower:compile-vendor-js', 'bower:compile-vendor-css', 'bower:move-vendor-img',
             'svg:generate-svg'
         ],
         //'service:clean',
