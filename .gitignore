@@ -10,6 +10,8 @@ npm-debug.log
 phantomjsdriver.log
 /nbproject/*
 
-
+__BrowserBundle.js
+public/bundle.js
+public/css/*.css
 
 bower_components
