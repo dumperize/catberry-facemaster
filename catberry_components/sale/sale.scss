@@ -1,0 +1,90 @@
+.sale-catalog {
+  @extend .col-xs-12;
+  &__title {
+    padding: 5px 10px;
+    height: 43px;
+    line-height: 33px;
+    font-size: 1.6rem;
+    color: #FFF;
+    span {
+      opacity: 0.8;
+      border-left: 1px solid #FFF;
+      float: right;
+      display: inline-block;
+      width: 43px;
+      text-align: center;
+      padding-left: 10px;
+    }
+  }
+  &__item {
+    //border: 1px solid blue;
+    background-color: $color-bg-grey-light;
+    margin-bottom: 20px;
+    @extend .row;
+  }
+  &__subhead {
+    //border: 1px solid red;
+    @extend .col-md-3;
+    @include to(md) {
+      display: none;
+    }
+    padding: 10px 10px 20px 10px;
+  }
+  &__shares {
+    //border: 1px solid orange;
+    @extend .col-md-9;
+    @include at(sm) {
+      @extend .col-xs-12;
+    }
+    padding: 10px 5px 0 5px;
+  }
+  &__sale-item {
+    @extend .col-lg-3;
+    @include at(md) {
+      @extend .col-sm-4;
+    }
+    padding: 0 5px 20px 5px;
+  }
+  &__list {
+    font-size: 1.3rem;
+    li.act {
+      > a {
+        color: #ED686E;
+      }
+      > svg {
+        transform: rotate(90deg);
+        fill: #ED686E;
+      }
+    }
+    li {
+      margin-bottom: 4px;
+      ul {
+        margin: 5px 0 8px 10px;
+        font-size: 1.1rem;
+        svg {
+          width: 7px;
+          height: 7px;
+          top: -1px;
+          margin-right: 0;
+        }
+      }
+    }
+    a {
+      text-decoration: none;
+      &:hover {
+        color: #ED686E;
+      }
+      span {
+        margin-left: 8px;
+      }
+    }
+    svg {
+      width: 9px;
+      height: 9px;
+      position: relative;
+      margin-right: -1px;
+      //top: 1px;
+      //vertical-align: middle;
+    }
+  }
+}

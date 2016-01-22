@@ -34,7 +34,7 @@
         <div elem="list-cont">
             <p elem="list-caption" mod="mini">Город</p>
             <ul elem="list">
-                {{#each district}}
+                {{#each districts}}
                     {{#is type "==" 1}}
                         <li>{{name}}</li>
                     {{/is}}
@@ -45,7 +45,7 @@
         <div elem="list-cont">
             <p elem="list-caption" mod="mini">Пригород</p>
             <ul elem="list">
-                {{#each district}}
+                {{#each districts}}
                     {{#is type "==" 2}}
                         <li>{{name}}</li>
                     {{/is}}

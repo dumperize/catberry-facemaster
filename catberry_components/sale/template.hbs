@@ -1,37 +1,76 @@
-{{#each this}}
-    {{#if active}}
-        <p><strong>{{parent.name}} {{parent.saleCount}}</strong></p>
-        <div>
-            <p>подрубрики:</p>
-            {{#if root}}
-                {{#each podrubriks}}
-                    {{#if ../active}}
-                        {{#if root}}
-                            <p>---<a href="/sale/catalog/{{parent.id}}">{{parent.name}}</a> {{parent.saleCount}}</p>
-                            {{#each podrubriks}}
-                                {{#if ../active}}
-                                    <p>-----<a href="/sale/catalog/{{id}}">{{name}}</a> {{saleCount}} {{#if active}}
-                                        active{{/if}}</p>
-                                {{/if}}
-                            {{/each}}
-                        {{else}}
-                            <p>---<a href="/sale/catalog/{{id}}">{{name}}</a> {{saleCount}} {{#if active}}active{{/if}}
-                            </p>
+<div block="sale-catalog">
+    {{#each this}}
+        {{#if active}}
+            <div elem="item">
+                <p elem="title" style="background-color: {{children.0.root.color}}">
+                    {{parent.name}}
+                    <span>{{parent.saleCount}}</span>
+                </p>
+
+                <div elem="shares">
+                    {{#each sale}}
+                        <div elem="sale-item">
+                            <div block="sale" mod="catalog">
+                                <a href="" elem="link">
+                                    <p elem="title">
+                                        {{#is type "==" 1}}
+                                            Подарок
+                                        {{/is}}
+                                        {{#is type "==" 2}}
+                                            Скидка {{discount}}%
+                                        {{/is}}
+                                        {{#is type "==" 3}}
+                                            -{{discount}} руб.
+                                        {{/is}}
+                                    </p>
+
+                                    <div elem="pic"><img src="{{imgSrc imgID 200 200}}" elem="img" alt="{{title}}">
+                                    </div>
+                                    <p elem="text">{{title}}</p>
+                                </a>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+
+                <div elem="subhead">
+                    {{#if root}}
+                        {{#if active}}
+                            <ul elem="list">
+                                {{#each podrubriks}}
+                                    {{#if root}}
+                                        <li elem="root" class="{{#if active}}act{{/if}}">
+                                            {{icon "strelka"}}
+                                            <a href="/sale/catalog/{{parent.id}}">{{parent.name}}
+                                                <span>{{parent.saleCount}}</span></a>
+                                            {{#if active}}
+                                            <ul>
+                                                {{#each podrubriks}}
+                                                    <li elem="child" class="{{#if active}}act{{/if}}">
+                                                        {{icon "strelka"}}
+                                                        <a href="/sale/catalog/{{id}}">{{name}}
+                                                            <span>{{saleCount}}</span></a>
+                                                    </li>
+                                                {{/each}}
+                                            </ul>
+                                            {{/if}}
+                                        </li>
+
+                                    {{else}}
+                                        <li elem="child" class="{{#if active}}act{{/if}}">
+                                            {{icon "strelka"}}
+                                            <a href="/sale/catalog/{{id}}">{{name}}
+                                                <span>{{saleCount}}</span></a>
+                                        </li>
+                                    {{/if}}
+                                {{/each}}
+                            </ul>
                         {{/if}}
                     {{/if}}
-                {{/each}}
-            {{/if}}
-        </div>
-        <div>
-            <p>акции</p>
-            {{#each sale}}
-                <p>{{title}}</p>
-            {{/each}}
+                </div>
+            </div>
             <cat-common-paginator id="common-paginator{{parent.id}}" cat-store="Paginator"
                                   model="sale/SaleByRubrika"></cat-common-paginator>
-        </div>
-        <hr>
-    {{/if}}
-{{/each}}
-
-
+        {{/if}}
+    {{/each}}
+</div><!-- sale-catalog -->

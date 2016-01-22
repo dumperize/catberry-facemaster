@@ -23,7 +23,11 @@ function Sale() {
  * for template engine.
  */
 Sale.prototype.render = function () {
-    return this.$context.getStoreData();
+    return this.$context.getStoreData()
+        .then(function (data) {
+            //console.log(data);
+            return data;
+        });
 };
 
 /**
@@ -32,7 +36,7 @@ Sale.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 Sale.prototype.bind = function () {
-
+    $('li.act:has(.act)').removeClass('act');
 };
 
 /**

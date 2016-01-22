@@ -10,7 +10,7 @@
     {{#each albums}}
         <div elem="album-cover" mix="block: js-select-album" id="album-{{id}}">
             <a href="/master-data-edit/json3.json">
-                <img src="{{imgSrc photos.0.imgID 200}}" alt="{{name}}"><br>
+                <img src="{{imgSrc photos.0.imgID 200 200}}" alt="{{name}}"><br>
                 <span>{{name}}</span>
             </a>
         </div>
@@ -25,7 +25,7 @@
                 <div elem="wrapper">
                     {{#each photos}}
                         <a href="{{imgSrc imgID}}" elem="img-prev">
-                            <img src="{{imgSrc imgID 200}}" alt="{{description}}"><br>
+                            <img src="{{imgSrc imgID 200 200}}" alt="{{description}}"><br>
                         </a>
                     {{/each}}
                 </div>

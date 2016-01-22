@@ -29,6 +29,39 @@
       background-color: $color-orange - #111111;
     }
   }
+  &_catalog {
+    padding: 0;
+    background-color: #FFF;
+    height: 250px;
+    max-height: 250px;
+    &:hover {
+      background-color: #FFF;
+    }
+    .sale {
+      &__title {
+        margin-bottom: 0;
+      }
+      &__pic {
+        margin-bottom: 8px;
+        @include at(xs) {
+          margin-bottom: 0;
+          max-height: 210px;
+        }
+      }
+      &__text {
+        padding: 0 8px 5px 8px;
+        height: 67px;
+        @include at(sm) {
+          font-size: 1.1rem;
+          height: 69px;
+        }
+        @include at(xs) {
+          display: none;
+        }
+        //border: 1px solid blue;
+      }
+    }
+  }
   &__pic {
     max-height: 126px;
     margin-bottom: 10px;
