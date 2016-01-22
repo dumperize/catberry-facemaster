@@ -54,6 +54,7 @@ walle.packages = {
     promisePolyfill: require('es6-promise'),
     rename: require('gulp-rename'),
     replace: require('gulp-replace-task'),
+    cssUrl: require('gulp-modify-css-urls'),
     runSequence: require('run-sequence'),
     sass: require('gulp-sass'),
     sourcemaps: require('gulp-sourcemaps'),

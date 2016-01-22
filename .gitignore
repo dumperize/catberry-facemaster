@@ -13,5 +13,7 @@ phantomjsdriver.log
 __BrowserBundle.js
 public/bundle.js
 public/css/*.css
+public/img/vendor/**/*.*
+public/img/icon-svg/**/*.*
 
 bower_components
