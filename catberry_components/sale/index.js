@@ -36,7 +36,7 @@ Sale.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 Sale.prototype.bind = function () {
-
+    $('li.act:has(.act)').removeClass('act');
 };
 
 /**
