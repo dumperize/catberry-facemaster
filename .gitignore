@@ -1,17 +1,13 @@
 node_modules
-**/node_modules
 
 .DS_Store
 ._.DS_Store
 
 .idea
-.idea/**/*.*
 npm-debug.log
 phantomjsdriver.log
 /nbproject/*
 
-__BrowserBundle.js
-public/bundle.js
-public/css/*.css
+
 
 bower_components
