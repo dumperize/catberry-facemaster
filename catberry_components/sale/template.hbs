@@ -1,64 +1,37 @@
-данный hbs сделан так для примера его можно разбить для удобства по блокам
-
-{{#if currentRubrika}}
-    <h2>Рубрикатор</h2>
-
-    {{#each rubrikator}}
-        {{#if active}}
-            <p>{{name}} {{saleCount}}</p>
-            {{#each children}}
-                {{#if root}}
-                    <p>---<a href="/sale/catalog/{{root.id}}">{{root.name}}</a> {{saleCount}}</p>
-                    {{#if root.active}}
-                        {{#each child}}
-                            <p>
-                                ------<a href="/sale/catalog/{{id}}">{{name}}</a> {{saleCount}}
-                                {{#if active}}
-                                    активная
-                                {{/if}}
-                            </p>
-                        {{/each}}
-                    {{/if}}
-                {{else}}
-                    {{#each child}}
-                        <p>---<a href="/sale/catalog/{{id}}">{{name}}</a> {{saleCount}}</p>
-                    {{/each}}
-                {{/if}}
-            {{/each}}
-
-        {{/if}}
-    {{/each}}
-    <h2>Скидки</h2>
-    {{#each sale}}
-        <div>
-            {{title}}
-        </div>
-    {{/each}}
-    <cat-common-paginator id="common-paginator" cat-store="Paginator" model="sale/SaleByRubrika"></cat-common-paginator>
-{{else}}
-
-    {{#each this}}
-        <p>{{name}} {{saleCount}}</p>
+{{#each this}}
+    {{#if active}}
+        <p><strong>{{parent.name}} {{parent.saleCount}}</strong></p>
         <div>
             <p>подрубрики:</p>
-            {{#each children}}
-                {{#if root}}
-                    <p>---<a href="/sale/catalog/{{root.id}}">{{root.name}}</a> {{saleCount}}</p>
-                {{else}}
-                    {{#each child}}
-                        <p>---<a href="/sale/catalog/{{id}}">{{name}}</a> {{saleCount}}</p>
-                    {{/each}}
-                {{/if}}
-            {{/each}}
+            {{#if root}}
+                {{#each podrubriks}}
+                    {{#if ../active}}
+                        {{#if root}}
+                            <p>---<a href="/sale/catalog/{{parent.id}}">{{parent.name}}</a> {{parent.saleCount}}</p>
+                            {{#each podrubriks}}
+                                {{#if ../active}}
+                                    <p>-----<a href="/sale/catalog/{{id}}">{{name}}</a> {{saleCount}} {{#if active}}
+                                        active{{/if}}</p>
+                                {{/if}}
+                            {{/each}}
+                        {{else}}
+                            <p>---<a href="/sale/catalog/{{id}}">{{name}}</a> {{saleCount}} {{#if active}}active{{/if}}
+                            </p>
+                        {{/if}}
+                    {{/if}}
+                {{/each}}
+            {{/if}}
         </div>
         <div>
             <p>акции</p>
             {{#each sale}}
                 <p>{{title}}</p>
             {{/each}}
+            <cat-common-paginator id="common-paginator{{parent.id}}" cat-store="Paginator"
+                                  model="sale/SaleByRubrika"></cat-common-paginator>
         </div>
         <hr>
-    {{/each}}
+    {{/if}}
+{{/each}}
 
-{{/if}}
 

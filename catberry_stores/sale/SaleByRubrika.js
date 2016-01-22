@@ -65,11 +65,8 @@ SaleByRubrika.prototype._setUrlForPage = function (rubrika) {
  */
 SaleByRubrika.prototype.load = function () {
     var self = this;
-    return Promise.resolve(1)
-        .then(function () {
-            // выясним текущую страницу
-            return self.$context.sendAction("Paginator", "getCurrentPage");
-        })
+    // выясним текущую страницу
+    return self.$context.sendAction("Paginator", "getCurrentPage")
         .then(function (page) {
             //установим значения для страницы
             self._currentPage = page;
@@ -78,16 +75,14 @@ SaleByRubrika.prototype.load = function () {
             return self.$context.getStoreData("rubrika/RubrikatorSale")
         })
         .then(function (rubrikator) {
-            //запомним весь рубрикатор в переменной
-            self._rubrikator = rubrikator.list;
             //если нет активной рубрики значит это главная страница
             if (!rubrikator.active)
-                return self._getDataForMainPage();//сформируем данные для главной страницы
+                return self._getDataForMainPage(rubrikator.list);//сформируем данные для главной страницы
 
             //иначее сформируем данные для рубрики
             //но для начала установим url для навигации по текущей рубрике
             self._setUrlForPage(rubrikator.active);
-            return self._getDataForRubrikaPage(rubrikator.active);
+            return self._getDataForRubrikaPage(rubrikator.list, rubrikator.active);
         });
 };
 /**
@@ -95,93 +90,118 @@ SaleByRubrika.prototype.load = function () {
  * @returns {Promise}
  * @private
  */
-SaleByRubrika.prototype._getDataForMainPage = function () {
+SaleByRubrika.prototype._getDataForMainPage = function (list) {
     var self = this;
     var promises = [];//массив для промисов
 
     //Сформируем список id по группам рубрик, для того чтобы достать по 4 акции для каждой группы
-    this._rubrikator.forEach(function (el) {
+    list.forEach(function (el) {
         var listID = [];
-        el.children.forEach(function (child) {
-            child.child.forEach(function (rubrika) {
-                listID.push(rubrika.id);
+        if (el.root) {
+            el.active = true;
+            el.podrubriks.forEach(function (elLevel2) {
+                elLevel2.active = false;
+                if (elLevel2.root) {
+                    elLevel2.podrubriks.forEach(function (elLevel3) {
+                        elLevel3.active = false;
+                        listID.push(elLevel3.id);
+                    });
+                } else {
+                    listID.push(elLevel2.id);
+                }
             });
-        });
+        }
         //для каждого делаем запрос к api
-        promises.push(self._getSaleData(listID));
+        promises.push(self._getSaleData(listID, 4));
     });
     //ждем когда все промисы выполнятся
     return Promise.all(promises)
         //затем добавим к данным по рубрикам принадлежащие им скидки
         .then(function (sale) {
-            for (var i = 0; i < self._rubrikator.length; i++) {
-                self._rubrikator[i].sale = sale[i];
+            self._pageCount = 1;
+            for (var i = 0; i < list.length; i++) {
+                list[i].sale = sale[i];
             }
             // и отдадим все это в hbs
-            return self._rubrikator;
+            return list;
         });
 };
 
 /**
  * Формирование данных для страницы рубрики каталога скидок
+ * Требует рефакторинга
  * @param currentRubrika текуая рубрика
  * @returns {Promise}
  * @private
  */
-SaleByRubrika.prototype._getDataForRubrikaPage = function (currentRubrika) {
+SaleByRubrika.prototype._getDataForRubrikaPage = function (list, currentRubrika) {
     var self = this;
     var listID = [];
+    var promises = [];//массив для промисов
 
-    //переберем весь рубрикатор и отметим активностью те ветви которые необходимо открыть
-    //также сразу подготовим список id для запроса по акциям
-    this._rubrikator.forEach(function (el) {
-        el.active = false;
+    //!!!внимание требует рефакторинга
+    list.forEach(function (el) {
+        var listID = [];
+        var flag = false;
+        if (el.root) {
 
-        el.children.forEach(function (child) {
-            if (child.root)
-                child.root.active = false;
-            if (child.root && child.root.id == currentRubrika) {
+            if (el.parent.id == currentRubrika) {
                 el.active = true;
-                child.root.active = true;
-                currentRubrika = child.root;
-
-                child.child.forEach(function (rubrika) {
-                    rubrika.active = false;
-                    listID.push(rubrika.id);
-                });
+                flag = true;
             } else {
-                child.child.forEach(function (rubrika) {
-                    if (rubrika.id == currentRubrika) {
-                        rubrika.active = true;
-                        el.active = true;
-                        child.root.active = true;
-                        currentRubrika = rubrika;
-                        listID.push(rubrika.id);
-                    } else {
-                        rubrika.active = false;
-                    }
-                });
+                el.active = false;
             }
-        });
+
+            el.podrubriks.forEach(function (elLevel2) {
+                var flag2 = false;
+                if (elLevel2.root) {
+
+                    if (elLevel2.parent.id == currentRubrika) {
+                        elLevel2.active = true;
+                        el.active = true;
+                        flag2 = true;
+                    } else {
+                        elLevel2.active = false;
+                    }
+
+                    elLevel2.podrubriks.forEach(function (elLevel3) {
+                        var flag3 = false;
+                        if (elLevel3.id == currentRubrika) {
+                            elLevel3.active = true;
+                            elLevel2.active = true;
+                            el.active = true;
+                            flag3 = true;
+                        } else {
+                            elLevel3.active = false;
+                        }
+                        if (flag || flag2 || flag3)
+                            listID.push(elLevel3.id);
+                    });
+                } else {
+                    if (elLevel2.id == currentRubrika) {
+                        elLevel2.active = true;
+                        el.active = true;
+                        flag2 = true;
+                    } else {
+                        elLevel2.active = false;
+                    }
+                    if (flag || flag2)
+                        listID.push(elLevel2.id);
+                }
+            });
+        }
+        //для каждого делаем запрос к api
+        promises.push(self._getSaleData(listID, 20));
     });
 
-    this._options.data.filter = '["and", ["in", "rubrikaID",[' + listID.join(',') + ']]]';
-    this._options.data.limit = 20;
-    return this._uhr.get(this._path, this._options)
-        .then(function (result) {
-            if (result.status.code >= 400 && result.status.code < 600) {
-                throw new Error(result.status.text);
-            }
-            self._pageCount = result.status.headers['x-pagination-page-count'];
-            return result.content;
-        })
+    return Promise.all(promises)
+        //затем добавим к данным по рубрикам принадлежащие им скидки
         .then(function (sale) {
-            return {
-                currentPage: self._currentPage,
-                currentRubrika: currentRubrika,
-                rubrikator: self._rubrikator,
-                sale: sale
-            };
+            for (var i = 0; i < list.length; i++) {
+                list[i].sale = sale[i];
+            }
+            // и отдадим все это в hbs
+            return list;
         });
 };
 
@@ -191,14 +211,21 @@ SaleByRubrika.prototype._getDataForRubrikaPage = function (currentRubrika) {
  * @returns {*}
  * @private
  */
-SaleByRubrika.prototype._getSaleData = function (id) {
+SaleByRubrika.prototype._getSaleData = function (id, limit) {
+    var self = this;
+
+    if (id.length == 0) {
+        self._pageCount = 1;
+        return null;
+    }
     this._options.data.filter = '["and", ["in", "rubrikaID",[' + id.join(',') + ']]]';
-    this._options.data.limit = 4;
+    this._options.data.limit = limit;
     return this._uhr.get(this._path, this._options)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
             }
+            self._pageCount = result.status.headers['x-pagination-page-count'];
             return result.content;
         });
 };

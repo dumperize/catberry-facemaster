@@ -31,6 +31,8 @@
       "main": [
         "source/jquery.fancybox.pack.js",
         "source/jquery.fancybox.css",
+        "source/**/*.png",
+        "source/**/*.gif",
         "source/helpers/jquery.fancybox-buttons.js",
         "source/helpers/jquery.fancybox-buttons.css",
         "source/helpers/jquery.fancybox-thumbs.js",

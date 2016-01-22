@@ -1,5 +1,8 @@
 'use strict';
 
+var RubrikaFormat = require('../../lib/util/RubrikaFormat');
+var Rubrikator = require("../../config/saleCatalog.json");
+
 module.exports = RubrikatorSale;
 
 /*
@@ -24,49 +27,9 @@ function RubrikatorSale($uhr) {
             limit: 300
         }
     };
-    this._groups = [
-        {
-            name: "Ремонт, строительство, интерьер",
-            childrenID: [86, 87, 88, 102]
-        },
-        {
-            name: "Здоровье, красота, мода",
-            childrenID: [24, 143, 113, 27, 132]
-        },
-        {
-            name: "Отдых и праздники",
-            childrenID: [36, 103, 125, 149]
-        },
-        {
-            name: "Консультации",
-            childrenID: [5, 114]
-        },
-        {
-            name: "Автоуслуги и доставка",
-            childrenID: [19, 106]
-        },
-        {
-            name: "Недвижимость",
-            childrenID: [1]
-        },
-        {
-            name: "Техника",
-            childrenID: [42]
-        },
-        {
-            name: "Дригие услуги",
-            childrenID: []
-        }
-    ];
-    this._parentToGroup = {};
+    this._groups = this._cloneRubrikator(Rubrikator);
+    this._parentToGroup = this._getParentToGroup(this._groups);
     this.loadRubriks = false;
-    var self = this;
-    for (var i = 0; i < this._groups.length; ++i) {
-        var el = this._groups[i];
-        el.childrenID.forEach(function (id) {
-            self._parentToGroup[id] = i;
-        });
-    }
 }
 
 /**
@@ -118,47 +81,74 @@ RubrikatorSale.prototype._loadData = function () {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
             }
-            var data = result.content;
-            var dataLevel = {};
-
             //сначала выстраиваем древовидную структуру
-            data.forEach(function (el) {
-                if (el.parentID == 0) {
-                    if (!dataLevel[el.id])
-                        dataLevel[el.id] = {root: el, child: [], saleCount: 0};
-                    dataLevel[el.id].root = el;
-
-                    if (self._parentToGroup[el.id] == undefined) {
-                        self._groups[self._groups.length - 1].childrenID.push(el.id);
-                    }
+            var tree = RubrikaFormat.makeTree(result.content, function (el, tree) {
+                if (el.parentID != 0) {
+                    if (!tree[el.parentID].parent.saleCount)
+                        tree[el.parentID].parent.saleCount = 0;
+                    tree[el.parentID].parent.saleCount += +el.saleCount;
                 } else {
-                    if (!dataLevel[el.parentID])
-                        dataLevel[el.parentID] = {root: {}, child: [], saleCount: 0};
-
-                    dataLevel[el.parentID].saleCount += +el.saleCount;
-                    dataLevel[el.parentID].child.push(el);
+                    if (self._parentToGroup[el.id] == undefined) {
+                        self._parentToGroup[el.id] = self._groups.length - 1;
+                        self._groups[self._groups.length - 1].childID.push(el.id);
+                    }
                 }
             });
 
             //затем прицепляем к главному дереву
-            self._groups.forEach(function (el) {
-                el.children = [];
-                el.saleCount = 0;
-
-                if (el.childrenID.length == 1) {
-                    var id = el.childrenID[0];
-                    el.saleCount = dataLevel[id].saleCount;
-                    dataLevel[id].root = false;
-                    el.children.push(dataLevel[id]);
+            var data = self._groups;
+            tree.forEach(function (el) {
+                var index = self._parentToGroup[el.parent.id];
+                if (data[index].childID.length == 1) {
+                    data[index].root = true;
+                    data[index].parent = el.parent;
+                    data[index].podrubriks = el.podrubriks;
                 } else {
-                    el.childrenID.forEach(function (id) {
-                        el.saleCount += dataLevel[id].saleCount;
-                        el.children.push(dataLevel[id]);
+                    data[index].root = true;
+                    data[index].parent.saleCount += +el.parent.saleCount;
+                    data[index].podrubriks.push({
+                        root: true,
+                        parent: el.parent,
+                        podrubriks: el.podrubriks
                     });
                 }
             });
+            return self._groups;
         });
 };
+RubrikatorSale.prototype._getParentToGroup = function (groups) {
+    var returnObj = {};
+    for (var i = 0; i < groups.length; ++i) {
+        var el = groups[i];
+        el.childID.forEach(function (id) {
+            returnObj[id] = i;
+        });
+    }
+    return returnObj;
+};
+
+RubrikatorSale.prototype._cloneRubrikator = function (obj) {
+    var copy;
+    // Handle Array
+    if (obj instanceof Array) {
+        copy = [];
+        for (var i = 0, len = obj.length; i < len; i++) {
+            copy[i] = this._cloneRubrikator(obj[i]);
+        }
+        return copy;
+    }
+
+    // Handle Object
+    if (obj instanceof Object) {
+        copy = {};
+        for (var attr in obj) {
+            if (obj.hasOwnProperty(attr)) copy[attr] = this._cloneRubrikator(obj[attr]);
+        }
+        return copy;
+    }
+    return obj;
+};
+
 /**
  * Handles action named "some-action" from any component.
  * @returns {Promise<Object>|Object|null|undefined} Response to component.
