@@ -10,6 +10,7 @@
     height: inherit;
     @include at(xs) {
       float: none;
+      width: 230px;
     }
     img {
       width: 100%;

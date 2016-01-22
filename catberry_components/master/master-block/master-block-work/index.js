@@ -33,9 +33,10 @@ MasterBlockWork.prototype.render = function () {
                     tempArr[item.day - 1] = item;
                 });
                 data.schedule = tempArr;
+                //console.log(data.districts);
                 return {
                     schedule: data.schedule,
-                    district: data.districts,
+                    districts: data.districts,
                     workCondition: data.workCondition
                 }
             });

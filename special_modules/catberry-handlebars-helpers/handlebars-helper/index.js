@@ -260,8 +260,11 @@ module.exports = function (Handlebars) {
         imgSrc: function (imgId, width, height, sys) {
             var imgSrc = 'http://api-fm.present-tlt.ru/files?key=' + imgId;
             var typeWidth = typeof width;
+            var typeHeight = typeof height;
             var widthNumber = (typeof width) == "number";
             var heightNumber = (typeof height) == "number";
+
+            //console.log(typeWidth, typeHeight, widthNumber, heightNumber);
 
             if (widthNumber && heightNumber && (width == height)) {
                 imgSrc = imgSrc + '&square=' + height;
@@ -269,7 +272,7 @@ module.exports = function (Handlebars) {
                 if ((typeWidth != "undefined") && heightNumber) {
                     imgSrc = imgSrc + '&width=' + width;
                 }
-                if ((typeWidth != "undefined") && heightNumber) {
+                if ((typeHeight != "undefined") && heightNumber) {
                     imgSrc = imgSrc + '&height=' + height;
                 }
             }
