@@ -2,7 +2,7 @@
     {{#each this}}
         {{#if active}}
             <div elem="item">
-                <p elem="title" style="background-color: {{children.0.root.color}}">
+                <p elem="title" style="background-color: {{parent.color}}">
                     {{parent.name}}
                     <span>{{parent.saleCount}}</span>
                 </p>
