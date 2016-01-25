@@ -1,0 +1,27 @@
+.master-micro-inf {
+  display: none;
+  &__title {
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  a {
+    display: table;
+    height: 50px;
+    width: 150px;
+    color: inherit;
+  }
+  span {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 10px;
+    font-size: 1.1rem;
+    //border: 1px solid blue;
+  }
+  span:first-child {
+    padding: 0;
+    width: 50px;
+  }
+  img {
+    vertical-align: middle;
+  }
+}

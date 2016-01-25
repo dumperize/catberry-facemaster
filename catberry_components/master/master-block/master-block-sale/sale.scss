@@ -32,8 +32,8 @@
   &_catalog {
     padding: 0;
     background-color: #FFF;
-    height: 250px;
-    max-height: 250px;
+    height: 260px;
+    max-height: 260px;
     &:hover {
       background-color: #FFF;
     }
@@ -43,6 +43,7 @@
       }
       &__pic {
         margin-bottom: 8px;
+        max-height: 138px;
         @include at(xs) {
           margin-bottom: 0;
           max-height: 210px;
@@ -93,13 +94,19 @@
     letter-spacing: 0.075em;
     margin-bottom: 10px;
   }
+  &__popup-content {
+    display: none;
+  }
 }
 
 .sale.popup {
-  max-width: 420px;
+  max-width: 450px;
   height: auto;
-  max-height: 420px;
+  max-height: none;
   padding-bottom: 30px;
+  @include at(xs) {
+    max-width: 250px;
+  }
   &:hover {
     color: inherit;
     background-color: $color-bg-grey-light;
@@ -111,7 +118,8 @@
       background-color: $color-orange;
     }
     &__pic {
-      max-width: 205px;
+      width: 205px;
+      min-height: 130px;
       max-height: 205px;
       margin-right: 10px;
       margin-bottom: 0;
@@ -126,5 +134,74 @@
       color: #808285;
       cursor: default;
     }
+  }
+}
+
+.sale_catalog.popup {
+  padding: 0 20px 30px 20px;
+  background-color: $color-bg-grey-light;
+  .sale {
+    &__pic {
+      margin-bottom: 12px;
+      margin-right: 200px;
+      @include at(xs) {
+        margin-right: 0;
+        float: none;
+        width: 210px;
+        max-height: 210px;
+        margin-bottom: 150px;
+      }
+    }
+    &__title {
+      padding: 18px 20px;
+      font-size: 3.6rem;
+      margin-left: -20px;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+      @include at(xs) {
+        font-size: 3rem;
+        padding: 14px 20px;
+      }
+    }
+    &__text {
+      width: 100%;
+      clear: left;
+      height: auto;
+      font-size: 1.3rem;
+      overflow: visible;
+      padding-left: 0;
+      color: #414042;
+      @include at(xs) {
+        display: block;
+      }
+    }
+    &__link {
+      color: #808285;
+      cursor: default;
+    }
+    &__to-page {
+      display: block;
+      .to-master-page {
+        display: block;
+        padding: 0 18px;
+        @include at(xs) {
+          padding: 0;
+          width: 210px;
+        }
+      }
+    }
+    &__popup-content {
+      display: block;
+      top: 102px;
+      left: 245px;
+      position: absolute;
+      @include at(xs) {
+        top: 310px;
+        left: 20px;
+      }
+    }
+  }
+  .master-micro-inf {
+    display: block;
   }
 }

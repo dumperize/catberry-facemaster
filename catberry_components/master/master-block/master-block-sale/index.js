@@ -40,8 +40,8 @@ MasterBlockSale.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterBlockSale.prototype.bind = function () {
-    var sale = $('.sale');
-    sale.find('a').bind('click', showSalePopup);
+    var sale = $('.sale a');
+    sale.bind('click', showSalePopup);
 
     function showSalePopup() {
         var tmp = $(this).parent().clone();
@@ -64,5 +64,5 @@ MasterBlockSale.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 MasterBlockSale.prototype.unbind = function () {
-
+    $('.sale a').unbind('click');
 };
