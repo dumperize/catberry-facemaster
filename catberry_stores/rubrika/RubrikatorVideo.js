@@ -55,13 +55,24 @@ RubrikatorVideo.prototype.load = function () {
                 throw new Error(result.status.text);
             }
 
+            var isExistRubrika = false; //для проверки на 404 страницу
+            //сделаем древовидную структуру и подсчитаем количество видео для родителя
             var tree = RubrikaFormat.makeTree(result.content, function (el, tree) {
-                if (el.parentID != 0){
+                if (el.parentID != 0) {
                     if (!tree[el.parentID].parent.videoCount)
                         tree[el.parentID].parent.videoCount = 0;
                     tree[el.parentID].parent.videoCount += +el.videoCount;
+                } else if (el.id == currentRubrika) {
+                    //проверим правильный ли id рубрики пришел. Может быть только родительский
+                    isExistRubrika = true;
+                    currentRubrika = el;
                 }
             });
+
+            //если запросили не существующую рубрику сделаем 404
+            if (currentRubrika && !isExistRubrika)
+                self.$context.notFound();
+
             return {
                 active: currentRubrika,
                 list: tree

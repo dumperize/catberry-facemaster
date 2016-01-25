@@ -18,6 +18,7 @@ module.exports = Pages;
 function Pages($config) {
     this._config = $config;
     this.$context.setDependency('Tag');
+    this.$context.setDependency('rubrika/RubrikatorVideo');
 }
 
 /**
@@ -51,6 +52,8 @@ Pages.prototype.load = function () {
                 return self.$context.getStoreData('other/NewsItem');
             if (currentPage == "vacancy-item")
                 return self.$context.getStoreData('other/VacancyItem');
+            if (currentPage == "video")
+                return self.$context.getStoreData('rubrika/RubrikatorVideo');
         })
         .then(function () {
             if (!currentPage) {

@@ -3,7 +3,7 @@
 <h2>Рубрикатор</h2>
 {{#each rubrikator}}
     {{#with parent}}
-        <p><a href="/video/catalog/{{id}}">{{name}} {{videoCount}}</a> {{#is ../../currentRubrika "==" id}}active{{/is}}</p>
+        <p><a href="/video/catalog/{{id}}">{{name}} {{videoCount}}</a> {{#is ../../currentRubrika.id "==" id}}active{{/is}}</p>
     {{/with}}
 {{/each}}
 
