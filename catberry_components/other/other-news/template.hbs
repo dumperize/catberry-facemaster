@@ -3,19 +3,19 @@
         <div block="news">
             <div elem="inner">
                 <div elem="img-wr">
-                    <img src="{{src}}" alt="{{title}}" elem="img">
+                    <img src="{{imgSrc img}}" alt="{{title}}" elem="img">
                 </div>
                 <div elem="content">
                     <p elem="title">{{title}}</p>
 
                     <p elem="intro">{{{stripTags preview}}}</p>
 
-                    <p elem="date">{{formatDate date "%d %Z %Y"}}</p>
-
-                    <a elem="more" href="/news/item/{{id}}">
-                        подробнее
-                        <i elem="icon">{{icon "strelka"}}</i>
-                    </a>
+                    <p elem="date">{{formatDate date "%d %Z %Y"}}
+                        <a elem="more" href="/news/item/{{id}}">
+                            подробнее
+                            <i elem="icon">{{icon "strelka"}}</i>
+                        </a>
+                    </p>
                 </div>
                 <div elem="autor">
                     <p>

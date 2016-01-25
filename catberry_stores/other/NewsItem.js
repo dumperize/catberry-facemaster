@@ -48,7 +48,6 @@ NewsItem.prototype.load = function () {
     };
     return this._uhr.get(path, option)
         .then(function (result) {
-            console.log(result);
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
             }

@@ -22,7 +22,11 @@ function OtherNews() {
  * for template engine.
  */
 OtherNews.prototype.render = function () {
-    return this.$context.getStoreData();
+    return this.$context.getStoreData()
+    .then(function (data) {
+        //console.log(data);
+        return data;
+    });
 };
 
 /**

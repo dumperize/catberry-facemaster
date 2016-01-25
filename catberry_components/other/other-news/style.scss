@@ -1,8 +1,10 @@
-
 .news {
   @extend .bg_grey;
   padding: 10px;
   margin: 20px 0;
+  img {
+    vertical-align: middle;
+  }
   &:first-child {
     margin-top: 0px;
   }
@@ -26,7 +28,7 @@
       border-right: 1px solid $color-bg-grey-dark;
     }
     @include from(sm) {
-      min-height: 205px;
+      min-height: 200px;
     }
   }
   &__autor {
@@ -65,16 +67,18 @@
   }
   &__date {
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
+    //border: 1px solid blue;
+    width: 100%;
+    padding-right: 20px;
+    line-height: 1;
     @include at(xs) {
       font-size: 1.2rem;
-      line-height: 1;
     }
   }
   &__more {
-    position: absolute;
-    bottom: 0;
-    right: 20px;
+    float: right;
+    position: relative;
     color: $color-text-red;
     text-transform: uppercase;
     padding-right: 20px;
@@ -86,10 +90,10 @@
   }
   &__icon {
     position: absolute;
+    top: 1px;
     right: 0;
-    bottom: 3px;
     .icon {
-      display: block;
+      //display: block;
       fill: $color-text-red;
       @include icon_size(12px);
     }
