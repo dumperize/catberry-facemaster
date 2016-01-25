@@ -19,6 +19,7 @@ function Pages($config) {
     this._config = $config;
     this.$context.setDependency('Tag');
     this.$context.setDependency('rubrika/RubrikatorVideo');
+    this.$context.setDependency('rubrika/RubrikatorSale');
 }
 
 /**
@@ -54,6 +55,8 @@ Pages.prototype.load = function () {
                 return self.$context.getStoreData('other/VacancyItem');
             if (currentPage == "video")
                 return self.$context.getStoreData('rubrika/RubrikatorVideo');
+            if (currentPage == "sale")
+                return self.$context.getStoreData('rubrika/RubrikatorSale');
         })
         .then(function () {
             if (!currentPage) {

@@ -48,8 +48,8 @@ Breadcrumps.prototype.load = function () {
             if (page.current == "news-item")
                 return self._loadForNewsItem();
 
-            if (page.current == "video")
-                return self._loadForCatalog(PAGES[page.current]);
+            if (page.current == "video" || page.current == "sale")
+                return self._loadForCatalog(PAGES[page.current], page.current);
 
             brcrmp.push({
                 title: PAGES[page.current].title
@@ -135,15 +135,16 @@ Breadcrumps.prototype._loadForNewsItem = function () {
         });
 };
 
-Breadcrumps.prototype._loadForCatalog = function (config) {
+Breadcrumps.prototype._loadForCatalog = function (config, type) {
+    var typeCapitalizeFirstLetter = type.charAt(0).toUpperCase() + type.slice(1);
     var self = this;
-    return this.$context.getStoreData('rubrika/RubrikatorVideo')
+    return this.$context.getStoreData('rubrika/Rubrikator' + typeCapitalizeFirstLetter)
         .then(function (data) {
             var links = [];
             if (data.active) {
                 links.push({
                     title: config.title,
-                    url: "/video"
+                    url: "/" + type
                 });
                 links.push({
                     title: data.active.name

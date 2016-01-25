@@ -46,8 +46,8 @@ Head.prototype.load = function () {
                 return self._loadForRubrika();
             if (page.current == "news-item")
                 return self._loadForNewsItem();
-            if (page.current == "video")
-                return self._loadForCatalog(PAGES[page.current]);
+            if (page.current == "video" || page.current == "sale")
+                return self._loadForCatalog(PAGES[page.current], page.current);
 
             var data = PAGES[page.current];
             return {
@@ -80,8 +80,9 @@ Head.prototype._loadForNewsItem = function () {
         });
 };
 
-Head.prototype._loadForCatalog = function (config) {
-    return this.$context.getStoreData('rubrika/RubrikatorVideo')
+Head.prototype._loadForCatalog = function (config, type) {
+    var typeCapitalizeFirstLetter = type.charAt(0).toUpperCase() + type.slice(1);
+    return this.$context.getStoreData('rubrika/Rubrikator' + typeCapitalizeFirstLetter)
         .then(function (data) {
             if (data.active)
                 return {
@@ -92,7 +93,7 @@ Head.prototype._loadForCatalog = function (config) {
             return config;
         });
 
-}
+};
 
 /**
  * Handles action named "some-action" from any component.
