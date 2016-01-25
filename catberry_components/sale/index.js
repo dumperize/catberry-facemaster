@@ -25,7 +25,7 @@ function Sale() {
 Sale.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
-            //console.log(data);
+            //console.log(data[0].sale);
             return data;
         });
 };
