@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = PageSovetyCatalog;
+module.exports = PageArticle;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = PageSovetyCatalog;
  */
 
 /**
- * Creates new instance of the "page-sovety-catalog" component.
+ * Creates new instance of the "page-article" component.
  * @constructor
  */
-function PageSovetyCatalog() {
+function PageArticle() {
 
 }
 
@@ -22,7 +22,7 @@ function PageSovetyCatalog() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-PageSovetyCatalog.prototype.render = function () {
+PageArticle.prototype.render = function () {
 
 };
 
@@ -31,7 +31,7 @@ PageSovetyCatalog.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-PageSovetyCatalog.prototype.bind = function () {
+PageArticle.prototype.bind = function () {
 
 };
 
@@ -40,6 +40,6 @@ PageSovetyCatalog.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-PageSovetyCatalog.prototype.unbind = function () {
+PageArticle.prototype.unbind = function () {
 
 };

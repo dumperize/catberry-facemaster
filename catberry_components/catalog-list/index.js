@@ -38,7 +38,7 @@ DopCatalogs.prototype.render = function () {
                 title: "Поиск по видео"
             },
             {
-                url: "/sovety",
+                url: "/article",
                 ico: "qwestion",
                 title: "Секреты Мастеров"
             },

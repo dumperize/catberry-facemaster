@@ -48,7 +48,7 @@ Breadcrumps.prototype.load = function () {
             if (page.current == "news-item")
                 return self._loadForNewsItem();
 
-            if (page.current == "video" || page.current == "sale")
+            if (page.current == "video" || page.current == "sale" || page.current == "article")
                 return self._loadForCatalog(PAGES[page.current], page.current);
 
             brcrmp.push({
