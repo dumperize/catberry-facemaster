@@ -22,7 +22,11 @@ function Video() {
  * for template engine.
  */
 Video.prototype.render = function () {
-    return this.$context.getStoreData();
+    return this.$context.getStoreData()
+        .then(function (data) {
+            //console.log(data.data[0].owner);
+            return data;
+        });
 };
 
 /**

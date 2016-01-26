@@ -1,0 +1,146 @@
+.catalog {
+  position: relative;
+  min-height: 500px;
+  &__menu-ico {
+    width: 58px;
+    height: 58px;
+    padding: 13px;
+    background-color: inherit;
+    //border: 1px solid blue;
+    overflow: hidden;
+    display: none;
+    @include to(md) {
+      display: block;
+      position: absolute;
+      top: -58px;
+      right: 0;
+    }
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+  &__content {
+    margin-right: 240px;
+    margin-bottom: 20px;
+    @include to(md) {
+      margin-right: 0;
+    }
+  }
+  &__secondary {
+    float: right;
+    width: 220px;
+    min-height: 100px;
+    background-color: $color-bg-grey-light;
+    padding: 20px 12px;
+    margin-bottom: 20px;
+    position: relative;
+    @include to(md) {
+      float: none;
+      width: auto;
+    }
+  }
+  &__list {
+    font-size: 1.2rem;
+    li {
+      margin-bottom: 4px;
+            @include to(md) {
+        //width: 50%;
+        //float: left;
+      }
+    }
+    li.act {
+      > a {
+        color: #ED686E;
+      }
+      > svg {
+        fill: #ED686E;
+      }
+    }
+    a {
+      text-decoration: none;
+    }
+    svg {
+      width: 9px;
+      height: 9px;
+      position: relative;
+      margin-right: -1px;
+    }
+    span {
+      margin-left: 8px;
+    }
+  }
+}
+
+.catalog-item {
+  position: relative;
+  background-color: $color-bg-grey-light;
+  margin-bottom: 20px;
+  padding: 10px;
+  height: 200px;
+  overflow: hidden;
+  @include at(xs) {
+    height: auto;
+  }
+  &__img-cont {
+    float: left;
+    width: 318px;
+    height: 180px;
+    //border: 1px solid red;
+    margin-right: 12px;
+    overflow: hidden;
+    @include to(lg) {
+      width: 214px;
+      height: 120px;
+    }
+    @include at(xs) {
+      float: none;
+      margin-bottom: 8px;
+    }
+    img {
+      width: 100%;
+    }
+  }
+  &__title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    @include to(lg) {
+      font-size: 1.6rem;
+    }
+    @include at(xs) {
+      font-size: 1.3rem;
+    }
+  }
+  &__text {
+    @include to(lg) {
+      font-size: 1.3rem;
+    }
+    @include at(xs) {
+      font-size: 1.2rem;
+    }
+  }
+  &__wrapper {
+    //border: 1px solid blue;
+    max-height: 115px;
+    overflow: hidden;
+    @include to(lg) {
+      max-height: 180px;
+    }
+    @include at(xs) {
+      margin-bottom: 64px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #AAA;
+      text-align: center;
+    }
+  }
+  .master-micro-inf {
+    position: absolute;
+    bottom: 10px;
+    left: 340px;
+    @include to(lg) {
+      left: 10px;
+    }
+  }
+}

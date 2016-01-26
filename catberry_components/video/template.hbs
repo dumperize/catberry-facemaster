@@ -1,16 +1,53 @@
-<p>Вводная: сейчас на сайте каталог видео выглядит ушлепски. Предлагаю его сделать внешне(структурно) таким же
-как каталог советов. Также в каталоге совеов нет указания количества элементов в рубрике. Теперь их достали из бд и их можно указать</p>
-<h2>Рубрикатор</h2>
-{{#each rubrikator}}
-    {{#with parent}}
-        <p><a href="/video/catalog/{{id}}">{{name}} {{videoCount}}</a> {{#is ../../currentRubrika "==" id}}active{{/is}}</p>
-    {{/with}}
-{{/each}}
+<div block="catalog">
 
-<h2>Список видео</h2>
-{{#each data}}
-    <p>{{title}}</p>
-{{/each}}
-<br>
-<p>пагинатор должен лежать внутри компонента с cat-store VideoByRubrika</p>
-<cat-common-paginator id="common-paginator" cat-store="Paginator" model="video/VideoByRubrika"></cat-common-paginator>
+    <div elem="secondary">
+        <p elem="menu-ico">{{icon "menu"}}</p>
+        <ul elem="list">
+            <li class="{{#unless currentRubrika}}act{{/unless}}">
+                {{icon "strelka"}}
+                <a href="/video">Все<span></span></a>
+            </li>
+            {{#each rubrikator}}
+                {{#with parent}}
+                    <li class="{{#is ../../currentRubrika '==' id}}act{{/is}}">
+                        {{icon "strelka"}}
+                        <a href="/video/catalog/{{id}}">{{name}}<span>{{videoCount}}</span></a>
+                    </li>
+                {{/with}}
+            {{/each}}
+        </ul>
+    </div>
+
+
+    <div elem="content">
+        {{#each data}}
+            <div elem="item">
+                <div block="catalog-item">
+                    <div elem="img-cont">
+                        <a href="http://{{url}}"><img src="{{img}}"></a>
+                    </div>
+
+                    <div elem="wrapper">
+                        <p elem="title">{{{title}}}</p>
+
+                        <p elem="text">{{{description}}}</p>
+                    </div>
+
+                    <div block="master-micro-inf" mod="video">
+                        <p elem="title">Видео добавил:</p>
+                        <a href="" elem="cont">
+                            <span><img src="{{imgSrc owner.imgID 50 50}}"></span>
+                            <span><br>{{owner.name}}</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        {{/each}}
+
+    </div>
+
+    <!-- пагинатор должен лежать внутри компонента с cat-store VideoByRubrika -->
+    <cat-common-paginator id="common-paginator" cat-store="Paginator"
+                          model="video/VideoByRubrika"></cat-common-paginator>
+</div>
