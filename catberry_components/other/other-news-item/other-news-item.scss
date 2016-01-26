@@ -1,12 +1,25 @@
 .other-news {
+  position: relative;
+  min-height: 500px;
   &__content {
-    //@extend .col-md-8;
     margin-right: 240px;
+    margin-bottom: 20px;
+    @include to(md) {
+      margin-right: 0;
+    }
   }
   &__secondary {
+    position: absolute;
+    top: 0;
+    right: 0;
     float: right;
     width: 220px;
     min-height: 100px;
+    @include to(md) {
+      width: auto;
+      position: static;
+      float: none;
+    }
   }
   &__title-cont {
     background-color: $color-bg-grey-light;
@@ -41,12 +54,31 @@
   }
   &__vk-widget {
     margin-bottom: 20px;
+    width: 220px;
+    @include to(md) {
+      float: left;
+    }
+    @include at(xs) {
+      float: none;
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
   }
   &__news-nav {
     background-color: $color-bg-grey-light;
     width: 100%;
     height: 100px;
     display: table;
+    @include to(md) {
+      width: 220px;
+      margin-left: 20px;
+      float: left;
+    }
+    @include at(xs) {
+      float: none;
+      margin-left: 0;
+      width: 100%;
+    }
   }
   &__nav-links {
     display: table-cell;

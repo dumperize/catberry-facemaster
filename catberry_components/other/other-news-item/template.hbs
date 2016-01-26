@@ -1,6 +1,28 @@
 <h1 block="h1" mod="style">{{title}}</h1>
 
 <div block="other-news">
+
+    <div elem="content">
+
+        <div elem="title-cont">
+            <div elem="title-img"><img src="{{imgSrc img 100 100}}" alt="{{title}}"></div>
+            <p elem="title">{{title}}</p>
+
+            <p elem="author">Новость добавил:<br><span style="color: red">Иванова Маргарита<br>{{date}}</span></p>
+        </div>
+
+        <div elem="text">
+            {{{text}}}
+        </div>
+
+        <div elem="footer">
+            <!--<div id="vk_like"></div>-->
+            <!--<script type="text/javascript">-->
+                <!--VK.Widgets.Like("vk_like", {type: "button"});-->
+            <!--</script>-->
+        </div>
+    </div>
+
     <div elem="secondary">
 
         <div elem="vk-widget">
@@ -27,26 +49,6 @@
 
     </div>
 
-    <div elem="content">
-
-        <div elem="title-cont">
-            <div elem="title-img"><img src="{{imgSrc img 100 100}}" alt="{{title}}"></div>
-            <p elem="title">{{title}}</p>
-
-            <p elem="author">Новость добавил:<br><span style="color: red">Иванова Маргарита<br>{{date}}</span></p>
-        </div>
-
-        <div elem="text">
-            {{{text}}}
-        </div>
-
-        <div elem="footer">
-            <!--<div id="vk_like"></div>-->
-            <!--<script type="text/javascript">-->
-                <!--VK.Widgets.Like("vk_like", {type: "button"});-->
-            <!--</script>-->
-        </div>
-    </div>
     <!-- {{id}}{{preview}} -->
 
 </div>
