@@ -2,22 +2,57 @@
   position: relative;
   min-height: 500px;
   &__menu-ico {
-    width: 58px;
-    height: 58px;
-    padding: 13px;
-    background-color: inherit;
     //border: 1px solid blue;
-    overflow: hidden;
     display: none;
+    line-height: 48px;
+    height: 48px;
+    font-size: 2rem;
+    position: relative;
+    width: 100%;
+    padding: 0 12px;
+    padding-top: 3px;
+    left: -12px;
+    top: 0;
+    box-sizing: content-box;
+    background-color: #7cad37;
+    color: #FFF;
+    &:hover {
+      background-color: #7cad37 - #222222;
+      cursor: pointer;
+      &:before {
+        background-color: #7cad37 - #444444;
+      }
+    }
+    &:before {
+      background-color: #7cad37 - #222222;
+      content: '';
+      width: 100%;
+      padding: 0 12px;
+      height: 5px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
     @include to(md) {
       display: block;
-      position: absolute;
-      top: -58px;
-      right: 0;
     }
-    svg {
-      width: 32px;
-      height: 32px;
+    span {
+      overflow: hidden;
+      width: 48px;
+      height: 48px + 3px;
+      padding: 12px;
+      padding-top: 12px + 3px;
+      display: block;
+      position: absolute;
+      line-height: 1;
+      right: 0;
+      top: 0;
+      border-left: 1px solid #FFF;
+      svg {
+        width: 24px;
+        height: 24px;
+        fill: #FFF;
+      }
     }
   }
   &__content {
@@ -30,9 +65,9 @@
   &__secondary {
     float: right;
     width: 220px;
-    min-height: 100px;
+    //min-height: 100px;
     background-color: $color-bg-grey-light;
-    padding: 20px 12px;
+    padding: 0 12px;
     margin-bottom: 20px;
     position: relative;
     @include to(md) {
@@ -42,6 +77,7 @@
   }
   &__list {
     font-size: 1.2rem;
+    padding: 20px 0;
     li {
       margin-bottom: 4px;
             @include to(md) {
@@ -59,12 +95,16 @@
     }
     a {
       text-decoration: none;
+      margin-left: 12px;
+      display: block;
     }
     svg {
       width: 9px;
       height: 9px;
       position: relative;
-      margin-right: -1px;
+      //margin-right: -1px;
+      top: 3px;
+      float: left;
     }
     span {
       margin-left: 8px;
@@ -83,6 +123,7 @@
     height: auto;
   }
   &__img-cont {
+    position: relative;
     float: left;
     width: 318px;
     height: 180px;
@@ -94,11 +135,64 @@
       height: 120px;
     }
     @include at(xs) {
-      float: none;
+      //float: none;
       margin-bottom: 8px;
     }
     img {
       width: 100%;
+    }
+    &:hover:after {
+      border-left-color: #f79622;
+    }
+    &:hover:before {
+      background-color: rgba(0,0,0,0.1);
+    }
+    &:after {
+      content: '';
+      border: 2rem solid transparent;
+      border-left: 4rem solid #e6e7e8;
+      display: inline-block;
+      height: 0;
+      opacity: 0.9;
+      width: 0;
+      position: absolute;
+      z-index: 200;
+      left: 50%;
+      top: 50%;
+      margin-left: -2rem;
+      margin-top: -2rem;
+    }
+    &:before {
+      content: '';
+      transition: background-color 0.2s ease-out 0.1s;
+      background-color: rgba(0,0,0,0.5);
+      width: 100%;
+      height: 100%;
+      display: block;
+      top: 0;
+      left: 0;
+      position: absolute;
+      z-index: 10;
+    }
+  }
+  &__add-date {
+    height: 50px;
+    line-height: 50px;
+    //border: 1px solid blue;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 1.3rem;
+    color: red;
+    @include to(lg) {
+      height: auto;
+      line-height: normal;
+    }
+    @include at(xs) {
+      position: static;
+      text-align: center;
+      border-top: 1px solid #AAA;
+      padding-top: 8px;
     }
   }
   &__title {
@@ -106,6 +200,7 @@
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 6px;
+    line-height: 1.25;
     @include to(lg) {
       font-size: 1.6rem;
     }
@@ -114,6 +209,8 @@
     }
   }
   &__text {
+    overflow: hidden;
+    //border: 1px solid blue;
     @include to(lg) {
       font-size: 1.3rem;
     }
@@ -128,11 +225,16 @@
     @include to(lg) {
       max-height: 180px;
     }
+    @include at(md) {
+      max-height: 170px;
+    }
     @include at(xs) {
-      margin-bottom: 64px;
+      margin-bottom: 73px;
       padding-bottom: 10px;
+      box-sizing: content-box;
       border-bottom: 1px solid #AAA;
       text-align: center;
+      clear: left;
     }
   }
   .master-micro-inf {
@@ -141,6 +243,11 @@
     left: 340px;
     @include to(lg) {
       left: 10px;
+      bottom: 10px;
+    }
+    @include at(xs) {
+      left: 10px;
+      bottom: 48px;
     }
   }
 }

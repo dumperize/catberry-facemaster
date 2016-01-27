@@ -1,35 +1,36 @@
 .paginator{
+  float: right;
   text-align: right;
-  padding: 20px 0;
+//  padding: 20px 0;
+  height: 28px;
+//  border: 1px solid blue;
+  @include at(xs) {
+    float: none;
+    text-align: center;
+  }
   &__title{
-    @include at(xs){
-      margin-bottom:5px;
-      display: block;
-    }
+    font-size: 1.3rem;
+    float: left;
+    padding: 6px;
   }
-  &__list{
-    white-space: nowrap;
-    display: inline;
-  }
-  &__page{
-    display: inline;
-    padding-right:0px;
-    &_selected{
-      .paginator{
-        &__number{
-          background-color: $color-orange;
-          color: #fff;
-        }
+  ul {
+    float: right;
+    li {
+      float: left;
+      @include at(xs) {
+        margin-bottom: 6px;
       }
     }
   }
-  &__number{
-    width: 24px;
-    height: 24px;
+  a, span {
+    background-color: #FFF;
     display: inline-block;
-    text-align: center;
-    background-color: #fff;
+    padding: 4px 7px;
     text-decoration: none;
-    @include font-tuning(14,24);
+    margin-left: 4px;
+  }
+  span {
+    background-color: $color-orange;
+    color: #FFF;
   }
 }

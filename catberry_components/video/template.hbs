@@ -1,7 +1,7 @@
 <div block="catalog">
 
     <div elem="secondary">
-        <p elem="menu-ico">{{icon "menu"}}</p>
+        <p elem="menu-ico">Каталог <span>{{icon "menu"}}</span></p>
         <ul elem="list">
             <li class="{{#unless currentRubrika}}act{{/unless}}">
                 {{icon "strelka"}}
@@ -23,15 +23,16 @@
         {{#each data}}
             <div elem="item">
                 <div block="catalog-item">
-                    <div elem="img-cont">
-                        <a href="http://{{url}}"><img src="{{img}}"></a>
-                    </div>
+
+                    <a href="http://{{url}}" elem="img-cont"><img src="{{img}}"></a>
 
                     <div elem="wrapper">
                         <p elem="title">{{{title}}}</p>
 
                         <p elem="text">{{{description}}}</p>
                     </div>
+
+                    <p elem="add-date">29 декабря 2015</p>
 
                     <div block="master-micro-inf" mod="video">
                         <p elem="title">Видео добавил:</p>
