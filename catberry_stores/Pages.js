@@ -60,6 +60,8 @@ Pages.prototype.load = function () {
                 return self.$context.getStoreData('rubrika/RubrikatorSale');
             if (currentPage == "article")
                 return self.$context.getStoreData('rubrika/RubrikatorArticle');
+            if (currentPage == "company-rubrika")
+                return self.$context.getStoreData('rubrika/RubrikaCompany');
         })
         .then(function () {
             if (!currentPage) {

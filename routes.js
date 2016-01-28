@@ -14,9 +14,9 @@ module.exports = [
     '/:page[Pages]',
     //id мастера
     {
-        expression: /\/([\/\d]+)$/i,
+        expression: /^\/([\/\d]+)$/i,
         map: function (urlPath) {
-            var matches = urlPath.path.match(/\/([\/\d]+)$/i);
+            var matches = urlPath.path.match(/^\/([\/\d]+)$/i);
             return {
                 'master/MasterItem': {
                     item: matches[1]
@@ -29,7 +29,7 @@ module.exports = [
     },
     //статья мастера
     {
-        expression: '/\/([\/\d]+)\/article\/([\/\d]+)$/i',
+        expression: '/^\/([\/\d]+)\/article\/([\/\d]+)$/i',
         map: function (urlPath) {
             return {
                 Pages: {
@@ -97,6 +97,27 @@ module.exports = [
             };
             state.Paginator = {
                 currentPage: matches[5]
+            };
+            return state;
+        }
+    },
+    // путь: /company
+    // путь: /company/category/:id
+    // путь: /company/:id
+    {
+        expression: /^\/company((\/catalog\/(\d+))|(\/(\d+)))?$/i,
+        map: function (urlPath) {
+            var matches = urlPath.path.match(/^\/company((\/catalog\/(\d+))|(\/(\d+)))?$/i);
+            var state = {};
+
+            state.Pages = {
+                page: matches[3] ? "company-rubrika" : (matches[5] ? "company-page" : "company")
+            };
+            state['rubrika/RubrikaCompany'] = {
+                catalog: matches[3]
+            };
+            state['company/CompanyItem'] = {
+                id: matches[5]
             };
             return state;
         }

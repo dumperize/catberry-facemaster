@@ -16,7 +16,11 @@ module.exports = RubrikaCompany;
 function RubrikaCompany($uhr) {
     this._uhr = $uhr;
     this._path = 'http://api-fm.present-tlt.ru/company/byrubrikacompany/';
-    this._options = {};
+    this._options = {
+        data: {
+            order: 'sort'
+        }
+    };
 }
 
 /**
@@ -40,13 +44,13 @@ RubrikaCompany.prototype.load = function () {
     var id = this.$context.state.catalog;
     if (!id)
         this.$context.notFound();
-    this._path += id;
-    return this._uhr.get(this._path, this._options)
+
+    return this._uhr.get(this._path + id, this._options)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
             }
-            if (true){
+            if (true) {
                 //проверить на существование рубрики если нет то дать 404 страницу
             }
             return result.content;

@@ -23,7 +23,7 @@ function CompanyRubrika() {
  * for template engine.
  */
 CompanyRubrika.prototype.render = function () {
-
+    return this.$context.getStoreData();
 };
 
 /**
