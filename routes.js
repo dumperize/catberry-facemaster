@@ -27,13 +27,19 @@ module.exports = [
             }
         }
     },
-    //статья мастера
+    // статья мастера
+    // путь: /:masterID/article/:id
     {
-        expression: '/^\/([\/\d]+)\/article\/([\/\d]+)$/i',
+        expression: /^\/(\d+)\/article\/(\d+)$/i,
         map: function (urlPath) {
+            var matches = urlPath.path.match(/^\/(\d+)\/article\/(\d+)$/i);
             return {
                 Pages: {
-                    page: "master-article"
+                    page: "article-item"
+                },
+                'article/ArticleItem': {
+                    id: matches[2],
+                    masterID: matches[1]
                 }
             }
         }

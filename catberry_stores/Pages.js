@@ -62,6 +62,8 @@ Pages.prototype.load = function () {
                 return self.$context.getStoreData('rubrika/RubrikatorArticle');
             if (currentPage == "company-rubrika")
                 return self.$context.getStoreData('rubrika/RubrikaCompany');
+            if (currentPage == "article-item")
+                return self.$context.getStoreData('article/ArticleItem');
         })
         .then(function () {
             if (!currentPage) {
