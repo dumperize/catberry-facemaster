@@ -18,6 +18,9 @@ module.exports = Pages;
 function Pages($config) {
     this._config = $config;
     this.$context.setDependency('Tag');
+    this.$context.setDependency('rubrika/RubrikatorVideo');
+    this.$context.setDependency('rubrika/RubrikatorSale');
+    this.$context.setDependency('rubrika/RubrikatorArticle');
 }
 
 /**
@@ -51,6 +54,12 @@ Pages.prototype.load = function () {
                 return self.$context.getStoreData('other/NewsItem');
             if (currentPage == "vacancy-item")
                 return self.$context.getStoreData('other/VacancyItem');
+            if (currentPage == "video")
+                return self.$context.getStoreData('rubrika/RubrikatorVideo');
+            if (currentPage == "sale")
+                return self.$context.getStoreData('rubrika/RubrikatorSale');
+            if (currentPage == "article")
+                return self.$context.getStoreData('rubrika/RubrikatorArticle');
         })
         .then(function () {
             if (!currentPage) {

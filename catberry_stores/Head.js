@@ -46,6 +46,8 @@ Head.prototype.load = function () {
                 return self._loadForRubrika();
             if (page.current == "news-item")
                 return self._loadForNewsItem();
+            if (page.current == "video" || page.current == "sale" || page.current == "article")
+                return self._loadForCatalog(PAGES[page.current], page.current);
 
             var data = PAGES[page.current];
             return {
@@ -77,6 +79,22 @@ Head.prototype._loadForNewsItem = function () {
             }
         });
 };
+
+Head.prototype._loadForCatalog = function (config, type) {
+    var typeCapitalizeFirstLetter = type.charAt(0).toUpperCase() + type.slice(1);
+    return this.$context.getStoreData('rubrika/Rubrikator' + typeCapitalizeFirstLetter)
+        .then(function (data) {
+            if (data.active)
+                return {
+                    title: data.active.name + ". " + config.title,
+                    description: config.title,
+                    keywords: config.keywords + ", " + data.active.name
+                };
+            return config;
+        });
+
+};
+
 /**
  * Handles action named "some-action" from any component.
  * @returns {Promise<Object>|Object|null|undefined} Response to component.

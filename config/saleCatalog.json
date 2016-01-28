@@ -5,7 +5,8 @@
       "id": "root1",
       "name": "Ремонт, строительство, интерьер",
       "saleCount": 0,
-      "color": "#35b45b"
+      "color": "#35b45b",
+      "podrubriksID": []
     },
     "childID": [
       86,
@@ -22,7 +23,8 @@
       "id": "root2",
       "name": "Здоровье, красота, мода",
       "saleCount": 0,
-      "color": "#b80000"
+      "color": "#b80000",
+      "podrubriksID": []
     },
     "childID": [
       27,
@@ -40,7 +42,8 @@
       "id": "root3",
       "name": "Отдых и праздники",
       "saleCount": 0,
-      "color": "#fecf22"
+      "color": "#fecf22",
+      "podrubriksID": []
     },
     "childID": [
       36,
@@ -57,7 +60,8 @@
       "id": "root4",
       "name": "Консультации",
       "saleCount": 0,
-      "color": "#775294"
+      "color": "#775294",
+      "podrubriksID": []
     },
     "childID": [
       5,
@@ -72,7 +76,8 @@
       "id": "root5",
       "name": "Автоуслуги и доставка",
       "saleCount": 0,
-      "color": "#3c85c4"
+      "color": "#3c85c4",
+      "podrubriksID": []
     },
     "childID": [
       19,
@@ -93,6 +98,7 @@
       1
     ],
     "podrubriks": [],
+    "podrubriksID": [],
     "sale": []
   },
   {
@@ -101,7 +107,8 @@
       "id": "root7",
       "name": "Техника",
       "saleCount": 0,
-      "color": "#e8007a"
+      "color": "#e8007a",
+      "podrubriksID": []
     },
     "childID": [
       42
@@ -115,7 +122,8 @@
       "id": "root8",
       "name": "Дригие услуги",
       "saleCount": 0,
-      "color": "#3ebf98"
+      "color": "#3ebf98",
+      "podrubriksID": []
     },
     "childID": [],
     "podrubriks": [],

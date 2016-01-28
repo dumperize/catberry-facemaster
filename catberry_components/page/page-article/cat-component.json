@@ -1,5 +1,5 @@
 {
-	"name": "page-sovety",
+	"name": "page-article",
 	"template": "./template.hbs",
 	"errorTemplate": "./error.hbs"
 }

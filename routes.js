@@ -83,9 +83,9 @@ module.exports = [
     // путь: /__/category/:id
     // путь: /__/category/:id/page/:id
     {
-        expression: /^\/(sale|sovety|video)(\/catalog\/(\d+))?(\/page\/(\d+))?$/i,
+        expression: /^\/(sale|article|video)(\/catalog\/(\d+))?(\/page\/(\d+))?$/i,
         map: function (urlPath) {
-            var matches = urlPath.path.match(/^\/(sale|sovety|video)(\/catalog\/(\d+))?(\/page\/(\d+))?$/i);
+            var matches = urlPath.path.match(/^\/(sale|article|video)(\/catalog\/(\d+))?(\/page\/(\d+))?$/i);
             var nameCapitalizeFirstLetter = matches[1].charAt(0).toUpperCase() + matches[1].slice(1);
             var state = {};
 

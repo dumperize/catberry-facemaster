@@ -46,6 +46,12 @@ RubrikatorSale.prototype._uhr = null;
 RubrikatorSale.prototype.$lifetime = 60000;
 
 /**
+ * Текущая рубрика (объект)
+ * @type {{}}
+ * @private
+ */
+RubrikatorSale.prototype._currentRubrikaObj = null;
+/**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
@@ -54,8 +60,10 @@ RubrikatorSale.prototype.load = function () {
     var currentRubrika = self.$context.state.catalog;
 
     if (self.loadRubriks) {
+        self._setActive(self._groups, currentRubrika);
+        this._setCurrentRubrikaObj(self._groups, currentRubrika);
         return {
-            active: currentRubrika,
+            active: self._currentRubrikaObj,
             list: self._groups
         }
     }
@@ -63,7 +71,7 @@ RubrikatorSale.prototype.load = function () {
         .then(function () {
             self.loadRubriks = true;
             return {
-                active: currentRubrika,
+                active: self._currentRubrikaObj,
                 list: self._groups
             }
         });
@@ -94,17 +102,17 @@ RubrikatorSale.prototype._loadData = function () {
                     }
                 }
             });
+            tree = RubrikaFormat.setPodrubriksID(tree);
 
             //затем прицепляем к главному дереву
             var data = self._groups;
             tree.forEach(function (el) {
                 var index = self._parentToGroup[el.parent.id];
+
                 if (data[index].childID.length == 1) {
-                    data[index].root = true;
                     data[index].parent = el.parent;
                     data[index].podrubriks = el.podrubriks;
                 } else {
-                    data[index].root = true;
                     data[index].parent.saleCount += +el.parent.saleCount;
                     data[index].podrubriks.push({
                         root: true,
@@ -112,10 +120,27 @@ RubrikatorSale.prototype._loadData = function () {
                         podrubriks: el.podrubriks
                     });
                 }
+                data[index].root = true;
+                data[index].parent.podrubriksID = data[index].parent.podrubriksID.concat(el.parent.podrubriksID);
+
             });
+
+            //отмечаем акивные вершины в соответсвии с деревом
+            self._setActive(self._groups, self.$context.state.catalog);
+
+            //устанавливаем текущую подрубрику
+            self._setCurrentRubrikaObj(self._groups, self.$context.state.catalog);
+
+            //возвращаем итоговое дерево
             return self._groups;
         });
 };
+/**
+ * Формирует массив где каждому id рубрики соответствет номер группы в которой он расположен
+ * @param groups
+ * @returns {{}}
+ * @private
+ */
 RubrikatorSale.prototype._getParentToGroup = function (groups) {
     var returnObj = {};
     for (var i = 0; i < groups.length; ++i) {
@@ -127,6 +152,107 @@ RubrikatorSale.prototype._getParentToGroup = function (groups) {
     return returnObj;
 };
 
+/**
+ * Устанавливает нужные вершины дерева в активное состояние
+ * @param tree
+ * @param current
+ * @returns {boolean}
+ * @private
+ */
+RubrikatorSale.prototype._setActive = function (tree, current) {
+    //для главной страницы
+    if (!current)
+        this._setClear(tree);
+
+    var self = this;
+    var mySlibdigsActive = false;
+    var myChildActive = false;
+
+    tree.forEach(function (el) {
+        if (!current) {
+            el.parent.active = true;
+            return;
+        }
+        var temp = el;
+        if (el.root) {
+            myChildActive = self._setActive(el.podrubriks, current);
+            temp = el.parent
+        }
+        temp.active = myChildActive || (temp.id == current);
+        mySlibdigsActive = mySlibdigsActive || temp.active;
+    });
+    return mySlibdigsActive;
+};
+
+/**
+ * Устанавливает нужные вершины дерева в активное состояние для главной страницы
+ * @param tree
+ * @param current
+ * @returns {boolean}
+ * @private
+ */
+RubrikatorSale.prototype._setClear = function (tree) {
+    var self = this;
+    var mySlibdigsActive = false;
+    var myChildActive = false;
+
+    tree.forEach(function (el) {
+        if (el.root) {
+            el.parent.active = false;
+            self._setClear(el.podrubriks);
+        } else {
+            el.active = false;
+        }
+    });
+    return mySlibdigsActive;
+};
+
+/**
+ * Установка текущей подрубрики в виде объекта
+ * @param tree
+ * @param current
+ * @returns {null}
+ * @private
+ */
+RubrikatorSale.prototype._setCurrentRubrikaObj = function (tree, current) {
+    if (!current) {
+        this._currentRubrikaObj = null;
+        return null;
+    }
+
+    var found = false;
+    var self = this;
+
+    rec(tree);
+
+    if (!found)
+        return this.$content.notFound();
+
+    function rec(tree) {
+        tree.forEach(function (el) {
+            if (el.root) {
+                if (el.parent.id == current) {
+                    self._currentRubrikaObj = el.parent;
+                    found = true;
+                    return;
+                }
+                rec(el.podrubriks, current);
+            } else {
+                if (el.id == current) {
+                    self._currentRubrikaObj = el;
+                    found = true;
+                }
+            }
+        });
+    }
+};
+
+/**
+ * Полностью копирует рубрикатор (hard)
+ * @param obj
+ * @returns {*}
+ * @private
+ */
 RubrikatorSale.prototype._cloneRubrikator = function (obj) {
     var copy;
     // Handle Array
@@ -147,14 +273,4 @@ RubrikatorSale.prototype._cloneRubrikator = function (obj) {
         return copy;
     }
     return obj;
-};
-
-/**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
- */
-RubrikatorSale.prototype.handleSomeAction = function () {
-    // Here you can call this.$context.changed() if you know
-    // that remote data source has been changed.
-    // Also you can have many handle methods for other actions.
 };

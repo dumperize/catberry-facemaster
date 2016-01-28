@@ -48,6 +48,9 @@ Breadcrumps.prototype.load = function () {
             if (page.current == "news-item")
                 return self._loadForNewsItem();
 
+            if (page.current == "video" || page.current == "sale" || page.current == "article")
+                return self._loadForCatalog(PAGES[page.current], page.current);
+
             brcrmp.push({
                 title: PAGES[page.current].title
             });
@@ -131,6 +134,30 @@ Breadcrumps.prototype._loadForNewsItem = function () {
             return links;
         });
 };
+
+Breadcrumps.prototype._loadForCatalog = function (config, type) {
+    var typeCapitalizeFirstLetter = type.charAt(0).toUpperCase() + type.slice(1);
+    var self = this;
+    return this.$context.getStoreData('rubrika/Rubrikator' + typeCapitalizeFirstLetter)
+        .then(function (data) {
+            var links = [];
+            if (data.active) {
+                links.push({
+                    title: config.title,
+                    url: "/" + type
+                });
+                links.push({
+                    title: data.active.name
+                });
+            } else {
+                links.push({
+                    title: config.title
+                });
+            }
+            return links;
+        });
+};
+
 /**
  * Handles action named "some-action" from any component.
  * @returns {Promise<Object>|Object|null|undefined} Response to component.

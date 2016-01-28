@@ -22,9 +22,10 @@ function Video() {
  * for template engine.
  */
 Video.prototype.render = function () {
+    var self = this;
     return this.$context.getStoreData()
         .then(function (data) {
-            //console.log(data.data[0].owner);
+            data.catalog = self.$context.attributes.catalog;
             return data;
         });
 };

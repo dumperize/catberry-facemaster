@@ -1,5 +1,7 @@
 'use strict';
 
+var RubrikaFormat = require('../../lib/util/RubrikaFormat');
+
 module.exports = Rubrikator;
 
 /*
@@ -19,7 +21,7 @@ function Rubrikator($uhr) {
     this._options = {
         data: {
             filter: '["and",["=", "status", "1"]]',
-            expand: 'masterCount',
+            expand: "masterCount",
             order: 'sort',
             limit: 300
         }
@@ -39,53 +41,34 @@ Rubrikator.prototype._uhr = null;
  */
 Rubrikator.prototype.$lifetime = 600000;
 
+Rubrikator.prototype._countName = 'masterCount';
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 
 Rubrikator.prototype.load = function () {
+    var self = this;
     return this._uhr.get(this._path, this._options)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
             }
-            var data = result.content;
-            var podrubriksTree = {};
-            var rootTree = {};
-            var rootTreeCount = {};
-
-            Object.keys(data)
-                .forEach(function (key) {
-                    var el = data[key];
-                    if (el.parentID == 0) {
-                        rootTree[el.sort] = {el: el};
-                    } else {
-                        if (!podrubriksTree[el.parentID])
-                            podrubriksTree[el.parentID] = [];
-                        podrubriksTree[el.parentID].push(el);
-                        rootTreeCount[el.parentID] = +el.masterCount + (rootTreeCount[el.parentID] ? rootTreeCount[el.parentID] :  0);
-                    }
-                });
-
-            Object.keys(rootTree)
-                .forEach(function (key) {
-                    podrubriksTree[rootTree[key].el.id].sort(function (a, b) {
-                        return a.name > b.name;
-                    });
-                    rootTree[key].podrubriks = podrubriksTree[rootTree[key].el.id];
-                    rootTree[key].count = rootTreeCount[rootTree[key].el.id];
-                });
-            return rootTree;
+            //сделаем древовидную структуру и подсчитаем количество элементов для родителя
+            return RubrikaFormat.makeTree(result.content, self._intoMakeTreeFunction.bind(self));
         });
 };
 
 /**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
+ * Функция, которая вызывается для каждого элемента в дереве (т.е. для каждой рубрике).
+ * @param el
+ * @param tree
+ * @private
  */
-Rubrikator.prototype.handleSomeAction = function () {
-    // Here you can call this.$context.changed() if you know
-    // that remote data source has been changed.
-    // Also you can have many handle methods for other actions.
+Rubrikator.prototype._intoMakeTreeFunction = function (el, tree) {
+    if (el.parentID != 0) {
+        tree[el.parentID].parent.count = +el[this._countName] +
+            (tree[el.parentID].parent.count ? tree[el.parentID].parent.count : 0);
+        el.count = el[this._countName];
+    }
 };

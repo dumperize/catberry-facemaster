@@ -1,6 +1,6 @@
 <div block="sale-catalog">
     {{#each this}}
-        {{#if active}}
+        {{#if parent.active}}
             <div elem="item">
                 <p elem="title" style="background-color: {{parent.color}}">
                     {{parent.name}}
@@ -58,15 +58,15 @@
 
                 <div elem="subhead">
                     {{#if root}}
-                        {{#if active}}
+                        {{#if parent.active}}
                             <ul elem="list">
                                 {{#each podrubriks}}
                                     {{#if root}}
-                                        <li elem="root" class="{{#if active}}act{{/if}}">
+                                        <li elem="root" class="{{#if parent.active}}act{{/if}}">
                                             {{icon "strelka"}}
                                             <a href="/sale/catalog/{{parent.id}}">{{parent.name}}
                                                 <span>{{parent.saleCount}}</span></a>
-                                            {{#if active}}
+                                            {{#if parent.active}}
                                                 <ul>
                                                     {{#each podrubriks}}
                                                         <li elem="child" class="{{#if active}}act{{/if}}">

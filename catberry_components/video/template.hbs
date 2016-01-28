@@ -9,9 +9,9 @@
             </li>
             {{#each rubrikator}}
                 {{#with parent}}
-                    <li class="{{#is ../../currentRubrika '==' id}}act{{/is}}">
+                    <li class="{{#is ../../currentRubrika.id '==' id}}act{{/is}}">
                         {{icon "strelka"}}
-                        <a href="/video/catalog/{{id}}">{{name}}<span>{{videoCount}}</span></a>
+                        <a href="/{{../../catalog}}/catalog/{{id}}">{{name}}<span>{{articleCount}} {{videoCount}}</span></a>
                     </li>
                 {{/with}}
             {{/each}}
@@ -59,7 +59,7 @@
                         <a href="" elem="cont">
                             <span><img src="{{imgSrc owner.imgID 50 50}}"></span>
                             <span><br>{{owner.name}}</span>
-                        </a>
+                     {{videoCount}}   </a>
                     </div>
 
                 </div>
