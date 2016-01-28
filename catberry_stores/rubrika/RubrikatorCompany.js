@@ -7,14 +7,18 @@ var util = require('util'),
 
 util.inherits(RubrikatorCompany, Rubrikator);
 
-function RubrikatorCompany() {
+function RubrikatorCompany($uhr) {
 	Rubrikator.call(this);
+	this._uhr = $uhr;
 	this._path = 'http://api-fm.present-tlt.ru/rubrika-company';
 	this._options = {
 		data: {
 			filter: '["and",["=", "status", "1"]]',
-			order: 'sort',
+			//order: 'sort',
+			//expand: "masterCount",
 			limit: 200
 		}
 	};
 }
+
+//Rubrikator.prototype._countName = 'masterCount';

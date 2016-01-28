@@ -78,7 +78,7 @@ RubrikatorVideo.prototype.load = function () {
                 list: tree
             };
         });
-};
+}
 
 /**
  * Handles action named "some-action" from any component.
