@@ -40,9 +40,16 @@ Video.prototype.bind = function () {
     $('.catalog__menu-ico').bind('click', showCatalogMenu);
 
     function showVideoPopup() {
-        $.fancybox.open(this, {
+        var tmp = $(this).closest('.catalog-item').clone();
+        tmp.addClass('popup');
+        tmp.find('.catalog-item__text').css('height', 'auto');
+        $.fancybox.open(tmp, {
             padding: 0,
-            type: 'iframe',
+            type: 'inline',
+            width: '60%',
+            minWidth: '250px',
+            autoHeight: true,
+            autoSize: false,
             helpers: {
                 overlay: {
                     locked: false

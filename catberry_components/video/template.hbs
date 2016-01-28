@@ -29,10 +29,30 @@
                     <div elem="wrapper">
                         <p elem="title">{{{title}}}</p>
 
+                        <div elem="video-cont">
+                            <iframe src="http://{{url}}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+
                         <p elem="text">{{{description}}}</p>
                     </div>
 
                     <p elem="add-date">29 декабря 2015</p>
+
+                    <div elem="social-cont">
+                        <script type="text/javascript"><!--
+                        document.write(VK.Share.button(
+                                {
+                                    title: "Хороший сайт",
+                                    description: "Это мой собственный сайт, я его очень долго делал",
+                                    image: "",
+                                    noparse: true
+                                },
+                                {
+                                    type: "round",
+                                    text: "Поделиться"
+                                }));
+                        --></script>
+                    </div>
 
                     <div block="master-micro-inf" mod="video">
                         <p elem="title">Видео добавил:</p>
