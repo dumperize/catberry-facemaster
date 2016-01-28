@@ -1,11 +1,11 @@
-<div block="catalog">
+<div block="catalog" class="{{#is catalog '==' 'article'}}catalog catalog_article{{/is}}">
 
     <div elem="secondary">
         <p elem="menu-ico">Каталог <span>{{icon "menu"}}</span></p>
         <ul elem="list">
             <li class="{{#unless currentRubrika}}act{{/unless}}">
                 {{icon "strelka"}}
-                <a href="/video">Все<span></span></a>
+                <a href="/{{catalog}}">Все<span></span></a>
             </li>
             {{#each rubrikator}}
                 {{#with parent}}
@@ -22,9 +22,13 @@
     <div elem="content">
         {{#each data}}
             <div elem="item">
-                <div block="catalog-item">
+                <div block="catalog-item" class="{{#is ../catalog '==' 'article'}}catalog-item catalog-item_article{{/is}}">
 
-                    <a href="http://{{url}}" elem="img-cont"><img src="{{img}}"></a>
+                    {{#if img}}
+                        <a href="http://{{url}}" elem="img-cont" mix="block: js-show-catalog-video-popup"><img src="{{img}}"></a>
+                    {{else}}
+                        <div elem="img-cont"><img src="{{imgSrc imgID 180 180}}"></div>
+                    {{/if}}
 
                     <div elem="wrapper">
                         <p elem="title">{{{title}}}</p>
@@ -36,39 +40,28 @@
                         <p elem="text">{{{description}}}</p>
                     </div>
 
-                    <p elem="add-date">29 декабря 2015</p>
+                    <p elem="add-date">
+                        29 декабря 2015
+                        {{#is ../catalog '==' 'article'}}
+                            <a elem="more" href="{{owner.page.number}}/article/{{id}}">подробнее<i>{{icon "strelka"}}</i></a>
+                        {{/is}}
+                    </p>
 
-                    <div elem="social-cont">
-                        <script type="text/javascript"><!--
-                        document.write(VK.Share.button(
-                                {
-                                    title: "Хороший сайт",
-                                    description: "Это мой собственный сайт, я его очень долго делал",
-                                    image: "",
-                                    noparse: true
-                                },
-                                {
-                                    type: "round",
-                                    text: "Поделиться"
-                                }));
-                        --></script>
-                    </div>
+                    <div elem="social-cont"></div>
 
                     <div block="master-micro-inf" mod="video">
                         <p elem="title">Видео добавил:</p>
-                        <a href="" elem="cont">
+                        <a href="{{owner.page.number}}" elem="cont">
                             <span><img src="{{imgSrc owner.imgID 50 50}}"></span>
                             <span><br>{{owner.name}}</span>
-                     {{videoCount}}   </a>
+                        </a>
                     </div>
 
                 </div>
             </div>
         {{/each}}
-
     </div>
 
-    <!-- пагинатор должен лежать внутри компонента с cat-store VideoByRubrika -->
     <cat-common-paginator id="common-paginator" cat-store="Paginator"
                           model="video/VideoByRubrika"></cat-common-paginator>
 </div>

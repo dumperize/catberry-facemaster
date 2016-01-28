@@ -182,7 +182,7 @@
     position: absolute;
     right: 10px;
     bottom: 10px;
-    font-size: 1.3rem;
+    //font-size: 1.3rem;
     color: red;
     @include to(lg) {
       height: auto;
@@ -240,6 +240,13 @@
   &__video-cont, &__social-cont {
     display: none;
   }
+  &__more {
+    float: right;
+    @extend .more-link;
+    @include at(xs) {
+      float: none;
+    }
+  }
   .master-micro-inf {
     position: absolute;
     bottom: 10px;
@@ -251,6 +258,49 @@
     @include at(xs) {
       left: 10px;
       bottom: 48px;
+    }
+  }
+  &_article {
+    .catalog-item {
+      &__title {
+        margin-top: 4px;
+      }
+      &__text {
+        display: none;
+      }
+      &__img-cont {
+        width: 180px;
+        margin-right: 20px;
+        &:before, &:after {
+          display: none;
+        }
+      }
+      &__add-date {
+        //left: 210px;
+        //border: 1px solid blue;
+        height: auto;
+        line-height: 1;
+        bottom: 10px;
+        left: 400px;
+        position: absolute;
+        @include to(lg) {
+          left: 210px;
+        }
+        @include at(xs) {
+          position: static;
+          line-height: 1.8;
+        }
+      }
+    }
+    .master-micro-inf {
+      left: 210px;
+      @include to(lg) {
+        left: 10px;
+        bottom: 10px;
+      }
+      @include at(xs) {
+        bottom: 81px;
+      }
     }
   }
 }

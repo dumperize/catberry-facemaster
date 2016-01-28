@@ -26,6 +26,7 @@ Video.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
             data.catalog = self.$context.attributes.catalog;
+            console.log(data.data[0].owner);
             return data;
         });
 };
@@ -37,7 +38,7 @@ Video.prototype.render = function () {
  */
 Video.prototype.bind = function () {
     $(window).bind('resize', catalogItemCut);
-    $('.catalog-item__img-cont').bind('click', showVideoPopup);
+    $('.js-show-catalog-video-popup').bind('click', showVideoPopup);
     $('.catalog__menu-ico').bind('click', showCatalogMenu);
 
     function showVideoPopup() {
@@ -93,7 +94,7 @@ Video.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 Video.prototype.unbind = function () {
-    $('.catalog-item__img-cont').unbind('click');
+    $('.js-show-catalog-video-popup').unbind('click');
     $('.catalog__menu-ico').unbind('click');
     $(window).unbind('resize');
 };
