@@ -1,0 +1,26 @@
+.to-master-page {
+  font-size: 1.1rem;
+  line-height: 32px;
+  height: 32px;
+  text-align: center;
+  background-color: #ea5159;
+  //display: block;
+  color: #FFF;
+  fill: #FFF;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-top: 10px;
+  &:hover {
+    color: #FFF;
+    background-color: #ea5159 + #111111;
+  }
+  i {
+    top: 2px;
+    left: 3px;
+    position: relative;
+  }
+  svg {
+    fill: inherit;
+    height: 14px;
+  }
+}

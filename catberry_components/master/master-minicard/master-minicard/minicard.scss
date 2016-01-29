@@ -59,32 +59,10 @@
     }
   }
   &__to-page, &__show-services {
-    font-size: 1.1rem;
-    line-height: 32px;
-    height: 32px;
-    text-align: center;
-    background-color: #ea5159;
+    @extend .to-master-page;
     display: block;
-    color: #FFF;
-    fill: #FFF;
-    text-transform: uppercase;
-    text-decoration: none;
-    margin-top: 10px;
     @include at(xs) {
       display: none;
-    }
-    &:hover {
-      color: #FFF;
-      background-color: #ea5159 + #111111;
-    }
-    i {
-      top: 2px;
-      left: 3px;
-      position: relative;
-    }
-    svg {
-      fill: inherit;
-      height: 14px;
     }
   }
   &__show-services {
@@ -177,9 +155,6 @@
     span {
       //border: 1px solid blue;
     }
-  }
-  &__company + &__name + &__spec + &__services {
-    //margin-right: 210px;
   }
   &__logo-cont {
     width: 80px;

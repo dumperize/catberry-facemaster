@@ -25,7 +25,7 @@ function Sale() {
 Sale.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
-            //console.log(data);
+            //console.log(data[0].sale);
             return data;
         });
 };
@@ -37,6 +37,23 @@ Sale.prototype.render = function () {
  */
 Sale.prototype.bind = function () {
     $('li.act:has(.act)').removeClass('act');
+
+    var sale = $('.sale a');
+    sale.bind('click', showSalePopup);
+
+    function showSalePopup() {
+        var tmp = $(this).parent().clone();
+        tmp.addClass('popup');
+        $.fancybox.open(tmp, {
+            padding: 0,
+            helpers: {
+                overlay: {
+                    locked: false
+                }
+            }
+        });
+        return false;
+    }
 };
 
 /**
@@ -45,5 +62,5 @@ Sale.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 Sale.prototype.unbind = function () {
-
+    $('.sale a').unbind('click');
 };

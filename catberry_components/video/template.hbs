@@ -1,22 +1,74 @@
-<p>Вводная: сейчас на сайте каталог видео выглядит ушлепски. Предлагаю его сделать внешне(структурно) таким же
-    как каталог советов. Также в каталоге совеов нет указания количества элементов в рубрике. Теперь их достали из бд и
-    их можно указать</p>
-<h2>Рубрикатор</h2>
-{{#each rubrikator}}
-    {{#with parent}}
-        <p>
-            <a href="/{{../../catalog}}/catalog/{{id}}">{{name}}  {{articleCount}} {{videoCount}}</a>
-            {{#is ../../currentRubrika.id "==" id}}
-                active{{/is}}
-        </p>
-    {{/with}}
-{{/each}}
+<div block="catalog" class="{{#is catalog '==' 'article'}}catalog catalog_article{{/is}}">
 
-<h2>Список {{catalog}}</h2>
-{{#each data}}
-    <p>{{title}}</p>
-{{/each}}
-<br>
-<p>пагинатор должен лежать внутри компонента с cat-store VideoByRubrika</p>
-<cat-common-paginator id="common-paginator" cat-store="Paginator"
-                      model="{{catalog}}/{{capitalizeFirst catalog}}ByRubrika"></cat-common-paginator>
+    <div elem="secondary">
+        <p elem="menu-ico">Каталог <span>{{icon "menu"}}</span></p>
+        <ul elem="list">
+            <li class="{{#unless currentRubrika}}act{{/unless}}">
+                {{icon "strelka"}}
+                <a href="/{{catalog}}">Все<span></span></a>
+            </li>
+            {{#each rubrikator}}
+                {{#with parent}}
+                    <li class="{{#is ../../currentRubrika.id '==' id}}act{{/is}}">
+                        {{icon "strelka"}}
+                        <a href="/{{../../catalog}}/catalog/{{id}}">{{name}}<span>{{articleCount}} {{videoCount}}</span></a>
+                    </li>
+                {{/with}}
+            {{/each}}
+        </ul>
+    </div>
+
+
+    <div elem="content">
+        {{#each data}}
+            <div elem="item">
+                <div block="catalog-item"
+                     class="{{#is ../catalog '==' 'article'}}catalog-item catalog-item_article{{/is}}">
+
+                    {{#if img}}
+                        <a href="http://{{url}}" elem="img-cont" mix="block: js-show-catalog-video-popup"><img
+                                src="{{img}}"></a>
+                    {{else}}
+                        <div elem="img-cont"><img src="{{imgSrc imgID 180 180}}"></div>
+                    {{/if}}
+
+                    <div elem="wrapper">
+                        <p elem="title">{{{title}}}<span elem="add-date">29.12.2015</span></p>
+
+                        {{#is ../catalog '==' 'video'}}
+                            <div elem="video-cont">
+                                <iframe src="http://{{url}}" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        {{/is}}
+
+                        <p elem="text">
+                            {{#is ../catalog '==' 'video'}}{{{description}}}{{/is}}
+                            {{#is ../catalog '==' 'article'}}{{{stripTags text}}}{{/is}}
+                        </p>
+                    </div>
+
+
+                    {{#is ../catalog '==' 'article'}}
+                        <a elem="more"
+                           href="{{owner.page.number}}/article/{{id}}">подробнее<i>{{icon "strelka"}}</i></a>
+                    {{/is}}
+
+
+                    <div elem="social-cont"></div>
+
+                    <div block="master-micro-inf" mod="video">
+                        <p elem="title">Видео добавил:</p>
+                        <a href="{{owner.page.number}}" elem="cont">
+                            <span><img src="{{imgSrc owner.imgID 50 50}}"></span>
+                            <span><br>{{owner.name}}</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+    <cat-common-paginator id="common-paginator" cat-store="Paginator"
+                          model="video/VideoByRubrika"></cat-common-paginator>
+</div>

@@ -15,6 +15,32 @@ a:active {
   color: $color-a-hover;
   text-decoration: none
 }
+/* Подробнее */
+.more-link {
+  float: right;
+  position: relative;
+  color: $color-text-red;
+  text-transform: uppercase;
+  //padding-right: 20px;
+  font-size: 1.4rem;
+  line-height: 1;
+  &:hover {
+    color: $color-text-red;
+  }
+  i {
+    position: relative;
+    top: 1px;
+    right: 0;
+    margin-left: 6px;
+    .icon {
+      //display: block;
+      fill: $color-text-red;
+      width: 12px;
+      height: 12px;
+    }
+  }
+}
+
 
 /* Размеры обычной кнопки */
 @mixin button-mid () {

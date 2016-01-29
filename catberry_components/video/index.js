@@ -26,6 +26,7 @@ Video.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
             data.catalog = self.$context.attributes.catalog;
+            console.log(data.data[1]);
             return data;
         });
 };
@@ -36,7 +37,55 @@ Video.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 Video.prototype.bind = function () {
+    $(window).bind('resize', catalogItemCut);
+    $('.js-show-catalog-video-popup').bind('click', showVideoPopup);
+    $('.catalog__menu-ico').bind('click', showCatalogMenu);
 
+    function showVideoPopup() {
+        var tmp = $(this).closest('.catalog-item').clone();
+        tmp.addClass('popup');
+        tmp.find('.catalog-item__text').css('height', 'auto');
+        $.fancybox.open(tmp, {
+            padding: 0,
+            type: 'inline',
+            width: '60%',
+            minWidth: '250px',
+            autoHeight: true,
+            autoSize: false,
+            helpers: {
+                overlay: {
+                    locked: false
+                }
+            }
+        });
+        return false;
+    }
+
+    catalogItemCut();
+    function catalogItemCut() {
+        if (window.matchMedia('(min-width: 750px)').matches) {
+            $('.catalog__list').show();
+        } else {
+            $('.catalog__list').hide();
+        }
+        $('.catalog-item').each(function () {
+            var text = $(this).find('.catalog-item__text'),                                           // контейнер с текстом
+                textLineHeight = parseFloat(text.css('line-height')),                                 // высота строки
+                wrapperHeight = parseInt($(this).find('.catalog-item__wrapper').css('max-height')),   // общая высотка обертки
+                titleHeight = $(this).find('.catalog-item__title').height(),                          // высота заголовка
+                titleMargin = parseFloat($(this).find('.catalog-item__title').css('margin-bottom')),
+                cutTextHeight = Math.floor((wrapperHeight - titleHeight - titleMargin) / textLineHeight) * Math.floor(textLineHeight);
+
+            text.css('height', 'auto');
+            if (text.height() > cutTextHeight) {
+                text.height(cutTextHeight);
+            }
+        });
+    }
+
+    function showCatalogMenu() {
+        $('.catalog__list').slideToggle(400);
+    }
 };
 
 /**
@@ -45,5 +94,7 @@ Video.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 Video.prototype.unbind = function () {
-
+    $('.js-show-catalog-video-popup').unbind('click');
+    $('.catalog__menu-ico').unbind('click');
+    $(window).unbind('resize');
 };

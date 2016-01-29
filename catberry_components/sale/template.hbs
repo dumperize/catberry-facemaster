@@ -24,10 +24,33 @@
                                         {{/is}}
                                     </p>
 
-                                    <div elem="pic"><img src="{{imgSrc imgID 200 200}}" elem="img" alt="{{title}}">
+                                    <div elem="pic"><img src="{{imgSrc imgID 210 210}}" elem="img" alt="{{title}}">
                                     </div>
+
                                     <p elem="text">{{title}}</p>
                                 </a>
+
+                                <div elem="popup-content">
+                                    <div block="master-micro-inf">
+                                        <p elem="title">Акцию предлагает:</p>
+                                        <a href="/{{page.number}}" elem="cont"><span><img
+                                                src="{{imgSrc owner.imgID 50 50}}"></span><span>{{owner.name}}</span></a>
+                                    </div>
+
+                                    <div elem="to-page">
+                                        <a block="to-master-page" href="/{{page.number}}">На страницу
+                                            мастера<i>{{icon "strelka"}}</i></a>
+                                    </div>
+
+                                    <!-- ERROR -->
+                                    <div style="width: 180px;">
+                                        <br>
+                                        <p style="color: red; font-weight: bold;">------ ERROR! ------</p>
+                                        page.number store - недостаточно данных
+                                        <br><br>
+                                    </div>
+                                    <!-- ERROR -->
+                                </div>
                             </div>
                         </div>
                     {{/each}}
@@ -44,15 +67,15 @@
                                             <a href="/sale/catalog/{{parent.id}}">{{parent.name}}
                                                 <span>{{parent.saleCount}}</span></a>
                                             {{#if parent.active}}
-                                            <ul>
-                                                {{#each podrubriks}}
-                                                    <li elem="child" class="{{#if active}}act{{/if}}">
-                                                        {{icon "strelka"}}
-                                                        <a href="/sale/catalog/{{id}}">{{name}}
-                                                            <span>{{saleCount}}</span></a>
-                                                    </li>
-                                                {{/each}}
-                                            </ul>
+                                                <ul>
+                                                    {{#each podrubriks}}
+                                                        <li elem="child" class="{{#if active}}act{{/if}}">
+                                                            {{icon "strelka"}}
+                                                            <a href="/sale/catalog/{{id}}">{{name}}
+                                                                <span>{{saleCount}}</span></a>
+                                                        </li>
+                                                    {{/each}}
+                                                </ul>
                                             {{/if}}
                                         </li>
 
