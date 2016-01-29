@@ -1,4 +1,16 @@
 <div block="news-list">
+
+    <div block="submit-news">
+        <p elem="title">Предложить новость</p>
+        <form>
+            <label elem="input-cont"><input type="text" placeholder="Заголовок новости"></label>
+            <label elem="input-cont"><input type="text" placeholder="Автор"></label>
+            <div elem="photo-cont"><a elem="add-photo"><span>Загрузить фото</span></a></div>
+            <textarea placeholder="Текст новости"></textarea>
+            <input type="submit" value="Предложить"><input type="button" value="Отмена">
+        </form>
+    </div>
+
     {{#each data}}
         <div block="news">
             <div elem="inner">

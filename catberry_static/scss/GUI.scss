@@ -58,7 +58,9 @@ a:active {
   border: none;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  cursor: pointer;
   &:hover {
+    color: #FFF;
     text-decoration: none;
     background-color: $color-orange + #111111;
   }
