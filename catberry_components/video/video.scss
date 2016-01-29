@@ -176,23 +176,16 @@
     }
   }
   &__add-date {
-    height: 50px;
-    line-height: 50px;
-    //border: 1px solid blue;
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    //font-size: 1.3rem;
-    color: red;
-    @include to(lg) {
-      height: auto;
-      line-height: normal;
-    }
+    vertical-align: super;
+    color: $color-text + #333333;
+    font-size: 1.1rem;
+    position: static;
+    text-transform: none;
+    padding-left: 6px;
+    font-weight: normal;
     @include at(xs) {
-      position: static;
-      text-align: center;
-      border-top: 1px solid #AAA;
-      padding-top: 8px;
+      font-size: 1rem;
+      vertical-align: top;
     }
   }
   &__title {
@@ -225,11 +218,8 @@
     @include to(lg) {
       max-height: 180px;
     }
-    @include at(md) {
-      max-height: 170px;
-    }
     @include at(xs) {
-      margin-bottom: 73px;
+      margin-bottom: 64px;
       padding-bottom: 10px;
       box-sizing: content-box;
       border-bottom: 1px solid #AAA;
@@ -242,9 +232,17 @@
   }
   &__more {
     float: right;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
     @extend .more-link;
     @include at(xs) {
       float: none;
+      position: static;
+      display: block;
+      text-align: right;
+      padding-top: 10px;
+      border-top: 1px solid #AAA;
     }
   }
   .master-micro-inf {
@@ -257,17 +255,11 @@
     }
     @include at(xs) {
       left: 10px;
-      bottom: 48px;
+      bottom: 10px;
     }
   }
   &_article {
     .catalog-item {
-      &__title {
-        margin-top: 4px;
-      }
-      &__text {
-        display: none;
-      }
       &__img-cont {
         width: 180px;
         margin-right: 20px;
@@ -275,20 +267,13 @@
           display: none;
         }
       }
-      &__add-date {
-        //left: 210px;
-        //border: 1px solid blue;
-        height: auto;
-        line-height: 1;
-        bottom: 10px;
-        left: 400px;
-        position: absolute;
+      &__wrapper {
         @include to(lg) {
-          left: 210px;
+          max-height: 170px;
+          //border: 1px solid blue;
         }
         @include at(xs) {
-          position: static;
-          line-height: 1.8;
+          margin-bottom: 74px;
         }
       }
     }
@@ -299,7 +284,7 @@
         bottom: 10px;
       }
       @include at(xs) {
-        bottom: 81px;
+        bottom: 47px;
       }
     }
   }

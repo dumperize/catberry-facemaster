@@ -22,30 +22,37 @@
     <div elem="content">
         {{#each data}}
             <div elem="item">
-                <div block="catalog-item" class="{{#is ../catalog '==' 'article'}}catalog-item catalog-item_article{{/is}}">
+                <div block="catalog-item"
+                     class="{{#is ../catalog '==' 'article'}}catalog-item catalog-item_article{{/is}}">
 
                     {{#if img}}
-                        <a href="http://{{url}}" elem="img-cont" mix="block: js-show-catalog-video-popup"><img src="{{img}}"></a>
+                        <a href="http://{{url}}" elem="img-cont" mix="block: js-show-catalog-video-popup"><img
+                                src="{{img}}"></a>
                     {{else}}
                         <div elem="img-cont"><img src="{{imgSrc imgID 180 180}}"></div>
                     {{/if}}
 
                     <div elem="wrapper">
-                        <p elem="title">{{{title}}}</p>
+                        <p elem="title">{{{title}}}<span elem="add-date">29.12.2015</span></p>
 
-                        <div elem="video-cont">
-                            <iframe src="http://{{url}}" frameborder="0" allowfullscreen></iframe>
-                        </div>
+                        {{#is ../catalog '==' 'video'}}
+                            <div elem="video-cont">
+                                <iframe src="http://{{url}}" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        {{/is}}
 
-                        <p elem="text">{{{description}}}</p>
+                        <p elem="text">
+                            {{#is ../catalog '==' 'video'}}{{{description}}}{{/is}}
+                            {{#is ../catalog '==' 'article'}}{{{stripTags text}}}{{/is}}
+                        </p>
                     </div>
 
-                    <p elem="add-date">
-                        29 декабря 2015
-                        {{#is ../catalog '==' 'article'}}
-                            <a elem="more" href="{{owner.page.number}}/article/{{id}}">подробнее<i>{{icon "strelka"}}</i></a>
-                        {{/is}}
-                    </p>
+
+                    {{#is ../catalog '==' 'article'}}
+                        <a elem="more"
+                           href="{{owner.page.number}}/article/{{id}}">подробнее<i>{{icon "strelka"}}</i></a>
+                    {{/is}}
+
 
                     <div elem="social-cont"></div>
 

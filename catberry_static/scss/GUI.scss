@@ -21,16 +21,17 @@ a:active {
   position: relative;
   color: $color-text-red;
   text-transform: uppercase;
-  padding-right: 20px;
+  //padding-right: 20px;
   font-size: 1.4rem;
   line-height: 1;
   &:hover {
     color: $color-text-red;
   }
   i {
-    position: absolute;
+    position: relative;
     top: 1px;
     right: 0;
+    margin-left: 6px;
     .icon {
       //display: block;
       fill: $color-text-red;
