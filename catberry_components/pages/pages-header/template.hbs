@@ -1,52 +1,40 @@
 <header block="header">
-    <div class="container">
-        <div class="row">
-            <div elem="left-col">
-                <div block="logo">
-                    <div elem="img">
-                        <a href="/main" elem="link">
-                            <img alt="Facemaster.ru Logo" src="/img/logo.svg" width="100%">
-                        </a>
-                    </div>
-                    <div block="visitor">
-                        <p elem="count">{{visitCount}}</p>
+    <div elem="cont">
+        <div elem="row">
 
-                        <p elem="mera">в неделю</p>
-                    </div>
-                </div>
-            </div>
-            <div elem="title">
-                <a href="/main" block="title">
-                    <p elem="text" mix="block:h1">ПОИСК МАСТЕРОВ В СФЕРЕ УСЛУГ</p>
-                </a>
-            </div>
-            <div elem="login">
-                {{#if isGuest}}
-                    <div block="login">
-                        <a href="/login" elem="btn" mix="block:btn">Вход для Мастеров</a>
-                    </div>
-                {{else}}
-                    <div block="login">
-                        <a href="<!--ERROR-->" elem="btn" mix="block:btn"><!--ERROR - username--></a>
+            <a href="/main" elem="title">Поиск мастеров в сфере услуг</a>
 
-                        <div block="menu-user">
-                            <ul elem="ul">
-                                <!--ERROR MENUUSER-->
-                                {{#each authData.menuUser}}
-                                    <li elem="item">
-                                        <a href="{{url}}" elem="item-link">{{{title}}}</a>
-                                    </li>
-                                {{/each}}
-                            </ul>
-                        </div>
-                    </div>
-                {{/if}}
-            </div>
             <div elem="menu">
                 <cat-pages-navigation id="pages-navigation"></cat-pages-navigation>
             </div>
-            <div elem="social">
-                <cat-social id="social"></cat-social>
+
+            <div block="logo">
+                <a href="/main" elem="img-cont"><img alt="Facemaster.ru Logo" src="/img/logo.svg" width="100%"></a>
+
+                <p elem="visitor">{{visitCount}}<br><span elem="week">в неделю</span></p>
+            </div>
+
+            <div elem="login">
+                <div block="login">
+                    {{#if isGuest}}
+                        <!--<a href="/login" elem="btn"><span>{{icon 'home'}}</span>Вход для Мастеров</a>-->
+                        <a href="<!--ERROR-->" elem="btn"><span>{{icon 'home'}}</span>Иван М.<!--ERROR - username-->
+                        </a>
+                        <ul elem="user-menu">
+                            <!--ERROR MENUUSER-->
+                            <li><a href="/">Длинная запись тестирование</a></li>
+                            <li><a href="/">Короткая запись</a></li>
+                            <li><a href="/">123</a></li>
+                            {{#each authData.menuUser}}
+                                <li><a href="{{url}}">{{title}}</a></li>
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                </div>
+
+                <div elem="social">
+                    <cat-social id="social"></cat-social>
+                </div>
             </div>
         </div>
     </div>

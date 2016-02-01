@@ -46,7 +46,7 @@ MasterBlockService.prototype.render = function () {
                     var fieldsValLength;
 
                     fieldsValLength = item.length;
-                    if (fieldsValHalfSum < (fieldsValSum / 2) - 20) {
+                    if (fieldsValHalfSum < (fieldsValSum / 2) - 9) {
                         part1.push(item);
                     } else {
                         part2.push(item);

@@ -2,8 +2,14 @@
   height: 24px;
   line-height: 24px;
   font-size: 1.4rem;
-
-  /** element **/
+  //border: 1px solid blue;
+  @include at(sm){
+    display: table;
+    width: 100%;
+  }
+  a {
+    text-decoration: none;
+  }
   &__item {
     float: left;
     text-transform: uppercase;
@@ -15,21 +21,22 @@
     &:last-child {
       border-right: none;
     }
-    /** resolutions **/
     @include at(md){
-      padding: 0 7px;
+      padding: 0 10px;
     }
     @include at(sm){
-      padding: 0 24px;
+      text-align: center;
+      padding: 0;
+      display: table-cell;
+      float: none;
+      &:first-child {
+        text-align: left;
+        width: 140px;
+      }
       &:last-child {
-        padding-right: 0;
         text-align: right;
+        width: 150px;
       }
     }
-    /** ========== **/
   }
-  &__item-link {
-    text-decoration: none;
-  }
-  /** ========== **/
 }

@@ -10,9 +10,5 @@
 }
 
 .content {
-  @extend .col-xs-12;
-  &__row {
-    @extend .row;
-    border: 1px solid red;
-  }
+  //@extend .col-xs-12;
 }

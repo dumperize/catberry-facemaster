@@ -1,5 +1,5 @@
 .master-rubrikator-page {
-  @extend .col-xs-12;
+  //@extend .col-xs-12;
   @include at(xs){
     padding:0;
   }

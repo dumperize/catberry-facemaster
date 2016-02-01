@@ -1,8 +1,7 @@
 .breadcrumbs {
   padding-top: 15px;
-  @extend .col-xs-12;
+  //@extend .col-xs-12;
   font-size: 1.1rem;
-
   @include at(xs) {
     padding: 0;
   }

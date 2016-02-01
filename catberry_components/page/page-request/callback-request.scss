@@ -1,5 +1,5 @@
 .callback_request {
-    @extend .col-xs-12;
+    //@extend .col-xs-12;
     &__form {
         background-color: $color-bg-grey-light;
         padding: 10px;
@@ -8,7 +8,7 @@
     }
     &__intro {
         padding-bottom: 10px;
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     &__input {
         padding-bottom: 20px;

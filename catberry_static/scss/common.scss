@@ -108,6 +108,7 @@ p {
 // Set the container width, and override it for fixed navbars in media queries.
 
 .container {
+    //border: 1px solid blue;
     @include container-fixed;
 
     @media (max-width: $screen-sm-min - 1) {

@@ -27,7 +27,9 @@ MasterBlockReview.prototype.render = function () {
         return this.$context.getStoreData()
             .then(function (data) {
                 data.vkLikes.data = JSON.parse(data.vkLikes.data);
-                data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов
+                if (data.vkLikes.data.length > 9) {
+                    data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов (больше не требуется)
+                }
                 //console.log(data.comments);
                 return {
                     comments: data.comments.reverse(),

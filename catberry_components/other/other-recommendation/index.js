@@ -22,7 +22,7 @@ function OtherRecommendation() {
  * for template engine.
  */
 OtherRecommendation.prototype.render = function () {
-    return this.$context.getStoreData()
+    return this.$context.getStoreData();
 };
 
 /**
