@@ -15,7 +15,17 @@ module.exports = Tag;
  */
 function Tag($uhr) {
     this._uhr = $uhr;
+    this._config = this.$context.locator.resolve('config');
+
     this.$context.setDependency('rubrika/Rubrika');
+
+    this._path = this._config.api + '/tag';
+    this._option = {
+        data: {
+            filter: '["and",["=", "unique", ""],["=","status","1"]]',
+            expand: 'seo'
+        }
+    };
 }
 
 /**
@@ -47,14 +57,8 @@ Tag.prototype.load = function () {
         })
         .then(function () {
             if (tag) {
-                var path = 'http://api-fm.present-tlt.ru/tag';
-                var option = {
-                    data: {
-                        filter: '["and",["=", "unique", "' + tag + '"],["=","status","1"]]',
-                        expand: 'seo'
-                    }
-                };
-                return self._uhr.get(path, option)
+                self._option.data.filter = '["and",["=", "unique", "' + tag + '"],["=","status","1"]]';
+                return self._uhr.get(self._path, self._option)
                     .then(function (result) {
                         if (result.status.code >= 400 && result.status.code < 600) {
                             throw new Error(result.status.text);
@@ -62,7 +66,6 @@ Tag.prototype.load = function () {
                         return result.content[0];
                     });
             }
-
             return {};
         })
         .then(function (tagData) {

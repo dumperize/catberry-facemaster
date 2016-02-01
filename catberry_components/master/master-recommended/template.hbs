@@ -1,4 +1,4 @@
-{{#if is-recommended-masters}}
+{{#if length}}
     <div block="master_recommended">
         <h2 elem="title">
             Этих<br>
@@ -7,16 +7,16 @@
         </h2>
 
         <div elem="slider">
-            {{#each recommended-master}}
-                <a href="{{master-url}}" elem="master">
-                    <img elem="master-photo" src="{{src}}" alt="{{alt}}">
+            {{#each list}}
+                <a href="{{page.number}}" elem="master">
+                    <img elem="master-photo" src="{{imgSrc imgID 100 100}}" alt="{{name}}">
 
                     <p elem="master-name">
-                        {{master-name}}
+                        {{name}}
                     </p>
 
                     <p elem="master-recommendations">
-                        {{recommendation-number}}
+                        {{countLikes}}
                     </p>
                 </a>
             {{/each}}
