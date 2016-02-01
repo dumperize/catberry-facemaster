@@ -1,4 +1,5 @@
 {
-	"title": "FaceMaster.ru",
-	"isRelease": true
+  "title": "FaceMaster.ru",
+  "isRelease": true,
+  "api": "http://api.facemaster.ru"
 }

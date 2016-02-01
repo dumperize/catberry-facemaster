@@ -19,8 +19,28 @@
         { {> banner/banner_side/banner_side banner_side} }
     </div>
     <div elem="right-side">
-        <cat-master-recommended id="master-recommended" cat-store="master/Recommended"></cat-master-recommended>
-        <cat-master-list id="master-list" cat-store="master/MasterList"></cat-master-list>
+
+        {{#is section "==" "master"}}
+            <cat-master-recommended id="master-recommended" cat-store="master/Recommended"></cat-master-recommended>
+            <cat-master-list id="master-list" cat-store="master/MasterList"></cat-master-list>
+        {{/is}}
+
+        {{#is section "==" "video"}}
+            <cat-common-list id="master-list-video" cat-store="video/VideoList"></cat-common-list>
+        {{/is}}
+
+
+        {{#is section "==" "sale"}}
+            <cat-common-list id="master-list-sale" cat-store="sale/SaleList"></cat-common-list>
+        {{/is}}
+
+        {{#is section "==" "sovety"}}
+            <cat-common-list id="master-list-article" cat-store="article/ArticleList"></cat-common-list>
+        {{/is}}
+
+        {{#is section "==" "company"}}
+        {{/is}}
+
     </div>
 </div>
 <div block="row">
