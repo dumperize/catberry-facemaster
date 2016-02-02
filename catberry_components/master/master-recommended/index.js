@@ -18,82 +18,20 @@ function MasterRecommended() {
 
 /**
  * Gets data context for template engine.
- * This method is optional.
+ * This method
+ "is-recommended-masters": true, is optional.
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
 MasterRecommended.prototype.render = function () {
-    //return this.$context.getStoreData();
-    return {
-        "is-recommended-masters": true,
-        "url-arrow-left": "404",
-        "url-arrow-right": "404",
-        "recommended-master": [
-            {
-                "master-url": "404",
-                "src": "/img/assets/master_recommended/3720.jpg",
-                "alt": "Князев А.Ю.",
-                "master-name": "Князев А.Ю.",
-                "recommendation-number": "27 человек"
-            },
-            {
-                "master-url": "404",
-                "src": "/img/assets/master_recommended/4617.jpg",
-                "alt": "Хальзов А.",
-                "master-name": "Хальзов А.",
-                "recommendation-number": "6 человек"
-            },
-            {
-                "master-url": "404",
-                "src": "/img/assets/master_recommended/7428.jpg",
-                "alt": "Булгаков В.А.",
-                "master-name": "Булгаков В.А.",
-                "recommendation-number": "5 человек"
-            },
-            {
-                "master-url": "404",
-                "src": "/img/assets/master_recommended/3720.jpg",
-                "alt": "Князев А.Ю.",
-                "master-name": "Князев А.Ю.",
-                "recommendation-number": "27 человек"
-            },
-            {
-                "master-url": "404",
-                "src": "/img/assets/master_recommended/4617.jpg",
-                "alt": "Хальзов А.",
-                "master-name": "Хальзов А.",
-                "recommendation-number": "6 человек"
-            },
-            {
-                "master-url": "404",
-                "src": "/img/assets/master_recommended/7428.jpg",
-                "alt": "Булгаков В.А.",
-                "master-name": "Булгаков В.А.",
-                "recommendation-number": "5 человек"
-            },
-            {
-                "master-url": "404",
-                "src": "/img/assets/master_recommended/3720.jpg",
-                "alt": "Князев А.Ю.",
-                "master-name": "Князев А.Ю.",
-                "recommendation-number": "27 человек"
-            },
-            {
-                "master-url": "404",
-                "src": "/img/assets/master_recommended/4617.jpg",
-                "alt": "Хальзов А.",
-                "master-name": "Хальзов А.",
-                "recommendation-number": "6 человек"
-            },
-            {
-                "master-url": "404",
-                "src": "/img/assets/master_recommended/7428.jpg",
-                "alt": "Булгаков В.А.",
-                "master-name": "Булгаков В.А.",
-                "recommendation-number": "5 человек"
+    return this.$context.getStoreData()
+        .then(function (data) {
+            return {
+                list: data,
+                length: (data.length > 1)
             }
-        ]
-    }
+        });
+
 };
 
 /**

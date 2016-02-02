@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = Recommended;
+module.exports = CompanyItem;
 
 /*
  * This is a Catberry Store file.
@@ -9,11 +9,11 @@ module.exports = Recommended;
  */
 
 /**
- * Creates new instance of the "master/Recommended" store.
+ * Creates new instance of the "company/CompanyItem" store.
  * @param {UHR} $uhr Universal HTTP request.
  * @constructor
  */
-function Recommended($uhr) {
+function CompanyItem($uhr) {
 	this._uhr = $uhr;
 }
 
@@ -22,19 +22,19 @@ function Recommended($uhr) {
  * @type {UHR}
  * @private
  */
-Recommended.prototype._uhr = null;
+CompanyItem.prototype._uhr = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
  * @type {number} Lifetime in milliseconds.
  */
-Recommended.prototype.$lifetime = 60000;
+CompanyItem.prototype.$lifetime = 60000;
 
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
-Recommended.prototype.load = function () {
+CompanyItem.prototype.load = function () {
 	// Here you can do any HTTP requests using this._uhr.
 	// Please read details here https://github.com/catberry/catberry-uhr.
 };
@@ -43,7 +43,7 @@ Recommended.prototype.load = function () {
  * Handles action named "some-action" from any component.
  * @returns {Promise<Object>|Object|null|undefined} Response to component.
  */
-Recommended.prototype.handleSomeAction = function () {
+CompanyItem.prototype.handleSomeAction = function () {
 	// Here you can call this.$context.changed() if you know
 	// that remote data source has been changed.
 	// Also you can have many handle methods for other actions.

@@ -2,6 +2,12 @@
 
 module.exports = MasterList;
 
+var util = require('util'),
+    StoreAutoLoadList = require('../../lib/StoreAutoLoadList');
+/**
+ * наследуемся от пагинатора для постраничной навигации
+ */
+util.inherits(MasterList, StoreAutoLoadList);
 /*
  * This is a Catberry Store file.
  * More details can be found here
@@ -14,28 +20,19 @@ module.exports = MasterList;
  * @constructor
  */
 function MasterList($uhr) {
-    this._uhr = $uhr;
-    this._currentFeed = [];
+    StoreAutoLoadList.call(this);
     this.$context.setDependency('Tag');
+
+    this._pathBase = this._config.api + '/master';
+    this._path = this._pathBase + '/active';
+    this._options = {
+        data: {
+            filter: '["and",["=", "rubrikaID", ""]]',
+            expand: 'comments,sales,videos,vkLikes,albums,contacts,page,company',
+            order: 'sort'
+        }
+    };
 }
-
-MasterList.prototype._currentFeed = null;
-MasterList.prototype._currentPage = 1;
-MasterList.prototype._isFinished = false;
-
-/**
- * Current universal HTTP request to do it in isomorphic way.
- * @type {UHR}
- * @private
- */
-MasterList.prototype._uhr = null;
-
-/**
- * Current lifetime of data (in milliseconds) that is returned by this store.
- * @type {number} Lifetime in milliseconds.
- */
-MasterList.prototype.$lifetime = 60000;
-
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
@@ -48,7 +45,13 @@ MasterList.prototype.load = function () {
             if (!tag.rubrika)
                 return;
             self._clearFeed(tag);
-            return self._loadDataPerPage(self._currentPage, tag.rubrika.id, tag.tag.id);
+
+            self._options.data.filter = '["and",["=", "rubrikaID", "' + tag.rubrika.id + '"]]';
+            if (tag.tag.id) {
+                self._path = self._pathBase + '/bytag/' + tag.tag.id;
+            }
+
+            return self._loadDataPerPage(self._currentPage);
         })
         .then(function (result) {
             if (!result || result.length === 0) {
@@ -72,29 +75,6 @@ MasterList.prototype._clearFeed = function (tag) {
         this._currentTag = tag.tag.id;
     }
 };
-MasterList.prototype._loadDataPerPage = function (page, rubrikaID, tagID) {
-    var self = this;
-    var path = 'http://api-fm.present-tlt.ru/master/active';
-    var options = {
-        data: {
-            filter: '["and",["=", "rubrikaID", "' + rubrikaID + '"]]',
-            expand: 'comments,sales,videos,vkLikes,albums,contacts,page,company',
-            order: 'sort',
-            page: page
-        }
-    };
-    if (tagID) {
-        path = 'http://api-fm.present-tlt.ru/master/bytag/' + tagID;
-    }
-
-    return self._uhr.get(path, options)
-        .then(function (result) {
-            if (result.status.code >= 400 && result.status.code < 600) {
-                throw new Error(result.status.text);
-            }
-            return result.content;
-        });
-};
 
 MasterList.prototype._strucrurResult = function (result) {
     result.forEach(function (master) {
@@ -106,25 +86,4 @@ MasterList.prototype._strucrurResult = function (result) {
             master.vkLikes.countLikes = 0;
         }
     });
-};
-/**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
- */
-MasterList.prototype.handleGetNextPage = function () {
-    if (this._isFinished) {
-        return null;
-    }
-    var self = this;
-    return Promise.resolve()
-        .then(function () {
-            if (!self._currentFeed || self._currentFeed.length === 0) {
-                return self.load();
-            }
-        })
-        .then(function (d) {
-            self._currentPage++;
-            self.$context.changed();
-        });
-
 };

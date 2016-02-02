@@ -1,7 +1,7 @@
 <div block="master-minicard" class="{{#unless page.id}}master-minicard_free{{/unless}}">
 
     <div elem="photo-cont">
-        <img elem="photo" src="http://api-fm.present-tlt.ru/files?key={{imgID}}" alt="{{name}}">
+        <img elem="photo" src="{{imgSrc imgID 200 200}}" alt="{{name}}">
         {{#if page}}
             <i elem="like">{{icon "like"}} {{vkLikes.countLikes}}</i>
         {{/if}}

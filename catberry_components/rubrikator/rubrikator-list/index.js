@@ -23,10 +23,12 @@ function Catalog() {
  * for template engine.
  */
 Catalog.prototype.render = function () {
+    var self = this;
     return this.$context.getStoreData()
         .then(function (data) {
             return {
-                rubrikator: data
+                rubrikator: data,
+                catalog: self.$context.attributes.catalog
             }
         });
 };

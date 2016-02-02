@@ -15,6 +15,15 @@ module.exports = Rubrika;
  */
 function Rubrika($uhr) {
     this._uhr = $uhr;
+    this._config = this.$context.locator.resolve('config');
+
+    this._url = this._config.api + '/rubrika';
+    this._options = {
+        data: {
+            filter: '["and", ["=", "unique", ""],["=","status","1"]]',
+            expand: "tags,parent,nearby,seo,activeBanners,recomendMasters"
+        }
+    };
 }
 
 /**
@@ -42,15 +51,9 @@ Rubrika.prototype.load = function () {
     if (!podrubrika) {
         self.$context.notFound();
     }
+    this._options.data.filter = '["and", ["=", "unique", "' + podrubrika + '"],["=","status","1"]]';
 
-    var url = 'http://api-fm.present-tlt.ru/rubrika';
-    var options = {
-        data: {
-            filter: '["and", ["=", "unique", "' + podrubrika + '"],["=","status","1"]]',
-            expand: "tags,parent,nearby,seo"
-        }
-    };
-    return this._uhr.get(url, options)
+    return this._uhr.get(this._url, this._options)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
@@ -71,8 +74,3 @@ Rubrika.prototype.load = function () {
             return data;
         });
 };
-
-/**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
- */
