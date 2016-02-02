@@ -20,7 +20,8 @@ function RubrikaCompany($uhr) {
     this._path = this._config.api + '/company/byrubrikacompany/';
     this._options = {
         data: {
-            order: 'sort'
+            order: 'sort',
+            expand: 'mastersData'
         }
     };
 }
