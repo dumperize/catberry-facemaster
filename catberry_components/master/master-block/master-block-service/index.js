@@ -26,7 +26,9 @@ MasterBlockService.prototype.render = function () {
     if (this.$context.attributes['master-page']) {
         return this.$context.getStoreData()
             .then(function (data) {
-                data.services.length = data.page.services; //укорачиваем массив услуг до значения page.services
+                if (data.services.length > data.page.services) {
+                    data.services.length = data.page.services; //укорачиваем массив услуг до значения page.services
+                }
                 //console.log(data.services);
                 var fieldsValSum = 0;
                 var fieldsValHalfSum = 0;
