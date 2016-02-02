@@ -17,7 +17,7 @@ module.exports = RubrikatorVideo;
  */
 function RubrikatorVideo($uhr) {
     this._uhr = $uhr;
-    this._path = 'http://api-fm.present-tlt.ru/rubrika';
+    this._path = 'http://api.facemaster.ru/rubrika';
     this._options = {
         data: {
             filter: '["and",["=", "status", "1"]]',
