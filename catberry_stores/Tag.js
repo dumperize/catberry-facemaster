@@ -22,7 +22,7 @@ function Tag($uhr) {
     this._path = this._config.api + '/tag';
     this._option = {
         data: {
-            filter: '["and",["=", "unique", ""],["=","status","1"]]',
+            filter: '["and",["=", "unique", ":unique"],["=","status","1"]]',
             expand: 'seo'
         }
     };
@@ -57,7 +57,7 @@ Tag.prototype.load = function () {
         })
         .then(function () {
             if (tag) {
-                self._option.data.filter = '["and",["=", "unique", "' + tag + '"],["=","status","1"]]';
+                self._option.data.filter = self._option.data.filter.replace(/:unique/g, tag);
                 return self._uhr.get(self._path, self._option)
                     .then(function (result) {
                         if (result.status.code >= 400 && result.status.code < 600) {

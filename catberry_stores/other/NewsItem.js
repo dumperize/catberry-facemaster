@@ -15,6 +15,13 @@ module.exports = NewsItem;
  */
 function NewsItem($uhr) {
     this._uhr = $uhr;
+    this._config = this.$context.locator.resolve('config');
+    this._path = this._config.api + '/about-news';
+    this._option = {
+        data: {
+            filter: '["and",["=","id",":id"],["=", "status", "1"]]'
+        }
+    };
 }
 
 /**
@@ -23,6 +30,7 @@ function NewsItem($uhr) {
  * @private
  */
 NewsItem.prototype._uhr = null;
+NewsItem.prototype._config = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
@@ -37,16 +45,12 @@ NewsItem.prototype.$lifetime = 60000;
 NewsItem.prototype.load = function () {
     var self = this;
     var item = this.$context.state.item;
-    var path = 'http://api-fm.present-tlt.ru/about-news';
     if (!item)
         return;
 
-    var option = {
-        data: {
-            filter: '["and",["=","id","' + item + '"],["=", "status", "1"]]'
-        }
-    };
-    return this._uhr.get(path, option)
+    this._option.data.filter = this._option.data.filter.replace(/:id/g, item);
+
+    return this._uhr.get(this._path, this._option)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
@@ -56,15 +60,4 @@ NewsItem.prototype.load = function () {
 
             return result.content[0];
         });
-};
-
-/**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
- */
-NewsItem.prototype.handleSomeAction = function () {
-
-    // Here you can call this.$context.changed() if you know
-    // that remote data source has been changed.
-    // Also you can have many handle methods for other actions.
 };

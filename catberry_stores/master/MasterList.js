@@ -27,7 +27,7 @@ function MasterList($uhr) {
     this._path = this._pathBase + '/active';
     this._options = {
         data: {
-            filter: '["and",["=", "rubrikaID", ""]]',
+            filter: '["and",["=", "rubrikaID", ":rubrikaID"]]',
             expand: 'comments,sales,videos,vkLikes,albums,contacts,page,company',
             order: 'sort'
         }
@@ -46,7 +46,7 @@ MasterList.prototype.load = function () {
                 return;
             self._clearFeed(tag);
 
-            self._options.data.filter = '["and",["=", "rubrikaID", "' + tag.rubrika.id + '"]]';
+            self._options.data.filter = self._options.data.filter.replace(/:rubrikaID/g, tag.rubrika.id);
             if (tag.tag.id) {
                 self._path = self._pathBase + '/bytag/' + tag.tag.id;
             }

@@ -17,7 +17,9 @@ module.exports = Rubrikator;
  */
 function Rubrikator($uhr) {
     this._uhr = $uhr;
-    this._path = 'http://api-fm.present-tlt.ru/rubrika';
+    this._config = this.$context.locator.resolve('config');
+
+    this._path = this._config.api + '/rubrika';
     this._options = {
         data: {
             filter: '["and",["=", "status", "1"]]',

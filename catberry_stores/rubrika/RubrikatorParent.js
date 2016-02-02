@@ -15,6 +15,16 @@ module.exports = RubrikatorParent;
  */
 function RubrikatorParent($uhr) {
     this._uhr = $uhr;
+    this._config = this.$context.locator.resolve('config');
+
+    this._path = this._config.api + '/rubrika';
+    this._options = {
+        data: {
+            filter: '["and",["=", "parentID", "0"]]',
+            order: 'name',
+            limit: 200
+        }
+    };
 }
 
 /**
@@ -23,6 +33,7 @@ function RubrikatorParent($uhr) {
  * @private
  */
 RubrikatorParent.prototype._uhr = null;
+RubrikatorParent.prototype._config = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
@@ -35,29 +46,11 @@ RubrikatorParent.prototype.$lifetime = 60000;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 RubrikatorParent.prototype.load = function () {
-    var path = 'http://api-fm.present-tlt.ru/rubrika';
-    var options = {
-        data: {
-            filter: '["and",["=", "parentID", "0"]]',
-            order: 'name',
-            limit: 200
-        }
-    };
-    return this._uhr.get(path, options)
+    return this._uhr.get(this._path, this._options)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
             }
             return result.content;
         });
-};
-
-/**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
- */
-RubrikatorParent.prototype.handleSomeAction = function () {
-    // Here you can call this.$context.changed() if you know
-    // that remote data source has been changed.
-    // Also you can have many handle methods for other actions.
 };

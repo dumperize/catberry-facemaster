@@ -25,7 +25,7 @@ function SaleList($uhr) {
 	this._path = this._pathBase + '/active';
 	this._options = {
 		data: {
-			filter: '["and",["=", "rubrikaID", ""]]',
+			filter: '["and",["=", "rubrikaID", ":rubrikaID"]]',
 			expand: 'owner'
 		}
 	};

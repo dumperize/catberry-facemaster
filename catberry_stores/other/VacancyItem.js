@@ -17,6 +17,17 @@ module.exports = VacancyItem;
  */
 function VacancyItem($uhr) {
     this._uhr = $uhr;
+    this._config = this.$context.locator.resolve('config');
+
+    var now = Date.now();
+    now = dateFormat(now, "yyyy-mm-dd");
+
+    this._path =  this._config.api + '/about-vacancy';
+    this._options = {
+        data: {
+            filter: '["and",["=", "id", ":id"],["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
+        }
+    };
 }
 
 /**
@@ -25,6 +36,7 @@ function VacancyItem($uhr) {
  * @private
  */
 VacancyItem.prototype._uhr = null;
+VacancyItem.prototype._config = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
@@ -41,24 +53,16 @@ VacancyItem.prototype.load = function () {
     var id = this.$context.state.item;
     if (!id)
         return;
-    var path = 'http://api-fm.present-tlt.ru/about-vacancy';
-    var now = Date.now();
-    now = dateFormat(now, "yyyy-mm-dd");
-    now = "2014-03-20"; //для теста - убрать!
 
-    var option = {
-        data: {
-            filter: '["and",["=", "id", "' + id + '"],["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
-        }
-    };
-    return this._uhr.get(path, option)
+    this._options.data.filter = this._options.data.filter.replace(/:id/g, id);
+    return this._uhr.get(this._path, this._options)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
             }
             if (result.content.length == 0)
                 self.$context.notFound();
-            console.log(result.content[0]);
+
             return result.content[0];
         });
 };

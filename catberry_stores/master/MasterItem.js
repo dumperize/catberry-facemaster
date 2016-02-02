@@ -17,6 +17,22 @@ module.exports = MasterItem;
  */
 function MasterItem($uhr) {
     this._uhr = $uhr;
+    this._config = this.$context.locator.resolve('config');
+
+    this._path = this._config.api + '/master-page';
+    this._options = {
+        data: {
+            filter: '["and", ["=","number", ":number"],["<=", "dateStart", ":dateStart"],[">=", "dateEnd", ":dateEnd"]]'
+        }
+    };
+
+    this._pathForPage = this._config.api + '/master';
+    this._optionForPage = {
+        data: {
+            filter: '["and", ["=", "id", ":id"],["=","publicStatus", "1"]]',
+            expand: 'contacts,articles,comments,districts,albums,sales,schedule,videos,workCondition,callbacks,vkLikes,rubrika,tags,company'
+        }
+    };
 }
 
 /**
@@ -25,6 +41,8 @@ function MasterItem($uhr) {
  * @private
  */
 MasterItem.prototype._uhr = null;
+
+MasterItem.prototype._config = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
@@ -44,13 +62,11 @@ MasterItem.prototype.load = function () {
 
     var now = Date.now();
     now = dateFormat(now, "yyyy-mm-dd");
-    var path = 'http://api-fm.present-tlt.ru/master-page';
-    var options = {
-        data: {
-            filter: '["and", ["=","number", "' + id + '"],["<=", "dateStart", "' + now + '"],[">=", "dateEnd", "' + now + '"]]'
-        }
-    };
-    return this._uhr.get(path, options)
+    this._options.data.filter = this._options.data.filter.replace(/:number/g, id);
+    this._options.data.filter = this._options.data.filter.replace(/:dateStart/g, now);
+    this._options.data.filter = this._options.data.filter.replace(/:dateEnd/g, now);
+
+    return this._uhr.get(this._path, this._options)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
@@ -61,14 +77,9 @@ MasterItem.prototype.load = function () {
             return result.content[0];
         })
         .then(function (page) {
-            var pathM = 'http://api-fm.present-tlt.ru/master';
-            var optionM = {
-                data: {
-                    filter: '["and", ["=", "id", "' + page.masterID + '"],["=","publicStatus", "1"]]',
-                    expand: 'contacts,articles,comments,districts,albums,sales,schedule,videos,workCondition,callbacks,vkLikes,rubrika,tags,company'
-                }
-            };
-            return self._uhr.get(pathM, optionM)
+            self._optionForPage.data.filter = self._optionForPage.data.filter.replace(/:id/g, page.masterID);
+
+            return self._uhr.get(self._pathForPage, self._optionForPage)
                 .then(function (result) {
                     if (result.status.code >= 400 && result.status.code < 600) {
                         throw new Error(result.status.text);
@@ -97,7 +108,7 @@ MasterItem.prototype.load = function () {
                         about: {
                             access: true,
                             name: "О себе",
-                            active: data.aboutEduc || data.aboutExp ||data.aboutAddInfo
+                            active: data.aboutEduc || data.aboutExp || data.aboutAddInfo
                         },
                         article: {
                             access: page.articles,

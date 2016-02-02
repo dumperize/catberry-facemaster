@@ -15,7 +15,9 @@ module.exports = RubrikaCompany;
  */
 function RubrikaCompany($uhr) {
     this._uhr = $uhr;
-    this._path = 'http://api-fm.present-tlt.ru/company/byrubrikacompany/';
+    this._config = this.$context.locator.resolve('config');
+    
+    this._path = this._config.api + '/company/byrubrikacompany/';
     this._options = {
         data: {
             order: 'sort'
@@ -29,6 +31,7 @@ function RubrikaCompany($uhr) {
  * @private
  */
 RubrikaCompany.prototype._uhr = null;
+RubrikaCompany.prototype._config = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.

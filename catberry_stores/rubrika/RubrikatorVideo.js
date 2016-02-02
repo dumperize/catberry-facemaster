@@ -17,7 +17,9 @@ module.exports = RubrikatorVideo;
  */
 function RubrikatorVideo($uhr) {
     this._uhr = $uhr;
-    this._path = 'http://api-fm.present-tlt.ru/rubrika';
+    this._config = this.$context.locator.resolve('config');
+
+    this._path = this._config.api + '/rubrika';
     this._options = {
         data: {
             filter: '["and",["=", "status", "1"]]',
@@ -34,6 +36,7 @@ function RubrikatorVideo($uhr) {
  * @private
  */
 RubrikatorVideo.prototype._uhr = null;
+RubrikatorVideo.prototype._config = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.

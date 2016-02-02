@@ -20,7 +20,7 @@ function Rubrika($uhr) {
     this._url = this._config.api + '/rubrika';
     this._options = {
         data: {
-            filter: '["and", ["=", "unique", ""],["=","status","1"]]',
+            filter: '["and", ["=", "unique", ":unique"],["=","status","1"]]',
             expand: "tags,parent,nearby,seo,activeBanners,recomendMasters"
         }
     };
@@ -51,8 +51,8 @@ Rubrika.prototype.load = function () {
     if (!podrubrika) {
         self.$context.notFound();
     }
-    this._options.data.filter = '["and", ["=", "unique", "' + podrubrika + '"],["=","status","1"]]';
-
+    this._options.data.filter = this._options.data.filter.replace(/:unique/g, podrubrika);
+    
     return this._uhr.get(this._url, this._options)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {

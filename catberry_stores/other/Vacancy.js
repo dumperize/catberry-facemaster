@@ -15,7 +15,17 @@ module.exports = Vacancy;
  * @constructor
  */
 function Vacancy($uhr) {
+    var now = Date.now();
+    now = dateFormat(now, "yyyy-mm-dd");
+
     this._uhr = $uhr;
+    this._config = this.$context.locator.resolve('config');
+    this._path = this._config.api + '/about-vacancy';
+    this._option = {
+        data: {
+            filter: '["and",["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
+        }
+    };
 }
 
 /**
@@ -24,6 +34,8 @@ function Vacancy($uhr) {
  * @private
  */
 Vacancy.prototype._uhr = null;
+
+Vacancy.prototype._config = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
@@ -36,17 +48,7 @@ Vacancy.prototype.$lifetime = 60000;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 Vacancy.prototype.load = function () {
-    var path = 'http://api-fm.present-tlt.ru/about-vacancy';
-    var now = Date.now();
-    now = dateFormat(now, "yyyy-mm-dd");
-    now = "2014-03-20"; //для теста - убрать!
-
-    var option = {
-        data: {
-            filter: '["and",["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
-        }
-    };
-    return this._uhr.get(path, option)
+    return this._uhr.get(this._path, this._option)
         .then(function (result) {
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
@@ -54,14 +56,4 @@ Vacancy.prototype.load = function () {
 
             return result.content;
         });
-};
-
-/**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
- */
-Vacancy.prototype.handleSomeAction = function () {
-    // Here you can call this.$context.changed() if you know
-    // that remote data source has been changed.
-    // Also you can have many handle methods for other actions.
 };

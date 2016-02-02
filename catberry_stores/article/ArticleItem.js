@@ -15,11 +15,13 @@ module.exports = ArticleItem;
  */
 function ArticleItem($uhr) {
     this._uhr = $uhr;
-    this._path = 'http://api-fm.present-tlt.ru/article';
+    this._config = this.$context.locator.resolve('config');
+
+    this._path = this._config.api + '/article';
     this._options = {
         data: {
             expand: 'owner',
-            filter: '["and",["=","status","1"]]'
+            filter: '["and",["=","status","1"],["=","id",":id"]]'
         }
     };
 }
@@ -30,6 +32,7 @@ function ArticleItem($uhr) {
  * @private
  */
 ArticleItem.prototype._uhr = null;
+ArticleItem.prototype._config = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
@@ -48,7 +51,7 @@ ArticleItem.prototype.load = function () {
     if (!id || !masterID)
         this.$context.notFound();
 
-    this._options.data.filter = '["and",["=","status","1"],["=","id","' + id + '"]]'
+    this._options.data.filter = this._options.data.filter.replace(/:id/g, id);
 
     return this._uhr.get(this._path, this._options)
         .then(function (result) {
@@ -58,7 +61,7 @@ ArticleItem.prototype.load = function () {
 
             if ((result.content.length == 0) || (result.content[0].owner.page.masterID != masterID))
                 self.$context.notFound();
-            console.log(result.content);
+
             return result.content[0];
         });
 };

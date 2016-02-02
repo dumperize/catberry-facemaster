@@ -15,6 +15,7 @@ module.exports = CompanyItem;
  */
 function CompanyItem($uhr) {
 	this._uhr = $uhr;
+	this._config = this.$context.locator.resolve('config');
 }
 
 /**
@@ -23,6 +24,8 @@ function CompanyItem($uhr) {
  * @private
  */
 CompanyItem.prototype._uhr = null;
+
+CompanyItem.prototype._config = null;
 
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.

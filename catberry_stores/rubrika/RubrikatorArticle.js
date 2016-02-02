@@ -17,7 +17,9 @@ module.exports = RubrikatorArticle;
  */
 function RubrikatorArticle($uhr) {
 	this._uhr = $uhr;
-	this._path = 'http://api-fm.present-tlt.ru/rubrika';
+	this._config = this.$context.locator.resolve('config');
+
+	this._path = this._config.api + '/rubrika';
 	this._options = {
 		data: {
 			filter: '["and",["=", "status", "1"]]',
@@ -78,14 +80,4 @@ RubrikatorArticle.prototype.load = function () {
 				list: tree
 			};
 		});
-};
-
-/**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
- */
-RubrikatorArticle.prototype.handleSomeAction = function () {
-	// Here you can call this.$context.changed() if you know
-	// that remote data source has been changed.
-	// Also you can have many handle methods for other actions.
 };
