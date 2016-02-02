@@ -9,13 +9,14 @@
   overflow: hidden;
   color: $color-text;
   @include at(xs) {
+    padding-bottom: 114px;
     height: auto;
   }
   &_free {
     height: 256px;
-  }
-  &_premium {
-    height: 298px;
+    @include at(xs) {
+      height: auto;
+    }
   }
   &__photo-cont {
     width: $width-lg;
@@ -25,6 +26,10 @@
     margin-bottom: 20px;
     float: left;
     position: relative;
+    @include at(xs) {
+      width: 184px;
+      height: 184px;
+    }
     img {
       width: 100%;
       height: auto;
@@ -55,7 +60,7 @@
     bottom: 20px;
     left: 20px;
     @include at(xs) {
-      width: 190px;
+      width: 210px;
     }
   }
   &__to-page, &__show-services {
@@ -84,18 +89,20 @@
     font-size: 1.4rem;
   }
   &__services {
-    //border: 1px solid blue;
-    //word-break: break-all;
     position: relative;
     margin-left: 164px + 20px;
     padding: 10px 0;
     font-size: 1.3rem;
-    //max-height: 180px; // примерно -- изменить!
     margin-right: 36px;
+    //border: 1px solid blue;
+    overflow: hidden;
+    //box-sizing: content-box;
+    //padding: 0;
     @include at(xs) {
       margin-left: 0;
       max-height: none;
-      margin-bottom: 80px;
+      //margin-bottom: 80px;
+      display: none;
     }
     li {
       padding-left: 16px;
@@ -108,7 +115,7 @@
     li:before {
       content: "—";
       position: absolute;
-      left: 0px;
+      left: 0;
     }
     &_half {
       margin-right: 210px;
@@ -245,6 +252,21 @@
       text-align: center;
       padding: 0 10px;
       overflow: hidden;
+    }
+    &_cont {
+      display: block;
+      overflow: hidden;
+      > span {
+        display: block;
+        padding: 0;
+      }
+      img {
+        width: 100%;
+      }
+    }
+    &_gift {
+      text-transform: uppercase;
+      font-weight: bold;
     }
   }
   &__text {

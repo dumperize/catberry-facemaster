@@ -64,7 +64,7 @@ MasterMinicard.prototype.render = function () {
                 servicesNormally.push(service);
             });
             master.services = servicesNormally;
-            //console.log(Object.keys(master.services));
+            //console.log(master);
             return master;
         });
 };
@@ -75,32 +75,35 @@ MasterMinicard.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterMinicard.prototype.bind = function () {
-    $('.master-content-widget li').bind('mouseenter', showWidgetTab);
+    var minicardComp = $('#' + this.$context.element.id);
+    minicardComp.find('.master-content-widget li').bind('mouseenter', showWidgetTab);
+    minicardComp.find('.js-services-toggle').bind('click', showServices);
 
-    $('.master-content-widget').each(function () {
-        $(this).find('.act').first().addClass('show');
-    });
     function showWidgetTab() {
-        if ($(this).hasClass('act')) {
+        if ($(this).hasClass('act') && ($(window).width() >= 750)) {
             $(this).siblings().removeClass('show');
             $(this).addClass('show');
         }
     }
-
-    this._minicardServicesCut();
+    function showServices() {
+        var minicard = $(this).closest('.master-minicard');
+        minicard.find('.master-minicard__services').slideDown();
+        if (minicard.hasClass('master-minicard_free')) {
+            minicard.css('paddingBottom', '60px');
+        }
+        $(this).hide();
+        minicard.find('.master-minicard__to-page').css('display', 'block');
+        //console.log('done!');
+        return false;
+    }
+    // раскрываем первый активный элемент виджета
+    if ($(window).width() >= 750) {
+        this._showFirstActWidget();
+    }
     return {};
 };
-MasterMinicard.prototype._minicardServicesCut = function () {
-    var minicard = $('#' + this.$context.element.id);
-    var minicardServices = minicard.find('.master-minicard__services');
-    var maxHeight =
-        minicard.find('.master-minicard').height() - (minicard.find('.master-minicard__name').height() + minicard.find('.master-minicard__spec').height());
-    var servicesCount = minicardServices.find('li').length;
-
-    while (minicardServices.height() > maxHeight && servicesCount != 0) {
-        $(minicardServices.find('li')[servicesCount]).hide();
-        servicesCount--;
-    }
+MasterMinicard.prototype._showFirstActWidget = function () {
+    $('#' + this.$context.element.id).find('.act').first().addClass('show');
 };
 /**
  * Does cleaning for everything that have NOT been set by .bind() method.

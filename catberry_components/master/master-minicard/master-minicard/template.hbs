@@ -43,7 +43,7 @@
                 <i>{{icon "gift"}}</i>
 
                 <div>
-                    <p elem="info"><span>
+                    <p elem="info" mod="gift"><span>
                         {{#is sales.0.type "==" 1}}
                             Подарок
                         {{/is}}
@@ -76,7 +76,7 @@
                 <i>{{icon "video"}}</i>
 
                 <div>
-                    <p elem="info"><span>{{imgID}}</span></p>
+                    <p elem="info" mod="cont"><span><img src="{{videos.0.img}}" alt="{{videos.0.title}}"></span></p>
 
                     <p elem="text">{{videos.0.title}}</p>
                 </div>
