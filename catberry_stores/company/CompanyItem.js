@@ -16,6 +16,14 @@ module.exports = CompanyItem;
 function CompanyItem($uhr) {
 	this._uhr = $uhr;
 	this._config = this.$context.locator.resolve('config');
+
+	this._path = this._config.api + '/company';
+	this._options = {
+		data: {
+			filter: '["and", ["=","number", ":number"]]',
+			expand: "master,mastersData,videos,albums,contacts,schedule,workCondition"
+		}
+	};
 }
 
 /**
@@ -38,16 +46,22 @@ CompanyItem.prototype.$lifetime = 60000;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 CompanyItem.prototype.load = function () {
-	// Here you can do any HTTP requests using this._uhr.
-	// Please read details here https://github.com/catberry/catberry-uhr.
+	var self = this;
+	var id = this.$context.state.id;
+	if (!id)
+		return;
+
+	this._options.data.filter = this._options.data.filter.replace(/:number/g, id);
+
+	return this._uhr.get(this._path, this._options)
+		.then(function (result) {
+			if (result.status.code >= 400 && result.status.code < 600) {
+				throw new Error(result.status.text);
+			}
+			if (result.content.length == 0 || result.content[0].mastersData.count_masters == 0)
+				self.$context.notFound();
+
+			return result.content[0];
+		})
 };
 
-/**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
- */
-CompanyItem.prototype.handleSomeAction = function () {
-	// Here you can call this.$context.changed() if you know
-	// that remote data source has been changed.
-	// Also you can have many handle methods for other actions.
-};
