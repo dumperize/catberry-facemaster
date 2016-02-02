@@ -21,6 +21,7 @@ function Pages($config) {
     this.$context.setDependency('rubrika/RubrikatorVideo');
     this.$context.setDependency('rubrika/RubrikatorSale');
     this.$context.setDependency('rubrika/RubrikatorArticle');
+    this.$context.setDependency('rubrika/RubrikaCompany');
 }
 
 /**

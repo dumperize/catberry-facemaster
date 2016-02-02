@@ -16,7 +16,7 @@ module.exports = RubrikaCompany;
 function RubrikaCompany($uhr) {
     this._uhr = $uhr;
     this._config = this.$context.locator.resolve('config');
-    
+
     this._path = this._config.api + '/company/byrubrikacompany/';
     this._options = {
         data: {
@@ -44,17 +44,18 @@ RubrikaCompany.prototype.$lifetime = 60000;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 RubrikaCompany.prototype.load = function () {
+    var self = this;
     var id = this.$context.state.catalog;
     if (!id)
         this.$context.notFound();
 
     return this._uhr.get(this._path + id, this._options)
         .then(function (result) {
+            if (result.status.code == 404) {
+                self.$context.notFound();
+            }
             if (result.status.code >= 400 && result.status.code < 600) {
                 throw new Error(result.status.text);
-            }
-            if (true) {
-                //проверить на существование рубрики если нет то дать 404 страницу
             }
             return result.content;
         });
