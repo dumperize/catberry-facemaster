@@ -1,4 +1,21 @@
 <div block="master-list">
+
+    <div block="popup-video-cont">
+        <p elem="title"></p>
+        <div elem="video-cont"></div>
+
+        <div block="master-micro-inf" mod="video">
+            <p elem="title">Видео добавил:</p>
+            <a href="" elem="cont">
+                <span elem="img"><img src="" alt=""></span>
+                <span elem="name"><br></span>
+            </a>
+        </div>
+
+        <p elem="text"></p>
+        <div elem="social-cont"></div>
+    </div>
+
     {{#each this}}
         <div elem="item">
             <cat-master-minicard id="master-minicard-{{id}}" master-id="{{id}}" cat-store="master/MasterList"></cat-master-minicard>

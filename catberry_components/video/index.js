@@ -48,7 +48,7 @@ Video.prototype.bind = function () {
         tmp.find('.catalog-item__text').css('height', 'auto');
         tmp.find('.catalog-item__video-cont')
             .html('<iframe src="' + url + '" frameborder="0" allowfullscreen></iframe>');
-        console.log(url);
+        //console.log(url);
         $.fancybox.open(tmp, {
             padding: 0,
             type: 'inline',

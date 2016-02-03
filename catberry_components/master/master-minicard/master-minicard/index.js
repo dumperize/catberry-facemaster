@@ -78,6 +78,7 @@ MasterMinicard.prototype.bind = function () {
     var minicardComp = $('#' + this.$context.element.id);
     minicardComp.find('.master-content-widget li').bind('mouseenter', showWidgetTab);
     minicardComp.find('.js-services-toggle').bind('click', showServices);
+    minicardComp.find('.js-show-minicard-video-popup').bind('click', showVideoPopup);
 
     function showWidgetTab() {
         if ($(this).hasClass('act') && ($(window).width() >= 750)) {
@@ -94,6 +95,35 @@ MasterMinicard.prototype.bind = function () {
         $(this).hide();
         minicard.find('.master-minicard__to-page').css('display', 'block');
         //console.log('done!');
+        return false;
+    }
+    function showVideoPopup() {
+        //console.log('click!');
+        var tmp = $('.popup-video-cont').clone(),
+            url = $(this).attr('href'),
+            title = $(this).siblings('.master-content-widget__text').html(),
+            desc = $(this).siblings('.master-content-widget__desc').html(),
+            name = $(this).closest('.master-minicard').find('.master-minicard__name').html(),
+            imgSrc = $(this).closest('.master-minicard').find('.master-minicard__photo').attr('src');
+        tmp.find('.popup-video-cont__video-cont').html('<iframe src="' + url + '" frameborder="0" allowfullscreen></iframe>');
+        tmp.find('.popup-video-cont__title').html(title);
+        tmp.find('.popup-video-cont__text').html(desc);
+        tmp.find('.master-micro-inf__name').html('<br>' + name);
+        tmp.find('.master-micro-inf img').attr('src', imgSrc);
+        $.fancybox.open(tmp, {
+            padding: 20,
+            type: 'inline',
+            width: '80%',
+            maxWidth: '800px',
+            minWidth: '250px',
+            autoHeight: true,
+            autoSize: false,
+            helpers: {
+                overlay: {
+                    locked: false
+                }
+            }
+        });
         return false;
     }
     // раскрываем первый активный элемент виджета

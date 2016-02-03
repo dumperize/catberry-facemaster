@@ -76,9 +76,13 @@
                 <i>{{icon "video"}}</i>
 
                 <div>
-                    <p elem="info" mod="cont"><span><img src="{{videos.0.img}}" alt="{{videos.0.title}}"></span></p>
+                    <a elem="info" mod="cont" mix="block:video-prev-cont js-show-minicard-video-popup" href="http://{{videos.0.url}}">
+                        <span><img src="{{videos.0.img}}" alt="{{videos.0.title}}"></span>
+                    </a>
 
-                    <p elem="text">{{videos.0.title}}</p>
+                    <p elem="desc" style="display: none">{{{videos.0.description}}}</p>
+
+                    <p elem="text">{{{videos.0.title}}}</p>
                 </div>
             </li>
             <li elem="comment" class="{{#if page.comments}}{{#if comments.0.text}}act{{/if}}{{/if}}">
