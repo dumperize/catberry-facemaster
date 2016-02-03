@@ -22,6 +22,18 @@ function Pages($config) {
     this.$context.setDependency('rubrika/RubrikatorSale');
     this.$context.setDependency('rubrika/RubrikatorArticle');
     this.$context.setDependency('rubrika/RubrikaCompany');
+
+    this._loodStore = {
+        'master-rubrika': 'Tag',
+        'master-page': 'master/MasterItem',
+        'news-item': 'other/NewsItem',
+        'vacancy-item': 'other/VacancyItem',
+        'video': 'rubrika/RubrikatorVideo',
+        'sale': 'rubrika/RubrikatorSale',
+        'article': 'rubrika/RubrikatorArticle',
+        'company-rubrika': 'rubrika/RubrikaCompany',
+        'article-item': 'article/ArticleItem'
+    }
 }
 
 /**
@@ -37,6 +49,8 @@ Pages.prototype._config = null;
  */
 Pages.prototype.$lifetime = 3600000;
 
+Pages.prototype._loodStore = {};
+
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
@@ -47,24 +61,8 @@ Pages.prototype.load = function () {
 
     return Promise.resolve(1)
         .then(function () {
-            if (currentPage == "master-rubrika")
-                return self.$context.getStoreData('Tag');
-            if (currentPage == "master-page")
-                return self.$context.getStoreData('master/MasterItem');
-            if (currentPage == "news-item")
-                return self.$context.getStoreData('other/NewsItem');
-            if (currentPage == "vacancy-item")
-                return self.$context.getStoreData('other/VacancyItem');
-            if (currentPage == "video")
-                return self.$context.getStoreData('rubrika/RubrikatorVideo');
-            if (currentPage == "sale")
-                return self.$context.getStoreData('rubrika/RubrikatorSale');
-            if (currentPage == "article")
-                return self.$context.getStoreData('rubrika/RubrikatorArticle');
-            if (currentPage == "company-rubrika")
-                return self.$context.getStoreData('rubrika/RubrikaCompany');
-            if (currentPage == "article-item")
-                return self.$context.getStoreData('article/ArticleItem');
+            if (self._loodStore[currentPage])
+                return self.$context.getStoreData(self._loodStore[currentPage]);
         })
         .then(function () {
             if (!currentPage) {

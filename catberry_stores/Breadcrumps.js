@@ -44,6 +44,8 @@ Breadcrumps.prototype.load = function () {
         .then(function (page) {
             if (page.current == "master-rubrika")
                 return self._loadForRubrika();
+            if (page.current == "master-page")
+                return self._loadForMasterPage();
 
             if (page.current == "news-item")
                 return self._loadForNewsItem();
@@ -158,6 +160,20 @@ Breadcrumps.prototype._loadForCatalog = function (config, type) {
         });
 };
 
+Breadcrumps.prototype._loadForMasterPage = function () {
+    var self = this;
+    return this.$context.getStoreData('master/MasterItem')
+        .then(function (data) {
+            return [
+                {
+                    title: "Каталог услуг",
+                    url: "/catalog"
+                },
+                {
+                    title: data.name
+                }];
+        });
+};
 /**
  * Handles action named "some-action" from any component.
  * @returns {Promise<Object>|Object|null|undefined} Response to component.

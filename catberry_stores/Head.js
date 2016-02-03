@@ -44,6 +44,8 @@ Head.prototype.load = function () {
         .then(function (page) {
             if (page.current == "master-rubrika")
                 return self._loadForRubrika();
+            if (page.current == "master-page")
+                return self._loadForMasterPage();
             if (page.current == "news-item")
                 return self._loadForNewsItem();
             if (page.current == "video" || page.current == "sale" || page.current == "article")
@@ -93,6 +95,16 @@ Head.prototype._loadForCatalog = function (config, type) {
             return config;
         });
 
+};
+Head.prototype._loadForMasterPage = function () {
+    return this.$context.getStoreData('master/MasterItem')
+        .then(function (data) {
+            return {
+                title: data.name,
+                description: data.name + '. ' + data.services[0],
+                keywords:  data.name + ', facemaster'
+            }
+        });
 };
 
 /**
