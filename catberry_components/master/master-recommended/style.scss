@@ -1,12 +1,11 @@
 .master_recommended {
-  @extend .bg_grey;
-  background-image: url("%=staticPrefixForCss=%/assets/master_recommended/recommendBg.png");
-  background-position: 90px 19px;
-  background-repeat: no-repeat;
+  //@extend .bg_grey;
+  background: url("%=staticPrefixForCss=%/assets/master_recommended/recommendBg.png") $color-bg-grey-light 90px 19px no-repeat;
   height: 125px;
   padding: 6px 15px 0 250px;
   position: relative;
   overflow: hidden;
+  margin-bottom: 20px;
   @include cf;
   &__slider {
     padding: 0 30px;
