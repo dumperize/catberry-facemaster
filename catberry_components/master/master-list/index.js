@@ -38,6 +38,7 @@ MasterList.prototype.render = function () {
 MasterList.prototype.bind = function () {
     this._window.addEventListener('resize', this._allMinicardServicesCut);
     this._window.addEventListener('resize', this._allMinicardWidgetVisibility);
+    // если data пустая то не делать
     this._window.addEventListener('scroll', this._handleScroll);
 
     setTimeout(this._allMinicardServicesCut, 200);
@@ -121,7 +122,6 @@ MasterList.prototype._allMinicardServicesCut = function () {
                     $(servicesList[i - 1]).hide();
                 }
             }
-            //console.log(minicardServices.height() + ' - ' + maxHeight);
         });
     } else {
         $('.master-minicard__services').hide();
