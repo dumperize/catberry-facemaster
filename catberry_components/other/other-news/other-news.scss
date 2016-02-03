@@ -31,7 +31,7 @@
       min-height: 200px;
     }
   }
-  &__autor {
+  &__author-cont {
     padding-top: 10px;
     padding-left: 20px;
     @extend .col-lg-3;
@@ -40,6 +40,9 @@
     @include to(lg) {
       display: none;
     }
+  }
+  &__author {
+    line-height: 1.6;
   }
   &__img {
     width: 100%;

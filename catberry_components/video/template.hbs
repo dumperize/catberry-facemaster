@@ -36,9 +36,7 @@
                         <p elem="title">{{{title}}}<span elem="add-date">29.12.2015</span></p>
 
                         {{#is ../catalog '==' 'video'}}
-                            <div elem="video-cont">
-                                <iframe src="http://{{url}}" frameborder="0" allowfullscreen></iframe>
-                            </div>
+                            <div elem="video-cont"></div>
                         {{/is}}
 
                         <p elem="text">
@@ -59,7 +57,7 @@
                     <div block="master-micro-inf" mod="video">
                         <p elem="title">Видео добавил:</p>
                         <a href="{{owner.page.number}}" elem="cont">
-                            <span><img src="{{imgSrc owner.imgID 50 50}}"></span>
+                            <span><img src="{{imgSrc owner.imgID 50 50}}" alt="{{owner.name}}"></span>
                             <span><br>{{owner.name}}</span>
                         </a>
                     </div>
