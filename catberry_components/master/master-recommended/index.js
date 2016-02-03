@@ -27,7 +27,6 @@ MasterRecommended.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
             data.forEach(function (item) {
-                console.log(item.name);
                 var name = item.name.split(' '), fio;
                 fio = name[0];
                 if (typeof(name[1]) != 'undefined' && name[1] != '') {
