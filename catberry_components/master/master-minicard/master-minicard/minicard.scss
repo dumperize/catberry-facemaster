@@ -222,6 +222,7 @@
     display: block;
     text-align: center;
     fill: #bbb;
+    line-height: 0;
     svg {
       position: relative;
       top: 14px;
@@ -280,6 +281,43 @@
     background-color: #FFF;
     i + div {
       display: block;
+    }
+  }
+  &_company {
+    bottom: 10px;
+    right: 10px;
+    //border: 1px solid blue;
+    margin-left: 130px;
+    width: auto;
+    @include at(xs) {
+      bottom: 10px;
+      top: auto;
+    }
+    li {
+      float: left;
+      clear: none;
+      //border: 1px solid red;
+      width: 28px;
+      height: 28px;
+      @include at(xs) {
+        margin-right: 4px;
+      }
+    }
+    li.act {
+      margin-left: 0;
+    }
+    .master-content-widget__gift {
+      i svg {
+        top: -1px;
+      }
+    }
+    i {
+      width: 28px;
+      height: 28px;
+      padding: 5px;
+      svg {
+        top: 0;
+      }
     }
   }
 }
