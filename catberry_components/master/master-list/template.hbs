@@ -1,8 +1,15 @@
 <div block="master-list">
-    {{#each this}}
-        <div elem="item">
-            <cat-master-minicard id="master-minicard-{{id}}" master-id="{{id}}" cat-store="master/MasterList"></cat-master-minicard>
+    {{#if isHaveMaster}}
+        {{#each list}}
+            <div elem="item">
+                <cat-master-minicard id="master-minicard-{{id}}" master-id="{{id}}"
+                                     cat-store="master/MasterList"></cat-master-minicard>
+            </div>
+        {{/each}}
+        <div block='wait-spinner' id="wait-spinner">
+            <div elem="animate">{{icon "spinner"}}</div>
         </div>
-    {{/each}}
-    <div block='wait-spinner' id="wait-spinner"><div elem="animate">{{icon "spinner"}}</div></div>
+    {{else}}
+        нет мастеров
+    {{/if}}
 </div><!--master-list-->

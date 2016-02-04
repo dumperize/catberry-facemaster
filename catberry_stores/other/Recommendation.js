@@ -9,6 +9,7 @@ util.inherits(Recommendation, StorePaginator);
 
 function Recommendation() {
     StorePaginator.call(this);
-    this._path = this._config.api + '/about-comment';
+
+    this._path = '/about-comment';
     this._url = "/recommendation/page/";
 }
