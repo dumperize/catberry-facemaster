@@ -21,7 +21,7 @@ util.inherits(SaleList, MasterList);
  */
 function SaleList($uhr) {
 	MasterList.call(this);
-	this._pathBase = this._config.api + '/sale';
+	this._pathBase = '/sale';
 	this._path = this._pathBase + '/active';
 	this._options = {
 		data: {

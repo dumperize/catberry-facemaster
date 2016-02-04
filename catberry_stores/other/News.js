@@ -9,7 +9,8 @@ util.inherits(News, StorePaginator);
 
 function News() {
     StorePaginator.call(this);
-    this._path = this._config.api + '/about-news';
+
+    this._path = '/about-news';
     this._options = {
         data: {
             filter: '["and",["=","status","1"]]',

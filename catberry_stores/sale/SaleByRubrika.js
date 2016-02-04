@@ -77,11 +77,8 @@ SaleByRubrika.prototype._getSaleData = function (id, limit) {
     }
     this._options.data.filter = '["and", ["in", "rubrikaID",[' + id.join(',') + ']]]';
     this._options.data.limit = limit;
-    return this._uhr.get(this._path, this._options)
+    return this._load()
         .then(function (result) {
-            if (result.status.code >= 400 && result.status.code < 600) {
-                throw new Error(result.status.text);
-            }
             self._pageCount = result.status.headers['x-pagination-page-count'];
             return result.content;
         });

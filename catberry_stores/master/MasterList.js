@@ -23,7 +23,7 @@ function MasterList($uhr) {
     StoreAutoLoadList.call(this);
     this.$context.setDependency('Tag');
 
-    this._pathBase = this._config.api + '/master';
+    this._pathBase = '/master';
     this._path = this._pathBase + '/active';
     this._options = {
         data: {
@@ -46,7 +46,7 @@ MasterList.prototype.load = function () {
                 return;
             self._clearFeed(tag);
 
-            self._options.data.filter = self._options.data.filter.replace(/:rubrikaID/g, tag.rubrika.id);
+            self._optionsData.data.filter[':rubrikaID'] = tag.rubrika.id;
             if (tag.tag.id) {
                 self._path = self._pathBase + '/bytag/' + tag.tag.id;
             }
