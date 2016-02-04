@@ -2,6 +2,14 @@
 
 module.exports = Rubrika;
 
+var util = require('util'),
+    StoreBase = require('../../lib/StoreBase');
+
+/**
+ * наследуемся от пагинатора для базового стора
+ */
+util.inherits(Rubrika, StoreBase);
+
 /*
  * This is a Catberry Store file.
  * More details can be found here
@@ -14,10 +22,9 @@ module.exports = Rubrika;
  * @constructor
  */
 function Rubrika($uhr) {
-    this._uhr = $uhr;
-    this._config = this.$context.locator.resolve('config');
+    StoreBase.call(this);
 
-    this._url = this._config.api + '/rubrika';
+    this._path =  '/rubrika';
     this._options = {
         data: {
             filter: '["and", ["=", "unique", ":unique"],["=","status","1"]]',
@@ -25,19 +32,6 @@ function Rubrika($uhr) {
         }
     };
 }
-
-/**
- * Current universal HTTP request to do it in isomorphic way.
- * @type {UHR}
- * @private
- */
-Rubrika.prototype._uhr = null;
-
-/**
- * Current lifetime of data (in milliseconds) that is returned by this store.
- * @type {number} Lifetime in milliseconds.
- */
-Rubrika.prototype.$lifetime = 60000;
 
 /**
  * Loads data from remote source.
@@ -51,22 +45,15 @@ Rubrika.prototype.load = function () {
     if (!podrubrika) {
         self.$context.notFound();
     }
-    this._options.data.filter = this._options.data.filter.replace(/:unique/g, podrubrika);
-    
-    return this._uhr.get(this._url, this._options)
+    this._optionsData.data.filter[':unique'] = podrubrika;
+    return this._load()
         .then(function (result) {
-            if (result.status.code >= 400 && result.status.code < 600) {
-                throw new Error(result.status.text);
-            }
             if (result.content.length == 0)
                 self.$context.notFound();
 
             var data = result.content[0];
 
-            if (data.parentID == 0)
-                self.$context.notFound();
-
-            if (rubrika != data.parent.unique)
+            if (data.parentID == 0 || rubrika != data.parent.unique)
                 self.$context.notFound();
 
             data.podrubrika = podrubrika;

@@ -50,7 +50,7 @@
 
                     {{#is ../catalog '==' 'article'}}
                         <a elem="more"
-                           href="{{owner.page.number}}/article/{{id}}">подробнее<i>{{icon "strelka"}}</i></a>
+                           href="/{{owner.page.number}}/article/{{id}}">подробнее<i>{{icon "strelka"}}</i></a>
                     {{/is}}
 
 
@@ -70,5 +70,5 @@
     </div>
 
     <cat-common-paginator id="common-paginator" cat-store="Paginator"
-                          model="video/VideoByRubrika"></cat-common-paginator>
+                          model="{{catalog}}/{{capitalizeFirst catalog}}ByRubrika"></cat-common-paginator>
 </div>
