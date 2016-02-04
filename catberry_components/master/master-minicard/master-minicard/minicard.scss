@@ -257,12 +257,15 @@
     &_cont {
       display: block;
       overflow: hidden;
+      text-align: center;
+      line-height: 70px;
       > span {
         display: block;
         padding: 0;
       }
       img {
         width: 100%;
+        margin: -100%;
       }
     }
     &_gift {
