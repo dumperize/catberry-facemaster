@@ -53,7 +53,6 @@ MasterList.prototype.load = function () {
             return self._loadDataPerPage(self._currentPage);
         })
         .then(function (result) {
-            console.log(result);
             if (!result || result.length === 0) {
                 self._isFinished = true;
                 return self._currentFeed;
