@@ -39,7 +39,6 @@ function MasterList($uhr) {
  */
 MasterList.prototype.load = function () {
     var self = this;
-    console.log("dfsdf");
     return this.$context.getStoreData('Tag')
         .then(function (tag) {
             if (!tag.rubrika)
