@@ -1,0 +1,29 @@
+.company-page {
+  // наследованно от .master-page
+}
+.company-card-cp {
+  height: inherit;
+  background-color: $color-bg-grey-light;
+  position: relative;
+  margin-left: 225px;
+  @include at(xs) {
+    margin-left: 0;
+  }
+  &__name {
+    display: table;
+    width: 100%;
+    line-height: 1.4;
+    margin: 0;
+    height: inherit;
+    span {
+      display: table-cell;
+      vertical-align: middle;
+      padding: 20px;
+      font-weight: bold;
+    }
+  }
+}
+.contacts-cp {
+  height: inherit;
+  background-color: $color-bg-grey-light;
+}

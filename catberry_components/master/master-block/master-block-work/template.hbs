@@ -23,8 +23,9 @@
 
     <p elem="list-caption">Выезд на дом</p>
     <ul elem="list">
-        <li>Бесплатно по городу</li>
-        <li>Выезд за город платно</li>
+        {{#each workCondition.comming}}
+            <li>{{this}}</li>
+        {{/each}}
     </ul>
 
 
@@ -64,36 +65,22 @@
         <div elem="list-cont">
             <p elem="list-caption" mod="mini">Форма сотрудни&shy;чества</p>
             <ul elem="list">
-                <li>Предоплата</li>
-                <li>По факту выполненных работ</li>
-                <li>Рассрочка платежа</li>
+                {{#each workCondition.coop}}
+                    <li>{{this}}</li>
+                {{/each}}
             </ul>
         </div><!--list-cont-->
 
         <div elem="list-cont">
             <p elem="list-caption" mod="mini">Способы оплаты</p>
             <ul elem="list">
-                <li>Наличный</li>
-                <li>Безналичный
-                    <ul>
-                        <li>Оплата через электронные платежные системы</li>
-                        <li>Оплата по кредитной/дебетовой карте</li>
-                        <li>Оплата через терминалы</li>
-                        <li>Банковский перевод</li>
-                        <li>Предоставление рассрочки</li>
-                    </ul>
+                {{#each workCondition.payment}}
+                    <li>{{this}}</li>
+                {{/each}}
                 </li>
             </ul>
         </div><!--list-cont-->
         <br elem="clear">
     </div><!--list-cont-->
     <br elem="clear">
-
-    <!-- ERROR -->
-    <p style="color: red; font-weight: bold">------ ERROR! (условия - выезд на дом, оплата) ------</p>
-    !!переделает илья
-    Условия оплаты: {{workCondition.paymentForm}}
-    Условия оплаты: {{workCondition.coopForm}}
-    Выезд на дом: {{workCondition.comming}}
-    <!-- ERROR -->
 </div>

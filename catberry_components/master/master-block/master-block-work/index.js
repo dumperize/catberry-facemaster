@@ -33,11 +33,11 @@ MasterBlockWork.prototype.render = function () {
                     tempArr[item.day - 1] = item;
                 });
                 data.schedule = tempArr;
-                //console.log(data.districts);
+                data.workCondition.data.comming = data.workCondition.data.comming.split(',');
                 return {
                     schedule: data.schedule,
                     districts: data.districts,
-                    workCondition: data.workCondition
+                    workCondition: data.workCondition.data
                 }
             });
     }
