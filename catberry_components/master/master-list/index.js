@@ -43,11 +43,20 @@ MasterList.prototype.render = function () {
  */
 MasterList.prototype.bind = function () {
     this._window.addEventListener('resize', this._allMinicardServicesCut);
+    this._window.addEventListener('resize', this._allMinicardWidgetVisibility);
+    // если data пустая то не делать
+    //if (!this._isFinish) {
+    //}
     this._window.addEventListener('scroll', this._handleScroll);
+
+    //console.log('!!!' + this._isEmpty);
+
+    setTimeout(this._allMinicardServicesCut, 200);
 };
 
 MasterList.prototype.unbind = function () {
     this._window.removeEventListener('resize', this._allMinicardServicesCut);
+    this._window.removeEventListener('resize', this._allMinicardWidgetVisibility);
     this._window.removeEventListener('scroll', this._handleScroll);
     this.$context.collectGarbage();
 };
@@ -79,12 +88,15 @@ MasterList.prototype._handleScroll = function () {
                         self._isBusy = false;
                         $('#wait-spinner').fadeOut(800);
                     });
+            } else {
+                $('.master-list-info_good').fadeIn(800);
             }
         }
     } catch (e) {
         // do nothing
     }
 };
+MasterList.prototype._isEmpty = false;
 MasterList.prototype._isBusy = false;
 MasterList.prototype._isFinish = false;
 /**
@@ -94,30 +106,52 @@ MasterList.prototype._isFinish = false;
 MasterList.prototype._loadMoreItems = function () {
     return this.$context.sendAction('getNextPage');
 };
-
+/**
+ * Cut services.
+ * @private
+ */
 MasterList.prototype._allMinicardServicesCut = function () {
-    $('.master-minicard').each(function () {
-        var minicardServices = $(this).find('.master-minicard__services');
-        var servicesList = minicardServices.find('li');
-        var maxHeight =
-            $(this).height() - ($(this).find('.master-minicard__name').height() + $(this).find('.master-minicard__spec').height());
-        var servicesCount = minicardServices.find('li').length;
+    if ($(window).width() >= 500) {
+        $('.master-minicard__services').show();
+        $('.master-minicard').each(function () {
+            var minicardServices = $(this).find('.master-minicard__services');
+            var servicesList = minicardServices.find('li');
+            var maxHeight =
+                $(this).height() - ($(this).find('.master-minicard__name').height() + $(this).find('.master-minicard__spec').height() + 20);
+            var servicesCount = minicardServices.find('li').length;
 
-        if (minicardServices.height() > maxHeight) {
-            while (minicardServices.height() > maxHeight && servicesCount >= 0) {
-                $(servicesList[servicesCount - 1]).hide();
-                servicesCount--;
-            }
-        } else if ((minicardServices.height() + 10) < maxHeight) {
-            var i = 0;
-            while (minicardServices.height() < maxHeight && i < servicesCount + 1) {
-                $(servicesList[i]).show();
-                i++;
-            }
             if (minicardServices.height() > maxHeight) {
-                $(servicesList[i - 1]).hide();
+                while (minicardServices.height() > maxHeight && servicesCount >= 0) {
+                    $(servicesList[servicesCount - 1]).hide();
+                    servicesCount--;
+                }
+            } else if ((minicardServices.height() + 10) < maxHeight) {
+                var i = 0;
+                while (minicardServices.height() < maxHeight && i < servicesCount + 1) {
+                    $(servicesList[i]).show();
+                    i++;
+                }
+                if (minicardServices.height() > maxHeight) {
+                    $(servicesList[i - 1]).hide();
+                }
             }
-        }
-    });
+        });
+    } else {
+        $('.master-minicard__services').hide();
+    }
+    //console.log('done!');
+};
+/**
+ * Widget visibility.
+ * @private
+ */
+MasterList.prototype._allMinicardWidgetVisibility = function () {
+    if ($(window).width() >= 750) {
+        $('.master-content-widget').each(function () {
+            $(this).find('.act').first().addClass('show');
+        });
+    } else {
+        $('.master-content-widget li').removeClass('show');
+    }
 };
 

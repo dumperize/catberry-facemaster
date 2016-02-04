@@ -42,9 +42,13 @@ Video.prototype.bind = function () {
     $('.catalog__menu-ico').bind('click', showCatalogMenu);
 
     function showVideoPopup() {
-        var tmp = $(this).closest('.catalog-item').clone();
+        var tmp = $(this).closest('.catalog-item').clone(),
+            url = tmp.find('.catalog-item__img-cont').attr('href');
         tmp.addClass('popup');
         tmp.find('.catalog-item__text').css('height', 'auto');
+        tmp.find('.catalog-item__video-cont')
+            .html('<iframe src="' + url + '" frameborder="0" allowfullscreen></iframe>');
+        //console.log(url);
         $.fancybox.open(tmp, {
             padding: 0,
             type: 'inline',

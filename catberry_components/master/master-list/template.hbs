@@ -1,15 +1,33 @@
 <div block="master-list">
-    {{#if isHaveMaster}}
-        {{#each list}}
-            <div elem="item">
-                <cat-master-minicard id="master-minicard-{{id}}" master-id="{{id}}"
-                                     cat-store="master/MasterList"></cat-master-minicard>
-            </div>
-        {{/each}}
+
+    {{#unless this}}
+        <!-- Как вывести название рубрики? -->
+        <div block="master-list-info">
+            <a elem="btn" href="/site/reg">Стать мастером</a>
+            <p elem="text">
+                <span>:-(</span>
+                <span>Тут ещё нет Мастера.<br>Вы можете быть первым!</span>
+            </p>
+        </div>
+    {{/unless}}
+
+    {{#each this}}
+        <div elem="item">
+            <cat-master-minicard id="master-minicard-{{id}}" master-id="{{id}}" cat-store="master/MasterList"></cat-master-minicard>
+        </div>
+    {{/each}}
+
+    {{#if this}}
         <div block='wait-spinner' id="wait-spinner">
             <div elem="animate">{{icon "spinner"}}</div>
         </div>
-    {{else}}
-        нет мастеров
+
+        <div block="master-list-info" mod="good">
+            <a elem="btn" href="/site/reg">Стать мастером</a>
+            <p elem="text">
+                <span>:-)</span>
+                <span>Вы тоже Мастер?<br>Разместите здесь свою информацию!</span>
+            </p>
+        </div>
     {{/if}}
 </div><!--master-list-->

@@ -23,7 +23,11 @@ function CompanyPage() {
  * for template engine.
  */
 CompanyPage.prototype.render = function () {
-    return this.$context.getStoreData();
+    return this.$context.getStoreData()
+        .then(function (data) {
+            console.log(data);
+            return data;
+        });
 };
 
 /**

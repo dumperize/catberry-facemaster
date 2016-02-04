@@ -70,6 +70,167 @@ a:active {
   display: inline-block;
   padding: 0 24px;
 }
+
+/* Контейнер для превью видео */
+.video-prev-cont {
+  position: relative;
+  float: left;
+  width: 318px;
+  height: 180px;
+  overflow: hidden;
+  cursor: pointer;
+  img {
+    width: 100%;
+    vertical-align: middle;
+  }
+  &:hover:after {
+    border-left-color: #f79622;
+  }
+  &:hover:before {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  &:after {
+    content: '';
+    border: 2rem solid transparent;
+    border-left: 4rem solid #e6e7e8;
+    display: inline-block;
+    height: 0;
+    opacity: 0.9;
+    width: 0;
+    position: absolute;
+    z-index: 200;
+    left: 50%;
+    top: 50%;
+    margin-left: -2rem;
+    margin-top: -2rem;
+  }
+  &:before {
+    content: '';
+    transition: background-color 0.3s ease-out 0.2s;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 10;
+  }
+}
+
+/* Попап для видео */
+.popup-video-cont {
+  //padding: 19px;
+  display: none;
+  position: relative;
+  @include to(md) {
+    padding-bottom: 60px;
+  }
+  &__title {
+    font-weight: bold;
+    font-size: 2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 14px;
+    @include at(sm) {
+      font-size: 1.6rem;
+    }
+    @include at(xs) {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+  }
+  &__text {
+    margin: 16px 190px 20px 0;
+    max-height: 144px;
+    font-size: 1.3rem;
+    overflow: hidden;
+    //border: 1px solid blue;
+    @include to(md) {
+      font-size: 1.2rem;
+      margin-right: 0;
+    }
+  }
+  &__video-cont {
+    display: block;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__social-cont {
+    background-color: $color-bg-grey-light;
+    height: 42px;
+    padding: 10px;
+    margin-right: 190px;
+    @include to(md) {
+      margin-right: 0;
+    }
+  }
+  .master-micro-inf {
+    position: absolute;
+    right: 0;
+    margin-top: 16px;
+    //bottom: 0;
+    @include to(md) {
+      right: auto;
+      left: 0;
+      bottom: 0;
+    }
+  }
+}
+
+/* Имя мастера с фото 50x50 */
+.master-micro-inf {
+  //display: none;
+  position: relative;
+  &__title {
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  a {
+    display: table;
+    height: 50px;
+    width: 180px;
+    color: inherit;
+  }
+  span {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 10px;
+    font-size: 1.1rem;
+    //border: 1px solid blue;
+  }
+  span:first-child {
+    padding: 0;
+    width: 50px;
+  }
+  img {
+    vertical-align: middle;
+    max-width: 50px;
+  }
+  &_video {
+    .master-micro-inf {
+      &__title {
+        font-size: 1.1rem;
+        font-weight: normal;
+        margin-bottom: 0;
+        position: absolute;
+        left: 60px;
+        top: 0;
+      }
+    }
+  }
+}
+
 /* Ограничение размера изображения */
 @mixin img-max-size ($max-width, $max-height) {
   max-width: $max-width;

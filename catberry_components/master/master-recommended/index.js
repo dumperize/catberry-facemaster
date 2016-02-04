@@ -26,6 +26,17 @@ function MasterRecommended() {
 MasterRecommended.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
+            data.forEach(function (item) {
+                var name = item.name.split(' '), fio;
+                fio = name[0];
+                if (typeof(name[1]) != 'undefined' && name[1] != '') {
+                    fio += (' ' + name[1].substring(0,1) + '.');
+                }
+                if (typeof(name[2]) != 'undefined' && name[2] != '') {
+                    fio += (name[2].substring(0,1) + '.');
+                }
+                item.name = fio;
+            });
             return {
                 list: data,
                 length: (data.length > 1)

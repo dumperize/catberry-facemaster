@@ -1,8 +1,5 @@
-.master-page {
+.master-page, .company-page {
   position: relative;
-  div {
-    //border: 1px solid blue;
-  }
   &__avatar-cont {
     overflow: hidden;
     float: left;
@@ -34,7 +31,7 @@
       top: 3px;
     }
   }
-  &__master-card {
+  &__card {
     @extend .col-lg-9;
     @include at(md) {
       @extend .col-md-8;
