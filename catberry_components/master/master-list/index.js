@@ -27,7 +27,15 @@ function MasterList($serviceLocator) {
  * for template engine.
  */
 MasterList.prototype.render = function () {
-    return this.$context.getStoreData();
+    var self = this;
+    return this.$context.getStoreData()
+        .then(function (data) {
+            if (Object.keys(data).length == 0) {
+                //self._isEmpty = true;
+                //console.log('!!!' + self._isEmpty);
+            }
+            return data;
+        });
 };
 
 /**
@@ -39,7 +47,11 @@ MasterList.prototype.bind = function () {
     this._window.addEventListener('resize', this._allMinicardServicesCut);
     this._window.addEventListener('resize', this._allMinicardWidgetVisibility);
     // если data пустая то не делать
+    //if (!this._isFinish) {
+    //}
     this._window.addEventListener('scroll', this._handleScroll);
+
+    //console.log('!!!' + this._isEmpty);
 
     setTimeout(this._allMinicardServicesCut, 200);
 };
@@ -62,6 +74,7 @@ MasterList.prototype._handleScroll = function () {
         doc = this._window.document.documentElement;
     try {
         // when scroll to the bottom of the page load more items
+        console.log('handleScroll');
         if (
             !this._isBusy &&
             (scrollTop >= (doc.scrollHeight - windowHeight * 2) ||
@@ -78,12 +91,15 @@ MasterList.prototype._handleScroll = function () {
                         self._isBusy = false;
                         $('#wait-spinner').fadeOut(800);
                     });
+            } else {
+                $('.master-list-info_good').fadeIn(800);
             }
         }
     } catch (e) {
         // do nothing
     }
 };
+MasterList.prototype._isEmpty = false;
 MasterList.prototype._isBusy = false;
 MasterList.prototype._isFinish = false;
 /**

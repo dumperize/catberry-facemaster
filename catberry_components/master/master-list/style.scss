@@ -21,26 +21,19 @@
       padding: 0 10px;
       &:first-child {
         font-size: 2.6rem;
-        &:after {
-          content: '(';
-        }
       }
     }
   }
   &_good {
     color: #FFF;
     background-color: $color-orange;
+    display: none;
     .master-list-info {
       &__btn {
         background-color: #FFFFFF;
         color: $color-orange;
         &:hover {
           background-color: #FFFFFF - #111111;
-        }
-      }
-      &__text {
-        span:first-child:after {
-          content: ')';
         }
       }
     }

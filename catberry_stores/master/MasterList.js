@@ -50,14 +50,15 @@ MasterList.prototype.load = function () {
             if (tag.tag.id) {
                 self._path = self._pathBase + '/bytag/' + tag.tag.id;
             }
-
             return self._loadDataPerPage(self._currentPage);
         })
         .then(function (result) {
+            //console.log(result);
             if (!result || result.length === 0) {
                 self._isFinished = true;
                 return self._currentFeed;
             } else {
+                self._isEmpty = false;
                 self._strucrurResult(result);
             }
             self._currentFeed = self._currentFeed.concat(result);
