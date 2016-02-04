@@ -81,6 +81,7 @@ a:active {
   cursor: pointer;
   img {
     width: 100%;
+    vertical-align: middle;
   }
   &:hover:after {
     border-left-color: #f79622;
