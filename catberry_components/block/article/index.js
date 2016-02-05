@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = CommonList;
+module.exports = Article;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = CommonList;
  */
 
 /**
- * Creates new instance of the "common-list" component.
+ * Creates new instance of the "article" component.
  * @constructor
  */
-function CommonList() {
+function Article() {
 
 }
 
@@ -22,12 +22,8 @@ function CommonList() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-CommonList.prototype.render = function () {
-    return this.$context.getStoreData()
-        .then(function (data) {
-            //console.log(data);
-            return data;
-    });
+Article.prototype.render = function () {
+
 };
 
 /**
@@ -35,7 +31,7 @@ CommonList.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-CommonList.prototype.bind = function () {
+Article.prototype.bind = function () {
 
 };
 
@@ -44,6 +40,6 @@ CommonList.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-CommonList.prototype.unbind = function () {
+Article.prototype.unbind = function () {
 
 };

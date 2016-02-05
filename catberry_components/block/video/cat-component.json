@@ -1,0 +1,5 @@
+{
+	"name": "video",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

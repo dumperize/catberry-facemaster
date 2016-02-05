@@ -136,6 +136,9 @@
       width: 214px;
       height: 120px;
       line-height: 120px;
+      img {
+        min-height: 122px;
+      }
     }
     @include at(xs) {
       //float: none;
@@ -144,6 +147,8 @@
     img {
       width: 100%;
       margin: -100%;
+      vertical-align: middle;
+      min-height: 182px;
     }
   }
   &__add-date {
