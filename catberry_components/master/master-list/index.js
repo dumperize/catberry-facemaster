@@ -30,7 +30,7 @@ MasterList.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function(data){
             return {
-                isHaveMaster: (data.length),
+                isHaveMaster: (Object.keys(data).length),
                 list: data
             }
         });

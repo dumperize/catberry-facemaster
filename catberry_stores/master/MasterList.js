@@ -23,6 +23,7 @@ function MasterList($uhr) {
     StoreAutoLoadList.call(this);
     this.$context.setDependency('Tag');
 
+    this._currentFeed = {};
     this._pathBase = '/master';
     this._path = this._pathBase + '/active';
     this._options = {
@@ -52,7 +53,6 @@ MasterList.prototype.load = function () {
             return self._loadDataPerPage(self._currentPage);
         })
         .then(function (result) {
-            //console.log(result);
             if (!result || result.length === 0) {
                 self._isFinished = true;
                 return self._currentFeed;
@@ -60,7 +60,10 @@ MasterList.prototype.load = function () {
                 self._isEmpty = false;
                 self._strucrurResult(result);
             }
-            self._currentFeed = self._currentFeed.concat(result);
+            result.forEach(function (el) {
+                self._currentFeed[el.id] = el;
+            });
+            //self._currentFeed = self._currentFeed.concat(result);
             return self._currentFeed;
         });
 };
@@ -69,7 +72,7 @@ MasterList.prototype._clearFeed = function (tag) {
     this._currentRubrika = this._currentRubrika || tag.rubrika.id;
     this._currentTag = this._currentTag || tag.tag.id;
     if (this._currentRubrika != tag.rubrika.id || this._currentTag != tag.tag.id) {
-        this._currentFeed = [];
+        this._currentFeed = {};
         this._currentPage = 1;
         this._isFinished = false;
         this._currentRubrika = tag.rubrika.id;

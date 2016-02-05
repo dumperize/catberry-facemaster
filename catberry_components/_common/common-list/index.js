@@ -13,9 +13,9 @@ module.exports = CommonList;
  * @constructor
  */
 function CommonList() {
-
+    this._data = [];
 }
-
+CommonList.prototype._data = null;
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -32,7 +32,25 @@ CommonList.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 CommonList.prototype.bind = function () {
-
+    var self = this;
+    this._data = this.$context.getStoreData();
+    this._data.then(function (data) {
+        var promises = data.map(function (el) {
+            return self.$context.createComponent('block-video', {
+                id: "block-video-" + el.id,
+                'id-block': el.id,
+                'cat-store': 'video/VideoList'
+            })
+        });
+        Promise.all(promises)
+            .then(function (d) {
+                var div = document.getElementById('suda');
+                d.forEach(function (block) {
+                    console.log(block);
+                    div.text += block;
+                });
+            });
+    })
 };
 
 /**

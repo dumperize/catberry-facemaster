@@ -23,7 +23,12 @@ function Article() {
  * for template engine.
  */
 Article.prototype.render = function () {
-
+    var model = this.$context.attributes.model;
+    var id = this.$context.attributes['id-block'];
+    return this.$context.getStoreData()
+        .then(function (data) {
+            return data.data[id];
+        });
 };
 
 /**

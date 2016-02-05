@@ -23,7 +23,16 @@ function Video() {
  * for template engine.
  */
 Video.prototype.render = function () {
+    console.log(this.$context.attributes.data);
+    return this.$context.attributes.data;
+    //var model = this.$context.attributes.model;
+    var id = this.$context.attributes['id-block'];
 
+    return this.$context.getStoreData()
+        .then(function (data) {
+            console.log(data);
+            return data.data[id];
+        });
 };
 
 /**
@@ -43,3 +52,5 @@ Video.prototype.bind = function () {
 Video.prototype.unbind = function () {
 
 };
+
+
