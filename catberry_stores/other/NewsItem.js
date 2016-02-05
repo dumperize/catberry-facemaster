@@ -2,6 +2,14 @@
 
 module.exports = NewsItem;
 
+var util = require('util'),
+    StoreBase = require('../../lib/StoreBase');
+
+/**
+ * наследуемся от пагинатора для базового стора
+ */
+util.inherits(NewsItem, StoreBase);
+
 /*
  * This is a Catberry Store file.
  * More details can be found here
@@ -14,29 +22,15 @@ module.exports = NewsItem;
  * @constructor
  */
 function NewsItem($uhr) {
-    this._uhr = $uhr;
-    this._config = this.$context.locator.resolve('config');
-    this._path = this._config.api + '/about-news';
-    this._option = {
+    StoreBase.call(this);
+
+    this._path = '/about-news';
+    this._options = {
         data: {
             filter: '["and",["=","id",":id"],["=", "status", "1"]]'
         }
     };
 }
-
-/**
- * Current universal HTTP request to do it in isomorphic way.
- * @type {UHR}
- * @private
- */
-NewsItem.prototype._uhr = null;
-NewsItem.prototype._config = null;
-
-/**
- * Current lifetime of data (in milliseconds) that is returned by this store.
- * @type {number} Lifetime in milliseconds.
- */
-NewsItem.prototype.$lifetime = 60000;
 
 /**
  * Loads data from remote source.
@@ -48,13 +42,10 @@ NewsItem.prototype.load = function () {
     if (!item)
         return;
 
-    this._option.data.filter = this._option.data.filter.replace(/:id/g, item);
+    this._optionsData.data.filter[':id'] = item;
 
-    return this._uhr.get(this._path, this._option)
+    return this._load()
         .then(function (result) {
-            if (result.status.code >= 400 && result.status.code < 600) {
-                throw new Error(result.status.text);
-            }
             if (result.content.length == 0)
                 self.$context.notFound();
 

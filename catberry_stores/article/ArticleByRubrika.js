@@ -21,6 +21,6 @@ util.inherits(ArticleByRubrika, StoreCatalog);
  * @constructor
  */
 function ArticleByRubrika($uhr) {
-	//вызываем базовый Store с параметром video
+	//вызываем базовый Store с параметром article
 	StoreCatalog.call(this, "article");
 }

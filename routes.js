@@ -69,7 +69,7 @@ module.exports = [
     },
     // путь: /__/page/:id
     {
-        expression: /^\/([^\/\d]+)\/page\/(\d+)/i,
+        expression: /^\/([^\/\d]+)\/page\/(\d+)$/i,
         map: function (urlPath) {
             var matches = urlPath.path.match(/^\/([^\/\d]+)\/page\/(\d+)/i);
             return {

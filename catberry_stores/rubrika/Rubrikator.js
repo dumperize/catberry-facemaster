@@ -1,8 +1,16 @@
 'use strict';
 
-var RubrikaFormat = require('../../lib/util/RubrikaFormat');
 
 module.exports = Rubrikator;
+
+var RubrikaFormat = require('../../lib/util/RubrikaFormat');
+var util = require('util'),
+    StoreBase = require('../../lib/StoreBase');
+
+/**
+ * наследуемся от пагинатора для базового стора
+ */
+util.inherits(Rubrikator, StoreBase);
 
 /*
  * This is a Catberry Store file.
@@ -16,10 +24,9 @@ module.exports = Rubrikator;
  * @constructor
  */
 function Rubrikator($uhr) {
-    this._uhr = $uhr;
-    this._config = this.$context.locator.resolve('config');
+    StoreBase.call(this);
 
-    this._path = this._config.api + '/rubrika';
+    this._path = '/rubrika';
     this._options = {
         data: {
             filter: '["and",["=", "status", "1"]]',
@@ -28,22 +35,10 @@ function Rubrikator($uhr) {
             limit: 300
         }
     };
+    this._countName = 'masterCount';
 }
 
-/**
- * Current universal HTTP request to do it in isomorphic way.
- * @type {UHR}
- * @private
- */
-Rubrikator.prototype._uhr = null;
-
-/**
- * Current lifetime of data (in milliseconds) that is returned by this store.
- * @type {number} Lifetime in milliseconds.
- */
-Rubrikator.prototype.$lifetime = 600000;
-
-Rubrikator.prototype._countName = 'masterCount';
+Rubrikator.prototype._countName = null;
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
@@ -51,11 +46,8 @@ Rubrikator.prototype._countName = 'masterCount';
 
 Rubrikator.prototype.load = function () {
     var self = this;
-    return this._uhr.get(this._path, this._options)
+    return this._load()
         .then(function (result) {
-            if (result.status.code >= 400 && result.status.code < 600) {
-                throw new Error(result.status.text);
-            }
             //сделаем древовидную структуру и подсчитаем количество элементов для родителя
             return RubrikaFormat.makeTree(result.content, self._intoMakeTreeFunction.bind(self));
         });

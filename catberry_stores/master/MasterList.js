@@ -23,7 +23,7 @@ function MasterList($uhr) {
     StoreAutoLoadList.call(this);
     this.$context.setDependency('Tag');
 
-    this._pathBase = this._config.api + '/master';
+    this._pathBase = '/master';
     this._path = this._pathBase + '/active';
     this._options = {
         data: {
@@ -39,14 +39,13 @@ function MasterList($uhr) {
  */
 MasterList.prototype.load = function () {
     var self = this;
-
     return this.$context.getStoreData('Tag')
         .then(function (tag) {
             if (!tag.rubrika)
                 return;
             self._clearFeed(tag);
 
-            self._options.data.filter = self._options.data.filter.replace(/:rubrikaID/g, tag.rubrika.id);
+            self._optionsData.data.filter[':rubrikaID'] = tag.rubrika.id;
             if (tag.tag.id) {
                 self._path = self._pathBase + '/bytag/' + tag.tag.id;
             }
@@ -65,6 +64,7 @@ MasterList.prototype.load = function () {
             return self._currentFeed;
         });
 };
+
 MasterList.prototype._clearFeed = function (tag) {
     this._currentRubrika = this._currentRubrika || tag.rubrika.id;
     this._currentTag = this._currentTag || tag.tag.id;

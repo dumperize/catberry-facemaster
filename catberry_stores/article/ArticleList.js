@@ -21,7 +21,7 @@ util.inherits(ArticleList, MasterList);
  */
 function ArticleList($uhr) {
 	MasterList.call(this);
-	this._pathBase = this._config.api + '/article';
+	this._pathBase = '/article';
 	this._path = this._pathBase + '/active';
 	this._options = {
 		data: {
