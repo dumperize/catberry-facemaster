@@ -1,5 +1,0 @@
-{
-	"name": "other-news-item",
-	"template": "./template.hbs",
-	"errorTemplate": "./error.hbs"
-}

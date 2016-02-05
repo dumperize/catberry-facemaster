@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = Catalog;
+module.exports = DopCatalogs;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = Catalog;
  */
 
 /**
- * Creates new instance of the "catalog" component.
+ * Creates new instance of the "dop-catalogs" component.
  * @constructor
  */
-function Catalog() {
+function DopCatalogs() {
 
 }
 
@@ -22,15 +22,33 @@ function Catalog() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-Catalog.prototype.render = function () {
-    var self = this;
-    return this.$context.getStoreData()
-        .then(function (data) {
-            return {
-                rubrikator: data,
-                catalog: self.$context.attributes.catalog
+DopCatalogs.prototype.render = function () {
+
+    return {
+        'data-mod': this.$context.attributes['data-mod'],
+        catalogs: [
+            {
+                url: "/sale",
+                ico: "gift",
+                title: "Поиск по скидке"
+            },
+            {
+                url: "/video",
+                ico: "video",
+                title: "Поиск по видео"
+            },
+            {
+                url: "/article",
+                ico: "qwestion",
+                title: "Секреты Мастеров"
+            },
+            {
+                url: "/company",
+                ico: "case",
+                title: "Каталог фирм"
             }
-        });
+        ]
+    };
 };
 
 /**
@@ -38,47 +56,15 @@ Catalog.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-Catalog.prototype.bind = function () {
-    return {
-        click: {
-            '.js-rubrika-list': this._clickHandler,
-            '.js-rubrika-collapsed': this._clickAllHandler
-        }
-    }
+DopCatalogs.prototype.bind = function () {
+
 };
 
-Catalog.prototype._clickHandler = function (obj) {
-    var el = obj.target;
-    $(el).parents('.rubrika-list').find('.rubrika-list__list').toggle();
-}
-
-Catalog.prototype._clickAllHandler = function (obj) {
-    var el = obj.target;
-    var self = $(el).parents('.js-rubrika-collapsed');
-
-    var cl = 'master-rubrikator-page';
-    var cl_col = cl + '_collapsed';
-    var el = $('.master-rubrikator-page');
-
-    if (el.hasClass(cl_col)) {
-        el.removeClass(cl_col);
-        $('.rubrika-list__list').show();
-        self.find('.rubrika-list__name').html('Свернуть все рубрики')
-            .end().find('.rubrika-list__icon').addClass('rubrika-list__icon_rotate');
-    } else {
-        el.addClass(cl_col);
-        $('.rubrika-list__list').hide();
-        self.find('.rubrika-list__name').html('Развернуть все рубрики')
-            .end().find('.rubrika-list__icon').removeClass('rubrika-list__icon_rotate');
-    }
-}
 /**
  * Does cleaning for everything that have NOT been set by .bind() method.
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-Catalog.prototype.unbind = function () {
+DopCatalogs.prototype.unbind = function () {
 
 };
-
-

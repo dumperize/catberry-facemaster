@@ -23,7 +23,7 @@ function PageArticleItem() {
  * for template engine.
  */
 PageArticleItem.prototype.render = function () {
-
+    return this.$context.getStoreData();
 };
 
 /**

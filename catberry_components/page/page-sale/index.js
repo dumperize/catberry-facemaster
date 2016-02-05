@@ -23,6 +23,7 @@ function PageSaleCatalog() {
  * for template engine.
  */
 PageSaleCatalog.prototype.render = function () {
+    return this.$context.getStoreData()
 
 };
 
@@ -32,7 +33,24 @@ PageSaleCatalog.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 PageSaleCatalog.prototype.bind = function () {
+    $('li.act:has(.act)').removeClass('act');
 
+    var sale = $('.sale a');
+    sale.bind('click', showSalePopup);
+
+    function showSalePopup() {
+        var tmp = $(this).parent().clone();
+        tmp.addClass('popup');
+        $.fancybox.open(tmp, {
+            padding: 0,
+            helpers: {
+                overlay: {
+                    locked: false
+                }
+            }
+        });
+        return false;
+    }
 };
 
 /**
@@ -41,5 +59,5 @@ PageSaleCatalog.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 PageSaleCatalog.prototype.unbind = function () {
-
+    $('.sale a').unbind('click');
 };

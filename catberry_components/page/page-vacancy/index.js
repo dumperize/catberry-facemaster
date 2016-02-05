@@ -23,6 +23,7 @@ function PageVacancy() {
  * for template engine.
  */
 PageVacancy.prototype.render = function () {
+    return this.$context.getStoreData();
 
 };
 

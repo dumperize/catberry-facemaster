@@ -24,15 +24,28 @@ function Pages($config) {
     this.$context.setDependency('rubrika/RubrikaCompany');
 
     this._loodStore = {
-        'master-rubrika': 'Tag',
-        'master-page': 'master/MasterItem',
-        'news-item': 'other/NewsItem',
-        'vacancy-item': 'other/VacancyItem',
-        'video': 'rubrika/RubrikatorVideo',
-        'sale': 'rubrika/RubrikatorSale',
-        'article': 'rubrika/RubrikatorArticle',
+        'article': 'article/ArticleByRubrika',
+        'article-item': 'article/ArticleItem',
+        'catalog': '',
+        'company': '',
+        'company-page': 'company/CompanyItem',
         'company-rubrika': 'rubrika/RubrikaCompany',
-        'article-item': 'article/ArticleItem'
+        'contact': '',
+        'feedback': '',
+        'login': '',
+        'main': '',
+        'master-page': 'master/MasterItem',
+        'master-rubrika': 'Tag',
+        'news': 'other/News',
+        'news-item': 'other/NewsItem',
+        'oferta': '',
+        'recommendation': 'other/Recommendation',
+        'registration': '',
+        'request': '',
+        'sale': 'sale/SaleByRubrika',
+        'vacancy': 'other/Vacancy',
+        'vacancy-item': 'other/VacancyItem',
+        'video': 'video/VideoByRubrika'
     }
 }
 
@@ -75,6 +88,7 @@ Pages.prototype.load = function () {
 
             var result = {
                 current: currentPage,
+                currentStore: self._loodStore[currentPage],
                 isActive: {},
 
                 header: self.getHeaderData(),

@@ -1,6 +1,6 @@
 <div block="master-list">
 
-    {{#unless this}}
+    {{#unless isHaveMaster}}
         <div block="master-list-info">
             <a elem="btn" href="/registration">Стать мастером</a>
             <p elem="text">
@@ -10,13 +10,13 @@
         </div>
     {{/unless}}
 
-    {{#each this}}
+    {{#each list}}
         <div elem="item">
             <cat-master-minicard id="master-minicard-{{id}}" master-id="{{id}}" cat-store="master/MasterList"></cat-master-minicard>
         </div>
     {{/each}}
 
-    {{#if this}}
+    {{#if isHaveMaster}}
         <div block='wait-spinner' id="wait-spinner">
             <div elem="animate">{{icon "spinner"}}</div>
         </div>

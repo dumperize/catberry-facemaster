@@ -1,9 +1,0 @@
-{{#if vacancy}}
-    <br>
-    <p style="margin-bottom: 8px"><strong>Сейчас открыты вакансии:</strong></p>
-{{/if}}
-{{#each vacancy}}
-    <p><a href="/vacancy/item/{{id}}">{{post}}</a></p>
-{{else}}
-    <p><strong>Сейчас открытых вакансий нет.</strong></p>
-{{/each}}

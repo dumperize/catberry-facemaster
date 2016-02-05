@@ -1,5 +1,0 @@
-{
-	"name": "registration-header",
-	"template": "./template.hbs",
-	"errorTemplate": "./error.hbs"
-}

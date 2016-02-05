@@ -1,0 +1,5 @@
+{
+	"name": "page-registration-why-we",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}
