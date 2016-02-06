@@ -23,15 +23,14 @@ function MasterBlockVideo() {
  * for template engine.
  */
 MasterBlockVideo.prototype.render = function () {
-    if (this.$context.attributes['master-page']) {
-        return this.$context.getStoreData()
-            .then(function (data) {
-                //console.log(data.videos);
-                return {
-                    videos: data.videos
-                }
-            });
-    }
+    var self = this;
+    return this.$context.getStoreData()
+        .then(function (data) {
+            return {
+                model: self.$context.attributes['cat-store'],
+                videos: data.videos
+            }
+        });
 };
 
 /**

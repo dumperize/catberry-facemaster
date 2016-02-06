@@ -1,1 +1,43 @@
+<div block="sale" mod="catalog">
+    <a href="" elem="link">
+        <p elem="title">
+            {{#is type "==" 1}}
+                Подарок
+            {{/is}}
+            {{#is type "==" 2}}
+                Скидка {{discount}}%
+            {{/is}}
+            {{#is type "==" 3}}
+                -{{discount}} руб.
+            {{/is}}
+        </p>
 
+        <div elem="pic"><img src="{{imgSrc imgID 210 210}}" elem="img" alt="{{title}}">
+        </div>
+
+        <p elem="text">{{title}}</p>
+    </a>
+
+    <div elem="popup-content">
+        <div block="master-micro-inf">
+            <p elem="title">Акцию предлагает:</p>
+            <a href="/{{page.number}}" elem="cont"><span><img
+                    src="{{imgSrc owner.imgID 50 50}}"></span><span>{{owner.name}}</span></a>
+        </div>
+
+        <div elem="to-page">
+            <a block="to-master-page" href="/{{page.number}}">На страницу
+                мастера<i>{{icon "strelka"}}</i></a>
+        </div>
+
+        <!-- ERROR -->
+        <div style="width: 180px;">
+            <br>
+
+            <p style="color: red; font-weight: bold;">------ ERROR! ------</p>
+            page.number store - недостаточно данных
+            <br><br>
+        </div>
+        <!-- ERROR -->
+    </div>
+</div>

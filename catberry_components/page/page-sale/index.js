@@ -23,8 +23,14 @@ function PageSaleCatalog() {
  * for template engine.
  */
 PageSaleCatalog.prototype.render = function () {
+    var self = this;
     return this.$context.getStoreData()
-
+        .then(function (data) {
+            return {
+                model: self.$context.attributes['cat-store'],
+                list: data
+            };
+        });
 };
 
 /**

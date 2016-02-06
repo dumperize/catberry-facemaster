@@ -23,6 +23,26 @@ function Sale() {
  * for template engine.
  */
 Sale.prototype.render = function () {
+    var model = this.$context.attributes['cat-store'];
+    var id = this.$context.attributes['id-block'];
+
+    if (model == 'master/MasterItem') {
+        return this.$context.getStoreData()
+            .then(function (data) {
+                return data.sales[id];
+            });
+    }
+    if (model == 'sale/SaleByRubrika') {
+        var num = this.$context.attributes['num'];
+        return this.$context.getStoreData()
+            .then(function (data) {
+                return data[num].sale[id];
+            });
+    }
+    return this.$context.getStoreData()
+        .then(function (data) {
+            return data[id];
+        });
 
 };
 

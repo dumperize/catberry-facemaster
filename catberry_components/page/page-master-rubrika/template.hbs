@@ -21,25 +21,17 @@
     <div elem="right-side">
 
         {{#is section "==" "master"}}
-            <cat-master-recommended id="master-recommended" cat-store="master/MasterRecommended"></cat-master-recommended>
+            <cat-master-recommended id="master-recommended"
+                                    cat-store="master/MasterRecommended"></cat-master-recommended>
             <cat-master-list id="master-list" cat-store="master/MasterList"></cat-master-list>
         {{/is}}
 
-        {{#is section "==" "video"}}
-            <cat-common-list id="master-list-video" cat-store="video/VideoList"></cat-common-list>
-        {{/is}}
-
-
-        {{#is section "==" "sale"}}
-            <cat-common-list id="master-list-sale" cat-store="sale/SaleList"></cat-common-list>
-        {{/is}}
-
         {{#is section "==" "sovety"}}
-            <cat-common-list id="master-list-article" cat-store="article/ArticleList"></cat-common-list>
-        {{/is}}
-
-        {{#is section "==" "company"}}
-            <cat-common-list id="master-list-company" cat-store="company/CompanyList"></cat-common-list>
+            <cat-common-list id="master-list-article" cat-store="article/ArticleList"
+                             type="article"></cat-common-list>
+        {{else}}
+            <cat-common-list id="master-list-{{section}}" cat-store="{{section}}/{{capitalizeFirst section}}List"
+                             type="{{section}}"></cat-common-list>
         {{/is}}
 
     </div>

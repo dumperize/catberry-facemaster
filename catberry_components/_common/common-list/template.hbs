@@ -1,3 +1,36 @@
-{{#each this}}
-    <cat-block-video id="block-video-{{id}}" cat-store="video/VideoList" id-block="{{id}}"></cat-block-video>
-{{/each}}
+<div block="common-list">
+    <div class="row">
+        {{#is type "==" "video"}}
+            {{#each list}}
+                <div elem="item">
+                    <cat-block-video id="block-video-{{id}}" cat-store="{{../model}}"
+                                     id-block="{{id}}"></cat-block-video>
+                </div>
+            {{/each}}
+        {{/is}}
+
+        {{#is type "==" "sale"}}
+            {{#each list}}
+                <div elem="item">
+                    <cat-block-sale id="block-sale-{{id}}" cat-store="{{../model}}" id-block="{{id}}"></cat-block-sale>
+                </div>
+            {{/each}}
+        {{/is}}
+
+        {{#is type "==" "article"}}
+            {{#each list}}
+                <div elem="item">
+                    <cat-block-article id="block-article-{{id}}" cat-store="{{../model}}" id-block="{{id}}"></cat-block-article>
+                </div>
+            {{/each}}
+        {{/is}}
+
+        {{#is type "==" "company"}}
+            {{#each list}}
+                <div elem="item">
+                    <cat-block-company id="block-company-{{id}}" cat-store="{{../model}}" id-block="{{id}}"></cat-block-company>
+                </div>
+            {{/each}}
+        {{/is}}
+    </div>
+</div>

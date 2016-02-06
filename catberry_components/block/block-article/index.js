@@ -23,11 +23,18 @@ function Article() {
  * for template engine.
  */
 Article.prototype.render = function () {
-    var model = this.$context.attributes.model;
+    var model = this.$context.attributes['cat-store'];
     var id = this.$context.attributes['id-block'];
+
+    if (model == 'master/MasterItem') {
+        return this.$context.getStoreData()
+            .then(function (data) {
+                return data.articles[id];
+            });
+    }
     return this.$context.getStoreData()
         .then(function (data) {
-            return data.data[id];
+            return data[id];
         });
 };
 

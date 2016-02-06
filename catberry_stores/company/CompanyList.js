@@ -25,7 +25,7 @@ function CompanyList($uhr) {
 	this._path = this._pathBase + '/byrubrika';
 	this._options = {
 		data: {
-			expand: 'masters'
+			expand: 'mastersData'
 		}
 	};
 }
@@ -51,7 +51,11 @@ CompanyList.prototype.load = function () {
 				self._isFinished = true;
 				return self._currentFeed;
 			}
-			self._currentFeed = self._currentFeed.concat(result);
+
+			result.forEach(function (el) {
+				self._currentFeed[el.id] = el;
+			});
+			//self._currentFeed = self._currentFeed.concat(result);
 			return self._currentFeed;
 		});
 };

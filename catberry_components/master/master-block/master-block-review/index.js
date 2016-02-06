@@ -23,22 +23,20 @@ function MasterBlockReview() {
  * for template engine.
  */
 MasterBlockReview.prototype.render = function () {
-    if (this.$context.attributes['master-page']) {
-        return this.$context.getStoreData()
-            .then(function (data) {
-                data.vkLikes.data = JSON.parse(data.vkLikes.data);
-                if (data.vkLikes.data.length > 9) {
-                    data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов (больше не требуется)
-                }
-                //console.log(data.comments);
-                return {
-                    comments: data.comments.reverse(),
-                    vkLikes: data.vkLikes,
-                    name: data.name,
-                    imgID: data.imgID
-                }
-            });
-    }
+    return this.$context.getStoreData()
+        .then(function (data) {
+            data.vkLikes.data = JSON.parse(data.vkLikes.data);
+            if (data.vkLikes.data.length > 9) {
+                data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов (больше не требуется)
+            }
+            //console.log(data.comments);
+            return {
+                comments: data.comments.reverse(),
+                vkLikes: data.vkLikes,
+                name: data.name,
+                imgID: data.imgID
+            }
+        });
 };
 
 /**

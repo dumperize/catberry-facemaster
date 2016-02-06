@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = PageCompanyRubrika;
+module.exports = BlockVideoPopup;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = PageCompanyRubrika;
  */
 
 /**
- * Creates new instance of the "page-company-rubrika" component.
+ * Creates new instance of the "block-video-popup" component.
  * @constructor
  */
-function PageCompanyRubrika() {
+function BlockVideoPopup() {
 
 }
 
@@ -22,15 +22,8 @@ function PageCompanyRubrika() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-PageCompanyRubrika.prototype.render = function () {
-    var store = this.$context.attributes['cat-store'];
-    return this.$context.getStoreData()
-        .then(function (data) {
-            return {
-                list: data,
-                model: store
-            }
-        });
+BlockVideoPopup.prototype.render = function () {
+
 };
 
 /**
@@ -38,7 +31,7 @@ PageCompanyRubrika.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-PageCompanyRubrika.prototype.bind = function () {
+BlockVideoPopup.prototype.bind = function () {
 
 };
 
@@ -47,6 +40,6 @@ PageCompanyRubrika.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-PageCompanyRubrika.prototype.unbind = function () {
+BlockVideoPopup.prototype.unbind = function () {
 
 };

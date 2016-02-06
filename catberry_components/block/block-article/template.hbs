@@ -1,24 +1,11 @@
-<div block="catalog-item" class="catalog-item catalog-item_article">
-
-    <div elem="img-cont"><img src="{{imgSrc imgID 180 180}}"></div>
-
-    <div elem="wrapper">
-        <p elem="title">{{{title}}}<span elem="add-date">29.12.2015</span></p>
-
-        <p elem="text">
-            {{{stripTags text}}}
-        </p>
-    </div>
-
-    <a elem="more" href="/{{owner.page.number}}/article/{{id}}">подробнее<i>{{icon "strelka"}}</i></a>
-
-    <div elem="social-cont"></div>
-
-    <div block="master-micro-inf" mod="video">
-        <p elem="title">Статью добавил:</p>
-        <a href="{{owner.page.number}}" elem="cont">
-            <span><img src="{{imgSrc owner.imgID 50 50}}" alt="{{owner.name}}"></span>
-            <span><br>{{owner.name}}</span>
-        </a>
-    </div>
+<div block="article">
+    <a href="/{{authorPage}}/article/{{id}}" elem="link" mix="block:js-open-article">
+        <div elem="pic">
+            <img elem="img" src="{{imgSrc imgID 210 210}}" alt="{{title}}">
+        </div>
+        <div elem="text">
+            <p>{{title}}</p>
+        </div>
+        <p elem="author">{{author}}</p>
+    </a>
 </div>

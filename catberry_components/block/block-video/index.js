@@ -23,15 +23,18 @@ function Video() {
  * for template engine.
  */
 Video.prototype.render = function () {
-    console.log(this.$context.attributes.data);
-    return this.$context.attributes.data;
-    //var model = this.$context.attributes.model;
+    var model = this.$context.attributes['cat-store'];
     var id = this.$context.attributes['id-block'];
 
+    if (model == 'master/MasterItem') {
+        return this.$context.getStoreData()
+            .then(function (data) {
+                return data.videos[id];
+            });
+    }
     return this.$context.getStoreData()
         .then(function (data) {
-            console.log(data);
-            return data.data[id];
+            return data[id];
         });
 };
 
@@ -41,7 +44,7 @@ Video.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 Video.prototype.bind = function () {
-
+//навесить клик и тут сделать createComponent дальше вызвать метод генерирующий массив для передачи и запилить все
 };
 
 /**

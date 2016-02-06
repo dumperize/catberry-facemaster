@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = MasterBlockAbout;
+module.exports = BlockCompany;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = MasterBlockAbout;
  */
 
 /**
- * Creates new instance of the "master-block-about" component.
+ * Creates new instance of the "block-company" component.
  * @constructor
  */
-function MasterBlockAbout() {
+function BlockCompany() {
 
 }
 
@@ -22,18 +22,14 @@ function MasterBlockAbout() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-MasterBlockAbout.prototype.render = function () {
+BlockCompany.prototype.render = function () {
+    //var model = this.$context.attributes.model;
+    var id = this.$context.attributes['id-block'];
     return this.$context.getStoreData()
         .then(function (data) {
-            data.aboutEduc = data.aboutEduc.replace(/\n/g, "<br>");
-            data.aboutExp = data.aboutExp.replace(/\n/g, "<br>");
-            data.aboutAddInfo = data.aboutAddInfo.replace(/\n/g, "<br>");
-            return {
-                aboutEduc: data.aboutEduc,
-                aboutExp: data.aboutExp,
-                aboutAddInfo: data.aboutAddInfo
-            }
+            return data[id];
         });
+
 };
 
 /**
@@ -41,7 +37,7 @@ MasterBlockAbout.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-MasterBlockAbout.prototype.bind = function () {
+BlockCompany.prototype.bind = function () {
 
 };
 
@@ -50,6 +46,6 @@ MasterBlockAbout.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-MasterBlockAbout.prototype.unbind = function () {
+BlockCompany.prototype.unbind = function () {
 
 };

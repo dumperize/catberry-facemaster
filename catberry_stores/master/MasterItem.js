@@ -71,6 +71,7 @@ MasterItem.prototype.load = function () {
             return result.content[0];
         })
         .then(function (page) {
+            console.log(page.masterID);
             self._optionsForPageData.data.filter[':id'] = page.masterID;
 
             return self._loadByParam(self._pathForPage, self._setOptions(self._optionsForPage, self._optionsForPageData))
