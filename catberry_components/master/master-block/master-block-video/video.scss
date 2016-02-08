@@ -3,50 +3,8 @@
   margin-bottom: -20px;
   &__item-cont {
     @extend .col-lg-4;
+    @extend .col-sm-6;
+    @extend .col-xs-12;
     padding-bottom: 20px;
-    @include to(lg) {
-      @extend .col-sm-6;
-    }
-    @include to(lg) {
-      @extend .col-sm-6;
-    }
-    @include at(xs) {
-      @extend .col-xs-12;
-    }
-  }
-}
-
-.video-cont {
-  //display: inline-block;
-  background-color: $color-bg-grey-light;
-  //width: 214px;
-  //padding: 6px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 1.2rem;
-  position: relative;
-  &__title-prev {
-    height: 30px;
-    overflow: hidden;
-    margin: 5px;
-    display: inline-block;
-  }
-  &__img-cont {
-    //max-width: 200px;
-    width: 100%;
-    max-height: 126px;
-    line-height:126px;
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    text-align:center;
-    @extend .video-prev-cont;
-    float: none;
-    img {
-      margin:-100%;
-    }
-  }
-  &__desc {
-    display: none;
   }
 }

@@ -1,25 +1,12 @@
-<div block="catalog-item">
-    <a href="http://{{url}}" elem="img-cont" mix="block: js-show-catalog-video-popup"><img
-            src="{{img}}"></a>
-
-    <div elem="wrapper">
-        <p elem="title">{{{title}}}<span elem="add-date">29.12.2015</span></p>
-
-        <div elem="video-cont"></div>
-
-        <p elem="text">
-            {{{description}}}
-        </p>
-    </div>
-
-    <div elem="social-cont"></div>
-
-    <div block="master-micro-inf" mod="video">
-        <p elem="title">Видео добавил:</p>
-        <a href="{{owner.page.number}}" elem="cont">
-            <span><img src="{{imgSrc owner.imgID 50 50}}" alt="{{owner.name}}"></span>
-            <span><br>{{owner.name}}</span>
-        </a>
-    </div>
-
+<div block="video-cont">
+    <a href="http://{{url}}" elem="video-cover">
+        <span elem="img-cont"><img src="{{img}}" alt="{{title}}"></span><br>
+        <span elem="title-prev">{{title}}</span>
+        <span elem="desc">{{description}}</span>
+    </a>
+    <a href="{{owner.page.number}}" elem="cont">
+        <span elem="img"><img src="{{imgSrc owner.imgID 50 50}}" alt="{{owner.name}}"></span>
+        <span elem="name"><br>{{owner.name}}</span>
+    </a>
 </div>
+

@@ -1,0 +1,33 @@
+.video-cont {
+  background-color: $color-bg-grey-light;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  position: relative;
+  &__title-prev {
+    height: 30px;
+    overflow: hidden;
+    margin: 5px;
+    display: inline-block;
+  }
+  &__img-cont {
+    width: 100%;
+    max-height: 126px;
+    line-height:126px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    text-align:center;
+    @extend .video-prev-cont;
+    float: none;
+    img {
+      margin:-100%;
+    }
+  }
+  &__desc {
+    display: none;
+  }
+  &__cont {
+    display: none;
+  }
+}
