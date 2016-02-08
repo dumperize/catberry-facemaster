@@ -27,7 +27,9 @@ function NewsItem($uhr) {
     this._path = '/about-news';
     this._options = {
         data: {
-            filter: '["and",["=","id",":id"],["=", "status", "1"]]'
+            filter: '["and",[":simbol","id",":id"],["=", "status", "1"]]',
+            order: 'date :direction',
+            limit: 1
         }
     };
 }
@@ -43,6 +45,8 @@ NewsItem.prototype.load = function () {
         return;
 
     this._optionsData.data.filter[':id'] = item;
+    this._optionsData.data.filter[':simbol'] = '=';
+    self._optionsData.data.order[':direction'] = 'desc';
 
     return this._load()
         .then(function (result) {
@@ -50,5 +54,20 @@ NewsItem.prototype.load = function () {
                 self.$context.notFound();
 
             return result.content[0];
+        })
+        .then(function (data) {
+            self._optionsData.data.filter[':simbol'] = '<';
+            var promise1 = self._load();
+
+            self._optionsData.data.filter[':simbol'] = '>';
+            self._optionsData.data.order[':direction'] = 'asc';
+            var promise2 = self._load();
+
+            return Promise.all([promise1, promise2])
+                .then(function (nextPrev) {
+                    data.prev = nextPrev[0].content[0];
+                    data.next = nextPrev[1].content[0];
+                    return data;
+                });
         });
 };

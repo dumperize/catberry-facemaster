@@ -23,7 +23,7 @@ function PageNewsItem() {
  * for template engine.
  */
 PageNewsItem.prototype.render = function () {
-    return this.$context.getStoreData();
+    return this.$context.getStoreData()
 };
 
 /**
