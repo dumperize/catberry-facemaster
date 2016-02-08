@@ -25,7 +25,7 @@ function PageMasterRubrika() {
 PageMasterRubrika.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
-            console.log(data);
+            //console.log(data);
             return data;
         });
 };
@@ -39,29 +39,25 @@ PageMasterRubrika.prototype.bind = function () {
     $(window).bind('scroll', moneyrScroll);
 
     var moneyr = $('.moneyr-side');
-    var seoText = $('.seo-text');
-    var seoTextOffset = seoText.offset();
     var moneyrOffset = moneyr.offset();
     var moneyrHeight = moneyr.height();
 
-    //плавающего moneyr
+    //плавающий moneyr
     function moneyrScroll() {
         console.log(($(window).scrollTop() + 40 + moneyrHeight) + ' - ' + $('.seo-text').offset().top);
         if ($(window).scrollTop() + 20 > moneyrOffset.top) {
             moneyr.addClass('fixed');
             if (($(window).scrollTop() + 40 + moneyrHeight) > $('.seo-text').offset().top) {
-                console.log('if');
+                //console.log('if');
                 moneyr.addClass('bottom');
             } else {
-                console.log('else');
+                //console.log('else');
                 moneyr.removeClass('bottom');
             }
         } else {
             moneyr.removeClass('fixed');
         }
     }
-
-
 };
 
 /**
@@ -70,5 +66,5 @@ PageMasterRubrika.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 PageMasterRubrika.prototype.unbind = function () {
-
+    $(window).unbind('scroll');
 };
