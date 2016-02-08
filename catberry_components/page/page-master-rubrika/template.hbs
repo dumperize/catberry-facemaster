@@ -21,10 +21,10 @@
             {{#each rubrika.activeBanners}}
                 {{#is this.type '==' 2}}
                     <div elem="item">
-                        {{#is this.link '!=' ''}}
-                            <a href="{{this.link}}"><img src="{{this.imgID}}" alt=""></a>
-                        {{else}}
+                        {{#is this.link '==' ''}}
                             <img src="{{this.imgID}}" alt="">
+                        {{else}}
+                            <a href="{{this.link}}"><img src="{{this.imgID}}" alt=""></a>
                         {{/is}}
                     </div>
                 {{/is}}
