@@ -16,7 +16,21 @@
 <div block="inner-content">
     <div elem="left-side">
         <cat-master-filter id="master-filter" cat-store="Tag"></cat-master-filter>
-        { {> banner/banner_side/banner_side banner_side} }
+
+        <div block="moneyr-side">
+            {{#each rubrika.activeBanners}}
+                {{#is this.type '==' 2}}
+                    <div elem="item">
+                        {{#is this.link '!=' ''}}
+                            <a href="{{this.link}}"><img src="{{this.imgID}}" alt=""></a>
+                        {{else}}
+                            <img src="{{this.imgID}}" alt="">
+                        {{/is}}
+                    </div>
+                {{/is}}
+            {{/each}}
+        </div>
+
     </div>
     <div elem="right-side">
 

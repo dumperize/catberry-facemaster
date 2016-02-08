@@ -29,6 +29,7 @@ function MasterList($serviceLocator) {
 MasterList.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function(data){
+            console.log(data);
             return {
                 isHaveMaster: (Object.keys(data).length),
                 list: data

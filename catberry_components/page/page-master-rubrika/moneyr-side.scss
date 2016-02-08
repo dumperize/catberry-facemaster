@@ -1,0 +1,23 @@
+.moneyr-side {
+  border: 1px solid blue;
+  min-height: 200px;
+  @include to(lg) {
+    display: none;
+  }
+  &__item {
+    + div {
+      padding-top: 20px;
+    }
+  }
+}
+.moneyr-side.fixed {
+  position: fixed;
+  top: 20px;
+  bottom: auto;
+  width: 230px;
+}
+.moneyr-side.fixed.bottom {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+}
