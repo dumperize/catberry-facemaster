@@ -9,5 +9,14 @@
         специалистов, которые верят в свои силы и успех.
     </p>
 
-    <cat-other-vacancy id="other-vacancy" cat-store="other/Vacancy"></cat-other-vacancy>
+    {{#if this}}
+        <br>
+
+        <p elem="open"><strong>Сейчас открыты вакансии:</strong></p>
+    {{/if}}
+    {{#each this}}
+        <p><a href="/vacancy/item/{{id}}">{{post}}</a></p>
+    {{else}}
+        <p><strong>Сейчас открытых вакансий нет.</strong></p>
+    {{/each}}
 </div>

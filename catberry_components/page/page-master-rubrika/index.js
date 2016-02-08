@@ -23,7 +23,7 @@ function PageMasterRubrika() {
  * for template engine.
  */
 PageMasterRubrika.prototype.render = function () {
-
+    return this.$context.getStoreData();
 };
 
 /**

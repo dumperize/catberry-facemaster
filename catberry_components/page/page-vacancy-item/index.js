@@ -23,7 +23,7 @@ function PageVacancyItem() {
  * for template engine.
  */
 PageVacancyItem.prototype.render = function () {
-
+    return this.$context.getStoreData();
 };
 
 /**

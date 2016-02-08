@@ -1,0 +1,6 @@
+.common-list {
+  //@extend .col-xs-12;
+  &__item{
+    @extend .col-lg-4;
+  }
+}

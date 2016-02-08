@@ -1,7 +1,15 @@
 'use strict';
-var dateFormat = require('../../lib/util/DateFormat');
 
 module.exports = Vacancy;
+
+var dateFormat = require('../../lib/util/DateFormat');
+var util = require('util'),
+    StoreBase = require('../../lib/StoreBase');
+
+/**
+ * наследуемся от пагинатора для базового стора
+ */
+util.inherits(Vacancy, StoreBase);
 
 /*
  * This is a Catberry Store file.
@@ -15,13 +23,13 @@ module.exports = Vacancy;
  * @constructor
  */
 function Vacancy($uhr) {
+    StoreBase.call(this);
+
     var now = Date.now();
     now = dateFormat(now, "yyyy-mm-dd");
 
-    this._uhr = $uhr;
-    this._config = this.$context.locator.resolve('config');
-    this._path = this._config.api + '/about-vacancy';
-    this._option = {
+    this._path = '/about-vacancy';
+    this._options = {
         data: {
             filter: '["and",["<=","createDate","' + now + '"],[">=", "endDate", "' + now + '"],["=", "status", "1"]]'
         }
@@ -29,31 +37,12 @@ function Vacancy($uhr) {
 }
 
 /**
- * Current universal HTTP request to do it in isomorphic way.
- * @type {UHR}
- * @private
- */
-Vacancy.prototype._uhr = null;
-
-Vacancy.prototype._config = null;
-
-/**
- * Current lifetime of data (in milliseconds) that is returned by this store.
- * @type {number} Lifetime in milliseconds.
- */
-Vacancy.prototype.$lifetime = 60000;
-
-/**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 Vacancy.prototype.load = function () {
-    return this._uhr.get(this._path, this._option)
+    return this._load()
         .then(function (result) {
-            if (result.status.code >= 400 && result.status.code < 600) {
-                throw new Error(result.status.text);
-            }
-
             return result.content;
         });
 };

@@ -1,0 +1,5 @@
+{
+	"name": "block-video-popup",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

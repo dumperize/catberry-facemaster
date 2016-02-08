@@ -23,16 +23,13 @@ function MasterBlockLink() {
  * for template engine.
  */
 MasterBlockLink.prototype.render = function () {
-    if (this.$context.attributes['master-page']) {
-        return this.$context.getStoreData()
-            .then(function (data) {
-                //console.log(data.contacts);
-                data.contacts.links = JSON.parse(data.contacts.links);
-                return {
-                    links: data.contacts.links
-                }
-            });
-    }
+    return this.$context.getStoreData()
+        .then(function (data) {
+            data.contacts.links = JSON.parse(data.contacts.links);
+            return {
+                links: data.contacts.links
+            }
+        });
 };
 
 /**

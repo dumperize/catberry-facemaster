@@ -2,6 +2,14 @@
 
 module.exports = Tag;
 
+var util = require('util'),
+    StoreBase = require('../lib/StoreBase');
+
+/**
+ * наследуемся от пагинатора для базового стора
+ */
+util.inherits(Tag, StoreBase);
+
 /*
  * This is a Catberry Store file.
  * More details can be found here
@@ -14,32 +22,16 @@ module.exports = Tag;
  * @constructor
  */
 function Tag($uhr) {
-    this._uhr = $uhr;
-    this._config = this.$context.locator.resolve('config');
-
+    StoreBase.call(this);
     this.$context.setDependency('rubrika/Rubrika');
-
-    this._path = this._config.api + '/tag';
-    this._option = {
+    this._path = '/tag';
+    this._options = {
         data: {
             filter: '["and",["=", "unique", ":unique"],["=","status","1"]]',
             expand: 'seo'
         }
     };
 }
-
-/**
- * Current universal HTTP request to do it in isomorphic way.
- * @type {UHR}
- * @private
- */
-Tag.prototype._uhr = null;
-
-/**
- * Current lifetime of data (in milliseconds) that is returned by this store.
- * @type {number} Lifetime in milliseconds.
- */
-Tag.prototype.$lifetime = 60000;
 
 /**
  * Loads data from remote source.
@@ -57,13 +49,10 @@ Tag.prototype.load = function () {
         })
         .then(function () {
             if (tag) {
-                self._option.data.filter = self._option.data.filter.replace(/:unique/g, tag);
-                return self._uhr.get(self._path, self._option)
-                    .then(function (result) {
-                        if (result.status.code >= 400 && result.status.code < 600) {
-                            throw new Error(result.status.text);
-                        }
-                        return result.content[0];
+                self._optionsData.data.filter[':unique'] = tag;
+                return self._load()
+                    .then(function (data) {
+                        return data.content[0];
                     });
             }
             return {};
@@ -77,16 +66,6 @@ Tag.prototype.load = function () {
             data.currentSeo = tag ? self._getCurrentSeo(data.tag, data.section) : self._getCurrentSeo(data.rubrika, data.section);
             return data;
         });
-};
-
-/**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
- */
-Tag.prototype.handleSomeAction = function () {
-    // Here you can call this.$context.changed() if you know
-    // that remote data source has been changed.
-    // Also you can have many handle methods for other actions.
 };
 
 Tag.prototype._getCurrentSeo = function (data, section) {

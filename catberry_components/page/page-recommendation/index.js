@@ -22,6 +22,7 @@ function PageRecommendation() {
  * for template engine.
  */
 PageRecommendation.prototype.render = function () {
+    return this.$context.getStoreData();
 };
 
 /**

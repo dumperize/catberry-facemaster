@@ -13,9 +13,9 @@ module.exports = CommonList;
  * @constructor
  */
 function CommonList() {
-
+    this._data = [];
 }
-
+CommonList.prototype._data = null;
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -23,11 +23,16 @@ function CommonList() {
  * for template engine.
  */
 CommonList.prototype.render = function () {
+    var self = this;
+
     return this.$context.getStoreData()
-        .then(function (data) {
-            //console.log(data);
-            return data;
-    });
+        .then(function(data){
+            return {
+                list: data,
+                type: self.$context.attributes.type,
+                model: self.$context.attributes['cat-store']
+            }
+        });
 };
 
 /**
@@ -36,7 +41,6 @@ CommonList.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 CommonList.prototype.bind = function () {
-
 };
 
 /**

@@ -1,5 +1,0 @@
-{
-	"name": "other-vacancy",
-	"template": "./template.hbs",
-	"errorTemplate": "./error.hbs"
-}

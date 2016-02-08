@@ -1,0 +1,75 @@
+
+.rubriks-column {
+  @extend .col-md-4;
+  @extend .col-sm-6;
+  @extend .col-xs-12;
+  &:nth-child(2) {
+    @include at(sm){
+      float: right;
+    }
+  }
+}
+.rubrika-list {
+  margin-bottom: 20px;
+  &__title {
+    height: 50px;
+    background-color: $color-bg-grey-xmedium;
+    border-right-width: 50px;
+    border-right-style: solid;
+    padding-left: 15px;
+    position: relative;
+    cursor: pointer;
+  }
+  &__name {
+    font-size: 1.5rem;
+    line-height: 18px;
+    @include vertical-align;
+  }
+  &__count {
+    width: 50px;
+    text-align: center;
+    right: -50px;
+    color: #fff;
+    @include vertical-align;
+    position: absolute;
+    opacity: 0.7;
+  }
+  &__list {
+    padding: 6px 8px 0 15px;
+    &-li {
+      margin: 5px 0;
+      font-size: 1.2rem;
+      line-height: 14px;
+    }
+    &-a {
+      text-decoration: none;
+    }
+    &-count {
+      margin-left: 8px;
+    }
+  }
+  &_tool-collapsed {
+    @include at(xs){
+      display: none;
+    }
+    .rubrika-list {
+      &__title {
+        background-color: transparent;
+        border: 1px solid $color-bg-grey-xmedium;
+        padding-right: 50px;
+      }
+      &__icon {
+        position: absolute;
+        top:12px;
+        right: 8px;
+        @extend %icon;
+        @extend %icon_block;
+        @extend %icon_size_small;
+        @extend %icon_strelka;
+        &_rotate{
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+}

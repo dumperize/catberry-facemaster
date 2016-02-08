@@ -22,6 +22,31 @@ function Pages($config) {
     this.$context.setDependency('rubrika/RubrikatorSale');
     this.$context.setDependency('rubrika/RubrikatorArticle');
     this.$context.setDependency('rubrika/RubrikaCompany');
+
+    this._loodStore = {
+        'article': 'article/ArticleByRubrika',
+        'article-item': 'article/ArticleItem',
+        'catalog': '',
+        'company': '',
+        'company-page': 'company/CompanyItem',
+        'company-rubrika': 'rubrika/RubrikaCompany',
+        'contact': '',
+        'feedback': '',
+        'login': '',
+        'main': '',
+        'master-page': 'master/MasterItem',
+        'master-rubrika': 'Tag',
+        'news': 'other/News',
+        'news-item': 'other/NewsItem',
+        'oferta': '',
+        'recommendation': 'other/Recommendation',
+        'registration': '',
+        'request': '',
+        'sale': 'sale/SaleByRubrika',
+        'vacancy': 'other/Vacancy',
+        'vacancy-item': 'other/VacancyItem',
+        'video': 'video/VideoByRubrika'
+    }
 }
 
 /**
@@ -37,6 +62,8 @@ Pages.prototype._config = null;
  */
 Pages.prototype.$lifetime = 3600000;
 
+Pages.prototype._loodStore = {};
+
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
@@ -47,24 +74,8 @@ Pages.prototype.load = function () {
 
     return Promise.resolve(1)
         .then(function () {
-            if (currentPage == "master-rubrika")
-                return self.$context.getStoreData('Tag');
-            if (currentPage == "master-page")
-                return self.$context.getStoreData('master/MasterItem');
-            if (currentPage == "news-item")
-                return self.$context.getStoreData('other/NewsItem');
-            if (currentPage == "vacancy-item")
-                return self.$context.getStoreData('other/VacancyItem');
-            if (currentPage == "video")
-                return self.$context.getStoreData('rubrika/RubrikatorVideo');
-            if (currentPage == "sale")
-                return self.$context.getStoreData('rubrika/RubrikatorSale');
-            if (currentPage == "article")
-                return self.$context.getStoreData('rubrika/RubrikatorArticle');
-            if (currentPage == "company-rubrika")
-                return self.$context.getStoreData('rubrika/RubrikaCompany');
-            if (currentPage == "article-item")
-                return self.$context.getStoreData('article/ArticleItem');
+            if (self._loodStore[currentPage])
+                return self.$context.getStoreData(self._loodStore[currentPage]);
         })
         .then(function () {
             if (!currentPage) {
@@ -77,6 +88,7 @@ Pages.prototype.load = function () {
 
             var result = {
                 current: currentPage,
+                currentStore: self._loodStore[currentPage],
                 isActive: {},
 
                 header: self.getHeaderData(),

@@ -1,1 +1,8 @@
-<cat-company-rubrika id="company-rubrika" cat-store="rubrika/RubrikaCompany"></cat-company-rubrika>
+<h1 block="h1" mod="style">Название рубрики - ???</h1>
+<div block="company-rubrika">
+    {{#each list}}
+        <div elem="item">
+            <cat-block-company id="block-company-{{id}}" cat-store="{{../model}}" id-block="{{id}}"></cat-block-company>
+        </div>
+    {{/each}}
+</div>

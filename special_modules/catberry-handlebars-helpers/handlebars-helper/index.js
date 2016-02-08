@@ -179,8 +179,10 @@ module.exports = function (Handlebars) {
         },
 
         stripTags: function (str) {
-            str = str.replace(/<!--[^]*-->/g, '');
-            return str.replace(/<\/?[^>]+>/gi, '');
+            if (str) {
+                str = str.replace(/<!--[^]*-->/g, '');
+                return str.replace(/<\/?[^>]+>/gi, '');
+            }
         },
 
         stripStyle: function (str) {

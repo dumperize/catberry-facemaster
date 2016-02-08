@@ -23,18 +23,18 @@ function MasterBlockArticle() {
  * for template engine.
  */
 MasterBlockArticle.prototype.render = function () {
-    if (this.$context.attributes['master-page']) {
-        return this.$context.getStoreData()
-            .then(function (data) {
-                data.articles.forEach(function (item) {
-                    item.author = data.name; //добавляем автора для каждой статьи
-                });
-                //console.log(data.articles);
-                return {
-                    articles: data.articles
-                }
+    var self = this;
+    return this.$context.getStoreData()
+        .then(function (data) {
+            data.articles.forEach(function (item) {
+                item.authorPage = data.page.masterID,
+                item.author = data.name; //добавляем автора для каждой статьи
             });
-    }
+            return {
+                articles: data.articles,
+                model: self.$context.attributes['cat-store']
+            }
+        });
 };
 
 /**

@@ -23,46 +23,45 @@ function MasterBlockService() {
  * for template engine.
  */
 MasterBlockService.prototype.render = function () {
-    if (this.$context.attributes['master-page']) {
-        return this.$context.getStoreData()
-            .then(function (data) {
-                if (data.services.length > data.page.services) {
-                    data.services.length = data.page.services; //укорачиваем массив услуг до значения page.services
+    return this.$context.getStoreData()
+        .then(function (data) {
+            if (data.services.length > data.page.services) {
+                data.services.length = data.page.services; //укорачиваем массив услуг до значения page.services
+            }
+            //console.log(data.services);
+            var fieldsValSum = 0;
+            var fieldsValHalfSum = 0;
+            var part1 = [];
+            var part2 = [];
+
+            data.services.forEach(function (item) {
+                var fieldsValLength;
+
+                fieldsValLength = item.length;
+                if (fieldsValLength < 20) {
+                    fieldsValLength = 20;
                 }
-                //console.log(data.services);
-                var fieldsValSum = 0;
-                var fieldsValHalfSum = 0;
-                var part1 = [];
-                var part2 = [];
-
-                data.services.forEach(function (item) {
-                    var fieldsValLength;
-
-                    fieldsValLength = item.length;
-                    if (fieldsValLength < 20) {
-                        fieldsValLength = 20;
-                    }
-                    fieldsValSum += fieldsValLength;
-                });
-                data.services.forEach(function (item) {
-                    var fieldsValLength;
-
-                    fieldsValLength = item.length;
-                    if (fieldsValHalfSum < (fieldsValSum / 2) - 9) {
-                        part1.push(item);
-                    } else {
-                        part2.push(item);
-                    }
-                    fieldsValHalfSum += fieldsValLength;
-                });
-                data.services = [];
-                data.services.part1 = part1;
-                data.services.part2 = part2;
-                return {
-                    services: data.services
-                }
+                fieldsValSum += fieldsValLength;
             });
-    }
+            data.services.forEach(function (item) {
+                var fieldsValLength;
+
+                fieldsValLength = item.length;
+                if (fieldsValHalfSum < (fieldsValSum / 2) - 9) {
+                    part1.push(item);
+                } else {
+                    part2.push(item);
+                }
+                fieldsValHalfSum += fieldsValLength;
+            });
+            data.services = [];
+            data.services.part1 = part1;
+            data.services.part2 = part2;
+            return {
+                services: data.services
+            }
+        });
+
 };
 
 /**

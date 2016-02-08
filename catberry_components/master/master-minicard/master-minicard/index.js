@@ -28,12 +28,7 @@ MasterMinicard.prototype.render = function () {
         .then(function (data) {
             if (!data)
                 return;
-            var masterID = self.$context.attributes['master-id'];
-            for (var i = 0; i < data.length; ++i) {
-                if (data[i].id == masterID) {
-                    return data[i];
-                }
-            }
+            return data[self.$context.attributes['master-id']];
         })
         .then(function (master) {
             if (!master)
@@ -86,6 +81,7 @@ MasterMinicard.prototype.bind = function () {
             $(this).addClass('show');
         }
     }
+
     function showServices() {
         var minicard = $(this).closest('.master-minicard');
         minicard.find('.master-minicard__services').slideDown();
@@ -97,6 +93,7 @@ MasterMinicard.prototype.bind = function () {
         //console.log('done!');
         return false;
     }
+
     function showVideoPopup() {
         //console.log('click!');
         var tmp = $('.popup-video-cont').clone(),
@@ -126,6 +123,7 @@ MasterMinicard.prototype.bind = function () {
         });
         return false;
     }
+
     // раскрываем первый активный элемент виджета
     if ($(window).width() >= 750) {
         this._showFirstActWidget();

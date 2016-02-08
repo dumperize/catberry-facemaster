@@ -1,8 +1,16 @@
 'use strict';
 
-var RubrikaFormat = require('../../lib/util/RubrikaFormat');
 
 module.exports = RubrikatorVideo;
+
+var RubrikaFormat = require('../../lib/util/RubrikaFormat');
+var util = require('util'),
+    StoreBase = require('../../lib/StoreBase');
+
+/**
+ * наследуемся от пагинатора для базового стора
+ */
+util.inherits(RubrikatorVideo, StoreBase);
 
 /*
  * This is a Catberry Store file.
@@ -16,10 +24,9 @@ module.exports = RubrikatorVideo;
  * @constructor
  */
 function RubrikatorVideo($uhr) {
-    this._uhr = $uhr;
-    this._config = this.$context.locator.resolve('config');
+    StoreBase.call(this);
 
-    this._path = this._config.api + '/rubrika';
+    this._path = '/rubrika';
     this._options = {
         data: {
             filter: '["and",["=", "status", "1"]]',
@@ -31,20 +38,6 @@ function RubrikatorVideo($uhr) {
 }
 
 /**
- * Current universal HTTP request to do it in isomorphic way.
- * @type {UHR}
- * @private
- */
-RubrikatorVideo.prototype._uhr = null;
-RubrikatorVideo.prototype._config = null;
-
-/**
- * Current lifetime of data (in milliseconds) that is returned by this store.
- * @type {number} Lifetime in milliseconds.
- */
-RubrikatorVideo.prototype.$lifetime = 60000;
-
-/**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
@@ -52,11 +45,8 @@ RubrikatorVideo.prototype.load = function () {
     var self = this;
     var currentRubrika = this.$context.state.catalog;
 
-    return this._uhr.get(this._path, this._options)
+    return this._load()
         .then(function (result) {
-            if (result.status.code >= 400 && result.status.code < 600) {
-                throw new Error(result.status.text);
-            }
 
             var isExistRubrika = false; //для проверки на 404 страницу
             //сделаем древовидную структуру и подсчитаем количество видео для родителя
@@ -81,14 +71,4 @@ RubrikatorVideo.prototype.load = function () {
                 list: tree
             };
         });
-}
-
-/**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
- */
-RubrikatorVideo.prototype.handleSomeAction = function () {
-    // Here you can call this.$context.changed() if you know
-    // that remote data source has been changed.
-    // Also you can have many handle methods for other actions.
 };

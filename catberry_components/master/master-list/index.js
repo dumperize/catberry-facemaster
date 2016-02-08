@@ -27,14 +27,12 @@ function MasterList($serviceLocator) {
  * for template engine.
  */
 MasterList.prototype.render = function () {
-    var self = this;
     return this.$context.getStoreData()
-        .then(function (data) {
-            if (Object.keys(data).length == 0) {
-                //self._isEmpty = true;
-                //console.log('!!!' + self._isEmpty);
+        .then(function(data){
+            return {
+                isHaveMaster: (Object.keys(data).length),
+                list: data
             }
-            return data;
         });
 };
 
@@ -74,7 +72,6 @@ MasterList.prototype._handleScroll = function () {
         doc = this._window.document.documentElement;
     try {
         // when scroll to the bottom of the page load more items
-        console.log('handleScroll');
         if (
             !this._isBusy &&
             (scrollTop >= (doc.scrollHeight - windowHeight * 2) ||

@@ -21,7 +21,7 @@ util.inherits(VideoList, MasterList);
  */
 function VideoList($uhr) {
     MasterList.call(this);
-    this._pathBase = this._config.api + '/video';
+    this._pathBase = '/video';
     this._path = this._pathBase + '/active';
     this._options = {
         data: {

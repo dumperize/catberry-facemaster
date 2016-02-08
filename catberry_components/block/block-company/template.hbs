@@ -1,0 +1,23 @@
+<div block="company-minicard">
+    <a href="/company/{{number}}">
+        <p elem="title"><span>{{name}}</span></p>
+
+        <div elem="img-cont"><img src="{{imgSrc imgID 120 120}}" alt=""></div>
+
+        <p elem="count">{{getNumEnding mastersData.count_masters "Мастер, Мастера, Мастеров"}}</p>
+
+        <p elem="like">{{icon "like"}}<span>{{mastersData.count_likes}}</span></p>
+
+        <ul block="master-content-widget" mod="company">
+            <li elem="gift" class="{{#is mastersData.is_sale '==' 1}}act{{/is}}">
+                <i>{{icon "gift"}}</i>
+            </li>
+            <li elem="photo" class="{{#is mastersData.is_video '==' 1}}act{{/is}}">
+                <i>{{icon "picture"}}</i>
+            </li>
+            <li elem="video" class="{{#is mastersData.is_album '==' 1}}act{{/is}}">
+                <i>{{icon "video"}}</i>
+            </li>
+        </ul>
+    </a>
+</div>

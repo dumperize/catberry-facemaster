@@ -1,0 +1,5 @@
+{
+	"name": "page-registration-more-page",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

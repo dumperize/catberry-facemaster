@@ -1,9 +1,17 @@
 'use strict';
 
-var RubrikaFormat = require('../../lib/util/RubrikaFormat');
-var Rubrikator = require("../../config/saleCatalog.json");
 
 module.exports = RubrikatorSale;
+
+var RubrikaFormat = require('../../lib/util/RubrikaFormat');
+var Rubrikator = require("../../config/saleCatalog.json");
+var util = require('util'),
+    StoreBase = require('../../lib/StoreBase');
+
+/**
+ * наследуемся от пагинатора для базового стора
+ */
+util.inherits(RubrikatorSale, StoreBase);
 
 /*
  * This is a Catberry Store file.
@@ -17,10 +25,9 @@ module.exports = RubrikatorSale;
  * @constructor
  */
 function RubrikatorSale($uhr) {
-    this._uhr = $uhr;
-    this._config = this.$context.locator.resolve('config');
+    StoreBase.call(this);
 
-    this._path = this._config.api + '/rubrika';
+    this._path = '/rubrika';
     this._options = {
         data: {
             filter: '["and",["=", "status", "1"]]',
@@ -33,20 +40,6 @@ function RubrikatorSale($uhr) {
     this._parentToGroup = this._getParentToGroup(this._groups);
     this.loadRubriks = false;
 }
-
-/**
- * Current universal HTTP request to do it in isomorphic way.
- * @type {UHR}
- * @private
- */
-RubrikatorSale.prototype._uhr = null;
-RubrikatorSale.prototype._config = null;
-
-/**
- * Current lifetime of data (in milliseconds) that is returned by this store.
- * @type {number} Lifetime in milliseconds.
- */
-RubrikatorSale.prototype.$lifetime = 60000;
 
 /**
  * Текущая рубрика (объект)
@@ -87,11 +80,8 @@ RubrikatorSale.prototype.load = function () {
 RubrikatorSale.prototype._loadData = function () {
     var self = this;
 
-    return this._uhr.get(this._path, this._options)
+    return this._load()
         .then(function (result) {
-            if (result.status.code >= 400 && result.status.code < 600) {
-                throw new Error(result.status.text);
-            }
             //сначала выстраиваем древовидную структуру
             var tree = RubrikaFormat.makeTree(result.content, function (el, tree) {
                 if (el.parentID != 0) {

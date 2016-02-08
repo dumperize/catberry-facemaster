@@ -23,24 +23,23 @@ function MasterBlockWork() {
  * for template engine.
  */
 MasterBlockWork.prototype.render = function () {
-    if (this.$context.attributes['master-page']) {
-        return this.$context.getStoreData()
-            .then(function (data) {
-                var tempArr = new Array(7);
-                data.schedule.forEach(function (item) {
-                    item.open = item.open.substr(0, 5);
-                    item.close = item.close.substr(0, 5);
-                    tempArr[item.day - 1] = item;
-                });
-                data.schedule = tempArr;
-                data.workCondition.data.comming = data.workCondition.data.comming.split(',');
-                return {
-                    schedule: data.schedule,
-                    districts: data.districts,
-                    workCondition: data.workCondition.data
-                }
+    return this.$context.getStoreData()
+        .then(function (data) {
+            var tempArr = new Array(7);
+            data.schedule.forEach(function (item) {
+                item.open = item.open.substr(0, 5);
+                item.close = item.close.substr(0, 5);
+                tempArr[item.day - 1] = item;
             });
-    }
+            data.schedule = tempArr;
+            if (data.workCondition)
+                data.workCondition.data.comming = data.workCondition.data.comming.split(',');
+            return {
+                schedule: data.schedule,
+                districts: data.districts,
+                workCondition: data.workCondition ? data.workCondition.data : ''
+            }
+        });
 };
 
 /**
