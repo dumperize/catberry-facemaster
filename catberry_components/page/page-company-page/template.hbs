@@ -20,5 +20,26 @@
             </div>
         </div>
     </div>
+
+    <div elem="content">
+        {{#each isBlock}}
+            {{#if access}}
+                {{#if active}}
+                    <p elem="section-title">{{name}}</p>
+
+                    <div elem="section-cont">
+                        <cat-master-block-{{@key}} id="master-block-{{@key}}"
+                                                   cat-store="master/MasterItem"></cat-master-block-{{@key}}>
+                    </div>
+                {{/if}}
+            {{/if}}
+        {{/each}}
+
+        <div elem="section-cont">
+            <cat-master-block-work id="master-block-work" cat-store="master/MasterItem"></cat-master-block-work>
+        </div>
+
+    </div>
+
 </div>
 
