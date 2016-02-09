@@ -12,6 +12,27 @@
             Отправить задание мастерам
         </a>
     </div>
+
+    <div block="moneyr-top">
+        {{#each rubrika.activeBanners}}
+            {{#is this.type '==' 1}}
+                <div elem="item">
+                    {{#is this.link '==' ''}}
+                        {{#each imgID}}
+                            <img src="{{imgSrc this}}" alt="">
+                        {{/each}}
+                    {{else}}
+                        <a href="{{this.link}}">
+                            {{#each imgID}}
+                                <img src="{{imgSrc this.imgID}}" alt="">
+                            {{/each}}
+                        </a>
+                    {{/is}}
+                </div>
+            {{/is}}
+        {{/each}}
+    </div>
+
 </div>
 <div block="inner-content">
     <div elem="left-side">

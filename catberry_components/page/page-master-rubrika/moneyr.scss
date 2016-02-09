@@ -1,0 +1,41 @@
+.moneyr-side {
+  //border: 1px solid blue;
+  //min-height: 200px;
+  overflow: hidden;
+  @include to(lg) {
+    display: none;
+  }
+  &__item {
+    + div {
+      padding-top: 20px;
+    }
+  }
+}
+.moneyr-side.fixed {
+  position: fixed;
+  top: 20px;
+  bottom: auto;
+  width: 230px;
+}
+.moneyr-side.fixed.bottom {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+}
+.moneyr-top {
+  //border: 1px solid blue;
+  max-height: 100px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  margin-left: 10px;
+  z-index: 1;
+  text-align: center;
+  @extend .container;
+  @include at(md) {
+    max-height: 75px;
+  }
+  @include to(md) {
+    display: none;
+  }
+}
