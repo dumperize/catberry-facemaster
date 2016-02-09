@@ -1,3 +1,10 @@
-
-<a href="/{{next.page.number}}">{{next.name}}</a>
-<a href="/{{prev.page.number}}">{{prev.name}}</a>
+<div block="next-prev-master">
+    <a elem="prev" href="/{{prev.page.number}}">
+        {{icon "arrLeft"}}<span>{{{prev.name}}}</span>
+        <img src="{{imgSrc prev.imgID 50 50}}" alt="">
+    </a>
+    <a elem="next" href="/{{next.page.number}}">
+        <img src="{{imgSrc next.imgID 50 50}}" alt="">
+        <span>{{{next.name}}}</span>{{icon "arrRight"}}
+    </a>
+</div>
