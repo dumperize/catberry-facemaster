@@ -26,7 +26,7 @@ Video.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
             data.catalog = self.$context.attributes.catalog;
-            console.log(data);
+            //console.log(data);
             return data;
         });
 };

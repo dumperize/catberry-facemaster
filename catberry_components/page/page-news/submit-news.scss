@@ -1,11 +1,30 @@
 .submit-news {
   padding: 10px;
   background-color: $color-bg-grey-light;
+  display: inline-block;
+  @include at(xs) {
+    display: block;
+  }
+  &.show {
+    display: block;
+    &:hover {
+      background-color: $color-bg-grey-light;
+      cursor: auto;
+    }
+  }
+  &:hover {
+    background-color: $color-bg-grey-light - #111111;
+    cursor: pointer;
+  }
   &__title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.025em
   }
   form {
+    display: none;
     padding-top: 10px;
     width: 50%;
     min-width: 210px;
