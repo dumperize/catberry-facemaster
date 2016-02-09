@@ -22,9 +22,9 @@
                 {{#is this.type '==' 2}}
                     <div elem="item">
                         {{#is this.link '==' ''}}
-                            <img src="{{this.imgID}}" alt="">
+                            <img src="{{imgSrc this.imgID}}" alt="">
                         {{else}}
-                            <a href="{{this.link}}"><img src="{{this.imgID}}" alt=""></a>
+                            <a href="{{this.link}}"><img src="{{imgSrc this.imgID}}" alt=""></a>
                         {{/is}}
                     </div>
                 {{/is}}

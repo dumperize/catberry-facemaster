@@ -25,7 +25,13 @@ function PageMasterRubrika() {
 PageMasterRubrika.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
-            //console.log(data);
+            data.rubrika.activeBanners.forEach(function (item) {
+                item.imgID = JSON.parse(item.imgID);
+                if (item.type == 2) {
+                    item.imgID = item.imgID[0];
+                }
+                //console.log(item);
+            });
             return data;
         });
 };
@@ -44,14 +50,11 @@ PageMasterRubrika.prototype.bind = function () {
 
     //плавающий moneyr
     function moneyrScroll() {
-        console.log(($(window).scrollTop() + 40 + moneyrHeight) + ' - ' + $('.seo-text').offset().top);
         if ($(window).scrollTop() + 20 > moneyrOffset.top) {
             moneyr.addClass('fixed');
             if (($(window).scrollTop() + 40 + moneyrHeight) > $('.seo-text').offset().top) {
-                //console.log('if');
                 moneyr.addClass('bottom');
             } else {
-                //console.log('else');
                 moneyr.removeClass('bottom');
             }
         } else {

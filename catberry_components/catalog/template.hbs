@@ -33,7 +33,7 @@
                     {{/if}}
 
                     <div elem="wrapper">
-                        <p elem="title">{{{title}}}<span elem="add-date">29.12.2015</span></p>
+                        <p elem="title">{{{title}}}<span elem="add-date">{{formatDate date "%d.%m.%Y"}}</span></p>
 
                         {{#is ../catalog '==' 'video'}}
                             <div elem="video-cont"></div>
