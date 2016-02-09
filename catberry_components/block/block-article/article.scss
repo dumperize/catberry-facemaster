@@ -1,0 +1,36 @@
+.article {
+  padding: 10px;
+  background-color: $color-bg-grey-light;
+  height: 334px;
+  max-height: 334px;
+  position: relative;
+  overflow: hidden;
+  &:hover {
+    background-color: $color-bg-grey-xmedium;
+    .sale__title {
+      background-color: $color-orange - #111111;
+    }
+  }
+  &__pic {
+    max-height: 205px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  &__img {
+    width: 100%;
+  }
+  &__text {
+    height: 90px;
+    font-size: 1.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__link {
+    text-decoration: none;
+  }
+  &__author {
+    font-size: 1.1rem;
+    position: absolute;
+    bottom: 8px;
+  }
+}
