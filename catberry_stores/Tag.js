@@ -41,7 +41,9 @@ Tag.prototype.load = function () {
     var self = this;
     var section = this.$context.state.section || 'master';
     var tag = this.$context.state.tag || '';
-    var data = {};
+    var data = {section: section};
+    var tagData, sections;
+
 
     return this.$context.getStoreData("rubrika/Rubrika")
         .then(function (rubrika) {
@@ -60,9 +62,7 @@ Tag.prototype.load = function () {
         .then(function (tagData) {
             if (tag && tagData == {})
                 self.$context.notFound();
-
             data.tag = tagData;
-            data.section = section;
             data.currentSeo = tag ? self._getCurrentSeo(data.tag, data.section) : self._getCurrentSeo(data.rubrika, data.section);
             return data;
         });
@@ -83,4 +83,32 @@ Tag.prototype._getCurrentSeo = function (data, section) {
             pageTitle: data.name
         };
     return result;
+};
+
+Tag.prototype.handleGetSections = function () {
+    var self = this;
+    var result = [];
+    var promises = [];
+    var sections = {
+        video: 'video/VideoList',
+        sale: 'sale/SaleList',
+        sovety: 'article/ArticleList',
+        company: 'company/CompanyList'
+    };
+
+    Object.keys(sections)
+        .forEach(function (el) {
+            promises.push(self.$context.getStoreData(sections[el]));
+        });
+    return Promise.all(promises)
+        .then(function (data) {
+            Object.keys(sections)
+                .forEach(function (el, i) {
+                    if (data[i] && Object.keys(data[i]).length > 0) {
+                        result.push(el);
+                    }
+                });
+            result.push('master')
+            return result;
+        });
 };

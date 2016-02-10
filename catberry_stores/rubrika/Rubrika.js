@@ -24,7 +24,7 @@ util.inherits(Rubrika, StoreBase);
 function Rubrika($uhr) {
     StoreBase.call(this);
 
-    this._path =  '/rubrika';
+    this._path = '/rubrika';
     this._options = {
         data: {
             filter: '["and", ["=", "unique", ":unique"],["=","status","1"]]',
@@ -52,7 +52,6 @@ Rubrika.prototype.load = function () {
                 self.$context.notFound();
 
             var data = result.content[0];
-
             if (data.parentID == 0 || rubrika != data.parent.unique)
                 self.$context.notFound();
 
