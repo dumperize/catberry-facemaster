@@ -1,0 +1,79 @@
+/*------------Визитка--------------*/
+.vcard {-webkit-print-color-adjust: exact; print-color-adjust: exact;}
+.vcard {
+  width: 255pt;
+  height: 142pt;
+  position: relative;
+  background-color: #FFF; /*overflow:hidden;*/
+  border: 1pt solid #000;
+  overflow: hidden;
+  color: #000000;
+  margin: 0 auto;
+  /* 9x5cm; 3,5433x1,9685in; 255x142px (72ppi) */
+}
+.vcard .photo {
+  width: 113pt;
+  height: 113pt;
+  overflow: hidden;
+  display: block
+}
+
+.vcard .url {
+  display: block;
+  //background: url(../img/TEST_IMG/bgUrl.png) #ef850d;
+  background-color: #ef850d;
+  color: #FFFFFF;
+  text-decoration: none;
+  text-align: center;
+  width: 255pt;
+  height: 29pt;
+  line-height: 27pt;
+  font-size: 19pt;
+  font-weight: bold;
+}
+
+.vcard .contInfo {
+  width: 110pt;
+  height: 89pt;
+  padding: 10pt 14pt 14pt 18pt;
+  position: absolute;
+  top: 0;
+  left: 113pt;
+  overflow: hidden;
+}
+
+.vcard .fn {
+  font-weight: bold;
+  font-size: 16pt;
+  line-height: 15pt;
+  margin-bottom: 8pt
+}
+
+.vcard .category {
+  display: inline-block;
+  position: relative;
+  left: -2pt;
+  padding: 2pt 0 5pt 2pt;
+  font-size: 10pt;
+  line-height: 10pt;
+  border-top: 1pt dashed #000000;
+}
+
+.vcard .orgLogo {
+  width: 46pt;
+  height: 15pt;
+  overflow: hidden;
+  float: left
+}
+
+.vcard .orgLogo img {
+  width: 100%;
+  height: auto;
+  margin-top: 1pt;
+}
+
+.vcard .org {
+  font-size: 6pt;
+  line-height: 7pt;
+}
+/*------*/

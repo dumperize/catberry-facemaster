@@ -23,7 +23,12 @@ function PageMasterPrintCard() {
  * for template engine.
  */
 PageMasterPrintCard.prototype.render = function () {
-    return this.$context.getStoreData();
+    return this.$context.getStoreData()
+        .then(function (data) {
+            //console.log(data);
+            data.name = data.name.replace(/ /g, "<br>");
+            return data;
+        });
 };
 
 /**
@@ -32,7 +37,7 @@ PageMasterPrintCard.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 PageMasterPrintCard.prototype.bind = function () {
-
+    window.print();
 };
 
 /**
