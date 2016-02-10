@@ -12,7 +12,6 @@ module.exports = MasterFilter;
  * @constructor
  */
 function MasterFilter() {
-
 }
 
 /**
@@ -32,68 +31,48 @@ MasterFilter.prototype.render = function () {
 
             return self.$context.getStoreData('master/MasterList')
                 .then(function (master) {
-                    if (Object.keys(master).length > 0)
-                        result.push({
-                            url: path,
-                            sectionName: "master",
-                            title: "Мастера",
-                            ico: "man"
-                        });
-                })
-                .then(function () {
-                    return self.$context.getStoreData('master/MasterVideo')
-                })
-                .then(function (video) {
-                    //if (Object.keys(master).length > 0)
-                    result.push({
-                        url: path + '/video',
-                        sectionName: "video",
-                        title: "Видео Мастеров",
-                        ico: "video"
-                    });
-                })
-                .then(function () {
-                    //return self.$context.getStoreData('master/MasterVideo')
-                })
-                .then(function (sales) {
-                    //if (Object.keys(master).length > 0)
-                    result.push({
-                        url: path + '/sale',
-                        sectionName: "sale",
-                        title: "Скидки Мастеров",
-                        ico: "gift"
-                    });
-                })
-                .then(function () {
-                    //return self.$context.getStoreData('master/MasterVideo')
-                })
-                .then(function (secrets) {
-                    //if (Object.keys(master).length > 0)
-                    result.push({
-                        url: path + '/sovety',
-                        sectionName: "sovety",
-                        title: "Секреты Мастеров",
-                        ico: "qwestion"
-                    });
-                })
-                .then(function () {
-                    //return self.$context.getStoreData('master/MasterVideo')
-                })
-                .then(function (company) {
-                    //if (Object.keys(master).length > 0)
-                    result.push({
-                        url: path + '/company',
-                        sectionName: "company",
-                        title: "Каталог фирм",
-                        ico: "case"
-                    });
-                })
-                .then(function () {
+                    result = self._setSection(path);
                     self._decoreOpenSection(result, data);
                     return {filterSection: result};
                 })
         });
 };
+
+MasterFilter.prototype._setSection = function (path) {
+    return [
+        {
+            url: path,
+            sectionName: "master",
+            title: "Мастера",
+            ico: "man"
+        },
+        {
+            url: path + '/video',
+            sectionName: "video",
+            title: "Видео Мастеров",
+            ico: "video"
+        },
+        {
+            url: path + '/sale',
+            sectionName: "sale",
+            title: "Скидки Мастеров",
+            ico: "gift"
+        },
+        {
+            url: path + '/sovety',
+            sectionName: "sovety",
+            title: "Секреты Мастеров",
+            ico: "qwestion"
+        },
+        {
+            url: path + '/company',
+            sectionName: "company",
+            title: "Каталог фирм",
+            ico: "case"
+        }
+    ];
+};
+
 /**
  * Декарирование открытой секции (добавление тегов, ортировки)
  * @param result массив для декорирования
@@ -130,7 +109,7 @@ MasterFilter.prototype._decoreOpenSection = function (result, data) {
 MasterFilter.prototype._getTags = function (data) {
     var path = '/' + data.rubrika.parent.unique + '/' + data.rubrika.unique;
     var tagsJson = data.rubrika.tags;
-    var currentTag = data.tag.unique ;
+    var currentTag = data.tag.unique;
     var currentSection = data.section;
     var tags = [];
 
@@ -172,6 +151,11 @@ MasterFilter.prototype._getTags = function (data) {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterFilter.prototype.bind = function () {
+    this.$context.sendAction('getSections')
+        .then(function(data){
+            console.log(data);
+        });
+
     return {
         click: {
             '.js-filter-toggle-btn.active': this._clickSection
