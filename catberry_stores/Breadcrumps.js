@@ -161,10 +161,9 @@ Breadcrumps.prototype._loadForCatalog = function (config, type) {
 };
 
 Breadcrumps.prototype._loadForMasterPage = function () {
-    var self = this;
     return this.$context.getStoreData('master/MasterItem')
         .then(function (data) {
-            console.log(data);
+            //console.log(data);
             return [
                 {
                     title: "Каталог услуг",

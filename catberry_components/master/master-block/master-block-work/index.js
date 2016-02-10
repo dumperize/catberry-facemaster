@@ -40,7 +40,7 @@ MasterBlockWork.prototype.render = function () {
                     data.workCondition.isActive = false;
                 }
             }
-            console.log(data.workCondition);
+            //console.log(data.workCondition);
             return {
                 schedule: data.schedule,
                 districts: data.districts,
