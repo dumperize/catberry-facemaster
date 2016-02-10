@@ -21,6 +21,7 @@
         </tbody>
     </table>
 
+
     {{#if workCondition.comming}}
         <p elem="list-caption">Выезд на дом</p>
         <ul elem="list">
@@ -32,7 +33,7 @@
 
 
     {{#if districts}}
-        <div elem="list-big-cont">
+        <div elem="list-big-cont" style="{{#unless isActive}}width: 100%{{/unless}}">
             <p elem="list-caption">Районы обслуживания</p>
 
             <div elem="list-cont">
@@ -65,10 +66,11 @@
     {{/if}}
 
 
-    {{#if workCondition}}
-        <div elem="list-big-cont">
-            <p elem="list-caption">Оплата</p>
+    {{#if isActive}}
+    <div elem="list-big-cont">
+        <p elem="list-caption">Оплата</p>
 
+        {{#if workCondition.coop}}
             <div elem="list-cont">
                 <p elem="list-caption" mod="mini">Форма сотрудни&shy;чества</p>
                 <ul elem="list">
@@ -78,7 +80,9 @@
                 </ul>
             </div>
             <!--list-cont-->
+        {{/if}}
 
+        {{#if workCondition.payment}}
             <div elem="list-cont">
                 <p elem="list-caption" mod="mini">Способы оплаты</p>
                 <ul elem="list">
@@ -89,9 +93,9 @@
                 </ul>
             </div>
             <!--list-cont-->
+        {{/if}}
             <br elem="clear">
-        </div>
-        <!--list-cont-->
+        </div><!--list-cont-->
         <br elem="clear">
     {{/if}}
 

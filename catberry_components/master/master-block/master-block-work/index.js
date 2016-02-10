@@ -32,10 +32,15 @@ MasterBlockWork.prototype.render = function () {
                 tempArr[item.day - 1] = item;
             });
             data.schedule = tempArr;
-            //console.log(data.workCondition);
-            if (data.workCondition.data != '') {
+            if (data.workCondition && data.workCondition.data != '') {
                 data.workCondition.data.comming = data.workCondition.data.comming.split(',');
+                if (data.workCondition.data.payment || data.workCondition.data.coop) {
+                    data.workCondition.isActive = true;
+                } else {
+                    data.workCondition.isActive = false;
+                }
             }
+            console.log(data.workCondition);
             return {
                 schedule: data.schedule,
                 districts: data.districts,
