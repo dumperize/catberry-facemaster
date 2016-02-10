@@ -2,26 +2,28 @@
     <div elem="row">
         <cat-loader id="pages-content-loader"></cat-loader>
 
-        <!-- popup for video -->
-        <div block="popup-video-cont">
-            <p elem="title"></p>
-            <div elem="video-cont"></div>
+        <!--&lt;!&ndash; popup for video &ndash;&gt;-->
+        <!--<div block="popup-video-cont">-->
+        <!--<p elem="title"></p>-->
+        <!--<div elem="video-cont"></div>-->
 
-            <div block="master-micro-inf" mod="video">
-                <p elem="title">Видео добавил:</p>
-                <a href="" elem="cont">
-                    <span elem="img"><img src="" alt=""></span>
-                    <span elem="name"><br></span>
-                </a>
-            </div>
+        <!--<div block="master-micro-inf" mod="video">-->
+        <!--<p elem="title">Видео добавил:</p>-->
+        <!--<a href="" elem="cont">-->
+        <!--<span elem="img"><img src="" alt=""></span>-->
+        <!--<span elem="name"><br></span>-->
+        <!--</a>-->
+        <!--</div>-->
 
-            <p elem="text"></p>
-            <div elem="social-cont"></div>
-        </div>
-        <!-- popup for video - end -->
+        <!--<p elem="text"></p>-->
+        <!--<div elem="social-cont"></div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; popup for video - end &ndash;&gt;-->
 
         {{#unless isActive.main}}
-            <cat-common-breadcrumps id="breadcrumps" cat-store="Breadcrumps"></cat-common-breadcrumps>
+            {{#unless isActive.master-print-card}}
+                <cat-common-breadcrumps id="breadcrumps" cat-store="Breadcrumps"></cat-common-breadcrumps>
+            {{/unless}}
         {{/unless}}
 
         <div block="content">

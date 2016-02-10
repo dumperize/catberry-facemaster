@@ -18,11 +18,27 @@ module.exports = [
         map: function (urlPath) {
             var matches = urlPath.path.match(/^\/([\/\d]+)$/i);
             return {
-                'master/MasterItem': {
+                'master/MasterPage': {
                     item: matches[1]
                 },
                 Pages: {
                     page: "master-page"
+                }
+            }
+        }
+    },
+    // визитка мастера
+    // путь: /:masterID/print-card
+    {
+        expression: /^\/(\d+)\/print-card$/i,
+        map: function (urlPath) {
+            var matches = urlPath.path.match(/^\/(\d+)\/print-card$/i);
+            return {
+                Pages: {
+                    page: "master-print-card"
+                },
+                'master/MasterPage': {
+                    item: matches[1]
                 }
             }
         }
@@ -44,6 +60,7 @@ module.exports = [
             }
         }
     },
+
     // путь: рубрика/подрубрика
     // путь: рубрика/подрубрика/тег
     // путь: рубрика/подрубрика/секция

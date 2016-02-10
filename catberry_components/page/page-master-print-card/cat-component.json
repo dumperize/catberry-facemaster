@@ -1,0 +1,5 @@
+{
+	"name": "page-master-print-card",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

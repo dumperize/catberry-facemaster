@@ -2,7 +2,6 @@
 
 module.exports = MasterItem;
 
-var dateFormat = require('../../lib/util/DateFormat');
 var util = require('util'),
     StoreBase = require('../../lib/StoreBase');
 
@@ -24,27 +23,16 @@ util.inherits(MasterItem, StoreBase);
  */
 function MasterItem($uhr) {
     StoreBase.call(this);
+    this.$context.setDependency('master/MasterPage');
+    console.log("constructor");
 
-    this._path = '/master-page';
+    this._path = '/master';
     this._options = {
-        data: {
-            filter: '["and", ["=","number", ":number"],["<=", "dateStart", ":dateStart"],[">=", "dateEnd", ":dateEnd"]]'
-        }
-    };
-
-    this._pathForPage = '/master';
-    this._optionsForPage = {
         data: {
             filter: '["and", ["=", "id", ":id"],["=","publicStatus", "1"]]',
             expand: 'contacts,articles,comments,districts,albums,sales,schedule,videos,workCondition,callbacks,vkLikes,rubrika,tags,company'
         }
     };
-    this._optionsForPageData = {
-        data: {
-            filter: {},
-            expand: {}
-        }
-    }
 }
 
 /**
@@ -53,28 +41,10 @@ function MasterItem($uhr) {
  */
 MasterItem.prototype.load = function () {
     var self = this;
-    var id = this.$context.state.item;
-    if (!id)
-        return;
-
-    var now = Date.now();
-    now = dateFormat(now, "yyyy-mm-dd");
-    this._optionsData.data.filter[':number'] = id;
-    this._optionsData.data.filter[':dateStart'] = now;
-    this._optionsData.data.filter[':dateEnd'] = now;
-
-    return this._load()
-        .then(function (result) {
-            if (result.content.length == 0)
-                self.$context.notFound();
-
-            return result.content[0];
-        })
+    return this.$context.getStoreData('master/MasterPage')
         .then(function (page) {
-            console.log(page.masterID);
-            self._optionsForPageData.data.filter[':id'] = page.masterID;
-
-            return self._loadByParam(self._pathForPage, self._setOptions(self._optionsForPage, self._optionsForPageData))
+            self._optionsData.data.filter[':id'] = page.masterID;
+            return self._load()
                 .then(function (result) {
                     if (result.content.length == 0)
                         self.$context.notFound();

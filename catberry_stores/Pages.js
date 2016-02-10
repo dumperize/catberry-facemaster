@@ -35,6 +35,7 @@ function Pages($config) {
         'login': '',
         'main': '',
         'master-page': 'master/MasterItem',
+        'master-print-card': 'master/MasterItemSmall',
         'master-rubrika': 'Tag',
         'news': 'other/News',
         'news-item': 'other/NewsItem',
@@ -105,12 +106,20 @@ Pages.prototype.load = function () {
 Pages.prototype.getHeaderData = function () {
     return {
         visitCount: '12 323 посещений',
-        isGuest: true
+        isGuest: true,
+        clear: this.getClear()
     };
 };
 
 Pages.prototype.getFooterData = function () {
     return {
-        phone: '(8482) 74-44-19'
+        phone: '(8482) 74-44-19',
+        clear: this.getClear()
     };
+};
+
+Pages.prototype.getClear = function () {
+    if (this.$context.state.page == 'master-print-card')
+        return true;
+    return false;
 };
