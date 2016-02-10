@@ -21,66 +21,78 @@
         </tbody>
     </table>
 
-    <p elem="list-caption">Выезд на дом</p>
-    <ul elem="list">
-        {{#each workCondition.comming}}
-            <li>{{this}}</li>
-        {{/each}}
-    </ul>
+    {{#if workCondition.comming}}
+        <p elem="list-caption">Выезд на дом</p>
+        <ul elem="list">
+            {{#each workCondition.comming}}
+                <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    {{/if}}
 
 
-    <div elem="list-big-cont">
-        <p elem="list-caption">Районы обслуживания</p>
+    {{#if districts}}
+        <div elem="list-big-cont">
+            <p elem="list-caption">Районы обслуживания</p>
 
-        <div elem="list-cont">
-            <p elem="list-caption" mod="mini">Город</p>
-            <ul elem="list">
-                {{#each districts}}
-                    {{#is type "==" 1}}
-                        <li>{{name}}</li>
-                    {{/is}}
-                {{/each}}
-            </ul>
-        </div><!--list-cont-->
+            <div elem="list-cont">
+                <p elem="list-caption" mod="mini">Город</p>
+                <ul elem="list">
+                    {{#each districts}}
+                        {{#is type "==" 1}}
+                            <li>{{name}}</li>
+                        {{/is}}
+                    {{/each}}
+                </ul>
+            </div>
+            <!--list-cont-->
 
-        <div elem="list-cont">
-            <p elem="list-caption" mod="mini">Пригород</p>
-            <ul elem="list">
-                {{#each districts}}
-                    {{#is type "==" 2}}
-                        <li>{{name}}</li>
-                    {{/is}}
-                {{/each}}
-            </ul>
-        </div><!--list-cont-->
+            <div elem="list-cont">
+                <p elem="list-caption" mod="mini">Пригород</p>
+                <ul elem="list">
+                    {{#each districts}}
+                        {{#is type "==" 2}}
+                            <li>{{name}}</li>
+                        {{/is}}
+                    {{/each}}
+                </ul>
+            </div>
+            <!--list-cont-->
 
+            <br elem="clear">
+        </div>
+        <!--list-big-cont-->
+    {{/if}}
+
+
+    {{#if workCondition}}
+        <div elem="list-big-cont">
+            <p elem="list-caption">Оплата</p>
+
+            <div elem="list-cont">
+                <p elem="list-caption" mod="mini">Форма сотрудни&shy;чества</p>
+                <ul elem="list">
+                    {{#each workCondition.coop}}
+                        <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+            <!--list-cont-->
+
+            <div elem="list-cont">
+                <p elem="list-caption" mod="mini">Способы оплаты</p>
+                <ul elem="list">
+                    {{#each workCondition.payment}}
+                        <li>{{this}}</li>
+                    {{/each}}
+                    </li>
+                </ul>
+            </div>
+            <!--list-cont-->
+            <br elem="clear">
+        </div>
+        <!--list-cont-->
         <br elem="clear">
-    </div><!--list-big-cont-->
+    {{/if}}
 
-
-    <div elem="list-big-cont">
-        <p elem="list-caption">Оплата</p>
-
-
-        <div elem="list-cont">
-            <p elem="list-caption" mod="mini">Форма сотрудни&shy;чества</p>
-            <ul elem="list">
-                {{#each workCondition.coop}}
-                    <li>{{this}}</li>
-                {{/each}}
-            </ul>
-        </div><!--list-cont-->
-
-        <div elem="list-cont">
-            <p elem="list-caption" mod="mini">Способы оплаты</p>
-            <ul elem="list">
-                {{#each workCondition.payment}}
-                    <li>{{this}}</li>
-                {{/each}}
-                </li>
-            </ul>
-        </div><!--list-cont-->
-        <br elem="clear">
-    </div><!--list-cont-->
-    <br elem="clear">
 </div>

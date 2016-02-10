@@ -25,7 +25,7 @@ function MasterNextPrev() {
 MasterNextPrev.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
-            console.log(data);
+            //console.log(data);
             data.prev.name = data.prev.name.replace(/ /g, "<br>");
             data.next.name = data.next.name.replace(/ /g, "<br>");
             return data;

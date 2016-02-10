@@ -1,4 +1,4 @@
-.other-news {
+.other-news, .article-item {
   position: relative;
   min-height: 500px;
   &__content {
@@ -48,6 +48,10 @@
   &__text {
     margin-bottom: 30px;
     overflow: hidden;
+    p {
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
     img {
       max-width: 100%;
     }

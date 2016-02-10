@@ -25,13 +25,18 @@ function MasterBlockAbout() {
 MasterBlockAbout.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
-            data.aboutEduc = data.aboutEduc.replace(/\n/g, "<br>");
-            data.aboutExp = data.aboutExp.replace(/\n/g, "<br>");
-            data.aboutAddInfo = data.aboutAddInfo.replace(/\n/g, "<br>");
+            if (!data.about) {
+                data.aboutEduc = data.aboutEduc.replace(/\n/g, "<br>");
+                data.aboutExp = data.aboutExp.replace(/\n/g, "<br>");
+                data.aboutAddInfo = data.aboutAddInfo.replace(/\n/g, "<br>");
+            } else {
+                data.about = data.about.replace(/\n/g, "<br>");
+            }
             return {
                 aboutEduc: data.aboutEduc,
                 aboutExp: data.aboutExp,
-                aboutAddInfo: data.aboutAddInfo
+                aboutAddInfo: data.aboutAddInfo,
+                about: data.about
             }
         });
 };

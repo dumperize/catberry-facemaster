@@ -38,7 +38,7 @@ MasterBlockService.prototype.render = function () {
                 var fieldsValLength;
 
                 fieldsValLength = item.length;
-                if (fieldsValLength < 20) {
+                if (0 < fieldsValLength && fieldsValLength < 20) {
                     fieldsValLength = 20;
                 }
                 fieldsValSum += fieldsValLength;
@@ -47,10 +47,14 @@ MasterBlockService.prototype.render = function () {
                 var fieldsValLength;
 
                 fieldsValLength = item.length;
-                if (fieldsValHalfSum < (fieldsValSum / 2) - 9) {
-                    part1.push(item);
+                if (fieldsValHalfSum < (fieldsValSum / 2) - 10) {
+                    if (fieldsValLength > 0) {
+                        part1.push(item);
+                    }
                 } else {
-                    part2.push(item);
+                    if (fieldsValLength > 0) {
+                        part2.push(item);
+                    }
                 }
                 fieldsValHalfSum += fieldsValLength;
             });

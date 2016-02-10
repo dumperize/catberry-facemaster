@@ -1,4 +1,24 @@
-<p>{{title}}</p>
-<p>{{text}}</p>
+<div block="article-item">
 
-<p>{{owner.name}}</p>
+    <h1 block="h1" mod="style">{{title}}</h1>
+
+    <div elem="title-cont">
+        <div elem="title-img"><img src="{{imgSrc owner.imgID 100 100}}" alt="{{title}}"></div>
+        <p elem="title">{{title}}</p>
+
+        <p elem="author">Статью добавил:<br><a
+                href="/{{owner.page.number}}">{{owner.name}}</a><br>{{formatDate date "%d %Z %Y"}}</span></p>
+    </div>
+
+    <div elem="text">
+        {{{text}}}
+    </div>
+
+    <div elem="footer">
+        <!--<div id="vk_like"></div>-->
+        <!--<script type="text/javascript">-->
+        <!--VK.Widgets.Like("vk_like", {type: "button"});-->
+        <!--</script>-->
+    </div>
+
+</div><!-- article-item -->
