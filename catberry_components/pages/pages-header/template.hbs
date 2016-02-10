@@ -1,41 +1,43 @@
-<header block="header"> <!-- Добавить этот класс если есть верхний баннер class="moneyr" -->
-    <div elem="cont">
-        <div elem="row">
+{{#unless clear}}
+    <header block="header"> <!-- Добавить этот класс если есть верхний баннер class="moneyr" -->
+        <div elem="cont">
+            <div elem="row">
 
-            <a href="/main" elem="title">Поиск мастеров в сфере услуг</a>
+                <a href="/main" elem="title">Поиск мастеров в сфере услуг</a>
 
-            <div elem="menu">
-                <cat-pages-navigation id="pages-navigation"></cat-pages-navigation>
-            </div>
-
-            <div block="logo">
-                <a href="/main" elem="img-cont"><img alt="Facemaster.ru Logo" src="/img/logo.svg" width="100%"></a>
-
-                <p elem="visitor">{{visitCount}}<br><span elem="week">в неделю</span></p>
-            </div>
-
-            <div elem="login">
-                <div block="login">
-                    {{#if isGuest}}
-                        <!--<a href="/login" elem="btn"><span>{{icon 'home'}}</span>Вход для Мастеров</a>-->
-                        <a href="<!--ERROR-->" elem="btn"><span>{{icon 'home'}}</span>Иван М.<!--ERROR - username-->
-                        </a>
-                        <ul elem="user-menu">
-                            <!--ERROR MENUUSER-->
-                            <li><a href="/">Длинная запись тестирование</a></li>
-                            <li><a href="/">Короткая запись</a></li>
-                            <li><a href="/">123</a></li>
-                            {{#each authData.menuUser}}
-                                <li><a href="{{url}}">{{title}}</a></li>
-                            {{/each}}
-                        </ul>
-                    {{/if}}
+                <div elem="menu">
+                    <cat-pages-navigation id="pages-navigation"></cat-pages-navigation>
                 </div>
 
-                <div elem="social">
-                    <cat-social id="social"></cat-social>
+                <div block="logo">
+                    <a href="/main" elem="img-cont"><img alt="Facemaster.ru Logo" src="/img/logo.svg" width="100%"></a>
+
+                    <p elem="visitor">{{visitCount}}<br><span elem="week">в неделю</span></p>
+                </div>
+
+                <div elem="login">
+                    <div block="login">
+                        {{#if isGuest}}
+                            <!--<a href="/login" elem="btn"><span>{{icon 'home'}}</span>Вход для Мастеров</a>-->
+                            <a href="<!--ERROR-->" elem="btn"><span>{{icon 'home'}}</span>Иван М.<!--ERROR - username-->
+                            </a>
+                            <ul elem="user-menu">
+                                <!--ERROR MENUUSER-->
+                                <li><a href="/">Длинная запись тестирование</a></li>
+                                <li><a href="/">Короткая запись</a></li>
+                                <li><a href="/">123</a></li>
+                                {{#each authData.menuUser}}
+                                    <li><a href="{{url}}">{{title}}</a></li>
+                                {{/each}}
+                            </ul>
+                        {{/if}}
+                    </div>
+
+                    <div elem="social">
+                        <cat-social id="social"></cat-social>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
+{{/unless}}
