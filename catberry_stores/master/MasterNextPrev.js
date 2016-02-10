@@ -29,7 +29,8 @@ function MasterNextPrev($uhr) {
     this._options = {
         data: {
             filter: '["and", [":letter","sort", ":sort"],["=", "rubrikaID", ":rubrikaID"]]',
-            limit: 1
+            limit: 1,
+            order: 'sort :direction'
         }
     };
 }
@@ -41,8 +42,10 @@ MasterNextPrev.prototype.load = function () {
             self._optionsData.data.filter[':sort'] = master.sort;
             self._optionsData.data.filter[':rubrikaID'] = master.rubrikaID;
             self._optionsData.data.filter[':letter'] = '>';
+            self._optionsData.data.order[':direction'] = 'ASC';
             var promise1 = self._load();
             self._optionsData.data.filter[':letter'] = '<';
+            self._optionsData.data.order[':direction'] = 'DESC';
             var promise2 = self._load();
             return Promise.all([promise1, promise2])
                 .then(function (data) {
