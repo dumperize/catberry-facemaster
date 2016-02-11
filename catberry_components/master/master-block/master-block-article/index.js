@@ -26,7 +26,7 @@ MasterBlockArticle.prototype.render = function () {
     var self = this;
     return this.$context.getStoreData()
         .then(function (data) {
-            console.log(data);
+            //console.log(data);
             data.articles.forEach(function (item) {
                 console.log(item.owner);
                 item.owner = {
