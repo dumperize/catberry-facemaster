@@ -54,7 +54,7 @@ PageMasterRubrika.prototype.bind = function () {
         var menuOffsetBottom = filter.offset().top + filter.height() + 20;
         var moneyrOffset = moneyr.offset();
         var seoText = $('.seo-text').offset() || $('.footer').offset();
-        console.log(($(window).scrollTop() + 20) + ' - ' + moneyrOffset.top + ' - ' + menuOffsetBottom);
+        //console.log(($(window).scrollTop() + 20) + ' - ' + moneyrOffset.top + ' - ' + menuOffsetBottom);
 
         if (moneyr.hasClass('bottom') && ($(window).scrollTop() + 20 + moneyrHeight) > seoText.top) {
             return false;
