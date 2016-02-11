@@ -44,22 +44,31 @@ PageMasterRubrika.prototype.render = function () {
 PageMasterRubrika.prototype.bind = function () {
     $(window).bind('scroll', moneyrScroll);
     var moneyr = $('.moneyr-side');
+    //var moneyrOffset = moneyr.offset();
+    var moneyrHeight = moneyr.height();
     moneyrScroll();
 
     //плавающий moneyr
     function moneyrScroll() {
+        var filter = $('.filter');
+        var menuOffsetBottom = filter.offset().top + filter.height() + 20;
         var moneyrOffset = moneyr.offset();
-        var moneyrHeight = moneyr.height();
         var seoText = $('.seo-text').offset() || $('.footer').offset();
+        console.log(($(window).scrollTop() + 20) + ' - ' + moneyrOffset.top + ' - ' + menuOffsetBottom);
 
-        if ($(window).scrollTop() + 20 > moneyrOffset.top) {
+        if (moneyr.hasClass('bottom') && ($(window).scrollTop() + 20 + moneyrHeight) > seoText.top) {
+            return false;
+        }
+        if (($(window).scrollTop() + 20 >= moneyrOffset.top) && (moneyrOffset.top >= menuOffsetBottom)) {
             moneyr.addClass('fixed');
-            if (($(window).scrollTop() + 40 + moneyrHeight) > seoText.top) {
+            if (($(window).scrollTop() + 20 + moneyrHeight) > seoText.top) {
                 moneyr.addClass('bottom');
-            } else {
-                moneyr.removeClass('bottom');
             }
-        } else {
+        } else if (($(window).scrollTop() + 20 < moneyrOffset.top) && moneyr.hasClass('bottom')) {
+            moneyr.removeClass('bottom');
+            moneyr.addClass('fixed');
+        }
+        else {
             moneyr.removeClass('fixed');
         }
     }
