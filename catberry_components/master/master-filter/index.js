@@ -151,9 +151,15 @@ MasterFilter.prototype._getTags = function (data) {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterFilter.prototype.bind = function () {
+    $('.filter-section__title').parent().hide();
     this.$context.sendAction('getSections')
-        .then(function(data){
-            console.log(data);
+        .then(function (data) {
+            //console.log(data);
+            if (data) {
+                data.forEach(function (item) {
+                    $('.filter-section__title_' + item).parent().slideDown(400);
+                });
+            }
         });
 
     return {

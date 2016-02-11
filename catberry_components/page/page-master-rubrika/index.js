@@ -43,16 +43,18 @@ PageMasterRubrika.prototype.render = function () {
  */
 PageMasterRubrika.prototype.bind = function () {
     $(window).bind('scroll', moneyrScroll);
-
     var moneyr = $('.moneyr-side');
-    var moneyrOffset = moneyr.offset();
-    var moneyrHeight = moneyr.height();
+    moneyrScroll();
 
     //плавающий moneyr
     function moneyrScroll() {
+        var moneyrOffset = moneyr.offset();
+        var moneyrHeight = moneyr.height();
+        var seoText = $('.seo-text').offset() || $('.footer').offset();
+
         if ($(window).scrollTop() + 20 > moneyrOffset.top) {
             moneyr.addClass('fixed');
-            if (($(window).scrollTop() + 40 + moneyrHeight) > $('.seo-text').offset().top) {
+            if (($(window).scrollTop() + 40 + moneyrHeight) > seoText.top) {
                 moneyr.addClass('bottom');
             } else {
                 moneyr.removeClass('bottom');
