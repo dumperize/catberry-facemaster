@@ -21,6 +21,15 @@
         </div>
     </div>
 
+    <ul block="menu-mp">
+        {{#each isBlock}}
+            {{#if access}}
+                <li>{{#if active}}<a href="#master-block-{{@key}}">{{name}}</a>{{else}}<span>{{name}}</span>{{/if}}</li>
+            {{/if}}
+        {{/each}}
+    </ul>
+    <!-- menu-mp -->
+
     <div elem="content">
         {{#each isBlock}}
             {{#if access}}
@@ -29,19 +38,11 @@
 
                     <div elem="section-cont">
                         <cat-master-block-{{@key}} id="master-block-{{@key}}"
-                                                   cat-store="master/MasterItem"></cat-master-block-{{@key}}>
+                                                   cat-store="company/CompanyItem"></cat-master-block-{{@key}}>
                     </div>
                 {{/if}}
             {{/if}}
         {{/each}}
-
-        <!--<div elem="section-cont">-->
-            <!--<cat-master-block-work id="master-block-work"></cat-master-block-work>-->
-        <!--</div>-->
-
-        <!--<div elem="section-cont">-->
-            <!--<cat-master-block-about id="master-block-about"></cat-master-block-about>-->
-        <!--</div>-->
 
     </div>
 </div>

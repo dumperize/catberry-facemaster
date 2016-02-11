@@ -25,7 +25,7 @@ function PageCompanyPage() {
 PageCompanyPage.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function(data) {
-            //console.log(data);
+            console.log(data);
             return data;
         });
 };
@@ -37,6 +37,45 @@ PageCompanyPage.prototype.render = function () {
  */
 PageCompanyPage.prototype.bind = function () {
 
+    var menu = $('.menu-mp');
+    var menuOffset = menu.offset();
+
+    $(window).bind('scroll', fixedSectionMenu);
+    $(window).bind('scroll', menuHighlight);
+    $('.menu-mp a').bind('click', scrollToSection);
+
+    //плавающего меню
+    function fixedSectionMenu() {
+        if ($(window).scrollTop() + 30 > menuOffset.top) {
+            menu.addClass('fixed');
+        } else {
+            menu.removeClass('fixed');
+        }
+    }
+
+    //скролл до секции
+    function menuHighlight() {
+        $('.company-page__section-cont').each(function () {
+            if ($(window).scrollTop() + 50 > $(this).offset().top && $(window).scrollTop() + 30 < $(this).offset().top + $(this).innerHeight()) {
+                menu.find('.act').removeClass('act');
+                menu.find('[href=#' + $(this).children().attr('id') + ']').addClass('act');
+            }
+        });
+    }
+
+    //навигации внутри страницы мастера
+    function scrollToSection() {
+        $(window).unbind('scroll', menuHighlight);
+        setTimeout(function () {
+            $(window).bind('scroll', menuHighlight);
+        }, 1050);
+        menu.find('.act').removeClass('act');
+        $(this).addClass('act');
+        $('html, body').animate({
+            scrollTop: $($(this).attr('href')).offset().top - 50
+        }, 1000);
+        return false;
+    }
 };
 
 /**
@@ -45,5 +84,6 @@ PageCompanyPage.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 PageCompanyPage.prototype.unbind = function () {
-
+    $(window).unbind('scroll');
+    $('.menu-mp').find('a').unbind('click');
 };
