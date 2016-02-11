@@ -27,7 +27,7 @@ CommonList.prototype.render = function () {
 
     return this.$context.getStoreData()
         .then(function(data){
-            //console.log(data);
+            console.log(data);
             return {
                 list: data,
                 type: self.$context.attributes.type,

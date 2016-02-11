@@ -26,9 +26,14 @@ MasterBlockArticle.prototype.render = function () {
     var self = this;
     return this.$context.getStoreData()
         .then(function (data) {
+            console.log(data);
             data.articles.forEach(function (item) {
-                item.authorPage = data.page.masterID,
-                item.author = data.name; //добавляем автора для каждой статьи
+                console.log(item.owner);
+                item.owner = {
+                    page: {
+                        number: data.page.number
+                    }
+                };
             });
             return {
                 articles: data.articles,
