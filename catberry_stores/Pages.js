@@ -104,11 +104,16 @@ Pages.prototype.load = function () {
 };
 
 Pages.prototype.getHeaderData = function () {
-    return {
-        visitCount: '12 323 посещений',
-        isGuest: true,
-        clear: this.getClear()
-    };
+    var self = this;
+    return this.getSpecialClass()
+        .then(function (specClass) {
+            return {
+                class: specClass,
+                visitCount: '12 323 посещений',
+                isGuest: true,
+                clear: self.getClear()
+            };
+        });
 };
 
 Pages.prototype.getFooterData = function () {
@@ -118,8 +123,27 @@ Pages.prototype.getFooterData = function () {
     };
 };
 
+/**
+ * Указывает на каких страницах не должно быть шапки и футера
+ * @returns {boolean}
+ */
 Pages.prototype.getClear = function () {
-    if (this.$context.state.page == 'master-print-card')
-        return true;
-    return false;
+    return (this.$context.state.page == 'master-print-card');
+};
+
+/**
+ * Указывает на каких страницах должен быть прописан специальный класс в шапке
+ * @returns {*}
+ */
+Pages.prototype.getSpecialClass = function () {
+    if (this.$context.state.page == 'master-rubrika') {
+        return this.$context.getStoreData(this._loodStore['master-rubrika'])
+            .then(function (data) {
+                var haveTopBanner = data.rubrika.activeBanners.some(function (banner) {
+                    return (banner.type == 1);
+                });
+                return haveTopBanner ? 'moneyr' : '';
+            });
+    }
+    return Promise.resolve();
 };
