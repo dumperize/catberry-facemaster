@@ -26,7 +26,10 @@ PagesHeader.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
             return data.header;
-        });
+        })
+        .then(function (d) {
+            return d;
+        })
 };
 
 /**
