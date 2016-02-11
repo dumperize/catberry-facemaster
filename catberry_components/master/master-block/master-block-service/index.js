@@ -34,26 +34,28 @@ MasterBlockService.prototype.render = function () {
             var part1 = [];
             var part2 = [];
 
-            data.services.forEach(function (item) {
+            Object.keys(data.services).forEach(function (item) {
                 var fieldsValLength;
 
-                fieldsValLength = item.length;
+                data.services[item] = data.services[item].replace(/,/g, ", ");
+                data.services[item] = data.services[item].replace(/\(/g, " (");
+                fieldsValLength = data.services[item].length;
                 if (0 < fieldsValLength && fieldsValLength < 20) {
                     fieldsValLength = 20;
                 }
                 fieldsValSum += fieldsValLength;
             });
-            data.services.forEach(function (item) {
+            Object.keys(data.services).forEach(function (item) {
                 var fieldsValLength;
 
-                fieldsValLength = item.length;
+                fieldsValLength = data.services[item].length;
                 if (fieldsValHalfSum < (fieldsValSum / 2) - 10) {
                     if (fieldsValLength > 0) {
-                        part1.push(item);
+                        part1.push(data.services[item]);
                     }
                 } else {
                     if (fieldsValLength > 0) {
-                        part2.push(item);
+                        part2.push(data.services[item]);
                     }
                 }
                 fieldsValHalfSum += fieldsValLength;

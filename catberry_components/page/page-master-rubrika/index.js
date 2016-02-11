@@ -25,13 +25,13 @@ function PageMasterRubrika() {
 PageMasterRubrika.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
-            data.rubrika.activeBanners.forEach(function (item) {
-                item.imgID = JSON.parse(item.imgID);
-                if (item.type == 2) {
-                    item.imgID = item.imgID[0];
-                }
-                //console.log(item);
-            });
+            if (data.rubrika.activeBanners) {
+                data.rubrika.activeBanners.forEach(function (item) {
+                    if (item.type == 2) {
+                        item.imgID = item.imgID[0];
+                    }
+                });
+            }
             return data;
         });
 };

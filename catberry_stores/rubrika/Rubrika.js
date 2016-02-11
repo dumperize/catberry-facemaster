@@ -55,6 +55,12 @@ Rubrika.prototype.load = function () {
             if (data.parentID == 0 || rubrika != data.parent.unique)
                 self.$context.notFound();
 
+            if (data.activeBanners) {
+                data.activeBanners.forEach(function (item) {
+                    item.imgID = JSON.parse(item.imgID);
+                });
+            }
+
             data.podrubrika = podrubrika;
             data.rubrika = rubrika;
             return data;

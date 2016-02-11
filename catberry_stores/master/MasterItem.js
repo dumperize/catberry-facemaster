@@ -24,7 +24,6 @@ util.inherits(MasterItem, StoreBase);
 function MasterItem($uhr) {
     StoreBase.call(this);
     this.$context.setDependency('master/MasterPage');
-    console.log("constructor");
 
     this._path = '/master';
     this._options = {

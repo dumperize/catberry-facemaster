@@ -21,19 +21,21 @@
     text-decoration: none;
     vertical-align: middle;
     padding-left: 8px;
-    &:first-child {
-      padding-right: 8px;
-      padding-left: 0;
-      border-right: 1px solid #BBB;
-      span {
-        text-align: right;
-      }
+    + a {
+      border-left: 1px solid #BBB;
     }
     &:hover {
       color: $color-orange;
       svg {
         fill: $color-orange;
       }
+    }
+  }
+  &__prev {
+    padding-right: 8px;
+    padding-left: 0;
+    span {
+      text-align: right;
     }
   }
   * {
