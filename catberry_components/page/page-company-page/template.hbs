@@ -34,12 +34,30 @@
         {{#each isBlock}}
             {{#if access}}
                 {{#if active}}
-                    <p elem="section-title">{{name}}</p>
+                    {{#is name '==' 'Мастера'}}
+                        <p elem="section-title">{{name}}</p>
 
-                    <div elem="section-cont">
-                        <cat-master-block-{{@key}} id="master-block-{{@key}}"
-                                                   cat-store="company/CompanyItem"></cat-master-block-{{@key}}>
-                    </div>
+                        <div elem="section-cont">
+                            <div id="master-block-master">
+                                {{#each ../../../../masters}}
+
+                                    <div elem="master-item">
+                                        <cat-master-minicard id="master-minicard-{{id}}" master-id="{{id}}"
+                                                             cat-store="company/CompanyItem"
+                                                             index="{{@index}}"></cat-master-minicard>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    {{else}}
+                        <p elem="section-title">{{name}}</p>
+
+                        <div elem="section-cont">
+                            <cat-master-block-{{@key}} id="master-block-{{@key}}"
+                                                       cat-store="company/CompanyItem"></cat-master-block-{{@key}}>
+                        </div>
+                    {{/is}}
+
                 {{/if}}
             {{/if}}
         {{/each}}

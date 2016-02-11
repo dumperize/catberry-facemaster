@@ -45,12 +45,7 @@ MasterList.prototype.render = function () {
 MasterList.prototype.bind = function () {
     this._window.addEventListener('resize', this._allMinicardServicesCut);
     this._window.addEventListener('resize', this._allMinicardWidgetVisibility);
-    // если data пустая то не делать
-    //if (!this._isFinish) {
-    //}
     this._window.addEventListener('scroll', this._handleScroll);
-
-    //console.log('!!!' + this._isEmpty);
 
     setTimeout(this._allMinicardServicesCut, 200);
 };

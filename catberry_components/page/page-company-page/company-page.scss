@@ -1,5 +1,8 @@
 .company-page {
   // наследованно от .master-page
+  &__master-item {
+    padding-bottom: 20px;
+  }
 }
 .company-card-cp {
   height: inherit;

@@ -65,7 +65,7 @@ CompanyItem.prototype.load = function () {
         .then(function(masters){
             company.masters = masters;
             company.isBlock = {
-                masters: {
+                master: {
                     access: true,
                     name: "Мастера",
                     active: true

@@ -28,7 +28,15 @@ MasterMinicard.prototype.render = function () {
         .then(function (data) {
             if (!data)
                 return;
-            return data[self.$context.attributes['master-id']];
+
+            var store = self.$context.attributes['cat-store'];
+            var id = self.$context.attributes['master-id'];
+            var index = self.$context.attributes['index'];
+
+            if (store == 'company/CompanyItem'){
+                return data.masters[index];
+            }
+            return data[id];
         })
         .then(function (master) {
             if (!master)
@@ -59,7 +67,6 @@ MasterMinicard.prototype.render = function () {
                 servicesNormally.push(service);
             });
             master.services = servicesNormally;
-            //console.log(master);
             return master;
         });
 };

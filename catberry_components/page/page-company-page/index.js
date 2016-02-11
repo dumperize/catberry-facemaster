@@ -12,8 +12,11 @@ module.exports = PageCompanyPage;
  * Creates new instance of the "page-company-page" component.
  * @constructor
  */
-function PageCompanyPage() {
-
+function PageCompanyPage($serviceLocator) {
+// we can use window from the locator in a browser only
+    if (this.$context.isBrowser) {
+        this._window = $serviceLocator.resolve('window');
+    }
 }
 
 /**
@@ -25,7 +28,7 @@ function PageCompanyPage() {
 PageCompanyPage.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function(data) {
-            console.log(data);
+            //console.log(data);
             return data;
         });
 };
@@ -36,6 +39,10 @@ PageCompanyPage.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 PageCompanyPage.prototype.bind = function () {
+    this._window.addEventListener('resize', this._allMinicardServicesCut);
+    this._window.addEventListener('resize', this._allMinicardWidgetVisibility);
+
+    setTimeout(this._allMinicardServicesCut, 200);
 
     var menu = $('.menu-mp');
     var menuOffset = menu.offset();
@@ -86,4 +93,56 @@ PageCompanyPage.prototype.bind = function () {
 PageCompanyPage.prototype.unbind = function () {
     $(window).unbind('scroll');
     $('.menu-mp').find('a').unbind('click');
+
+    this._window.removeEventListener('resize', this._allMinicardServicesCut);
+    this._window.removeEventListener('resize', this._allMinicardWidgetVisibility);
+};
+
+/**
+ * Cut services.
+ * @private
+ */
+PageCompanyPage.prototype._allMinicardServicesCut = function () {
+    if ($(window).width() >= 500) {
+        $('.master-minicard__services').show();
+        $('.master-minicard').each(function () {
+            var minicardServices = $(this).find('.master-minicard__services');
+            var servicesList = minicardServices.find('li');
+            var maxHeight =
+                $(this).height() - ($(this).find('.master-minicard__name').height() + $(this).find('.master-minicard__spec').height() + 20);
+            var servicesCount = minicardServices.find('li').length;
+
+            if (minicardServices.height() > maxHeight) {
+                while (minicardServices.height() > maxHeight && servicesCount >= 0) {
+                    $(servicesList[servicesCount - 1]).hide();
+                    servicesCount--;
+                }
+            } else if ((minicardServices.height() + 10) < maxHeight) {
+                var i = 0;
+                while (minicardServices.height() < maxHeight && i < servicesCount + 1) {
+                    $(servicesList[i]).show();
+                    i++;
+                }
+                if (minicardServices.height() > maxHeight) {
+                    $(servicesList[i - 1]).hide();
+                }
+            }
+        });
+    } else {
+        $('.master-minicard__services').hide();
+    }
+    //console.log('done!');
+};
+/**
+ * Widget visibility.
+ * @private
+ */
+PageCompanyPage.prototype._allMinicardWidgetVisibility = function () {
+    if ($(window).width() >= 750) {
+        $('.master-content-widget').each(function () {
+            $(this).find('.act').first().addClass('show');
+        });
+    } else {
+        $('.master-content-widget li').removeClass('show');
+    }
 };
