@@ -1,13 +1,7 @@
 <div block="photo-md">
 
-    <!-- ERROR -->
-    <p style="color: red; font-weight: bold">------ ERROR! ------</p>
-    !!!фото. API - недостаточно данных
-    <br><br><br>
-    <!-- ERROR -->
-
     <div>
-    {{#each albums}}
+    {{#each this}}
         <div elem="album-cover" mix="block: js-select-album" id="album-{{id}}">
             <a href="/master-data-edit/json3.json">
                 <img src="{{imgSrc photos.0.imgID 200 200}}" alt="{{name}}"><br>
@@ -18,7 +12,7 @@
     </div>
 
     <div>
-        {{#each albums}}
+        {{#each this}}
             <div elem="album-cont" id="cont-album-{{id}}">
                 <p elem="album-title">{{name}}</p>
 

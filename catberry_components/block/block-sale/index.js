@@ -27,9 +27,12 @@ Sale.prototype.render = function () {
     var id = this.$context.attributes['id-block'];
     var index = this.$context.attributes['index'];
 
+    //console.log(data);
+
     if (model == 'master/MasterItem') {
         return this.$context.getStoreData()
             .then(function (data) {
+                console.log(index);
                 return data.sales[index];
             });
     }

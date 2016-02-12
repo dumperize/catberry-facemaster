@@ -27,7 +27,7 @@ function PhotoAlbum() {
     this._path = '/album';
     this._options = {
         data: {
-            filter: '["and", ["IN", "id", [:listID]],["=","status", "2"]]',
+            filter: '["and", ["IN", "id", [:listID]],["=","status", "1"]]',
             expand: 'photos'
         }
     };

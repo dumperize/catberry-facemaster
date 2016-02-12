@@ -39,7 +39,7 @@ MasterBlockVideo.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterBlockVideo.prototype.bind = function () {
-    $('.video-cont__video-cover').bind('click', showVideoPopup);
+    //$('.video-cont__video-cover').bind('click', showVideoPopup);
 
     function showVideoPopup() {
         //console.log('click!');

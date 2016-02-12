@@ -1,78 +1,80 @@
 <div block="filter">
     {{#each filterSection}}
-        <div block="filter-section">
-            <a class="filter-section__title filter-section__title_{{sectionName}} {{#if openSection}}active{{/if}}"
-               href="{{url}}" mix="block:js-filter-toggle-btn">
-                <div elem="icon">
-                    {{#if openSection}}
-                        {{icon ico "icon_white"}}
-                    {{else}}
-                        {{icon ico}}
-                    {{/if}}
-                </div>
+        {{#if isSection}}
+            <div block="filter-section">
+                <a class="filter-section__title filter-section__title_{{sectionName}} {{#if openSection}}active{{/if}}"
+                   href="{{url}}" mix="block:js-filter-toggle-btn">
+                    <div elem="icon">
+                        {{#if openSection}}
+                            {{icon ico "icon_white"}}
+                        {{else}}
+                            {{icon ico}}
+                        {{/if}}
+                    </div>
 
-                {{title}}
+                    {{title}}
 
-                <div elem="arrow">
-                    {{#if openSection}}
-                        {{icon "strelka" "down"}}
-                    {{else}}
-                        {{icon "strelka"}}
-                    {{/if}}
-                </div>
-            </a>
+                    <div elem="arrow">
+                        {{#if openSection}}
+                            {{icon "strelka" "down"}}
+                        {{else}}
+                            {{icon "strelka"}}
+                        {{/if}}
+                    </div>
+                </a>
 
-            {{#with openSection}}
-                <div elem="section" mix="block:js-filter-toggle-section">
-                    {{#if sortBy}}
-                        <div block="sort-by">
-                            <p elem="title">Отсортировать: </p>
+                {{#with openSection}}
+                    <div elem="section" mix="block:js-filter-toggle-section">
+                        {{#if sortBy}}
+                            <div block="sort-by">
+                                <p elem="title">Отсортировать: </p>
 
-                            <form elem="form" action="{{sortBy.url}}" method="{{sortBy.method}}">
-                                <div block="filter-radio">
-                                    <input elem="input" type="radio" name="sort-by" value="name" id="sort-by-name">
-                                    <label elem="label" for="sort-by-name">по фамилии по алфавиту</label>
-                                </div>
-                                <div block="filter-radio">
-                                    <input elem="input" type="radio" name="sort-by" value="recommendation"
-                                           id="sort-by-recommendation">
-                                    <label elem="label" for="sort-by-recommendation">по количеству
-                                        рекомендаций</label>
-                                </div>
-                            </form>
-                        </div>
-                    {{/if}}
+                                <form elem="form" action="{{sortBy.url}}" method="{{sortBy.method}}">
+                                    <div block="filter-radio">
+                                        <input elem="input" type="radio" name="sort-by" value="name" id="sort-by-name">
+                                        <label elem="label" for="sort-by-name">по фамилии по алфавиту</label>
+                                    </div>
+                                    <div block="filter-radio">
+                                        <input elem="input" type="radio" name="sort-by" value="recommendation"
+                                               id="sort-by-recommendation">
+                                        <label elem="label" for="sort-by-recommendation">по количеству
+                                            рекомендаций</label>
+                                    </div>
+                                </form>
+                            </div>
+                        {{/if}}
 
-                    {{#if tagsGroup}}
-                        <div block="filter-by">
-                            <p elem="title">Отфильтровать:</p>
+                        {{#if tagsGroup}}
+                            <div block="filter-by">
+                                <p elem="title">Отфильтровать:</p>
 
-                            {{#each tagsGroup}}
-                                {{#if title}}
-                                    <p elem="title">{{title}}</p>
-                                {{/if}}
-                                {{#each tags}}
-                                    {{#if isActive}}
-                                        <span block="filter-by" elem="tag-active">
-                                            {{name}}
-                                            <div elem="close">
-                                                <a elem="close-link" href="{{urlBack}}">
-                                                    <div elem="close-icon">{{icon "close"}}</div>
-                                                </a>
-                                            </div>
-                                        </span>
-                                    {{else}}
-                                        <a block="filter-by" elem="tag" href="{{path}}">
-                                            {{name}}
-                                        </a>
+                                {{#each tagsGroup}}
+                                    {{#if title}}
+                                        <p elem="title">{{title}}</p>
                                     {{/if}}
+                                    {{#each tags}}
+                                        {{#if isActive}}
+                                            <span block="filter-by" elem="tag-active">
+                                            {{name}}
+                                                <div elem="close">
+                                                    <a elem="close-link" href="{{urlBack}}">
+                                                        <div elem="close-icon">{{icon "close"}}</div>
+                                                    </a>
+                                                </div>
+                                        </span>
+                                        {{else}}
+                                            <a block="filter-by" elem="tag" href="{{path}}">
+                                                {{name}}
+                                            </a>
+                                        {{/if}}
+                                    {{/each}}
                                 {{/each}}
-                            {{/each}}
 
-                        </div>
-                    {{/if}}
-                </div>
-            {{/with}}
-        </div>
+                            </div>
+                        {{/if}}
+                    </div>
+                {{/with}}
+            </div>
+        {{/if}}
     {{/each}}
 </div>
