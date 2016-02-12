@@ -46,11 +46,7 @@ RubrikaCompany.prototype.load = function () {
     this._path = this._pathBase + id;
     return this._load()
         .then(function (result) {
-            var data = {};
-            result.content.forEach(function (el) {
-                data[el.id] = el;
-            });
-            return data;
+            return result.content;
         });
 };
 

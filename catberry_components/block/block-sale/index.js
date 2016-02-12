@@ -25,23 +25,24 @@ function Sale() {
 Sale.prototype.render = function () {
     var model = this.$context.attributes['cat-store'];
     var id = this.$context.attributes['id-block'];
+    var index = this.$context.attributes['index'];
 
     if (model == 'master/MasterItem') {
         return this.$context.getStoreData()
             .then(function (data) {
-                return data.sales[id];
+                return data.sales[index];
             });
     }
     if (model == 'sale/SaleByRubrika') {
         var num = this.$context.attributes['num'];
         return this.$context.getStoreData()
             .then(function (data) {
-                return data[num].sale[id];
+                return data[num].sale[index];
             });
     }
     return this.$context.getStoreData()
         .then(function (data) {
-            return data[id];
+            return data.list[index];
         });
 
 };

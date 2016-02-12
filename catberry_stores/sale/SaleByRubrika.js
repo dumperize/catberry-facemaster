@@ -80,11 +80,7 @@ SaleByRubrika.prototype._getSaleData = function (id, limit) {
     return this._load()
         .then(function (result) {
             self._pageCount = result.status.headers['x-pagination-page-count'];
-            var data = {};
-            result.content.forEach(function(el){
-                data[el.id] = el;
-            });
-            return data;
+            return result.content;
         });
 };
 /**

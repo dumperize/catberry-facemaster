@@ -30,6 +30,3 @@ function SaleList($uhr) {
 		}
 	};
 }
-SaleList.prototype._strucrurResult = function (result) {
-	return result;
-};
