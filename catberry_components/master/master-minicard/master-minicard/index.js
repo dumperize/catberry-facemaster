@@ -36,7 +36,7 @@ MasterMinicard.prototype.render = function () {
             if (store == 'company/CompanyItem'){
                 return data.masters[index];
             }
-            return data[id];
+            return data.list[index];
         })
         .then(function (master) {
             if (!master)

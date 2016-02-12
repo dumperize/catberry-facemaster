@@ -28,7 +28,6 @@ MasterBlockArticle.prototype.render = function () {
         .then(function (data) {
             //console.log(data);
             data.articles.forEach(function (item) {
-                console.log(item.owner);
                 item.owner = {
                     page: {
                         number: data.page.number
