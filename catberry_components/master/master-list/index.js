@@ -20,6 +20,9 @@ function MasterList($serviceLocator) {
     }
 }
 
+MasterList.prototype._isBusy = false;
+MasterList.prototype._isFinish = false;
+
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -27,26 +30,34 @@ function MasterList($serviceLocator) {
  * for template engine.
  */
 MasterList.prototype.render = function () {
+    var self = this;
     return this.$context.getStoreData()
         .then(function (data) {
             data.isHaveMaster = (Object.keys(data.list).length);
-
-            data.list.forEach(function (master) {
-                try {
-                    master.services = JSON.parse(master.services);
-                } catch (e) {
-
-                }
-                if (master.vkLikes) {
-                    master.vkLikes.countLikes = master.vkLikes.countLikes ? master.vkLikes.countLikes : 0;
-                } else {
-                    master.vkLikes = {};
-                    master.vkLikes.countLikes = 0;
-                }
-            });
-
+            self.structurData(data);
+            self._isFinish = data.isFinished;
             return data;
         });
+};
+
+/**
+ * Перестройка пришедших данных
+ * @param data
+ */
+MasterList.prototype.structurData = function (data) {
+    data.list.forEach(function (master) {
+        try {
+            master.services = JSON.parse(master.services);
+        } catch (e) {
+
+        }
+        if (master.vkLikes) {
+            master.vkLikes.countLikes = master.vkLikes.countLikes ? master.vkLikes.countLikes : 0;
+        } else {
+            master.vkLikes = {};
+            master.vkLikes.countLikes = 0;
+        }
+    });
 };
 
 /**
@@ -78,35 +89,36 @@ MasterList.prototype._handleScroll = function () {
     var windowHeight = this._window.innerHeight,
         scrollTop = this._window.pageYOffset,
         doc = this._window.document.documentElement;
+    var islistGood = this._isFinish ? true : false;
+
     try {
         // when scroll to the bottom of the page load more items
         if (
-            !this._isBusy &&
+            !this._isFinish && !this._isBusy &&
             (scrollTop >= (doc.scrollHeight - windowHeight * 2) ||
             doc.scrollHeight <= windowHeight)
         ) {
             this._isBusy = true;
-            if (!this._isFinish) {
-                $('#wait-spinner').show();
-                this._loadMoreItems()
-                    .then(function (finish) {
-                        if (finish === null) {
-                            self._isFinish = true;
-                        }
-                        self._isBusy = false;
-                        $('#wait-spinner').fadeOut(800);
-                    });
-            } else {
-                $('.master-list-info_good').fadeIn(800);
-            }
+            $('#wait-spinner').show();
+            this._loadMoreItems()
+                .then(function (finish) {
+                    if (finish === null) {
+                        self._isFinish = true;
+                        islistGood = true;
+                    }
+                    self._isBusy = false;
+                    $('#wait-spinner').fadeOut(800);
+                });
+        }
+
+        if (islistGood) {
+            $('.master-list-info_good').fadeIn(800);
         }
     } catch (e) {
         // do nothing
     }
 };
-MasterList.prototype._isEmpty = false;
-MasterList.prototype._isBusy = false;
-MasterList.prototype._isFinish = false;
+
 /**
  * Loads more items to feed.
  * @private
