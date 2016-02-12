@@ -30,6 +30,3 @@ function VideoList($uhr) {
         }
     };
 }
-VideoList.prototype._strucrurResult = function (result) {
-    return result;
-};

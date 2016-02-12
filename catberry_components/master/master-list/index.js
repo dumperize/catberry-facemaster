@@ -28,12 +28,24 @@ function MasterList($serviceLocator) {
  */
 MasterList.prototype.render = function () {
     return this.$context.getStoreData()
-        .then(function(data){
-            //console.log(data);
-            return {
-                isHaveMaster: (Object.keys(data).length),
-                list: data
-            }
+        .then(function (data) {
+            data.isHaveMaster = (Object.keys(data.list).length);
+
+            data.list.forEach(function (master) {
+                try {
+                    master.services = JSON.parse(master.services);
+                } catch (e) {
+
+                }
+                if (master.vkLikes) {
+                    master.vkLikes.countLikes = master.vkLikes.countLikes ? master.vkLikes.countLikes : 0;
+                } else {
+                    master.vkLikes = {};
+                    master.vkLikes.countLikes = 0;
+                }
+            });
+
+            return data;
         });
 };
 

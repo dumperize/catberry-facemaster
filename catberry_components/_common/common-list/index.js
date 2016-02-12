@@ -13,9 +13,8 @@ module.exports = CommonList;
  * @constructor
  */
 function CommonList() {
-    this._data = [];
 }
-CommonList.prototype._data = null;
+
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -27,9 +26,9 @@ CommonList.prototype.render = function () {
 
     return this.$context.getStoreData()
         .then(function(data){
-            //console.log(data);
             return {
-                list: data,
+                isFinished: data.isFinished,
+                list: data.list,
                 type: self.$context.attributes.type,
                 model: self.$context.attributes['cat-store']
             }

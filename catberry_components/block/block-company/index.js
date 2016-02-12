@@ -23,11 +23,19 @@ function BlockCompany() {
  * for template engine.
  */
 BlockCompany.prototype.render = function () {
-    //var model = this.$context.attributes.model;
+    var model = this.$context.attributes['cat-store'];
     var id = this.$context.attributes['id-block'];
+    var index = this.$context.attributes['index'];
+
+    if (model == 'rubrika/RubrikaCompany') {
+        return this.$context.getStoreData()
+            .then(function (data) {
+                return data[index];
+            });
+    }
     return this.$context.getStoreData()
         .then(function (data) {
-            return data[id];
+            return data.list[index];
         });
 
 };

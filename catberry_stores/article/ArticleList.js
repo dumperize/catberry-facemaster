@@ -30,6 +30,3 @@ function ArticleList($uhr) {
 		}
 	};
 }
-ArticleList.prototype._strucrurResult = function (result) {
-	return result;
-};

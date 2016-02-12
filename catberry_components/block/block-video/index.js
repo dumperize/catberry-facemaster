@@ -25,16 +25,17 @@ function Video() {
 Video.prototype.render = function () {
     var model = this.$context.attributes['cat-store'];
     var id = this.$context.attributes['id-block'];
+    var index = this.$context.attributes['index'];
 
     if (model == 'master/MasterItem') {
         return this.$context.getStoreData()
             .then(function (data) {
-                return data.videos[id];
+                return data.videos[index];
             });
     }
     return this.$context.getStoreData()
         .then(function (data) {
-            return data[id];
+            return data.list[index];
         });
 };
 

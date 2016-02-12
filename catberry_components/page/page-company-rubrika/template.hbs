@@ -2,7 +2,7 @@
 <div block="company-rubrika">
     {{#each list}}
         <div elem="item">
-            <cat-block-company id="block-company-{{id}}" cat-store="{{../model}}" id-block="{{id}}"></cat-block-company>
+            <cat-block-company id="block-company-{{id}}" cat-store="{{../model}}" index="{{@index}}" id-block="{{id}}"></cat-block-company>
         </div>
     {{/each}}
 </div>

@@ -28,7 +28,7 @@ MasterMinicard.prototype.render = function () {
         .then(function (data) {
             if (!data)
                 return;
-            return data[self.$context.attributes['master-id']];
+            return data.list[self.$context.attributes['index']];
         })
         .then(function (master) {
             if (!master)
