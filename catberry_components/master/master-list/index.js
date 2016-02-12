@@ -46,6 +46,14 @@ MasterList.prototype.render = function () {
  */
 MasterList.prototype.structurData = function (data) {
     data.list.forEach(function (master) {
+
+        //из-за ильи так произошло!
+        master.comments = master.activeComments;
+        master.sales = master.activeSales;
+        master.videos = master.activeVideos;
+        master.albums = master.activeAlbums;
+        //конец из-за ильи так произошло!
+
         try {
             master.services = JSON.parse(master.services);
         } catch (e) {

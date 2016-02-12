@@ -29,7 +29,7 @@ function MasterItem($uhr) {
     this._options = {
         data: {
             filter: '["and", ["=", "id", ":id"],["=","publicStatus", "1"]]',
-            expand: 'contacts,articles,comments,districts,albums,sales,schedule,videos,workCondition,callbacks,vkLikes,rubrika,tags,company'
+            expand: 'contacts,activeArticles,activeComments,districts,activeAlbums,activeSales,schedule,activeVideos,workCondition,callbacks,vkLikes,rubrika,tags,company'
         }
     };
 }
@@ -49,6 +49,16 @@ MasterItem.prototype.load = function () {
                         self.$context.notFound();
 
                     var data = result.content[0];
+
+                    //из-за ильи так произошло!
+                    data.comments = data.activeComments;
+                    data.sales = data.activeSales;
+                    data.videos = data.activeVideos;
+                    data.albums = data.activeAlbums;
+                    data.articles = data.activeArticles;
+                    //конец из-за ильи так произошло!
+
+
                     data.services = JSON.parse(data.services);
                     data.isBlock = {
                         service: {
@@ -98,6 +108,7 @@ MasterItem.prototype.load = function () {
                         }
                     };
                     data.page = page;
+
                     return data;
                 });
         });

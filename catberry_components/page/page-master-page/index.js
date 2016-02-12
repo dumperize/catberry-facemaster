@@ -23,7 +23,7 @@ function PageMasterPage() {
  * for template engine.
  */
 PageMasterPage.prototype.render = function () {
-    return this.$context.getStoreData();
+    return this.$context.getStoreData()
 };
 
 /**

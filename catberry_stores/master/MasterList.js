@@ -29,7 +29,7 @@ function MasterList($uhr) {
     this._options = {
         data: {
             filter: '["and",["=", "rubrikaID", ":rubrikaID"]]',
-            expand: 'comments,sales,videos,vkLikes,albums,contacts,page,company',
+            expand: 'activeComments,activeSales,activeVideos,vkLikes,activeAlbums,contacts,page,company',
             order: 'sort'
         }
     };
