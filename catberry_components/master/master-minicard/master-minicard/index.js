@@ -61,9 +61,10 @@ MasterMinicard.prototype.render = function () {
                 master.commentsCount = master.comments.length;
             }
             var servicesNormally = [];
-            Object.keys(master.services).forEach(function (item, i, arr) {
+            Object.keys(master.services).forEach(function (item) {
                 var service = master.services[item];
-                service = service.replace(/\u00A0/g, " ");
+                service = service.replace(/\u00A0/g, " ");      //убираем неразрывный пробел
+                service = service.replace(/:|\.|,/g, '$& ');    //вставляем пробелы после двоеточия, запятой и точки.
                 servicesNormally.push(service);
             });
             master.services = servicesNormally;

@@ -82,6 +82,7 @@ p {
 }
 .wait-spinner {
     text-align: center;
+    display: none;
     &__animate {
         display: inline-block;
         width: 48px;

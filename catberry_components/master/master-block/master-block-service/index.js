@@ -37,8 +37,7 @@ MasterBlockService.prototype.render = function () {
             Object.keys(data.services).forEach(function (item) {
                 var fieldsValLength;
 
-                data.services[item] = data.services[item].replace(/,/g, ", ");
-                data.services[item] = data.services[item].replace(/\(/g, " (");
+                data.services[item] = data.services[item].replace(/:|\.|,/g, '$& ');
                 fieldsValLength = data.services[item].length;
                 if (0 < fieldsValLength && fieldsValLength < 20) {
                     fieldsValLength = 20;
