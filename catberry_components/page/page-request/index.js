@@ -32,7 +32,8 @@ PageRequest.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 PageRequest.prototype.bind = function () {
-
+    var ta = $('textarea');
+    autosize(ta);
 };
 
 /**
@@ -41,5 +42,6 @@ PageRequest.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 PageRequest.prototype.unbind = function () {
-
+    evt.initEvent('autosize:destroy', true, false);
+    ta.dispatchEvent(evt);
 };

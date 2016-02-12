@@ -78,7 +78,7 @@ MasterList.prototype.bind = function () {
     this._window.addEventListener('resize', this._allMinicardWidgetVisibility);
     this._window.addEventListener('scroll', this._handleScroll);
 
-    setTimeout(this._allMinicardServicesCut, 200);
+    setTimeout(this._allMinicardServicesCut, 100);
 };
 
 MasterList.prototype.unbind = function () {
@@ -97,7 +97,6 @@ MasterList.prototype._handleScroll = function () {
     var windowHeight = this._window.innerHeight,
         scrollTop = this._window.pageYOffset,
         doc = this._window.document.documentElement;
-    var islistGood = this._isFinish ? true : false;
 
     try {
         // when scroll to the bottom of the page load more items
@@ -112,15 +111,10 @@ MasterList.prototype._handleScroll = function () {
                 .then(function (finish) {
                     if (finish === null) {
                         self._isFinish = true;
-                        islistGood = true;
                     }
                     self._isBusy = false;
                     $('#wait-spinner').fadeOut(800);
                 });
-        }
-
-        if (islistGood) {
-            $('.master-list-info_good').fadeIn(800);
         }
     } catch (e) {
         // do nothing
