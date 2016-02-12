@@ -6,7 +6,7 @@ var util = require('util'),
     StoreBase = require('../../lib/StoreBase');
 
 /**
- * наследуемся от пагинатора для базового стора
+ * наследуемся от базового стора
  */
 util.inherits(MasterItem, StoreBase);
 
@@ -40,76 +40,96 @@ function MasterItem($uhr) {
  */
 MasterItem.prototype.load = function () {
     var self = this;
+    var masterPage, data;
+
     return this.$context.getStoreData('master/MasterPage')
         .then(function (page) {
+            masterPage = page;
             self._optionsData.data.filter[':id'] = page.masterID;
             return self._load()
-                .then(function (result) {
-                    if (result.content.length == 0)
-                        self.$context.notFound();
+        })
+        .then(function (result) {
+            if (result.content.length == 0)
+                self.$context.notFound();
+            data = result.content[0];
 
-                    var data = result.content[0];
-
-                    //из-за ильи так произошло!
-                    data.comments = data.activeComments;
-                    data.sales = data.activeSales;
-                    data.videos = data.activeVideos;
-                    data.albums = data.activeAlbums;
-                    data.articles = data.activeArticles;
-                    //конец из-за ильи так произошло!
+            //из-за ильи так произошло!
+            data.comments = data.activeComments;
+            data.sales = data.activeSales;
+            data.videos = data.activeVideos;
+            data.albums = data.activeAlbums;
+            data.articles = data.activeArticles;
+            //конец из-за ильи так произошло!
 
 
-                    data.services = JSON.parse(data.services);
-                    data.isBlock = {
-                        service: {
-                            access: page.services,
-                            name: "Услуги",
-                            active: true
-                        },
-                        work: {
-                            access: true,
-                            name: "Условия работы",
-                            active: true
-                        },
-                        sale: {
-                            access: page.sales,
-                            name: "Скидки и подарки",
-                            active: (data.sales.length > 0)
-                        },
-                        about: {
-                            access: true,
-                            name: "О себе",
-                            active: data.aboutEduc || data.aboutExp || data.aboutAddInfo
-                        },
-                        article: {
-                            access: page.articles,
-                            name: "Полезно почитать",
-                            active: (data.articles.length > 0)
-                        },
-                        photo: {
-                            access: page.albums,
-                            name: "Фото",
-                            active: (data.albums.length > 0)
-                        },
-                        video: {
-                            access: page.videos,
-                            name: "Видео",
-                            active: (data.videos.length > 0)
-                        },
-                        link: {
-                            access: page.links,
-                            name: "Ссылки",
-                            active: (data.contacts.links)
-                        },
-                        review: {
-                            access: page.comments,
-                            name: "Отзывы и рекомендации",
-                            active: true
-                        }
-                    };
-                    data.page = page;
+            data.services = JSON.parse(data.services);
+            data.page = masterPage;
+            data.isBlock = self._geerateIsBlock(data);
 
-                    return data;
-                });
-        });
+            //соберем id альбомов
+            var listID = [];
+            data.albums.forEach(function (album) {
+                listID.push(album.id);
+            });
+            return self.$context.sendAction("photo/PhotoAlbum", "setListID", listID);
+        })
+        .then(function (r) {
+            return self.$context.getStoreData('photo/PhotoAlbum');
+        })
+        .then(function (albums) {
+            data.albums = albums;
+            return data;
+        })
+};
+
+
+MasterItem.prototype._geerateIsBlock = function (data) {
+    var masterPage = data.page
+    return {
+        service: {
+            access: masterPage.services,
+            name: "Услуги",
+            active: true
+        },
+        work: {
+            access: true,
+            name: "Условия работы",
+            active: true
+        },
+        sale: {
+            access: masterPage.sales,
+            name: "Скидки и подарки",
+            active: (data.sales.length > 0)
+        },
+        about: {
+            access: true,
+            name: "О себе",
+            active: data.aboutEduc || data.aboutExp || data.aboutAddInfo
+        },
+        article: {
+            access: masterPage.articles,
+            name: "Полезно почитать",
+            active: (data.articles.length > 0)
+        },
+        photo: {
+            access: masterPage.albums,
+            name: "Фото",
+            active: (data.albums.length > 0)
+        },
+        video: {
+            access: masterPage.videos,
+            name: "Видео",
+            active: (data.videos.length > 0)
+        },
+        link: {
+            access: masterPage.links,
+            name: "Ссылки",
+            active: (data.contacts.links)
+        },
+        review: {
+            access: masterPage.comments,
+            name: "Отзывы и рекомендации",
+            active: true
+        }
+    };
 };

@@ -21,7 +21,7 @@ util.inherits(Tag, StoreBase);
  * @param {UHR} $uhr Universal HTTP request.
  * @constructor
  */
-function Tag($uhr) {
+function Tag() {
     StoreBase.call(this);
     this.$context.setDependency('rubrika/Rubrika');
     this._path = '/tag';
@@ -42,8 +42,6 @@ Tag.prototype.load = function () {
     var section = this.$context.state.section || 'master';
     var tag = this.$context.state.tag || '';
     var data = {section: section};
-    var tagData, sections;
-
 
     return this.$context.getStoreData("rubrika/Rubrika")
         .then(function (rubrika) {
@@ -108,7 +106,7 @@ Tag.prototype.handleGetSections = function () {
                         result.push(el);
                     }
                 });
-            result.push('master')
+            result.push('master');
             return result;
         });
 };

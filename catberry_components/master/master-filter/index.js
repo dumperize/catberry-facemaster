@@ -153,7 +153,6 @@ MasterFilter.prototype._getTags = function (data) {
 MasterFilter.prototype.bind = function () {
     this.$context.sendAction('getSections')
         .then(function (data) {
-            //console.log(data);
             var allFilters = ['video', 'sale', 'company', 'master', 'sovety'];
             if (data) {
                 allFilters.forEach(function (item) {
