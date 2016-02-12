@@ -104,7 +104,7 @@ Tag.prototype.handleGetSections = function () {
         .then(function (data) {
             Object.keys(sections)
                 .forEach(function (el, i) {
-                    if (data[i] && Object.keys(data[i]).length > 0) {
+                    if (data[i].list && Object.keys(data[i].list).length > 0) {
                         result.push(el);
                     }
                 });
