@@ -151,13 +151,15 @@ MasterFilter.prototype._getTags = function (data) {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterFilter.prototype.bind = function () {
-    $('.filter-section__title').parent().hide();
     this.$context.sendAction('getSections')
         .then(function (data) {
             //console.log(data);
+            var allFilters = ['video', 'sale', 'company', 'master', 'sovety'];
             if (data) {
-                data.forEach(function (item) {
-                    $('.filter-section__title_' + item).parent().slideDown(400);
+                allFilters.forEach(function (item) {
+                    if (data.toString().indexOf(item) < 0) {
+                        $('.filter-section__title_' + item).parent().hide();
+                    }
                 });
             }
         });
