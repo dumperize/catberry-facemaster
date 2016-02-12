@@ -96,8 +96,6 @@
     margin-right: 36px;
     //border: 1px solid blue;
     overflow: hidden;
-    //box-sizing: content-box;
-    //padding: 0;
     @include at(xs) {
       margin-left: 0;
       max-height: none;
@@ -171,7 +169,6 @@
     padding-left: 0 !important;
   }
 }
-
 .master-content-widget {
   position: absolute;
   right: 0;
