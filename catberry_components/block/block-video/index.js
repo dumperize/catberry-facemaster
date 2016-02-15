@@ -34,8 +34,15 @@ Video.prototype.render = function () {
             var video;
             if (model == 'master/MasterItem') {
                 video = data.videos[index];
+                video.number = data.page.number;
+                video.name = data.name;
+                video.imgid = data.imgID;
             } else {
                 video = data.list[index];
+                video.number = video.owner.page.number;
+                video.name = video.owner.name;
+                video.imgid = video.owner.imgID;
+                console.log(video);
             }
             self._videoPopUpData = video;
             self._videoPopUpData.id = 'popup-video-' + video.id;
@@ -52,29 +59,17 @@ Video.prototype.render = function () {
  */
 Video.prototype.bind = function () {
     var self = this;
-    var contId = '#block-video-' + this._videoPopUpData.id + ' .video-cont';
-    console.log(this._videoPopUpData);
-    console.log('#block-video-' + this._videoPopUpData.id);
-    //$('#block-video-' + this._videoPopUpData.id).find('.video-cont').bind('click', showVideoPopup);
-
-    function showVideoPopup() {
-        console.log('123');
-        self.$context.createComponent('block-video-popup', self._videoPopUpData)
-            .then(function (data) {
-                console.log(data);
-            });
-        return false;
-    }
+    //console.log(this._videoPopUpData);
 
     return {
         click: {
-            '.video-cont': function (event) {
+            '.video-cont__video-cover': function (event) {
                 event.preventDefault();
                 event.stopPropagation();
                 self.$context.createComponent('block-video-popup', self._videoPopUpData)
                     .then(function (data) {
-                        console.log(data);
-                        console.log(data.innerHTML);
+                        //console.log(data);
+                        //console.log(data.innerHTML);
                         $.fancybox.open(data.innerHTML, {
                             padding: 20,
                             type: 'inline',
@@ -87,10 +82,12 @@ Video.prototype.bind = function () {
                                 overlay: {
                                     locked: false
                                 }
+                            },
+                            afterClose: function () {
+                                self.$context.collectGarbage();
                             }
                         });
                     });
-                self.$context.collectGarbage();
                 return false;
             }
         }
@@ -103,7 +100,7 @@ Video.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 Video.prototype.unbind = function () {
-    //$('.video-cont').unbind('click');
+
 };
 
 

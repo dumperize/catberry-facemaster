@@ -84,7 +84,7 @@ MasterItem.prototype.load = function () {
 
 
 MasterItem.prototype._geerateIsBlock = function (data) {
-    var masterPage = data.page
+    var masterPage = data.page;
     return {
         service: {
             access: masterPage.services,
