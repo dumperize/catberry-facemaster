@@ -37,12 +37,15 @@ Video.prototype.render = function () {
                 video.number = data.page.number;
                 video.name = data.name;
                 video.imgid = data.imgID;
-            } else {
+            } else if (model == 'master/MasterList') {
+                var masterIndex = self.$context.attributes['master-index'];
+                video = data.list[masterIndex].videos[0];
+            }
+            else {
                 video = data.list[index];
                 video.number = video.owner.page.number;
                 video.name = video.owner.name;
                 video.imgid = video.owner.imgID;
-                console.log(video);
             }
             self._videoPopUpData = video;
             self._videoPopUpData.id = 'popup-video-' + video.id;
