@@ -12,8 +12,10 @@ module.exports = MasterMinicard;
  * Creates new instance of the "master-minicard" component.
  * @constructor
  */
-function MasterMinicard() {
-
+function MasterMinicard($serviceLocator) {
+    if (this.$context.isBrowser) {
+        this._window = $serviceLocator.resolve('window');
+    }
 }
 
 /**
@@ -32,7 +34,7 @@ MasterMinicard.prototype.render = function () {
         .then(function (data) {
             if (!data)
                 return;
-            if (store == 'company/CompanyItem'){
+            if (store == 'company/CompanyItem') {
                 return data.masters[index];
             }
             return data.list[index];
@@ -78,74 +80,117 @@ MasterMinicard.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterMinicard.prototype.bind = function () {
-    var minicardComp = $('#' + this.$context.element.id);
-    minicardComp.find('.master-content-widget li').bind('mouseenter', showWidgetTab);
-    minicardComp.find('.js-services-toggle').bind('click', showServices);
-    minicardComp.find('.js-show-minicard-video-popup').bind('click', showVideoPopup);
+    var width = window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth;
 
-    function showWidgetTab() {
-        if ($(this).hasClass('act') && ($(window).width() >= 750)) {
-            $(this).siblings().removeClass('show');
-            $(this).addClass('show');
-        }
-    }
-
-    function showServices() {
-        var minicard = $(this).closest('.master-minicard');
-        minicard.find('.master-minicard__services').slideDown();
-        if (minicard.hasClass('master-minicard_free')) {
-            minicard.css('paddingBottom', '60px');
-        }
-        $(this).hide();
-        minicard.find('.master-minicard__to-page').css('display', 'block');
-        //console.log('done!');
-        return false;
-    }
-
-    function showVideoPopup() {
-        //console.log('click!');
-        var tmp = $('.popup-video-cont').clone(),
-            url = $(this).attr('href'),
-            title = $(this).siblings('.master-content-widget__text').html(),
-            desc = $(this).siblings('.master-content-widget__desc').html(),
-            name = $(this).closest('.master-minicard').find('.master-minicard__name').html(),
-            imgSrc = $(this).closest('.master-minicard').find('.master-minicard__photo').attr('src');
-        tmp.find('.popup-video-cont__video-cont').html('<iframe src="' + url + '" frameborder="0" allowfullscreen></iframe>');
-        tmp.find('.popup-video-cont__title').html(title);
-        tmp.find('.popup-video-cont__text').html(desc);
-        tmp.find('.master-micro-inf__name').html('<br>' + name);
-        tmp.find('.master-micro-inf img').attr('src', imgSrc);
-        $.fancybox.open(tmp, {
-            padding: 20,
-            type: 'inline',
-            width: '80%',
-            maxWidth: '800px',
-            minWidth: '250px',
-            autoHeight: true,
-            autoSize: false,
-            helpers: {
-                overlay: {
-                    locked: false
-                }
-            }
-        });
-        return false;
-    }
+    this._minicardServicesCut();
+    this._window.addEventListener('resize', this._minicardServicesCut.bind(this));
 
     // раскрываем первый активный элемент виджета
-    if ($(window).width() >= 750) {
+    if (width >= 750) {
         this._showFirstActWidget();
     }
-    return {};
+
+    return {
+        click: {
+            '.js-services-toggle': this.handleShowService
+        },
+        mouseenter: {
+            '.master-content-widget li': this.handleShowWidgetTab
+        }
+    };
 };
+/**
+ * Показывает боковой блок при наведении на иконку мышкой
+ * @param event
+ */
+MasterMinicard.prototype.handleShowWidgetTab = function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    var targetElement = event.currentTarget;
+
+    if ($(targetElement).hasClass('act') && ($(window).width() >= 750)) {
+        $(targetElement).siblings().removeClass('show');
+        $(targetElement).addClass('show');
+    }
+};
+
+/**
+ * Раскрывает услуги при клике на кнопку мышкой
+ * @param event
+ * @returns {boolean}
+ */
+MasterMinicard.prototype.handleShowService = function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var btnDOM = this.$context.element.querySelector('.js-services-toggle');
+    var minicardDOM = this.$context.element.querySelector('.master-minicard');
+    var minicard = $(minicardDOM);
+    minicard.find('.master-minicard__services').slideDown();
+    if (minicard.hasClass('master-minicard_free')) {
+        minicard.css('paddingBottom', '60px');
+    }
+    $(btnDOM).hide();
+    minicard.find('.master-minicard__to-page').css('display', 'block');
+    return false;
+};
+
+/**
+ * Cut services.
+ * @private
+ */
+MasterMinicard.prototype._minicardServicesCut = function () {
+    var width = window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth;
+
+    var carcas = this.$context.element.querySelector('.master-minicard');
+    var services = this.$context.element.querySelector('.master-minicard__services');
+    var name = this.$context.element.querySelector('.master-minicard__name');
+    var spec = this.$context.element.querySelector('.master-minicard__spec');
+
+    var servicesList = services.querySelectorAll('li');
+    var servicesCount = servicesList.length;
+    var maxHeight = carcas.offsetHeight - (name.offsetHeight + spec.offsetHeight + 20);
+
+    if (width >= 500) {
+        services.style.display = '';
+        if (services.offsetHeight > maxHeight) {
+            while (services.offsetHeight > maxHeight && servicesCount >= 0) {
+                servicesList[servicesCount - 1].style.display = 'none';
+                servicesCount--;
+            }
+        } else if ((services.offsetHeight + 10) < maxHeight) {
+            var i = 0;
+            while (services.offsetHeight < maxHeight && i < servicesCount) {
+                servicesList[i].style.display = '';
+                i++;
+            }
+            if (services.offsetHeight > maxHeight) {
+                servicesList[i - 1].style.display = 'none';
+            }
+        }
+    } else {
+        services.style.display = 'none';
+    }
+};
+
+/**
+ * Отображает первый активный виджет
+ * @private
+ */
 MasterMinicard.prototype._showFirstActWidget = function () {
-    $('#' + this.$context.element.id).find('.act').first().addClass('show');
+    var act = this.$context.element.querySelector('.act');
+    $(act).first().addClass('show');
 };
+
 /**
  * Does cleaning for everything that have NOT been set by .bind() method.
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
 MasterMinicard.prototype.unbind = function () {
-    $('.master-content-widget li').unbind('mouseenter');
+    this._window.removeEventListener('resize', this._minicardServicesCut.bind(this));
 };

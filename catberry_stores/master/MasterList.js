@@ -50,6 +50,8 @@ MasterList.prototype.load = function () {
             self._optionsData.data.filter[':rubrikaID'] = tag.rubrika.id;
             if (tag.tag.id) {
                 self._path = self._pathBase + '/bytag/' + tag.tag.id;
+            } else {
+                self._path = self._pathBase + '/active';
             }
             return self._getAll();
         });
