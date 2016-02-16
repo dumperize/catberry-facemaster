@@ -96,8 +96,6 @@
     margin-right: 36px;
     //border: 1px solid blue;
     overflow: hidden;
-    //box-sizing: content-box;
-    //padding: 0;
     @include at(xs) {
       margin-left: 0;
       max-height: none;
@@ -171,7 +169,7 @@
     padding-left: 0 !important;
   }
 }
-
+/* ----- Виджет на миникарточке мастера ----- */
 .master-content-widget {
   position: absolute;
   right: 0;
@@ -258,15 +256,15 @@
       display: block;
       overflow: hidden;
       text-align: center;
-      line-height: 70px;
+      //line-height: 70px;
       > span {
         display: block;
         padding: 0;
       }
-      img {
-        width: 100%;
-        margin: -100%;
-      }
+      //img {
+      //  width: 100%;
+      //  margin: -100%;
+      //}
     }
     &_gift {
       text-transform: uppercase;
@@ -323,4 +321,9 @@
       }
     }
   }
+}
+/* ----- Переопределяем высоту блока video ----- */
+.master-content-widget .video-cont__img-cont {
+  max-height: 70px;
+  line-height:70px;
 }

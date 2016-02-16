@@ -12,7 +12,42 @@ module.exports = MasterFilter;
  * @constructor
  */
 function MasterFilter() {
+    this._isSectionGet = false;
+    this._section = [
+        {
+            sectionName: "master",
+            title: "Мастера",
+            ico: "man",
+            isSection: true
+        },
+        {
+            sectionName: "video",
+            title: "Видео Мастеров",
+            ico: "video",
+            isSection: true
+        },
+        {
+            sectionName: "sale",
+            title: "Скидки Мастеров",
+            ico: "gift",
+            isSection: true
+        },
+        {
+            sectionName: "sovety",
+            title: "Секреты Мастеров",
+            ico: "qwestion",
+            isSection: true
+        },
+        {
+            sectionName: "company",
+            title: "Каталог фирм",
+            ico: "case",
+            isSection: true
+        }
+    ];
 }
+MasterFilter.prototype._isSectionGet = null;
+MasterFilter.prototype._section = null;
 
 /**
  * Gets data context for template engine.
@@ -22,55 +57,27 @@ function MasterFilter() {
  */
 MasterFilter.prototype.render = function () {
     var self = this;
-    var path, currentTag;
+    var path;
     var result = [];
 
     return this.$context.getStoreData()
         .then(function (data) {
             path = '/' + data.rubrika.parent.unique + '/' + data.rubrika.unique;
-
-            return self.$context.getStoreData('master/MasterList')
-                .then(function (master) {
-                    result = self._setSection(path);
-                    self._decoreOpenSection(result, data);
-                    return {filterSection: result};
-                })
+            result = self._setSection(path);
+            self._decoreOpenSection(result, data);
+            return {filterSection: result};
         });
 };
 
 MasterFilter.prototype._setSection = function (path) {
-    return [
-        {
-            url: path,
-            sectionName: "master",
-            title: "Мастера",
-            ico: "man"
-        },
-        {
-            url: path + '/video',
-            sectionName: "video",
-            title: "Видео Мастеров",
-            ico: "video"
-        },
-        {
-            url: path + '/sale',
-            sectionName: "sale",
-            title: "Скидки Мастеров",
-            ico: "gift"
-        },
-        {
-            url: path + '/sovety',
-            sectionName: "sovety",
-            title: "Секреты Мастеров",
-            ico: "qwestion"
-        },
-        {
-            url: path + '/company',
-            sectionName: "company",
-            title: "Каталог фирм",
-            ico: "case"
+    return this._section.map(function (item) {
+        if(item.sectionName == 'master') {
+            item.url = path;
+        } else {
+            item.url = path + '/' + item.sectionName;
         }
-    ];
+        return item;
+    });
 };
 
 /**
@@ -93,7 +100,8 @@ MasterFilter.prototype._decoreOpenSection = function (result, data) {
                     "method": "get"
                 };
             }
-            return;
+        } else {
+            result[i].openSection = null;
         }
     }
 };
@@ -151,18 +159,21 @@ MasterFilter.prototype._getTags = function (data) {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterFilter.prototype.bind = function () {
-    this.$context.sendAction('getSections')
-        .then(function (data) {
-            var allFilters = ['video', 'sale', 'company', 'master', 'sovety'];
-            if (data) {
-                allFilters.forEach(function (item) {
-                    if (data.toString().indexOf(item) < 0) {
-                        $('.filter-section__title_' + item).parent().hide();
-                    }
-                });
-            }
-        });
-
+    var self = this;
+    if (!this._isSectionGet) {
+        this.$context.sendAction('getSections')
+            .then(function (data) {
+                if (data) {
+                    self._section.forEach(function (item) {
+                        if (data.toString().indexOf(item.sectionName) < 0) {
+                            $('.filter-section__title_' + item.sectionName).parent().hide();
+                            item.isSection = false;
+                        }
+                    });
+                    self._isSectionGet = true;
+                }
+            });
+    }
     return {
         click: {
             '.js-filter-toggle-btn.active': this._clickSection

@@ -26,6 +26,7 @@ MasterBlockSale.prototype.render = function () {
     var self = this;
     return this.$context.getStoreData()
         .then(function (data) {
+            //console.log(data);
             return {
                 model: self.$context.attributes['cat-store'],
                 sales: data.sales

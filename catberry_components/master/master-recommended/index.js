@@ -35,7 +35,7 @@ MasterRecommended.prototype.render = function () {
                 if (typeof(name[2]) != 'undefined' && name[2] != '') {
                     fio += (name[2].substring(0,1) + '.');
                 }
-                item.name = fio;
+                item.fio = fio;
             });
             return {
                 list: data,

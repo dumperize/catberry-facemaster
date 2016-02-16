@@ -39,5 +39,5 @@ PagesContent.prototype.hideLoader = function () {
 	for (var i = 0; i < loaders.length; i++) {
 		loaders[i].style.display = 'none';
 	}
-	window.scrollTo(0,0);
+	//window.scrollTo(0,0);
 };

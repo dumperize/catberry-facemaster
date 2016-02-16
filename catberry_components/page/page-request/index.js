@@ -23,7 +23,7 @@ function PageRequest() {
  * for template engine.
  */
 PageRequest.prototype.render = function () {
-    console.log("sdf");
+
 };
 
 PageRequest.prototype.textareaElement = null;
@@ -33,6 +33,8 @@ PageRequest.prototype.textareaElement = null;
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 PageRequest.prototype.bind = function () {
+    var ta = $('textarea');
+    autosize(ta);
     this.textareaElement = this.$context.element.querySelector('textarea');
     return {
         submit: {
@@ -72,5 +74,6 @@ PageRequest.prototype.getTextArea = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 PageRequest.prototype.unbind = function () {
-
+    evt.initEvent('autosize:destroy', true, false);
+    ta.dispatchEvent(evt);
 };

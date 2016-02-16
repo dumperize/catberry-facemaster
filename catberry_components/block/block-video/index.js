@@ -13,8 +13,9 @@ module.exports = Video;
  * @constructor
  */
 function Video() {
-
+    this._videoPopUpData = {};
 }
+Video.prototype._videoPopUpData = null;
 
 /**
  * Gets data context for template engine.
@@ -26,17 +27,36 @@ Video.prototype.render = function () {
     var model = this.$context.attributes['cat-store'];
     var id = this.$context.attributes['id-block'];
     var index = this.$context.attributes['index'];
+    var self = this;
 
-    if (model == 'master/MasterItem') {
-        return this.$context.getStoreData()
-            .then(function (data) {
-                return data.videos[index];
-            });
-    }
     return this.$context.getStoreData()
         .then(function (data) {
-            return data.list[index];
+            var video;
+            if (model == 'master/MasterItem') {
+                video = data.videos[index];
+                video.number = data.page.number;
+                video.name = data.name;
+                video.imgid = data.imgID;
+            } else if (model == 'master/MasterList') {
+                var masterIndex = self.$context.attributes['master-index'];
+                video = data.list[masterIndex].videos[0];
+                video.number = data.list[masterIndex].page.number;
+                video.name = data.list[masterIndex].name;
+                video.imgid = data.list[masterIndex].imgID;
+                //console.log(data.list[masterIndex].videos[0]);
+            }
+            else {
+                video = data.list[index];
+                video.number = video.owner.page.number;
+                video.name = video.owner.name;
+                video.imgid = video.owner.imgID;
+            }
+            self._videoPopUpData = video;
+            self._videoPopUpData.id = 'popup-video-' + video.id;
+            //console.log(video);
+            return video;
         });
+
 };
 
 /**
@@ -45,7 +65,40 @@ Video.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 Video.prototype.bind = function () {
-//навесить клик и тут сделать createComponent дальше вызвать метод генерирующий массив для передачи и запилить все
+    var self = this;
+    //console.log(this._videoPopUpData);
+
+    return {
+        click: {
+            '.video-cont__video-cover': function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                self.$context.createComponent('block-video-popup', self._videoPopUpData)
+                    .then(function (data) {
+                        //console.log(data);
+                        //console.log(data.innerHTML);
+                        $.fancybox.open(data.innerHTML, {
+                            padding: 20,
+                            type: 'inline',
+                            width: '80%',
+                            maxWidth: '800px',
+                            minWidth: '250px',
+                            autoHeight: true,
+                            autoSize: false,
+                            helpers: {
+                                overlay: {
+                                    locked: false
+                                }
+                            },
+                            afterClose: function () {
+                                self.$context.collectGarbage();
+                            }
+                        });
+                    });
+                return false;
+            }
+        }
+    }
 };
 
 /**

@@ -1,22 +1,22 @@
 <div block="about-md">
     {{#if aboutEduc}}
         <p elem="text-caption">Образование:</p>
-        <p elem="text">{{{aboutEduc}}}</p>
+        <div elem="text">{{{aboutEduc}}}</div>
     {{/if}}
 
     {{#if aboutExp}}
         <p elem="text-caption">Опыт работы:</p>
-        <p elem="text">{{{aboutExp}}}</p>
+        <div elem="text">{{{aboutExp}}}</div>
     {{/if}}
 
     {{#if aboutAddInfo}}
         <p elem="text-caption">Дополнительная информация:</p>
-        <p elem="text">{{{aboutAddInfo}}}</p>
+        <div elem="text">{{{aboutAddInfo}}}</div>
     {{/if}}
 
     <!-- Для компаний -->
     {{#if about}}
-        <p elem="text">{{{about}}}</p>
+        <div elem="text">{{{about}}}</div>
     {{/if}}
 </div><!-- about-md -->
 

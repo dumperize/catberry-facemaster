@@ -8,9 +8,9 @@
 
         <div elem="slider">
             {{#each list}}
-                <a href="{{page.number}}" elem="master">
-                    <img elem="master-photo" src="{{imgSrc imgID 100 100}}" alt="{{name}}">
-                    <p elem="master-name">{{name}}</p>
+                <a href="/{{page.number}}" elem="master">
+                    <img elem="master-photo" src="{{imgSrc imgID 80 80}}" alt="{{name}}">
+                    <p elem="master-name">{{fio}}</p>
                     <p elem="master-recommendations">{{getNumEnding countLikes "человек, человека, человек"}}</p>
                 </a>
             {{/each}}

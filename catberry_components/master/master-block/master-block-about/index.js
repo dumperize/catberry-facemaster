@@ -25,12 +25,19 @@ function MasterBlockAbout() {
 MasterBlockAbout.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
+            function replaceRawText(text) {
+                var tmp;
+                tmp = text.replace(/\r\n\r\n/g, "</p><p>").replace(/\n\n/g, "</p><p>");
+                tmp = tmp.replace(/\r\n/g, "<br>").replace(/\n/g, "<br>");
+                return '<p>' + tmp + '</p>';
+            }
             if (!data.about) {
-                data.aboutEduc = data.aboutEduc.replace(/\n/g, "<br>");
-                data.aboutExp = data.aboutExp.replace(/\n/g, "<br>");
-                data.aboutAddInfo = data.aboutAddInfo.replace(/\n/g, "<br>");
+
+                data.aboutEduc = replaceRawText(data.aboutEduc);
+                data.aboutExp = replaceRawText(data.aboutExp);
+                data.aboutAddInfo = replaceRawText(data.aboutAddInfo);
             } else {
-                data.about = data.about.replace(/\n/g, "<br>");
+                data.about = replaceRawText(data.about);
             }
             return {
                 aboutEduc: data.aboutEduc,

@@ -24,15 +24,14 @@ function MasterMinicard() {
  */
 MasterMinicard.prototype.render = function () {
     var self = this;
+    var store = self.$context.attributes['cat-store'];
+    var id = self.$context.attributes['master-id'];
+    var index = self.$context.attributes['index'];
+
     return this.$context.getStoreData()
         .then(function (data) {
             if (!data)
                 return;
-
-            var store = self.$context.attributes['cat-store'];
-            var id = self.$context.attributes['master-id'];
-            var index = self.$context.attributes['index'];
-
             if (store == 'company/CompanyItem'){
                 return data.masters[index];
             }
@@ -68,6 +67,7 @@ MasterMinicard.prototype.render = function () {
                 servicesNormally.push(service);
             });
             master.services = servicesNormally;
+            master.index = index;
             return master;
         });
 };
