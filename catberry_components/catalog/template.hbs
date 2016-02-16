@@ -26,8 +26,11 @@
                      class="{{#is ../catalog '==' 'article'}}catalog-item catalog-item_article{{/is}}">
 
                     {{#if img}}
-                        <a href="http://{{url}}" elem="img-cont" mix="block: js-show-catalog-video-popup"><img
-                                src="{{img}}"></a>
+                        <div elem="img-cont">
+                            <cat-block-video id="block-video-{{../id}}"
+                                             cat-store="video/VideoByRubrika" id-block="{{../id}}" index="{{@index}}">
+                            </cat-block-video>
+                        </div>
                     {{else}}
                         <div elem="img-cont"><img src="{{imgSrc imgID 180 180}}"></div>
                     {{/if}}

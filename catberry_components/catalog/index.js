@@ -38,32 +38,7 @@ Video.prototype.render = function () {
  */
 Video.prototype.bind = function () {
     $(window).bind('resize', catalogItemCut);
-    $('.js-show-catalog-video-popup').bind('click', showVideoPopup);
     $('.catalog__menu-ico').bind('click', showCatalogMenu);
-
-    function showVideoPopup() {
-        var tmp = $(this).closest('.catalog-item').clone(),
-            url = tmp.find('.catalog-item__img-cont').attr('href');
-        tmp.addClass('popup');
-        tmp.find('.catalog-item__text').css('height', 'auto');
-        tmp.find('.catalog-item__video-cont')
-            .html('<iframe src="' + url + '" frameborder="0" allowfullscreen></iframe>');
-        //console.log(url);
-        $.fancybox.open(tmp, {
-            padding: 0,
-            type: 'inline',
-            width: '60%',
-            minWidth: '250px',
-            autoHeight: true,
-            autoSize: false,
-            helpers: {
-                overlay: {
-                    locked: false
-                }
-            }
-        });
-        return false;
-    }
 
     catalogItemCut();
     function catalogItemCut() {
@@ -98,7 +73,6 @@ Video.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 Video.prototype.unbind = function () {
-    $('.js-show-catalog-video-popup').unbind('click');
     $('.catalog__menu-ico').unbind('click');
     $(window).unbind('resize');
 };

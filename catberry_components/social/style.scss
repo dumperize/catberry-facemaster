@@ -1,31 +1,36 @@
 .social {
   text-align: justify;
-  line-height: 0;
+  //line-height: 0;
   font-size: 1px;
   &:after {
     width: 100%;
-    height: 0px;
+    height: 0;
     visibility: hidden;
     overflow: hidden;
-    content: " ";
+    content: '';
     display: inline-block;
   }
-
   &__item {
+    position: relative;
     display: inline-block;
-    line-height: normal;
-    vertical-align: top;
-    &-link {
-      display: block;
-      width: 26px;
-      height: 26px;
-      font-size: 14px;
-      padding: 4px 0;
-      background-color: $color-bg-grey-medium;
+    overflow: hidden;
+    width: 28px;
+    height: 28px;;
+    background-color: $color-bg-grey-medium;
+    &:hover {
+      background-color: $color-bg-grey-dark;
+    }
+    a {
+      line-height: 28px;
+      display: inline-block;
+      width: 28px;
+      height: 28px;
       text-align: center;
-      &:hover{
-        background-color: $color-bg-grey-dark;
-      }
+      padding: 4px;
+    }
+    svg {
+      width: 20px;
+      height: 20px;
     }
   }
 }

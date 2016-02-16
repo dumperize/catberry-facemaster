@@ -144,6 +144,8 @@
     width: 100%;
     background-color: $color-bg-grey-medium;
     display: none;
+    z-index: 100;
+    box-shadow: 0 0 4px 1px rgba(0,0,0,0.1);
     a {
       border-top:1px solid #FFF;
       display: block;
