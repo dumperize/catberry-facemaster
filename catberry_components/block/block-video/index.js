@@ -43,6 +43,11 @@ Video.prototype.render = function () {
                 video.name = data.list[masterIndex].name;
                 video.imgid = data.list[masterIndex].imgID;
                 //console.log(data.list[masterIndex].videos[0]);
+            } else if (model == 'video/VideoByRubrika') {
+                video = data.data[index];
+                video.number = video.owner.page.number;
+                video.name = video.owner.name;
+                video.imgid = video.owner.imgID;
             }
             else {
                 video = data.list[index];
