@@ -70,6 +70,7 @@ MasterMinicard.prototype.render = function () {
             });
             master.services = servicesNormally;
             master.index = index;
+            master.store = store;
             return master;
         });
 };
