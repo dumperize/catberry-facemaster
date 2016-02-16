@@ -40,6 +40,10 @@ Video.prototype.render = function () {
             } else if (model == 'master/MasterList') {
                 var masterIndex = self.$context.attributes['master-index'];
                 video = data.list[masterIndex].videos[0];
+                video.number = data.list[masterIndex].page.number;
+                video.name = data.list[masterIndex].name;
+                video.imgid = data.list[masterIndex].imgID;
+                //console.log(data.list[masterIndex].videos[0]);
             }
             else {
                 video = data.list[index];
