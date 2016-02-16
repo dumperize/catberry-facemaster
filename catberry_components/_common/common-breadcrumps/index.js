@@ -34,15 +34,18 @@ Breadcrumps.prototype.render = function () {
 Breadcrumps.prototype.bind = function () {
     return {
         click: {
-            '.js-parent-rub': this._clickHandler,
+            '.js-parent-rub': this._clickHandler
         }
     }
 };
 
 
-Breadcrumps.prototype._clickHandler = function (obj) {
+Breadcrumps.prototype._clickHandler = function (event) {
     //var el = obj.target;
-    var pos = $('.js-parent-rub').position().left + $('.js-parent-rub').width();
+    var parentRub = $('.js-parent-rub');
+    var pos = parentRub.position().left + parentRub.width() + $('.breadcrumbs__icon').width();
+    event.preventDefault();
+    event.stopPropagation();
     $('.js-breadcrumbs-list').css('left', pos).toggle();
     return false;
 };
