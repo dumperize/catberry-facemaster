@@ -26,19 +26,19 @@ Social.prototype.render = function () {
   return [
     {
       url: 'http://vk.com/fm_mf',
-      ico: 'vk'
+      ico: 'vk2'
     },
     {
       url: 'http://www.facebook.com/face.mast',
-      ico: 'fb'
+      ico: 'fb2'
     },
     {
       url: 'http://www.odnoklassniki.ru/facemaster',
-      ico: 'ok'
+      ico: 'ok2'
     },
     {
       url: 'http://twitter.com/FacemasterRu',
-      ico: 'tw'
+      ico: 'tw2'
     }
   ];
 };
