@@ -78,12 +78,12 @@
                 {{#if page.videos}}
                     {{#if videos.0.title}}
                         <div>
-                            <p elem="info" mod="cont">
+                            <div elem="info" mod="cont">
                                 <cat-block-video id="block-video-{{../../../id}}"
                                                  cat-store="master/MasterList" id-block="{{videos.0.id}}" index="0"
                                                  master-index="{{../../../index}}">
                                 </cat-block-video>
-                            </p>
+                            </div>
 
                             <p elem="text">{{{videos.0.title}}}</p>
                         </div>

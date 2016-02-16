@@ -28,7 +28,6 @@ Video.prototype.render = function () {
     var id = this.$context.attributes['id-block'];
     var index = this.$context.attributes['index'];
     var self = this;
-
     return this.$context.getStoreData()
         .then(function (data) {
             var video;
@@ -39,7 +38,7 @@ Video.prototype.render = function () {
                 video.imgid = data.imgID;
             } else if (model == 'master/MasterList') {
                 var masterIndex = self.$context.attributes['master-index'];
-                video = data.list[masterIndex].videos[0];
+                video = data.list[masterIndex].activeVideos[0];
                 video.number = data.list[masterIndex].page.number;
                 video.name = data.list[masterIndex].name;
                 video.imgid = data.list[masterIndex].imgID;
@@ -66,41 +65,43 @@ Video.prototype.render = function () {
  */
 Video.prototype.bind = function () {
     var self = this;
-    //console.log(this._videoPopUpData);
-
-    return {
-        click: {
-            '.video-cont__video-cover': function (event) {
-                event.preventDefault();
-                event.stopPropagation();
-                self.$context.createComponent('block-video-popup', self._videoPopUpData)
-                    .then(function (data) {
-                        //console.log(data);
-                        //console.log(data.innerHTML);
-                        $.fancybox.open(data.innerHTML, {
-                            padding: 20,
-                            type: 'inline',
-                            width: '80%',
-                            maxWidth: '800px',
-                            minWidth: '250px',
-                            autoHeight: true,
-                            autoSize: false,
-                            helpers: {
-                                overlay: {
-                                    locked: false
-                                }
-                            },
-                            afterClose: function () {
-                                self.$context.collectGarbage();
-                            }
-                        });
-                    });
-                return false;
+    return this.render()
+        .then(function(){
+            return {
+                click: {
+                    '.video-cont__video-cover': self.handlePopUp
+                }
             }
-        }
-    }
+        });
 };
 
+Video.prototype.handlePopUp = function (event) {
+    var self = this;
+    event.preventDefault();
+    event.stopPropagation();
+
+    self.$context.createComponent('block-video-popup', self._videoPopUpData)
+        .then(function (data) {
+            $.fancybox.open(data.innerHTML, {
+                padding: 20,
+                type: 'inline',
+                width: '80%',
+                maxWidth: '800px',
+                minWidth: '250px',
+                autoHeight: true,
+                autoSize: false,
+                helpers: {
+                    overlay: {
+                        locked: false
+                    }
+                },
+                afterClose: function () {
+                    self.$context.collectGarbage();
+                }
+            });
+        });
+    return false;
+};
 /**
  * Does cleaning for everything that have NOT been set by .bind() method.
  * This method is optional.
