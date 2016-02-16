@@ -1,12 +1,10 @@
 <div block="breadcrumbs">
     <span elem="header">Вы находитесь: </span>
     {{#each this}}
-        <span elem="icon">
-            {{icon "arrow-breadcrumbs"}}
-        </span>
+        <span elem="icon">➜</span>
         {{#if url}}
             {{#if links}}
-                <a elem="level" mod="link" mix="block:js-parent-rub">{{title}}</a>
+                <a href="" elem="level" mod="link" mix="block:js-parent-rub"><span>{{title}}</span></a>
             {{else}}
                 <a href="{{url}}" elem="level" mod="link">{{title}}</a>
             {{/if}}
