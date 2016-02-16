@@ -42,7 +42,7 @@ function Pages($config) {
         'oferta': '',
         'recommendation': 'other/Recommendation',
         'registration': '',
-        'request': '',
+        'request': 'Request',
         'sale': 'sale/SaleByRubrika',
         'vacancy': 'other/Vacancy',
         'vacancy-item': 'other/VacancyItem',

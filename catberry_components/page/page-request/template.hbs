@@ -1,26 +1,26 @@
 <div block="callback_request">
 <h1 block="h1" mod="style">Заявка мастеру</h1>
 
-    <form elem="form" method="{{method}}" action="{{url}}" id="callback-request-form">
+    <form elem="form" method="post" action="{{url}}" id="callback-request-form">
         <p elem="intro">Опишите вашу задачу</p>
 
         <div elem="input">
             <textarea block="textarea"
                       placeholder="Я хочу (отремонтировать, организовать, установить, доставить)"
-                      name="callbackRequestForm[text]"></textarea>
+                    name="RequestForm[text]"></textarea>
         </div>
         <p elem="intro">
             Оставьте ваши контакты
         </p>
 
         <div elem="input">
-            <input block="input-text" type="text" placeholder="Ваше имя" name="callbackRequestForm[name]">
+            <input block="input-text" type="text" placeholder="Ваше имя" name="RequestForm[contactName]">
         </div>
         <div elem="input">
-            <input block="input-text" type="text" placeholder="Ваш телефон" name="callbackRequestForm[phone]">
+            <input block="input-text" type="text" placeholder="Ваш телефон" name="RequestForm[contactPhone]">
         </div>
         <div elem="input">
-            <input block="input-text" type="text" placeholder="Ваш email" name="callbackRequestForm[email]">
+            <input block="input-text" type="text" placeholder="Ваш email" name="RequestForm[contactEmail]">
         </div>
         <div elem="submit">
             <input block="btn-accent" type="submit" value="отправить заявку">
