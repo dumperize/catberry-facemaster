@@ -16,7 +16,7 @@
     "errorhandler": "^1.0.0",
     "underscore": "^1.8.3",
     "digits": "0.2.0",
-    "fm-hbs": "0.1.0",
+    "fm-hbs": "0.1.1",
     "fm-catberry-walle": "0.1.0"
   },
   "engines": {
