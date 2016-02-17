@@ -17,12 +17,22 @@
       padding-bottom: 60px;
     }
   }
+  .search {
+    background-color: transparent;
+    margin: 19px 0;
+    &__submit {
+      background-color: $color-blue;
+      &:hover {
+        background-color: darken($color-blue, 5%)
+      }
+    }
+  }
 }
 
 .or {
   position: absolute;
   top: 70px;
-  right: 33.33%;
+  right: 33.6%;
   height: 52px;
   width: 52px;
   border-radius: 50%;
