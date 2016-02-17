@@ -1,29 +1,32 @@
 {
-	"name": "catberry-example",
-	"version": "0.0.0",
-	"description": "Example Application based on Catberry Framework",
-	"main": "./server.js",
-	"browser": {
-		"./config/environment.json": "./config/browser.json"
-	},
-	"author": "Catberry",
-	"license": "MIT",
-	"dependencies": {
-		"catberry": "^7.0.0",
-		"catberry-handlebars": "^1.0.8",
-		"connect": "^3.0.0",
-		"serve-static": "^1.0.0",
-		"errorhandler": "^1.0.0",
-		"underscore": "^1.8.3"
-	},
-	"engines": {
-		"node": ">=4"
-	},
-	"scripts": {
-		"start": "npm run release",
-		"release": "node ./build.js release && node ./server.js release",
-		"debug": "node ./build.js & node ./server.js",
-		"debug-win": "powershell -Command \"Start-Process -NoNewWindow node ./build.js; Start-Process -NoNewWindow -Wait node ./server.js\""
-	}
+  "name": "catberry-facemaster",
+  "version": "0.0.0",
+  "description": "Facemaster Application based on Catberry Framework",
+  "main": "./server.js",
+  "browser": {
+    "./config/environment.json": "./config/browser.json"
+  },
+  "author": "FM",
+  "license": "MIT",
+  "dependencies": {
+    "catberry": "^7.0.0",
+    "catberry-handlebars": "^1.0.8",
+    "connect": "^3.0.0",
+    "serve-static": "^1.0.0",
+    "errorhandler": "^1.0.0",
+    "underscore": "^1.8.3",
+    "digits": "0.2.0",
+    "fm-hbs": "0.1.0",
+    "fm-catberry-walle": "0.1.0"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "start": "npm run release",
+    "release": "node ./build.js release && node ./server.js release",
+    "debug": "node ./build.js & node ./server.js",
+    "debug-win": "powershell -Command \"Start-Process -NoNewWindow node ./build.js; Start-Process -NoNewWindow -Wait node ./server.js\""
+  }
 }
 

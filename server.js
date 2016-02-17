@@ -10,8 +10,7 @@ var http = require('http'),
     publicPath = path.join(__dirname, 'public'),
     connect = require('connect'),
     config = require('./config/environment.json'),
-    templateEngine = require('./special_modules/catberry-handlebars'),
-    helpers = require('./special_modules/catberry-handlebars-helpers'),
+    templateEngine = require('fm-hbs'),
     cat = catberry.create(config),
     app = connect();
 
@@ -22,7 +21,18 @@ config.server.port = config.server.port || 3000;
 config.isRelease = isRelease === undefined ? config.isRelease : isRelease;
 
 templateEngine.register(cat.locator);
-helpers.register(cat.locator);
+
+
+/* helpers for handlebars */
+var handlebars = cat.locator.resolve('handlebars');
+var helpers = require('./lib/handlebars-helpers')(handlebars);
+
+Object.keys(helpers)
+    .forEach(function (name) {
+        handlebars.registerHelper(name, helpers[name]);
+    });
+/* end helpers for handlebars */
+
 
 var serveStatic = require('serve-static');
 app.use(serveStatic(publicPath));
