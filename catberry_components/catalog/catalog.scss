@@ -131,7 +131,7 @@
     margin-right: 12px;
     text-align: center;
     overflow: hidden;
-    @extend .video-prev-cont;
+    //@extend .video-prev-cont;
     @include to(lg) {
       width: 214px;
       height: 120px;
@@ -149,6 +149,17 @@
       margin: -100%;
       vertical-align: middle;
       min-height: 182px;
+    }
+    .video-cont__img-cont {
+      max-height: 182px;
+      line-height: 182px;
+      @include to(lg) {
+        max-height: 120px;
+        line-height: 120px;
+      }
+    }
+    .video-cont__title-prev {
+      display: none;
     }
   }
   &__add-date {
