@@ -6,12 +6,18 @@
     @extend .col-md-8;
     @extend .col-sm-6;
     @extend .col-xs-6;
+    @include at(xs) {
+      padding-right: 5px;
+    }
   }
   &__callback {
     @extend .col-lg-3;
     @extend .col-md-4;
     @extend .col-sm-6;
     @extend .col-xs-6;
+    @include at(xs) {
+      padding-left: 5px;
+    }
   }
   &__title {
     @extend .col-xs-12;
