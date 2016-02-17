@@ -26,7 +26,7 @@ function MasterListForCompany($uhr) {
     this._options = {
         data: {
             filter: '["and",["IN", "id", [:masterID]]]',
-            expand: 'comments,sales,videos,vkLikes,albums,contacts,page,company',
+            expand: 'activeComments,activeSales,activeVideos,vkLikes,activeAlbums,contacts,page,company',
             order: 'sort'
         }
     };
@@ -55,6 +55,11 @@ MasterListForCompany.prototype.load = function () {
 //дублирует MasterList - нужно будет как-то переделать
 MasterListForCompany.prototype._strucrurResult = function (result) {
     result.forEach(function (master) {
+        master.videos = master.activeVideos;
+        master.sales = master.activeSales;
+        master.articles = master.activeArticles;
+        master.comments = master.activeComments;
+        master.albums = master.activeAlbums;
         master.services = JSON.parse(master.services);
         if (master.vkLikes) {
             master.vkLikes.countLikes = master.vkLikes.countLikes ? master.vkLikes.countLikes : 0;

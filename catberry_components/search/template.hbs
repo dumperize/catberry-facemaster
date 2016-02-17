@@ -1,13 +1,10 @@
-<div block="search" class="search {{#if modificator}} search_{{modificator}} {{/if}}">
+<div block="search">
+    <a href="" elem="link">Найти услугу</a>
     <form elem="form" action="{{url}}" method="{{method}}">
-        <div elem="title">
-            {{icon "search"}}
-        </div>
-        <div elem="field">
-            <input type="text" name="search" elem="field-input" mix="block:input-text">
-        </div>
-        <div elem="button">
-            <button type="submit" elem="button-submit">найди услугу</button>
-        </div>
+        {{icon "search"}}
+        <label elem="field">
+            <input type="text" name="search" elem="input" autofocus>
+        </label>
+        <input type="submit" elem="submit" value="Найти услугу">
     </form>
 </div>

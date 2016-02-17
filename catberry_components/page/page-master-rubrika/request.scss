@@ -8,14 +8,27 @@
   font-weight: bold;
   text-decoration: none;
   color: $color-text-dark;
-  @include cf;
   @include at(xs) {
-    height: 40px;
+    height: 36px;
+    line-height: 36px;
     overflow: hidden;
+    padding: 0;
+    text-align: center;
   }
   &:hover {
     background-color: lighten(#eed200, 10%);
     color: $color-text-dark;
+  }
+  &__text {
+    @include at(xs) {
+      display: none;
+    }
+  }
+  &__text-xs {
+    display: none;
+    @include at(xs) {
+      display: inline;
+    }
   }
   &__icon {
     .icon{

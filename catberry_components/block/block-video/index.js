@@ -36,20 +36,24 @@ Video.prototype.render = function () {
                 video.number = data.page.number;
                 video.name = data.name;
                 video.imgid = data.imgID;
-            } else if (model == 'master/MasterList') {
+            } else if (model == 'master/MasterList' ) {
                 var masterIndex = self.$context.attributes['master-index'];
                 video = data.list[masterIndex].activeVideos[0];
                 video.number = data.list[masterIndex].page.number;
                 video.name = data.list[masterIndex].name;
                 video.imgid = data.list[masterIndex].imgID;
-                //console.log(data.list[masterIndex].videos[0]);
+            } else if (model == 'company/CompanyItem') {
+                var masterIndex = self.$context.attributes['master-index'];
+                video = data.masters[masterIndex].activeVideos[0];
+                video.number = data.masters[masterIndex].page.number;
+                video.name = data.masters[masterIndex].name;
+                video.imgid = data.masters[masterIndex].imgID;
             } else if (model == 'video/VideoByRubrika') {
                 video = data.data[index];
                 video.number = video.owner.page.number;
                 video.name = video.owner.name;
                 video.imgid = video.owner.imgID;
-            }
-            else {
+            } else {
                 video = data.list[index];
                 video.number = video.owner.page.number;
                 video.name = video.owner.name;
