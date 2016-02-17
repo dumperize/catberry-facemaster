@@ -17,6 +17,7 @@
     border-right-width: 50px;
     border-right-style: solid;
     padding-left: 15px;
+    padding-right: 10px;
     position: relative;
     cursor: pointer;
   }
@@ -60,8 +61,8 @@
       }
       &__icon {
         position: absolute;
-        top:12px;
-        right: 8px;
+        top:17px;
+        right: 12px;
         @extend %icon;
         @extend %icon_block;
         @extend %icon_size_small;
