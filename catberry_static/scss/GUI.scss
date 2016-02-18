@@ -123,6 +123,7 @@ a:active {
   //padding: 19px;
   display: none;
   position: relative;
+  overflow: hidden;
   @include to(md) {
     padding-bottom: 60px;
   }

@@ -11,6 +11,22 @@ html, body {
     color: $color-text;
 }
 
+/* ----- fancybox ----- */
+html.fancybox-lock {
+    overflow: visible !important; // предотвращаем скролл страницы при открытом окне фансибокса
+}
+.fancybox-inner {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    height: auto !important;
+}
+.fancybox-wrap:after {
+    display: block;
+    content: '';
+    height: 20px;
+}
+/* ----- */
+
 .bg {
     &_grey {
         background: $color-bg-grey-light;
