@@ -83,9 +83,9 @@ MasterMinicard.prototype.bindFunctionWidget = null;
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterMinicard.prototype.bind = function () {
-    var width = window.innerWidth
-        || document.documentElement.clientWidth
-        || document.body.clientWidth;
+    var width = document.documentElement.clientWidth
+        || document.body.clientWidth
+        || window.innerWidth;
 
     this._minicardServicesCut();
 
@@ -130,8 +130,11 @@ MasterMinicard.prototype.handleShowWidgetTab = function (event) {
     event.preventDefault();
     event.stopPropagation();
     var targetElement = event.currentTarget;
+    var width = document.documentElement.clientWidth
+        || document.body.clientWidth
+        || window.innerWidth;
 
-    if ($(targetElement).hasClass('act') && ($(window).width() >= 750)) {
+    if ($(targetElement).hasClass('act') && (width >= 750)) {
         $(targetElement).siblings().removeClass('show');
         $(targetElement).addClass('show');
     }
@@ -163,9 +166,9 @@ MasterMinicard.prototype.handleShowService = function (event) {
  * @private
  */
 MasterMinicard.prototype._minicardServicesCut = function () {
-    var width = window.innerWidth
-        || document.documentElement.clientWidth
-        || document.body.clientWidth;
+    var width = document.documentElement.clientWidth
+        || document.body.clientWidth
+        || window.innerWidth;
 
     var carcas = this.$context.element.querySelector('.master-minicard');
     var services = this.$context.element.querySelector('.master-minicard__services');

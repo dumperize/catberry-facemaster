@@ -36,7 +36,7 @@ Video.prototype.render = function () {
                 video.number = data.page.number;
                 video.name = data.name;
                 video.imgid = data.imgID;
-            } else if (model == 'master/MasterList' ) {
+            } else if (model == 'master/MasterList') {
                 var masterIndex = self.$context.attributes['master-index'];
                 video = data.list[masterIndex].activeVideos[0];
                 video.number = data.list[masterIndex].page.number;
@@ -75,7 +75,7 @@ Video.prototype.render = function () {
 Video.prototype.bind = function () {
     var self = this;
     return this.render()
-        .then(function(){
+        .then(function () {
             return {
                 click: {
                     '.video-cont__video-cover': self.handlePopUp
@@ -92,6 +92,7 @@ Video.prototype.handlePopUp = function (event) {
     self.$context.createComponent('block-video-popup', self._videoPopUpData)
         .then(function (data) {
             $.fancybox.open(data.innerHTML, {
+                margin: 40,
                 padding: 20,
                 type: 'inline',
                 width: '80%',
@@ -99,11 +100,6 @@ Video.prototype.handlePopUp = function (event) {
                 minWidth: '250px',
                 autoHeight: true,
                 autoSize: false,
-                helpers: {
-                    overlay: {
-                        locked: false
-                    }
-                },
                 afterClose: function () {
                     self.$context.collectGarbage();
                 }

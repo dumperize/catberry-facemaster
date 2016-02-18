@@ -1,7 +1,9 @@
 <div block="next-prev-master" style="{{#unless next}}margin-right: -8px;{{/unless}}">
     {{#if prev}}
         <a elem="prev" href="/{{prev.page.number}}">
-            {{icon "arrLeft"}}<span>{{{prev.name}}}</span>
+            <!-- Важно! Прослойка между <a> и <svg>. -->
+            {{icon "arrLeft"}}
+            <span>{{{prev.name}}}</span>
             <img src="{{imgSrc prev.imgID 50 50}}" alt="">
         </a>
     {{/if}}
