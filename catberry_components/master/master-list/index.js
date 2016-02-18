@@ -74,14 +74,14 @@ MasterList.prototype.structurData = function (data) {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterList.prototype.bind = function () {
-    this._window.addEventListener('resize', this._allMinicardWidgetVisibility);
+    //this._window.addEventListener('resize', this._allMinicardWidgetVisibility);
     this._window.addEventListener('scroll', this._handleScroll);
 
     setTimeout(this._allMinicardServicesCut, 100);
 };
 
 MasterList.prototype.unbind = function () {
-    this._window.removeEventListener('resize', this._allMinicardWidgetVisibility);
+    //this._window.removeEventListener('resize', this._allMinicardWidgetVisibility);
     this._window.removeEventListener('scroll', this._handleScroll);
     this.$context.collectGarbage();
 };
@@ -126,17 +126,17 @@ MasterList.prototype._handleScroll = function () {
 MasterList.prototype._loadMoreItems = function () {
     return this.$context.sendAction('getNextPage');
 };
-/**
- * Widget visibility.
- * @private
- */
-MasterList.prototype._allMinicardWidgetVisibility = function () {
-    if ($(window).width() >= 750) {
-        $('.master-content-widget').each(function () {
-            $(this).find('.act').first().addClass('show');
-        });
-    } else {
-        $('.master-content-widget li').removeClass('show');
-    }
-};
+///**
+// * Widget visibility.
+// * @private
+// */
+//MasterList.prototype._allMinicardWidgetVisibility = function () {
+//    if ($(window).width() >= 750) {
+//        $('.master-content-widget').each(function () {
+//            $(this).find('.act').first().addClass('show');
+//        });
+//    } else {
+//        $('.master-content-widget li').removeClass('show');
+//    }
+//};
 

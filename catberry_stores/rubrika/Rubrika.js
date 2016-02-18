@@ -50,9 +50,9 @@ Rubrika.prototype.load = function () {
         .then(function (result) {
             if (result.content.length == 0)
                 self.$context.notFound();
-
             var data = result.content[0];
-            if (data.parentID == 0 || rubrika != data.parent.unique)
+
+            if (!data || data.parentID == 0 || rubrika != data.parent.unique)
                 self.$context.notFound();
 
             if (data.activeBanners) {

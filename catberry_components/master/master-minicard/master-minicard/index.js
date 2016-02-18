@@ -74,6 +74,8 @@ MasterMinicard.prototype.render = function () {
             return master;
         });
 };
+MasterMinicard.prototype.bindFunctionCut = null;
+MasterMinicard.prototype.bindFunctionWidget = null;
 
 /**
  * Returns event binding settings for the component.
@@ -86,7 +88,12 @@ MasterMinicard.prototype.bind = function () {
         || document.body.clientWidth;
 
     this._minicardServicesCut();
-    this._window.addEventListener('resize', this._minicardServicesCut.bind(this));
+
+    this.bindFunctionCut = this._minicardServicesCut.bind(this);
+    this.bindFunctionWidget = this._minicardWidgetVisibility.bind(this);
+
+    this._window.addEventListener('resize', this.bindFunctionCut);
+    this._window.addEventListener('resize', this.bindFunctionWidget);
 
     // раскрываем первый активный элемент виджета
     if (width >= 750) {
@@ -102,6 +109,19 @@ MasterMinicard.prototype.bind = function () {
         }
     };
 };
+
+/**
+ * Does cleaning for everything that have NOT been set by .bind() method.
+ * This method is optional.
+ * @returns {Promise|undefined} Promise or nothing.
+ */
+MasterMinicard.prototype.unbind = function () {
+    this._window.removeEventListener('resize');
+    this._window.removeEventListener('resize', this.bindFunctionCut);
+    this._window.removeEventListener('resize', this.bindFunctionWidget);
+};
+
+
 /**
  * Показывает боковой блок при наведении на иконку мышкой
  * @param event
@@ -188,10 +208,19 @@ MasterMinicard.prototype._showFirstActWidget = function () {
 };
 
 /**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
+ * Widget visibility.
+ * @private
  */
-MasterMinicard.prototype.unbind = function () {
-    this._window.removeEventListener('resize', this._minicardServicesCut.bind(this));
+MasterMinicard.prototype._minicardWidgetVisibility = function () {
+    var width = window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth;
+    var widget = this.$context.element.querySelector('.master-content-widget');
+
+    if (width >= 750) {
+        $(widget).find('.act').first().addClass('show');
+    } else {
+        $(widget).find('li').removeClass('show');
+    }
 };
+
