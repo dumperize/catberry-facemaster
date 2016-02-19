@@ -113,6 +113,7 @@
 }
 
 .catalog-item {
+  @extend .fade-in; // плавное появление
   position: relative;
   background-color: $color-bg-grey-light;
   margin-bottom: 20px;

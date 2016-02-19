@@ -63,9 +63,11 @@
                                                 </div>
                                         </span>
                                         {{else}}
-                                            <a block="filter-by" elem="tag" href="{{path}}">
-                                                {{name}}
-                                            </a>
+                                            <p block="filter-by" elem="tag">
+                                                <a href="{{path}}">
+                                                    {{name}}
+                                                </a>
+                                            </p>
                                         {{/if}}
                                     {{/each}}
                                 {{/each}}
