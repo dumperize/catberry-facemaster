@@ -1,17 +1,19 @@
 <div block="reviews-cont-md">
 
     <div block="recommendations">
-        {{#is vkLikes.countLikes ">" 0}}
             <p elem="total">Мастера рекомендуют <span elem="total-count">{{vkLikes.countLikes}} человек</span></p>
 
             <div elem="list">
                 {{#each vkLikes.data}}
+                    {{#if this}}
                     <a elem="item" target="_blank" href="http://vk.com/id{{uid}}">
                         <img src="{{photo_100}}" alt="{{first_name}} {{last_name}}">
                     </a>
+                    {{else}}
+                        <span elem="item" mod="empty"></span>
+                    {{/if}}
                 {{/each}}
             </div>
-        {{/is}}
 
         <div elem="buttons-block">
             <p elem="buttons-block-title">Порекомендуйте мастера:</p>

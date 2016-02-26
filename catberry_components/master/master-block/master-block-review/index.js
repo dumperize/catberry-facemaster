@@ -25,15 +25,24 @@ function MasterBlockReview() {
 MasterBlockReview.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
-            try {
-                data.vkLikes.data = JSON.parse(data.vkLikes.data);
-                if (data.vkLikes.data.length > 9) {
-                    data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов (больше не требуется)
-                }
-            } catch (e){
 
+            if (data.vkLikes) {
+                try {
+                    data.vkLikes.data = JSON.parse(data.vkLikes.data);
+                } catch (e) {
+
+                }
             }
-            //console.log(data.comments);
+            if (!data.vkLikes) {
+                data.vkLikes = {
+                    data: [],
+                    countLikes: 0
+                }
+            }
+            if (data.vkLikes.data.length != 9) {
+                data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов (больше не требуется)
+            }
+            console.log(data.vkLikes);
             return {
                 comments: data.comments.reverse(),
                 vkLikes: data.vkLikes,
