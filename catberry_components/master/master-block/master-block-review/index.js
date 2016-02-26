@@ -25,9 +25,13 @@ function MasterBlockReview() {
 MasterBlockReview.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
-            data.vkLikes.data = JSON.parse(data.vkLikes.data);
-            if (data.vkLikes.data.length > 9) {
-                data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов (больше не требуется)
+            try {
+                data.vkLikes.data = JSON.parse(data.vkLikes.data);
+                if (data.vkLikes.data.length > 9) {
+                    data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов (больше не требуется)
+                }
+            } catch (e){
+
             }
             //console.log(data.comments);
             return {

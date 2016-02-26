@@ -28,7 +28,7 @@ function MasterItemSmall($uhr) {
     this._path = '/master';
     this._options = {
         data: {
-            filter: '["and", ["=", "id", ":id"],["=","publicStatus", "1"]]',
+            filter: '["and", ["=", "id", ":id"],["=","status", "2"]]',
             expand: 'company'
         }
     };

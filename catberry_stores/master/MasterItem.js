@@ -28,7 +28,7 @@ function MasterItem($uhr) {
     this._path = '/master';
     this._options = {
         data: {
-            filter: '["and", ["=", "id", ":id"],["=","publicStatus", "1"]]',
+            filter: '["and", ["=", "id", ":id"],["=","status", "2"]]',
             expand: 'contacts,activeArticles,activeComments,districts,activeAlbums,activeSales,schedule,activeVideos,workCondition,callbacks,vkLikes,rubrika,tags,company'
         }
     };

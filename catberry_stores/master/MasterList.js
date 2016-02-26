@@ -30,7 +30,8 @@ function MasterList($uhr) {
         data: {
             filter: '["and",["=", "rubrikaID", ":rubrikaID"]]',
             expand: 'activeComments,activeSales,activeVideos,vkLikes,activeAlbums,contacts,page,company',
-            order: 'sort'
+            order: 'sort',
+            limit: 200
         }
     };
 }

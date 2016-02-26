@@ -83,22 +83,22 @@ MasterMinicard.prototype.bindFunctionWidget = null;
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterMinicard.prototype.bind = function () {
-    var width = document.documentElement.clientWidth
-        || document.body.clientWidth
-        || window.innerWidth;
-
-    this._minicardServicesCut();
-
     this.bindFunctionCut = this._minicardServicesCut.bind(this);
     this.bindFunctionWidget = this._minicardWidgetVisibility.bind(this);
 
     this._window.addEventListener('resize', this.bindFunctionCut);
     this._window.addEventListener('resize', this.bindFunctionWidget);
 
+
+    var width = document.documentElement.clientWidth
+        || document.body.clientWidth
+        || window.innerWidth;
+    this._minicardServicesCut();
     // раскрываем первый активный элемент виджета
     if (width >= 750) {
         this._showFirstActWidget();
     }
+
 
     return {
         click: {
@@ -116,7 +116,6 @@ MasterMinicard.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 MasterMinicard.prototype.unbind = function () {
-    this._window.removeEventListener('resize');
     this._window.removeEventListener('resize', this.bindFunctionCut);
     this._window.removeEventListener('resize', this.bindFunctionWidget);
 };

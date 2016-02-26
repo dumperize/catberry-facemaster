@@ -23,28 +23,23 @@ function Sale() {
  * for template engine.
  */
 Sale.prototype.render = function () {
+    var self = this;
     var model = this.$context.attributes['cat-store'];
     var id = this.$context.attributes['id-block'];
     var index = this.$context.attributes['index'];
 
-    //console.log(data);
-
-    if (model == 'master/MasterItem') {
-        return this.$context.getStoreData()
-            .then(function (data) {
-                console.log(index);
-                return data.sales[index];
-            });
-    }
-    if (model == 'sale/SaleByRubrika') {
-        var num = this.$context.attributes['num'];
-        return this.$context.getStoreData()
-            .then(function (data) {
-                return data[num].sale[index];
-            });
-    }
     return this.$context.getStoreData()
         .then(function (data) {
+            if (model == 'master/MasterItem') {
+                return data.sales[index];
+            }
+
+            if (model == 'sale/SaleByRubrika') {
+                var num = self.$context.attributes['num'];
+                var sale = data[num].sale[index];
+                sale.page = sale.owner.page;
+                return sale;
+            }
             return data.list[index];
         });
 

@@ -66,9 +66,9 @@ module.exports = [
     // путь: рубрика/подрубрика/секция
     // путь: рубрика/подрубрика/тег/секция
     {
-        expression: /^\/([^\/\d]+)\/([^\/\d]+)\/?((?!video|sale|sovety|company)[^\/\d]+)?\/?(video|sale|sovety|company)?$/i,
+        expression: /^\/([^\/\d]+)\/([^\/\d]+)\/?((?!video$|sale$|sovety$|company$)[^\/\d]+)?\/?(video|sale|sovety|company)?$/i,
         map: function (urlPath) {
-            var matches = urlPath.path.match(/^\/([^\/\d]+)\/([^\/\d]+)\/?((?!video|sale|sovety|company)[^\/\d]+)?\/?(video|sale|sovety|company)?$/i);
+            var matches = urlPath.path.match(/^\/([^\/\d]+)\/([^\/\d]+)\/?((?!video$|sale$|sovety$|company$)[^\/\d]+)?\/?(video|sale|sovety|company)?$/i);
             return {
                 'rubrika/Rubrika': {
                     rubrika: matches[1],
