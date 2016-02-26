@@ -36,6 +36,7 @@ MasterRecommended.prototype.render = function () {
                     fio += (name[2].substring(0,1) + '.');
                 }
                 item.fio = fio;
+                //console.log(data);
             });
             return {
                 list: data,

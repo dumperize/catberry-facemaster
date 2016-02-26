@@ -20,6 +20,9 @@
   .search {
     background-color: transparent;
     margin: 19px 0;
+    @include at(sm) {
+      margin: 12px 0;
+    }
     &__submit {
       background-color: $color-blue;
       &:hover {
@@ -32,6 +35,7 @@
 .or {
   position: absolute;
   top: 70px;
+  margin-right: -25px;
   right: 33.6%;
   height: 52px;
   width: 52px;
@@ -41,17 +45,16 @@
   padding-top: 17px;
   text-align: center;
   font-weight: bold;
-  transform: translateX(25px);
   @include to(lg) {
     right: 50%;
   }
   @include at(sm) {
     height: 44px;
     width: 44px;
-    top: 50px;
+    margin-right: -22px;
+    top: 64px;
     padding-top: 13px;
     font-weight: normal;
-    transform: translateX(22px);
   }
   @include at(xs) {
     background-color: transparent;

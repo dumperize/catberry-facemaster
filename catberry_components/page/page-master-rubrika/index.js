@@ -32,6 +32,7 @@ PageMasterRubrika.prototype.render = function () {
                     }
                 });
             }
+            //console.log(data.rubrika.activeBanners);
             return data;
         });
 };

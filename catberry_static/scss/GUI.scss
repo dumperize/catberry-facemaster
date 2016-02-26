@@ -1,5 +1,16 @@
 // GUI stylies of the project
 // For example, styles of the links, buttons and so on.
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fade-in 0.5s ease;
+}
 
 a {
   color: $color-a;

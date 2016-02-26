@@ -1,5 +1,6 @@
 .master-minicard {
   $width-lg: 164px;
+  @extend .fade-in; // плавное появление
 
   @extend .bg_grey;
   padding: 20px;

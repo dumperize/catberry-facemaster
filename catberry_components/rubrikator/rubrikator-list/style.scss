@@ -1,5 +1,5 @@
 .catalog-list {
-  @include font-tuning(14, 18);
+  font-size: 1.4rem;
   &__item {
     &-link {
       color: inherit;
@@ -25,7 +25,7 @@
   }
 
   &_page_main {
-    @include font-tuning(12, 18);
+    font-size: 1.2rem;
     @include at(md) {
       margin-top: 5px;
     }
@@ -49,7 +49,7 @@
           &-link {
             height: 30px;
             padding: 8px 0 5px 10px;
-            @include font-tuning(12, 14);
+            font-size: 1.2rem;
           }
         }
         &__icon {
@@ -90,7 +90,8 @@
     .catalog-list {
       &__item {
         height: 50px;
-        @include font-tuning(17, 17);
+        font-size: 1.7rem;
+        line-height: 1;
         &-link {
           padding: 17px 0px;
         }
