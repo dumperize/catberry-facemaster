@@ -23,17 +23,25 @@
   bottom: 0;
 }
 .moneyr-top {
+  background-color: #FFF;
   //border: 1px solid blue;
-  max-height: 100px;
-  overflow: hidden;
+  max-height: 110px;
   position: absolute;
   top: 0;
-  margin-left: 10px;
+  left: 0;
   z-index: 1;
   text-align: center;
-  @extend .container;
+  width: 100%;
+  padding-bottom: 10px;
+  &__item {
+    max-height: 100px;
+    overflow: hidden;
+  }
   @include at(md) {
     max-height: 75px;
+    img:first-child {
+      display: none;
+    }
   }
   @include to(md) {
     display: none;

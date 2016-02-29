@@ -10,6 +10,7 @@
   }
 }
 .rubrika-list {
+  @extend .fade-in; // плавное появление
   margin-bottom: 20px;
   &__title {
     height: 50px;
