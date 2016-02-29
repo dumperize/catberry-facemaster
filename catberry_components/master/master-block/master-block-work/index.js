@@ -33,7 +33,9 @@ MasterBlockWork.prototype.render = function () {
             });
             data.schedule = tempArr;
             if (data.workCondition && data.workCondition.data != '') {
-                data.workCondition.data.comming = data.workCondition.data.comming.split(',');
+                if (data.workCondition.data.comming) {
+                    data.workCondition.data.comming = data.workCondition.data.comming.split(',');
+                }
                 if (data.workCondition.data.payment || data.workCondition.data.coop) {
                     data.workCondition.isActive = true;
                 } else {

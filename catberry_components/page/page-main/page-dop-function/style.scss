@@ -1,13 +1,12 @@
-.dop-function{
-
+.dop-function {
   @extend .col-lg-3;
   @extend .col-md-4;
   @extend .col-ms-12;
-  @include from(md){
+  @include from(md) {
     padding-right: 20px;
     padding-left: 20px;
   }
-  @include from(sm){
+  @include from(sm) {
     padding-right: 15px;
     padding-left: 15px;
   }
@@ -18,12 +17,13 @@
     padding: 0;
   }
 }
+
 .become-master, .about-company, .bayda {
-  padding-bottom:10px;
+  padding-bottom: 10px;
   @extend .col-md-12;
   @extend .col-sm-4;
 
-  &__inner{
+  &__inner {
     background-color: $color-green-light;
   }
   &__title {
@@ -40,13 +40,13 @@
       width: 100%;
       color: inherit;
       text-decoration: none;
-      &:hover, &_hover{
+      &:hover, &_hover {
         background-color: #afd962;
       }
     }
   }
-  &__icon{
-    float:left;
+  &__icon {
+    float: left;
     margin-right: 10px;
     @extend %icon;
     @extend %icon_block;
@@ -68,7 +68,7 @@
       vertical-align: middle;
     }
   }
-  @include from(md){
+  @include from(md) {
     padding-right: 0;
     padding-left: 0;
     &__item-cube {
@@ -80,10 +80,10 @@
       border-image: none;
       border-style: solid;
       border-width: 1px 0 0 1px;
-      &:nth-child(2n-1){
+      &:nth-child(2n-1) {
         border-left-width: 0;
       }
-      &:nth-child(1),&:nth-child(2){
+      &:nth-child(1), &:nth-child(2) {
         border-top-width: 0;
       }
       &-link {
@@ -93,46 +93,49 @@
       }
     }
   }
-  @include to(md){
+  @include to(md) {
     padding-right: 5px;
     padding-left: 5px;
-    &__menu, &__menu-cube{
+    &__menu, &__menu-cube {
       display: none;
     }
-    &__menu-cube{
-      padding:0;
+    &__menu-cube {
+      padding: 0;
     }
-    &__item{
-      &-link{
-        padding-top:0;
-        padding-right:0;
+    &__item {
+      &-link {
+        padding-top: 0;
+        padding-right: 0;
         padding-left: 10px;
-        height:34px;
+        height: 34px;
         line-height: 34px;
         font-size: 1.2rem;
       }
     }
-    &__item-cube{
-      height:34px;
+    &__item-cube {
+      height: 34px;
       width: 100%;
       font-size: 1rem;
-      &-link{
+      &-link {
         padding-left: 10px;
       }
-      &:hover, &_hover{
+      &:hover, &_hover {
         background-color: #afd962;
       }
     }
-    &__title{
+    &__title {
       padding: 0 20px;
       cursor: pointer;
       line-height: 34px;
       font-size: 1.3rem;
-      &:after{
+      &:hover {
+        background-color: darken($color-green-light, 5%);
+      }
+      &:after {
         content: ' ';
         display: block;
         position: absolute;
-        right:10px;
+        right: 10px;
         top: 12px;
         @extend %icon;
         @extend %icon_block;
@@ -141,32 +144,35 @@
       }
     }
   }
-  @include at(xs){
+  @include at(xs) {
     padding-right: 10px;
     padding-left: 10px;
-    &__inner{
+    &__inner {
+      //padding-top: 3px;
+      //padding-bottom: 3px;
+    }
+    &__title {
       padding-top: 3px;
       padding-bottom: 3px;
-    }
-    &__title{
-      &:after{
-        right:20px;
+      &:after {
+        right: 20px;
         top: 15px;
       }
     }
   }
 
 }
-.bayda{
-  @include from(md){
-    &__title{
-      display:none;
+
+.bayda {
+  @include from(md) {
+    &__title {
+      display: none;
     }
   }
 }
 
-.dop-function-block-uncollapse{
-  @include to(md){
-    display:block;
+.dop-function-block-uncollapse {
+  @include to(md) {
+    display: block;
   }
 }

@@ -71,7 +71,23 @@ DopFunction.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 DopFunction.prototype.bind = function () {
+    $(window).bind('resize', showSubMenuDefault);
+    $('.become-master__title').bind('click', showSubMenu);
+    $('.about-company__title').bind('click', showSubMenu);
+    $('.bayda__title').bind('click', showSubMenu);
 
+    function showSubMenu() {
+        if ($(window).innerWidth() < 750) {
+            $(this).siblings('ul').slideToggle(400);
+        }
+    }
+    function showSubMenuDefault() {
+        if ($(window).innerWidth() >= 750) {
+            $('.become-master ul').removeAttr('style');
+            $('.about-company ul').removeAttr('style');
+            $('.bayda ul').removeAttr('style');
+        }
+    }
 };
 
 /**
@@ -80,5 +96,8 @@ DopFunction.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 DopFunction.prototype.unbind = function () {
-
+    $(window).unbind('resize');
+    $('.become-master__title').unbind('click');
+    $('.about-company__title').unbind('click');
+    $('.bayda__title').unbind('click');
 };
