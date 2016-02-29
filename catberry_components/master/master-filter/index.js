@@ -18,31 +18,36 @@ function MasterFilter() {
             sectionName: "master",
             title: "Мастера",
             ico: "man",
-            isSection: true
+            isSection: true,
+            isOpen: false
         },
         {
             sectionName: "video",
             title: "Видео Мастеров",
             ico: "video",
-            isSection: true
+            isSection: true,
+            isOpen: false
         },
         {
             sectionName: "sale",
             title: "Скидки Мастеров",
             ico: "gift",
-            isSection: true
+            isSection: true,
+            isOpen: false
         },
         {
             sectionName: "sovety",
             title: "Секреты Мастеров",
             ico: "qwestion",
-            isSection: true
+            isSection: true,
+            isOpen: false
         },
         {
             sectionName: "company",
             title: "Каталог фирм",
             ico: "case",
-            isSection: true
+            isSection: true,
+            isOpen: false
         }
     ];
 }
@@ -71,7 +76,7 @@ MasterFilter.prototype.render = function () {
 
 MasterFilter.prototype._setSection = function (path) {
     return this._section.map(function (item) {
-        if(item.sectionName == 'master') {
+        if (item.sectionName == 'master') {
             item.url = path;
         } else {
             item.url = path + '/' + item.sectionName;
@@ -159,7 +164,10 @@ MasterFilter.prototype._getTags = function (data) {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterFilter.prototype.bind = function () {
+    $(window).bind('resize', showFilterSection);
     var self = this;
+    var filterItems = $('.filter-by__tag');
+
     if (!this._isSectionGet) {
         this.$context.sendAction('getSections')
             .then(function (data) {
@@ -173,6 +181,21 @@ MasterFilter.prototype.bind = function () {
                     self._isSectionGet = true;
                 }
             });
+    }
+    if (filterItems.length > 5) {
+        $(filterItems[3]).after('<a href="" class="filter-by__more">ещё</a>');
+        $('.filter-by__more').bind('click', function () {
+            $('.filter-by').removeAttr('style');
+            $(this).hide();
+            return false;
+        });
+        $('.filter-by').height(filterItems[3].offsetTop + $(filterItems[3]).height() + 40);
+        //console.log(filterItems[3].offsetTop);
+    }
+    function showFilterSection() {
+        if ($(window).innerWidth() >= 1000) {
+            $('.filter-section__section').show();
+        }
     }
     return {
         click: {

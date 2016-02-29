@@ -14,7 +14,7 @@
         </a>
     </div>
 
-    {{#if rubrika.activeBanners}}
+    {{#is rubrika.activeBanners.0.type '==' 1}}
         <div block="moneyr-top">
             {{#each rubrika.activeBanners}}
                 {{#is this.type '==' 1}}
@@ -34,7 +34,7 @@
                 {{/is}}
             {{/each}}
         </div>
-    {{/if}}
+    {{/is}}
 
 </div>
 <div block="inner-content">
