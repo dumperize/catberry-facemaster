@@ -107,7 +107,9 @@ Breadcrumps.prototype._getForRubAndTag = function (data) {
                     url: '/' + data.rubrika.parent.unique + '/' + podrubriks[num].unique
                 });
         });
-
+    linksPodrubriks.sort(function(a,b){
+        return a.title > b.title;
+    });
     links.push({
         title: "Каталог услуг",
         url: "/catalog"
