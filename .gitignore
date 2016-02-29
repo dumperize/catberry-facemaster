@@ -4,8 +4,7 @@ node_modules
 ._.DS_Store
 
 .idea
-npm-debug.log
-phantomjsdriver.log
+*.log
 /nbproject/*
 
 __BrowserBundle.js
