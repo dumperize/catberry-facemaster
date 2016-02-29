@@ -23,6 +23,30 @@
     @include at(sm) {
       margin: 12px 0;
     }
+    @include at(xs) {
+      height: 40px;
+      &__link {
+        background-color: $color-blue;
+        text-align: left;
+        font-weight: normal;
+        margin: 0 10px;
+        padding-left: 40px;
+        height: 40px;
+        line-height: 36px;
+        font-size: 1.6rem;
+        border-top: 2px solid darken($color-blue, 20%);
+        &:hover {
+          background-color: darken($color-blue, 5%);
+        }
+      }
+      .icon_search {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        left: 16px;
+        top: 10px;
+      }
+    }
     &__submit {
       background-color: $color-blue;
       &:hover {
@@ -62,7 +86,7 @@
     text-align: center;
     padding-top: 0;
     right: 0;
-    top: 50px;
+    top: 58px;
     width: 100%;
     transform: none;
     margin: 2px 0;
@@ -116,6 +140,11 @@
   &__inner {
     background-color: $color-green;
     border-top: 5px solid $color-green-deep;
+    @include at(xs) {
+      &:hover {
+        background-color: darken($color-green, 5%);
+      }
+    }
     &-rel {
       padding-top: 25px;
       @include to(lg) {
@@ -315,6 +344,9 @@
       padding-top: 6px;
       padding-bottom: 9px;
       border-width: 2px;
+      &:hover {
+        background-color: lighten($color-yellow, 4%);
+      }
     }
   }
 }
@@ -345,7 +377,9 @@
       font-size: 1.5rem;
       line-height: 25px;
       &-link {
-        padding-top: 0;
+        //padding-top: 0;
+        padding: 2px 0;
+        margin-bottom: 1px;
         height: auto;
       }
     }
