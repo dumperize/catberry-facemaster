@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = BlockVideoPopup;
+module.exports = BlockSalePopup;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = BlockVideoPopup;
  */
 
 /**
- * Creates new instance of the "block-video-popup" component.
+ * Creates new instance of the "block-sale-popup" component.
  * @constructor
  */
-function BlockVideoPopup() {
+function BlockSalePopup() {
 
 }
 
@@ -22,10 +22,9 @@ function BlockVideoPopup() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-BlockVideoPopup.prototype.render = function () {
-    //console.log(this.$context.attributes);
+BlockSalePopup.prototype.render = function () {
+    console.log(this.$context.attributes);
     return this.$context.attributes;
-
 };
 
 /**
@@ -33,7 +32,7 @@ BlockVideoPopup.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-BlockVideoPopup.prototype.bind = function () {
+BlockSalePopup.prototype.bind = function () {
 
 };
 
@@ -42,6 +41,6 @@ BlockVideoPopup.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-BlockVideoPopup.prototype.unbind = function () {
+BlockSalePopup.prototype.unbind = function () {
 
 };

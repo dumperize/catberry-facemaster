@@ -72,6 +72,9 @@
     float: left;
     margin-right: 10px;
     color: #ffffff;
+    @include at(md) {
+      margin-right: 8px;
+    }
   }
   &__arrow {
     float: right;
@@ -86,7 +89,7 @@
     }
   }
   &__section {
-    padding: 10px;
+    padding: 10px 0;
     font-size: 1.2rem;
   }
 
@@ -94,6 +97,7 @@
 
 .sort-by {
   margin-bottom: 10px;
+  padding: 0 10px;
   &__title {
     font-weight: bold;
   }
@@ -103,6 +107,14 @@
 }
 
 .filter-by {
+  position: relative;
+  overflow: hidden;
+  padding: 0 10px;
+  &__more {
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+  }
   &__title {
     font-weight: bold;
     padding: 5px 0;
@@ -116,6 +128,7 @@
     color: #ffffff;
     background-color: $color-bg-grey-dark;
     padding: 5px 30px 5px 10px;
+    left: -10px;
     margin: 5px 0;
     line-height: 16px;
   }

@@ -1,0 +1,103 @@
+.sale-popup {
+  max-width: 450px;
+  height: auto;
+  max-height: none;
+  padding-bottom: 30px;
+  @include at(xs) {
+    max-width: 250px;
+  }
+  &__title {
+    padding: 16px;
+    font-size: 2.6rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.075em;
+    font-weight: bold;
+    background-color: $color-orange;
+    color: #FFF;
+  }
+  &__img-cont {
+    width: 205px;
+    min-height: 130px;
+    max-height: 205px;
+    margin-right: 10px;
+    margin-bottom: 0;
+    float: left;
+    img {
+      vertical-align: middle;
+    }
+  }
+  &__text {
+    height: auto;
+    font-size: 1.4rem;
+    overflow: visible;
+    padding-top: 10px;
+  }
+}
+
+.sale-popup_catalog {
+  padding: 0 20px 30px 20px;
+  background-color: $color-bg-grey-light;
+  &__img-cont {
+    margin-bottom: 12px;
+    margin-right: 200px;
+    @include at(xs) {
+      margin-right: 0;
+      float: none;
+      width: 210px;
+      max-height: 210px;
+      margin-bottom: 150px;
+    }
+  }
+  &__title {
+    padding: 18px 20px;
+    font-size: 3.6rem;
+    margin-left: -20px;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+    @include at(xs) {
+      font-size: 3rem;
+      padding: 14px 20px;
+    }
+  }
+  &__text {
+    width: 100%;
+    clear: left;
+    height: auto;
+    font-size: 1.3rem;
+    overflow: visible;
+    padding-left: 0;
+    color: #414042;
+    @include at(xs) {
+      display: block;
+    }
+  }
+  &__link {
+    color: #808285;
+    cursor: default;
+  }
+  &__to-page {
+    display: block;
+    .to-master-page {
+      display: block;
+      padding: 0 18px;
+      @include at(xs) {
+        padding: 0;
+        width: 210px;
+      }
+    }
+  }
+  &__popup-content {
+    display: block;
+    top: 102px;
+    left: 245px;
+    position: absolute;
+    @include at(xs) {
+      top: 310px;
+      left: 20px;
+    }
+  }
+  .master-micro-inf {
+    display: block;
+  }
+}
