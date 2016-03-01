@@ -18,41 +18,37 @@ function MasterFilter() {
             sectionName: "master",
             title: "Мастера",
             ico: "man",
-            isSection: true,
-            isOpen: false
+            isSection: true
         },
         {
             sectionName: "video",
             title: "Видео Мастеров",
             ico: "video",
-            isSection: true,
-            isOpen: false
+            isSection: true
         },
         {
             sectionName: "sale",
             title: "Скидки Мастеров",
             ico: "gift",
-            isSection: true,
-            isOpen: false
+            isSection: true
         },
         {
             sectionName: "sovety",
             title: "Секреты Мастеров",
             ico: "qwestion",
-            isSection: true,
-            isOpen: false
+            isSection: true
         },
         {
             sectionName: "company",
             title: "Каталог фирм",
             ico: "case",
-            isSection: true,
-            isOpen: false
+            isSection: true
         }
     ];
 }
 MasterFilter.prototype._isSectionGet = null;
 MasterFilter.prototype._section = null;
+MasterFilter.prototype._currentSection = null;
 
 /**
  * Gets data context for template engine.
@@ -68,6 +64,7 @@ MasterFilter.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
             path = '/' + data.rubrika.parent.unique + '/' + data.rubrika.unique;
+            self._currentSection = data.section;
             result = self._setSection(path);
             self._decoreOpenSection(result, data);
             return {filterSection: result};
@@ -86,7 +83,7 @@ MasterFilter.prototype._setSection = function (path) {
 };
 
 /**
- * Декарирование открытой секции (добавление тегов, ортировки)
+ * Декорирование открытой секции (добавление тегов, сортировки)
  * @param result массив для декорирования
  * @param rubrika рубрика из стора
  * @private
@@ -166,7 +163,6 @@ MasterFilter.prototype._getTags = function (data) {
 MasterFilter.prototype.bind = function () {
     $(window).bind('resize', showFilterSection);
     var self = this;
-    var filterItems = $('.filter-by__tag');
 
     if (!this._isSectionGet) {
         this.$context.sendAction('getSections')
@@ -182,21 +178,24 @@ MasterFilter.prototype.bind = function () {
                 }
             });
     }
-    if (filterItems.length > 5) {
-        $(filterItems[3]).after('<a href="" class="filter-by__more">ещё</a>');
-        $('.filter-by__more').bind('click', function () {
-            $('.filter-by').removeAttr('style');
-            $(this).hide();
-            return false;
-        });
-        $('.filter-by').height(filterItems[3].offsetTop + $(filterItems[3]).height() + 40);
-        //console.log(filterItems[3].offsetTop);
+    var filterItems = $('.filter-by__tag');
+    if (document.getElementsByClassName('filter-by__tag-active').length == 0) {
+        if (filterItems.length > 5) {
+            $(filterItems[3]).after('<a href="" class="filter-by__more">ещё</a>');
+            $('.filter-by__more').bind('click', function () {
+                $('.filter-by').removeAttr('style');
+                $(this).hide();
+                return false;
+            });
+            $('.filter-by').height(filterItems[3].offsetTop + $(filterItems[3]).height() + 40);
+        }
     }
     function showFilterSection() {
         if ($(window).innerWidth() >= 1000) {
             $('.filter-section__section').show();
         }
     }
+
     return {
         click: {
             '.js-filter-toggle-btn.active': this._clickSection
@@ -221,5 +220,5 @@ MasterFilter.prototype._clickSection = function (obj) {
  * @returns {Promise|undefined} Promise or nothing.
  */
 MasterFilter.prototype.unbind = function () {
-
+    $('.filter-by__more').unbind('click');
 };
