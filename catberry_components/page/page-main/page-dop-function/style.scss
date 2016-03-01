@@ -29,8 +29,24 @@
   &__title {
     padding: 16px 20px;
     font-size: 2.2rem;
+    position: relative;
+    svg {
+      @include from(md) {
+        display: none;
+      }
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      top: 14px;
+      right: 10px;
+      @include at(sm) {
+        top: 11px;
+      }
+    }
   }
-
+  &__title.icon-rotate {
+    svg {transform: rotate(90deg);}
+  }
   &__item {
     @include cf;
     &-link {

@@ -1,14 +1,16 @@
 <div block="photo-md">
 
     <div>
-    {{#each this}}
-        <div elem="album-cover" mix="block: js-select-album" id="album-{{id}}">
-            <a href="/master-data-edit/json3.json">
-                <img src="{{imgSrc photos.0.imgID 200 200}}" alt="{{name}}"><br>
-                <span>{{name}}</span>
-            </a>
-        </div>
-    {{/each}}
+        {{#each this}}
+            {{#if photos.0.imgID}}
+                <div elem="album-cover" mix="block: js-select-album" id="album-{{id}}">
+                    <a href="/master-data-edit/json3.json">
+                        <img src="{{imgSrc photos.0.imgID 200 200}}" alt="{{name}}"><br>
+                        <span>{{name}}</span>
+                    </a>
+                </div>
+            {{/if}}
+        {{/each}}
     </div>
 
     <div>

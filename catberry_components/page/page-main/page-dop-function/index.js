@@ -79,8 +79,14 @@ DopFunction.prototype.bind = function () {
     function showSubMenu() {
         if ($(window).innerWidth() < 750) {
             $(this).siblings('ul').slideToggle(400);
+            if ($(this).hasClass('icon-rotate')) {
+                $(this).removeClass('icon-rotate');
+            } else {
+                $(this).addClass('icon-rotate');
+            }
         }
     }
+
     function showSubMenuDefault() {
         if ($(window).innerWidth() >= 750) {
             $('.become-master ul').removeAttr('style');
