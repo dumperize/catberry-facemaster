@@ -40,22 +40,22 @@ MasterBlockSale.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterBlockSale.prototype.bind = function () {
-    var sale = $('.sale a');
-    sale.bind('click', showSalePopup);
-
-    function showSalePopup() {
-        var tmp = $(this).parent().clone();
-        tmp.addClass('popup');
-        $.fancybox.open(tmp, {
-            padding: 0,
-            helpers: {
-                overlay: {
-                    locked: false
-                }
-            }
-        });
-        return false;
-    }
+    //var sale = $('.sale a');
+    //sale.bind('click', showSalePopup);
+    //
+    //function showSalePopup() {
+    //    var tmp = $(this).parent().clone();
+    //    tmp.addClass('popup');
+    //    $.fancybox.open(tmp, {
+    //        padding: 0,
+    //        helpers: {
+    //            overlay: {
+    //                locked: false
+    //            }
+    //        }
+    //    });
+    //    return false;
+    //}
 };
 
 /**
