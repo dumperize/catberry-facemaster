@@ -25,7 +25,6 @@ function MasterBlockReview() {
 MasterBlockReview.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
-
             if (data.vkLikes) {
                 try {
                     data.vkLikes.data = JSON.parse(data.vkLikes.data);
@@ -33,7 +32,7 @@ MasterBlockReview.prototype.render = function () {
 
                 }
             }
-            if (!data.vkLikes) {
+            if (!data.vkLikes || !data.vkLikes.countLikes) {
                 data.vkLikes = {
                     data: [],
                     countLikes: 0
