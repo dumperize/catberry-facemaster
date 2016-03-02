@@ -1,35 +1,54 @@
 .callback_request {
-    //@extend .col-xs-12;
-    &__form {
-        background-color: $color-bg-grey-light;
-        padding: 10px;
-        max-width: 500px;
-        @extend .col-xs-12;
+  //@extend .col-xs-12;
+  &__form {
+    background-color: $color-bg-grey-light;
+    padding: 10px;
+    max-width: 500px;
+    @extend .col-xs-12;
+  }
+  &__intro {
+    padding-bottom: 10px;
+    font-size: 2rem;
+  }
+  &__input {
+    padding-bottom: 20px;
+    label {
+      display: block;
+      input {
+        position: relative;
+        top: 2px;
+      }
     }
-    &__intro {
-        padding-bottom: 10px;
-        font-size: 2rem;
+  }
+  &__submit {
+    width: 200px;
+    @include at(xs) {
+      margin: 0 auto;
     }
-    &__input {
-        padding-bottom: 20px;
+  }
+  &__info {
+    color: $color-a;
+    border-bottom: 1px dashed;
+    cursor: pointer;
+    position: relative;
+    &:hover {
+      color: $color-a-hover;
     }
-    &__submit {
-        width: 200px;
-        @include at(xs) {
-            margin: 0 auto;
-        }
-    }
-    textarea {
-        min-height: 84px;
-        max-height: 160px;
-    }
+  }
+  &__tip {
+    @extend .tips;
+  }
+  textarea {
+    min-height: 84px;
+    max-height: 160px;
+  }
 }
 
 .callback_popup {
-    background-color: $color-bg-grey-light;
-    padding: 20px;
-    display: none;
-    &__input {
-        padding-bottom: 20px;
-    }
+  background-color: $color-bg-grey-light;
+  padding: 20px;
+  display: none;
+  &__input {
+    padding-bottom: 20px;
+  }
 }

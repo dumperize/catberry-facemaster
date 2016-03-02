@@ -60,8 +60,25 @@ PageRequest.prototype.bind = function () {
     return {
         submit: {
             '.callback_request__form': this.handleSubmit
+        },
+        click: {
+            '.js-show-tip': this._clickInfoHandler,
+            '.js-close-tip': this._clickCloseTipHandler
         }
     }
+};
+
+PageRequest.prototype._clickInfoHandler = function (obj) {
+    event.preventDefault();
+    event.stopPropagation();
+    var el = obj.target;
+    $(el).children().fadeIn(400).delay(30000).fadeOut(500);
+};
+PageRequest.prototype._clickCloseTipHandler = function (obj) {
+    event.preventDefault();
+    event.stopPropagation();
+    var el = obj.target;
+    $(el).closest('.callback_request__tip').stop().fadeOut(500);
 };
 
 PageRequest.prototype.handleSubmit = function (event) {

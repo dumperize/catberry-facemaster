@@ -42,7 +42,7 @@ Request.prototype.handleSend = function (data) {
                     error: r.content
                 }
             } else if (r.status.code != 200) {
-                throw new Error(result.status.text);
+                throw new Error(r.status.text);
             } else {
                 return {
                     success: true,
