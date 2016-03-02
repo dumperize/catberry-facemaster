@@ -1,60 +1,44 @@
 .sale-popup {
-  max-width: 450px;
+  width: 450px;
+  min-width: 250px;
   height: auto;
   max-height: none;
-  padding-bottom: 30px;
-  @include at(xs) {
-    max-width: 250px;
-  }
-  &__title {
-    padding: 16px;
-    font-size: 2.6rem;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.075em;
-    font-weight: bold;
-    background-color: $color-orange;
-    color: #FFF;
-  }
-  &__img-cont {
-    width: 205px;
-    min-height: 130px;
-    max-height: 205px;
-    margin-right: 10px;
-    margin-bottom: 0;
-    float: left;
-    img {
-      vertical-align: middle;
-    }
-  }
-  &__text {
-    height: auto;
-    font-size: 1.4rem;
-    overflow: visible;
-    padding-top: 10px;
-  }
-}
-
-.sale-popup_catalog {
   padding: 0 20px 30px 20px;
   background-color: $color-bg-grey-light;
+  @include at(xs) {
+    width: 250px;
+  }
   &__img-cont {
     margin-bottom: 12px;
     margin-right: 200px;
+    width: 205px;
+    min-height: 130px;
+    max-height: 205px;
+    //float: left;
+    img {
+      vertical-align: middle;
+    }
     @include at(xs) {
       margin-right: 0;
       float: none;
       width: 210px;
       max-height: 210px;
-      margin-bottom: 150px;
+      margin-bottom: 120px;
     }
   }
   &__title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: $color-orange;
+    box-sizing: content-box;
+    color: #FFF;
     padding: 18px 20px;
     font-size: 3.6rem;
     margin-left: -20px;
     margin-bottom: 20px;
     letter-spacing: 0.05em;
+    width: 100%;
     @include at(xs) {
       font-size: 3rem;
       padding: 14px 20px;
@@ -66,15 +50,11 @@
     height: auto;
     font-size: 1.3rem;
     overflow: visible;
-    padding-left: 0;
+    padding: 10px 10px 10px 0;
     color: #414042;
     @include at(xs) {
       display: block;
     }
-  }
-  &__link {
-    color: #808285;
-    cursor: default;
   }
   &__to-page {
     display: block;
@@ -87,7 +67,7 @@
       }
     }
   }
-  &__popup-content {
+  &__master-info {
     display: block;
     top: 102px;
     left: 245px;

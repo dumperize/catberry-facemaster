@@ -6,14 +6,25 @@
     line-height: 33px;
     font-size: 1.6rem;
     color: #FFF;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     span {
       opacity: 0.8;
       border-left: 1px solid #FFF;
-      float: right;
-      display: inline-block;
+      //float: right;
+      //display: inline-block;
+      position: absolute;
+      right: 0;
+      top: 5px;
       width: 43px;
       text-align: center;
-      padding-left: 10px;
+      //padding-left: 10px;
+    }
+    @include at(xs) {
+      font-size: 1.5rem;
+      padding-right: 50px;
     }
   }
   &__item {

@@ -45,7 +45,6 @@ PageMasterRubrika.prototype.render = function () {
 PageMasterRubrika.prototype.bind = function () {
     $(window).bind('scroll', moneyrScroll);
     var moneyr = $('.moneyr-side');
-    //var moneyrOffset = moneyr.offset();
     var moneyrHeight = moneyr.height();
     moneyrScroll();
 

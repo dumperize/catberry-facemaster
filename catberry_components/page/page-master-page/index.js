@@ -42,6 +42,8 @@ PageMasterPage.prototype.bind = function () {
     $('.contacts-mp__show-contact').bind('click', showContact);
     $('.js-show-callback-popup').bind('click', showCallbackPopup);
     autosize(ta);
+    fixedSectionMenu();
+    menuHighlight();
 
     //показать контакты
     function showContact() {

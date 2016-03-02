@@ -44,8 +44,28 @@ Sale.prototype.render = function () {
                 var num = self.$context.attributes['num'];
                 var sale = data[num].sale[index];
                 sale.page = sale.owner.page;
+
+                self._salePopUpData.id = 'popup-sale-' + data[num].sale[index].id;
+                self._salePopUpData.imgid = data[num].sale[index].imgID;
+                self._salePopUpData.type = data[num].sale[index].type;
+                self._salePopUpData.text = data[num].sale[index].text;
+                self._salePopUpData.discount = data[num].sale[index].discount;
+
+                self._salePopUpData.name = sale.owner.name;
+                self._salePopUpData.number = sale.owner.page.number;
+                self._salePopUpData.imgid2 = sale.owner.imgID;
                 return sale;
             }
+            self._salePopUpData.id = 'popup-sale-' + data.list[index].id;
+            self._salePopUpData.imgid = data.list[index].imgID;
+            self._salePopUpData.type = data.list[index].type;
+            self._salePopUpData.text = data.list[index].text;
+            self._salePopUpData.discount = data.list[index].discount;
+
+            self._salePopUpData.name = data.list[index].owner.name;
+            self._salePopUpData.number = data.list[index].owner.page.number;
+            self._salePopUpData.imgid2 = data.list[index].owner.imgID;
+            //console.log(data.list[index]);
             return data.list[index];
         });
 };
@@ -76,6 +96,7 @@ Sale.prototype.handlePopUp = function (event) {
         .then(function (data) {
             $.fancybox.open(data.innerHTML, {
                 padding: 0,
+                minWidth: '250px',
                 afterClose: function () {
                     self.$context.collectGarbage();
                 }
