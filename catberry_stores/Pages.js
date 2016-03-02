@@ -44,6 +44,7 @@ function Pages($config) {
         'registration': '',
         'request': 'Request',
         'sale': 'sale/SaleByRubrika',
+        'search': 'Search',
         'vacancy': 'other/Vacancy',
         'vacancy-item': 'other/VacancyItem',
         'video': 'video/VideoByRubrika'

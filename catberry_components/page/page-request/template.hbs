@@ -1,30 +1,36 @@
 <div block="callback_request">
-<h1 block="h1" mod="style">Заявка мастеру</h1>
+    <h1 block="h1" mod="style">Заявка мастеру</h1>
 
     <form elem="form" method="post" action="{{url}}" id="callback-request-form">
+        <p elem="errors"></p>
         <p elem="intro">Опишите вашу задачу</p>
 
         <div elem="input">
             <textarea block="textarea"
                       placeholder="Я хочу (отремонтировать, организовать, установить, доставить)"
-                    name="RequestForm[text]"></textarea>
+                      name="RequestForm[text]"
+                      required="required"
+                      id="request-form-text"></textarea>
         </div>
         <p elem="intro">
             Оставьте ваши контакты
         </p>
 
         <div elem="input">
-            <input block="input-text" type="text" placeholder="Ваше имя" name="RequestForm[contactName]">
+            <input id="request-form-contact-name" block="input-text" type="text" required="required" placeholder="Ваше имя"
+                   name="RequestForm[contactName]">
         </div>
         <div elem="input">
-            <input block="input-text" type="text" placeholder="Ваш телефон" name="RequestForm[contactPhone]">
+            <input id="request-form-contact-phone" block="input-text" type="text" required="required" placeholder="Ваш телефон"
+                   name="RequestForm[contactPhone]">
         </div>
         <div elem="input">
-            <input block="input-text" type="text" placeholder="Ваш email" name="RequestForm[contactEmail]">
+            <input id="request-form-contact-email" block="input-text" type="email" required="required" placeholder="Ваш email"
+                   name="RequestForm[contactEmail]">
         </div>
         <div elem="submit">
             <input block="btn-accent" type="submit" value="отправить заявку">
         </div>
     </form>
-    <div block="success_response">Ваша заявка отправлена</div>
 </div>
+<div block="success_response">Ваша заявка отправлена</div>

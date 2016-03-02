@@ -23,7 +23,6 @@ util.inherits(Request, StoreBase);
  */
 function Request($uhr) {
     StoreBase.call(this);
-
     this._path = '/request/add';
 }
 
@@ -35,11 +34,20 @@ Request.prototype.load = function () {
 };
 
 Request.prototype.handleSend = function (data) {
-    console.log(data);
-    console.log(this._config.api + this._path);
-    console.log(data);
-    this._uhr.post(this._config.api + this._path, {data: data})
+    return this._uhr.post(this._config.api + this._path, {data: data})
         .then(function (r) {
-            console.log(r);
+            if (r.status.code == 422) {
+                return {
+                    success: false,
+                    error: r.content
+                }
+            } else if (r.status.code != 200) {
+                throw new Error(result.status.text);
+            } else {
+                return {
+                    success: true,
+                    obj: r.content
+                }
+            }
         })
 };
