@@ -11,7 +11,7 @@
     font-size: 2rem;
   }
   &__input {
-    padding-bottom: 20px;
+    margin-bottom: 20px;
     label {
       display: block;
       input {
@@ -51,4 +51,11 @@
   &__input {
     padding-bottom: 20px;
   }
+}
+.success_response {
+  background-color: $color-orange;
+  color: #FFF;
+  padding: 12px;
+  font-size: 2rem;
+  margin-top: 10px;
 }
