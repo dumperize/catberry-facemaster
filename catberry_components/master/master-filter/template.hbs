@@ -25,11 +25,11 @@
 
                 {{#with openSection}}
                     <div elem="section" mix="block:js-filter-toggle-section">
-                        {{#if sortBy}}
+                        {{#is @index '==' 0}}
                             <div block="sort-by">
                                 <p elem="title">Отсортировать: </p>
 
-                                <form elem="form" action="{{sortBy.url}}" method="{{sortBy.method}}">
+                                <form elem="form" action="" method="">
                                     <div block="filter-radio">
                                         <input elem="input" type="radio" name="sort-by" value="name" id="sort-by-name">
                                         <label elem="label" for="sort-by-name">по фамилии по алфавиту</label>
@@ -42,7 +42,7 @@
                                     </div>
                                 </form>
                             </div>
-                        {{/if}}
+                        {{/is}}
 
                         {{#if tagsGroup}}
                             <div block="filter-by">
@@ -71,7 +71,6 @@
                                         {{/if}}
                                     {{/each}}
                                 {{/each}}
-
                             </div>
                         {{/if}}
                     </div>

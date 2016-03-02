@@ -23,7 +23,7 @@ function BlockVideoPopup() {
  * for template engine.
  */
 BlockVideoPopup.prototype.render = function () {
-    console.log(this.$context.attributes);
+    //console.log(this.$context.attributes);
     return this.$context.attributes;
 
 };

@@ -42,7 +42,7 @@ MasterBlockReview.prototype.render = function () {
             if (data.vkLikes.data.length != 9) {
                 data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов (больше не требуется)
             }
-            console.log(data.vkLikes);
+            //console.log(data.vkLikes);
             return {
                 comments: data.comments.reverse(),
                 vkLikes: data.vkLikes,

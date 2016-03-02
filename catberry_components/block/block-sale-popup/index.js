@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = PageSaleCatalog;
+module.exports = BlockSalePopup;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = PageSaleCatalog;
  */
 
 /**
- * Creates new instance of the "page-sale-catalog" component.
+ * Creates new instance of the "block-sale-popup" component.
  * @constructor
  */
-function PageSaleCatalog() {
+function BlockSalePopup() {
 
 }
 
@@ -22,15 +22,9 @@ function PageSaleCatalog() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-PageSaleCatalog.prototype.render = function () {
-    var self = this;
-    return this.$context.getStoreData()
-        .then(function (data) {
-            return {
-                model: self.$context.attributes['cat-store'],
-                list: data
-            };
-        });
+BlockSalePopup.prototype.render = function () {
+    //console.log(this.$context.attributes);
+    return this.$context.attributes;
 };
 
 /**
@@ -38,8 +32,8 @@ PageSaleCatalog.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-PageSaleCatalog.prototype.bind = function () {
-    $('li.act:has(.act)').removeClass('act');
+BlockSalePopup.prototype.bind = function () {
+
 };
 
 /**
@@ -47,6 +41,6 @@ PageSaleCatalog.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-PageSaleCatalog.prototype.unbind = function () {
+BlockSalePopup.prototype.unbind = function () {
 
 };

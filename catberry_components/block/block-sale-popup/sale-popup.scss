@@ -1,0 +1,83 @@
+.sale-popup {
+  width: 450px;
+  min-width: 250px;
+  height: auto;
+  max-height: none;
+  padding: 0 20px 30px 20px;
+  background-color: $color-bg-grey-light;
+  @include at(xs) {
+    width: 250px;
+  }
+  &__img-cont {
+    margin-bottom: 12px;
+    margin-right: 200px;
+    width: 205px;
+    min-height: 130px;
+    max-height: 205px;
+    //float: left;
+    img {
+      vertical-align: middle;
+    }
+    @include at(xs) {
+      margin-right: 0;
+      float: none;
+      width: 210px;
+      max-height: 210px;
+      margin-bottom: 120px;
+    }
+  }
+  &__title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: $color-orange;
+    box-sizing: content-box;
+    color: #FFF;
+    padding: 18px 20px;
+    font-size: 3.6rem;
+    margin-left: -20px;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+    width: 100%;
+    @include at(xs) {
+      font-size: 3rem;
+      padding: 14px 20px;
+    }
+  }
+  &__text {
+    width: 100%;
+    clear: left;
+    height: auto;
+    font-size: 1.3rem;
+    overflow: visible;
+    padding: 10px 10px 10px 0;
+    color: #414042;
+    @include at(xs) {
+      display: block;
+    }
+  }
+  &__to-page {
+    display: block;
+    .to-master-page {
+      display: block;
+      padding: 0 18px;
+      @include at(xs) {
+        padding: 0;
+        width: 210px;
+      }
+    }
+  }
+  &__master-info {
+    display: block;
+    top: 102px;
+    left: 245px;
+    position: absolute;
+    @include at(xs) {
+      top: 310px;
+      left: 20px;
+    }
+  }
+  .master-micro-inf {
+    display: block;
+  }
+}

@@ -29,10 +29,11 @@ MasterBlockAbout.prototype.render = function () {
                 var tmp;
                 tmp = text.replace(/\r\n\r\n/g, "</p><p>").replace(/\n\n/g, "</p><p>");
                 tmp = tmp.replace(/\r\n/g, "<br>").replace(/\n/g, "<br>");
-                return '<p>' + tmp + '</p>';
+                if (tmp) {
+                    return '<p>' + tmp + '</p>';
+                }
             }
             if (!data.about) {
-
                 data.aboutEduc = replaceRawText(data.aboutEduc);
                 data.aboutExp = replaceRawText(data.aboutExp);
                 data.aboutAddInfo = replaceRawText(data.aboutAddInfo);
