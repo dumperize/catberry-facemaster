@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = Search;
+module.exports = PageSearch;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = Search;
  */
 
 /**
- * Creates new instance of the "search" component.
+ * Creates new instance of the "page-search" component.
  * @constructor
  */
-function Search() {
+function PageSearch() {
 
 }
 
@@ -22,14 +22,11 @@ function Search() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-Search.prototype.render = function () {
-    var query = '';
-    try {
-        query = this.$context.location.query.values.query;
-    } catch (e) {
-    }
-
-    return {q: query};
+PageSearch.prototype.render = function () {
+    return this.$context.getStoreData()
+        .then(function(data){
+            return data;
+        });
 };
 
 /**
@@ -37,13 +34,15 @@ Search.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-Search.prototype.bind = function () {
+PageSearch.prototype.bind = function () {
+
 };
+
 /**
  * Does cleaning for everything that have NOT been set by .bind() method.
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-Search.prototype.unbind = function () {
+PageSearch.prototype.unbind = function () {
 
 };

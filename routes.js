@@ -12,23 +12,6 @@
 
 module.exports = [
     '/:page[Pages]',
-
-    // поиск мастера
-    // путь: /search/:query
-    {
-        expression: /^\/search?query=(.+)$/i,
-        map: function (urlPath) {
-            var matches = urlPath.path.match(/^\/search\/(.+)$/i);
-            return {
-                Pages: {
-                    page: "search"
-                },
-                'Search': {
-                    query: matches[1]
-                }
-            }
-        }
-    },
     //id мастера
     {
         expression: /^\/([\/\d]+)$/i,

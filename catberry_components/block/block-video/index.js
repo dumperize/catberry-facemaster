@@ -36,7 +36,7 @@ Video.prototype.render = function () {
                 video.number = data.page.number;
                 video.name = data.name;
                 video.imgid = data.imgID;
-            } else if (model == 'master/MasterList') {
+            } else if (model == 'master/MasterList' || model == 'search/Search') {
                 var masterIndex = self.$context.attributes['master-index'];
                 video = data.list[masterIndex].activeVideos[0];
                 video.number = data.list[masterIndex].page.number;

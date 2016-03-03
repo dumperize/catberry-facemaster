@@ -1,9 +1,9 @@
 <div block="search">
     <a href="/search" elem="link">{{icon "search"}} Найти услугу</a>
-    <form elem="form" action="{{url}}" method="{{method}}">
+    <form elem="form" action="/search" method="get">
         {{icon "search"}}
         <label elem="field">
-            <input type="text" name="search" elem="input" autofocus>
+            <input type="text" name="query" elem="input" autofocus value="{{q}}">
         </label>
         <input type="submit" elem="submit" value="Найти услугу">
     </form>

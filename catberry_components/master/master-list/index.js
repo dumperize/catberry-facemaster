@@ -33,6 +33,7 @@ MasterList.prototype.render = function () {
     var self = this;
     return this.$context.getStoreData()
         .then(function (data) {
+            data.model = self.$context.attributes['cat-store'];
             data.isHaveMaster = (Object.keys(data.list).length);
             self.structurData(data);
             self._isFinish = data.isFinished;
@@ -46,7 +47,6 @@ MasterList.prototype.render = function () {
  */
 MasterList.prototype.structurData = function (data) {
     data.list.forEach(function (master) {
-
         //из-за ильи так произошло!
         master.comments = master.activeComments;
         master.sales = master.activeSales;
@@ -74,14 +74,12 @@ MasterList.prototype.structurData = function (data) {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterList.prototype.bind = function () {
-    //this._window.addEventListener('resize', this._allMinicardWidgetVisibility);
     this._window.addEventListener('scroll', this._handleScroll);
 
     setTimeout(this._allMinicardServicesCut, 100);
 };
 
 MasterList.prototype.unbind = function () {
-    //this._window.removeEventListener('resize', this._allMinicardWidgetVisibility);
     this._window.removeEventListener('scroll', this._handleScroll);
     this.$context.collectGarbage();
 };
@@ -126,17 +124,3 @@ MasterList.prototype._handleScroll = function () {
 MasterList.prototype._loadMoreItems = function () {
     return this.$context.sendAction('getNextPage');
 };
-///**
-// * Widget visibility.
-// * @private
-// */
-//MasterList.prototype._allMinicardWidgetVisibility = function () {
-//    if ($(window).width() >= 750) {
-//        $('.master-content-widget').each(function () {
-//            $(this).find('.act').first().addClass('show');
-//        });
-//    } else {
-//        $('.master-content-widget li').removeClass('show');
-//    }
-//};
-

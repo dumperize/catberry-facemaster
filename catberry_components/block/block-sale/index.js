@@ -32,7 +32,6 @@ Sale.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
             if (model == 'master/MasterItem') {
-                console.log(data.sales[index]);
                 self._salePopUpData.id = 'popup-sale-' + data.sales[index].id;
                 self._salePopUpData.imgid = data.sales[index].imgID;
                 self._salePopUpData.type = data.sales[index].type;

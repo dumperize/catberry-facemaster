@@ -34,20 +34,5 @@ Request.prototype.load = function () {
 };
 
 Request.prototype.handleSend = function (data) {
-    return this._uhr.post(this._config.api + this._path, {data: data})
-        .then(function (r) {
-            if (r.status.code == 422) {
-                return {
-                    success: false,
-                    error: r.content
-                }
-            } else if (r.status.code != 200) {
-                throw new Error(result.status.text);
-            } else {
-                return {
-                    success: true,
-                    obj: r.content
-                }
-            }
-        })
+    return this.send(this._path, {data: data});
 };
