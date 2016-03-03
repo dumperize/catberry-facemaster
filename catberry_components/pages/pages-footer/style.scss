@@ -83,3 +83,26 @@
     }
   }
 }
+.kl {
+  display: none;
+  width: 128px;
+  height: 128px;
+  position: fixed;
+  left: 70%;
+  bottom: -5px;
+  background-color: transparent;
+  //margin-left: -64px;
+  .icon_kl_color {
+    width: 128px;
+    height: 128px;
+    background-color: transparent;
+    fill: none;
+    display: inline;
+    overflow: hidden;
+    transform-origin: 0px 0px;
+  }
+  //svg {
+  //  width: 128px;
+  //  height: 128px;
+  //}
+}
