@@ -1,0 +1,15 @@
+<h1 block="h1" mod="style">Восстановить пароль</h1>
+<form block="recovery-pass-form" method="post" action="recovery">
+    <input elem="input-text" type="text" placeholder="Эл. почта или телефон" name="recovery-password[login]" autofocus="">
+
+    <div elem="capcha" mod="registration">
+        <div elem="code-img">
+            <img src="img/assets/recovery-password/captcha.png" alt="capcha">
+        </div>
+        <a elem="reload-link" href="{{capcha.reload-url}}">Получить новый код</a>
+    </div>
+
+    <input elem="input-text" type="text" placeholder="Код с картинки" name="recovery-password[code]">
+    <input elem="btn" type="submit" value="Восстановить">
+</form>
+
