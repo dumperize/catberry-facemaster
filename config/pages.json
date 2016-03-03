@@ -6,23 +6,28 @@
   },
   "catalog": {
     "title": "Каталог услуг",
-    "description": "",
-    "keywords": ""
+    "description": "Каталог услуг сайта facemaster",
+    "keywords": "facemaster, каталог услуг"
   },
   "request": {
     "title": "Заказать услугу",
-    "description": "",
-    "keywords": ""
+    "description": "Отправить заявку на услугу всем Мастерам",
+    "keywords": "facemaster, отправить заявку, услуи"
   },
   "registration": {
     "title": "Стать Мастером",
-    "description": "",
-    "keywords": ""
+    "description": "Регистрация для новых Мастеров сайта facemaster.ru ",
+    "keywords": "facemaster, регистрация, стать Мастером"
   },
   "login": {
     "title": "Вход для Мастеров",
-    "description": "",
-    "keywords": ""
+    "description": "Форма входя для Мастеров сайта facemaster.ru",
+    "keywords": "facemaster, вход для мастеров"
+  },
+  "recovery": {
+    "title": "Воссановить пароль",
+    "description": "Восстановление пароля для входа в Личный кабинет",
+    "keywords": "facemaster, восстановить пароль"
   },
   "sale": {
     "title": " Скидки и подарки",
