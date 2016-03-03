@@ -8,6 +8,7 @@
     opacity: 1;
   }
 }
+
 .fade-in {
   animation: fade-in 0.5s ease;
 }
@@ -26,6 +27,7 @@ a:active {
   color: $color-a-hover;
   text-decoration: none
 }
+
 /* Подробнее */
 .more-link {
   float: right;
@@ -52,12 +54,12 @@ a:active {
   }
 }
 
-
 /* Размеры обычной кнопки */
-@mixin button-mid () {
+@mixin button-mid() {
   width: $button-mid-width;
   height: $button-mid-height;
 }
+
 .basic-button-mid, .basic-button-auto {
   width: $button-mid-width;
   height: $button-mid-height;
@@ -76,6 +78,7 @@ a:active {
     background-color: $color-orange + #111111;
   }
 }
+
 .basic-button-auto {
   width: auto;
   display: inline-block;
@@ -126,6 +129,65 @@ a:active {
     left: 0;
     position: absolute;
     z-index: 10;
+  }
+}
+.input-error {
+  box-shadow: 0 0 3px 2px rgba(255, 0, 0, 0.3);
+  //border-radius: 2px;
+}
+.input-error-text {
+  padding: 8px 10px;
+  background-color: $color-bg-warning;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.1rem;
+  position: relative;
+  margin-top: -4px;
+  //top: -4px;
+}
+
+/* Подсказки - tips */
+.tips {
+  display: none;
+  color: $color-text;
+  position: absolute;
+  width: 300px;
+  padding: 12px;
+  background-color: $color-yellow;
+  z-index: 2;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  bottom: 24px;
+  left: 50%;
+  margin-left: -150px;
+  font-size: 1.3rem;
+  &:before {
+    width: 0;
+    height: 0;
+    content: '';
+    display: block;
+    border: 10px solid transparent;
+    position: absolute;
+    bottom: -20px;
+    right: 50%;
+    margin-top: 0;
+    margin-right: -10px;
+    left: auto;
+    top: auto;
+    border-top-color: $color-yellow;
+  }
+  i {
+    position: absolute;
+    top: 5px;
+    right: 7px;
+    fill: #FFFFFF;
+    &:hover {
+      cursor: pointer;
+      fill: #ff0000;
+    }
+  }
+  svg {
+    fill: inherit;
+    width: 10px;
   }
 }
 
@@ -244,12 +306,13 @@ a:active {
 }
 
 /* Ограничение размера изображения */
-@mixin img-max-size ($max-width, $max-height) {
+@mixin img-max-size($max-width, $max-height) {
   max-width: $max-width;
   max-height: $max-height;
   width: auto;
   height: auto;
 }
+
 /* Стиль стандартной ошибки */
 .standard-error {
   padding: 8px 10px;
@@ -258,14 +321,13 @@ a:active {
   font-weight: bold;
   font-size: 1.1rem;
 }
+
 /* Стиль стандартного инпута */
 .basic-input {
   padding: 3px 6px;
   width: 100%;
   border: none;
 }
-
-
 
 /* углы */
 .corner {
@@ -529,7 +591,6 @@ a:active {
     @extend .btn_uppercase;
   }
 }
-
 
 .tooltip {
   padding: 10px;

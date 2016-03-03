@@ -1,15 +1,16 @@
 <div block="callback_request">
-    <h1 block="h1" mod="style">Заявка мастеру</h1>
+    <h1 block="h1" mod="style">Заказать услугу</h1>
 
     <form elem="form" method="post" action="{{url}}" id="callback-request-form">
         <p elem="errors"></p>
+
         <p elem="intro">Опишите вашу задачу</p>
 
         <div elem="input">
             <textarea block="textarea"
                       placeholder="Я хочу (отремонтировать, организовать, установить, доставить)"
                       name="RequestForm[text]"
-                      required="required"
+
                       id="request-form-text"></textarea>
         </div>
         <p elem="intro">
@@ -17,16 +18,36 @@
         </p>
 
         <div elem="input">
-            <input id="request-form-contact-name" block="input-text" type="text" required="required" placeholder="Ваше имя"
+            <input id="request-form-contact-name" block="input-text" type="text" required="required"
+                   placeholder="Ваше имя"
                    name="RequestForm[contactName]">
         </div>
         <div elem="input">
-            <input id="request-form-contact-phone" block="input-text" type="text" required="required" placeholder="Ваш телефон"
+            <input id="request-form-contact-phone" block="input-text" type="text" required="required"
+                   placeholder="Ваш телефон"
                    name="RequestForm[contactPhone]">
         </div>
         <div elem="input">
-            <input id="request-form-contact-email" block="input-text" type="email" required="required" placeholder="Ваш email"
+            <input id="request-form-contact-email" block="input-text" type="email"
+                   placeholder="Ваш email"
                    name="RequestForm[contactEmail]">
+        </div>
+        <div elem="input">
+            <label>
+                <input id="request-form-contact-agree" type="checkbox" required="required"
+                       name="RequestForm[contactAgree]">
+                согласен с
+                <span elem="info" mix="block: js-show-tip">
+                    условиями<span elem="tip">
+                        Я даю свое согласие на обработку и&nbsp;хранение Компанией персональных и&nbsp;иных данных,
+                        их&nbsp;передачу для обработки другим Пользователям и/или третьим лицам, действующим по&nbsp;поручению Компании,
+                        в&nbsp;том числе для целей: получения статистических и&nbsp;аналитических данных для улучшения функционирования Сайта
+                        и/или Услуг, расширения спектра оказываемых Услуг, получения информационных и/или рекламных сообщений Компании
+                        или третьих лиц.
+                    <i mix="block:js-close-tip">{{icon "close"}}</i>
+                    </span></span>
+                подачи заяки
+            </label>
         </div>
         <div elem="submit">
             <input block="btn-accent" type="submit" value="отправить заявку">

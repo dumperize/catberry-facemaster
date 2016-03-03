@@ -61,7 +61,10 @@ Video.prototype.render = function () {
             }
             self._videoPopUpData = video;
             self._videoPopUpData.id = 'popup-video-' + video.id;
-            //console.log(video);
+            // если превью видео с ютуба меняем его на средний размер
+            if (video.img.search('ytimg.com') >= 0) {
+                video.img = video.img.substring(0, video.img.lastIndexOf('/')) + '/mqdefault.jpg';
+            }
             return video;
         });
 

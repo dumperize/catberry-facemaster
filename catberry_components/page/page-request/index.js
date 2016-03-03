@@ -49,8 +49,8 @@ PageRequest.prototype.bind = function () {
     autosize(ta);
 
     //устанавливаем DOM элементы в нашем объекте
-    this.textareaElement = this.$context.element.querySelector('#request-form-text');
     this.contactElement = {
+        text: this.$context.element.querySelector('#request-form-text'),
         name: this.$context.element.querySelector('#request-form-contact-name'),
         phone: this.$context.element.querySelector('#request-form-contact-phone'),
         email: this.$context.element.querySelector('#request-form-contact-email')
@@ -60,19 +60,37 @@ PageRequest.prototype.bind = function () {
     return {
         submit: {
             '.callback_request__form': this.handleSubmit
+        },
+        click: {
+            '.js-show-tip': this._clickInfoHandler,
+            '.js-close-tip': this._clickCloseTipHandler
         }
     }
 };
 
+PageRequest.prototype._clickInfoHandler = function (obj) {
+    event.preventDefault();
+    event.stopPropagation();
+    var el = obj.target;
+    $(el).children().fadeIn(400).delay(30000).fadeOut(500);
+};
+PageRequest.prototype._clickCloseTipHandler = function (obj) {
+    event.preventDefault();
+    event.stopPropagation();
+    var el = obj.target;
+    $(el).closest('.callback_request__tip').stop().fadeOut(500);
+};
+
 PageRequest.prototype.handleSubmit = function (event) {
     var self = this;
+    var classNameError = 'input-error';
     event.preventDefault();
     event.stopPropagation();
 
     //TODO: можно сделать автоматический сбор данных для отправки
     //собираем данные по форме и отправляем Store
     this.$context.sendAction('send', {
-        'RequestForm[text]': this.getTextArea(),
+        'RequestForm[text]': this.getContact('text'),
         'RequestForm[contactName]': this.getContact('name'),
         'RequestForm[contactPhone]': this.getContact('phone'),
         'RequestForm[contactEmail]': this.getContact('email')
@@ -92,20 +110,16 @@ PageRequest.prototype.handleSubmit = function (event) {
             if (!data.success) {
                 var text = [];
                 //переберем все ошибки
+                console.log(data.error);
                 data.error.forEach(function (el) {
-                    //соберем их в строку TODO: оформить css для этих ошибок
-                    text.push('<p>' + el.message + '</p>');
-
-                    //расскрасим поля красным
                     if (el.field == 'text') {
-                        self.textareaElement.style.border = '1px solid red';
-                    } else {
-                        self.contactElement[el.field].style.border = '1px solid red';
+                        //self.textareaElement.style.border = '1px solid red';
+                        $(self.contactElement[el.field]).parent().addClass(classNameError);
                     }
-
+                    $(self.contactElement[el.field]).after('<p class="input-error-text">' + el.message + '</p>');
                 });
                 //выведем все ошибки вверх формы
-                errElement.innerHTML = text.join('');
+                //errElement.innerHTML = text.join('');
             }
             //форма отправлена УРА
             else {
@@ -122,13 +136,6 @@ PageRequest.prototype.handleSubmit = function (event) {
 };
 
 /**
- * Gets textares of callback.
- * @returns {string} Current value in textarea.
- */
-PageRequest.prototype.getTextArea = function () {
-    return this.textareaElement.value;
-};
-/**
  * Получить данные заполненные в контактах
  * @param key
  * @returns {*}
@@ -143,9 +150,8 @@ PageRequest.prototype.getContact = function (key) {
  */
 PageRequest.prototype.clearDOM = function (key) {
     var self = this;
-    this.textareaElement.style.border = '';
     Object.keys(this.contactElement).forEach(function (key) {
-        self.contactElement[key].style.border = '';
+        $(self.contactElement[key]).parent().removeClass('input-error');
     });
 };
 
