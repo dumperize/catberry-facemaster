@@ -66,7 +66,7 @@ Footer.prototype.bind = function () {
             $('.kl').fadeOut(400);
         } else {
             $('#to-top').fadeIn(400);
-            //$('.kl').fadeIn(400);
+            $('.kl').fadeIn(400);
         }
     }
 };
