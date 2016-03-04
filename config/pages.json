@@ -80,8 +80,13 @@
     "keywords": ""
   },
   "konkurs": {
-    "title": "Конкурсы газеы Презент",
-    "description": "Конкурсы газеы Презент",
+    "title": "Конкурсы газеты Презент",
+    "description": "Конкурсы газеты Презент",
+    "keywords": "презент, конкурсы"
+  },
+  "konkurs-member-add": {
+    "title": "Добавить участника конкурса газеты Презент",
+    "description": "Конкурсы газеты Презент",
     "keywords": "презент, конкурсы"
   },
   "master-rubrika": {},
@@ -90,7 +95,6 @@
   "news-item": {},
   "vacancy-item": {},
   "konkurs-item": {},
-  "konkurs-item-add": {},
   "company-rubrika": {},
   "company-page": {},
   "article-item": {},

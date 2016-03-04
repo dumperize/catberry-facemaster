@@ -86,7 +86,7 @@ Pages.prototype.load = function () {
             if (!currentPage) {
                 return self.$context.redirect('/main');
             }
-
+            console.log(currentPage);
             if (!PAGES.hasOwnProperty(currentPage)) {
                 self.$context.notFound();
             }

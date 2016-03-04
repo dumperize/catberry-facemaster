@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = PageKonkursItemAdd;
+module.exports = PageKonkursMemberAdd;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = PageKonkursItemAdd;
  */
 
 /**
- * Creates new instance of the "page-konkurs-item-add" component.
+ * Creates new instance of the "page-konkurs-member-add" component.
  * @constructor
  */
-function PageKonkursItemAdd() {
+function PageKonkursMemberAdd() {
 
 }
 
@@ -22,7 +22,7 @@ function PageKonkursItemAdd() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-PageKonkursItemAdd.prototype.render = function () {
+PageKonkursMemberAdd.prototype.render = function () {
 
 };
 
@@ -31,7 +31,7 @@ PageKonkursItemAdd.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-PageKonkursItemAdd.prototype.bind = function () {
+PageKonkursMemberAdd.prototype.bind = function () {
 
 };
 
@@ -40,6 +40,6 @@ PageKonkursItemAdd.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-PageKonkursItemAdd.prototype.unbind = function () {
+PageKonkursMemberAdd.prototype.unbind = function () {
 
 };
