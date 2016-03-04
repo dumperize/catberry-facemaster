@@ -37,6 +37,11 @@ MasterList.prototype.render = function () {
             data.isHaveMaster = (Object.keys(data.list).length);
             self.structurData(data);
             self._isFinish = data.isFinished;
+            //console.log(data.list[0]);
+            data.list.forEach(function (item) {
+                console.log(item.hightlight);
+            });
+            //console.log(data.list[0].hightlight);
             return data;
         });
 };
@@ -75,8 +80,6 @@ MasterList.prototype.structurData = function (data) {
  */
 MasterList.prototype.bind = function () {
     this._window.addEventListener('scroll', this._handleScroll);
-
-    setTimeout(this._allMinicardServicesCut, 100);
 };
 
 MasterList.prototype.unbind = function () {

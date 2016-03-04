@@ -1,6 +1,18 @@
-<h1 block="h1" mod="style">ПОИСК ПО САЙТУ</h1>
+<h1 block="h1" mod="style">Поиск по сайту</h1>
 
-<cat-search id="search"></cat-search>
+<div block="search-result">
+    <div elem="search-cont">
+        <cat-search id="search"></cat-search>
+    </div>
 
+    <div elem="leftColumn">
+        <ul block="search-menu">
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
 
-<cat-master-list id="master-list" cat-store="search/Search"></cat-master-list>
+    <div elem="rightColumn">
+        <cat-master-list id="master-list" cat-store="search/Search"></cat-master-list>
+    </div>
+</div>

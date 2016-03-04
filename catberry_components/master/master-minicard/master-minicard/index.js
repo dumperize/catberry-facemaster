@@ -62,8 +62,20 @@ MasterMinicard.prototype.render = function () {
                 master.commentsCount = master.comments.length;
             }
             var servicesNormally = [];
-            Object.keys(master.services).forEach(function (item) {
+            if (master.hightlight) {
+                var servicesHightlight = master.hightlight.services;
+            }
+            Object.keys(master.services).forEach(function (item, i) {
                 var service = master.services[item];
+                if (servicesHightlight) {
+                    servicesHightlight.forEach(function (item2) {
+                        //console.log('service: ' + service + '\n\n' + 'hightlight: ' + tmp + '\n\n\n\n');
+                        var findStr = item2.slice(item2.indexOf('<em>') + 4, item2.indexOf('</em>'));
+                        var re = new RegExp(findStr, 'g');
+                        service = service.replace(re, '<em>' + findStr + '</em>');
+                        console.log(service);
+                    });
+                }
                 service = service.replace(/\u00A0/g, " ");      //убираем неразрывный пробел
                 service = service.replace(/:|\.|,/g, '$& ');    //вставляем пробелы после двоеточия, запятой и точки.
                 servicesNormally.push(service);
@@ -71,6 +83,7 @@ MasterMinicard.prototype.render = function () {
             master.services = servicesNormally;
             master.index = index;
             master.store = store;
+            //console.log(master.hightlight);
             return master;
         });
 };
