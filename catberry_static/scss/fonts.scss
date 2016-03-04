@@ -36,3 +36,15 @@ $CustomFont: 'CustomFont', Helvetica, Arial, sans-serif;
     font-weight: bold;
     font-style: normal;
 }
+
+/* cheeseusaceu - шрифт для вспомогательных сообщений */
+@font-face {
+    font-family: 'Cheeseusaceu';
+    src: local('Cheeseusaceu'),
+    url('/fonts/cheeseusaceu/cheeseusaceu.ttf') format('truetype'),
+    url('/fonts/cheeseusaceu/cheeseusaceu.eot') format('embedded-opentype'),
+    url('/fonts/cheeseusaceu/cheeseusaceu.woff') format('woff');
+    //    url('../fonts/cheeseusaceu/cheeseusaceu.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

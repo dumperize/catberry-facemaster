@@ -23,7 +23,6 @@ function Footer() {
  * for template engine.
  */
 Footer.prototype.render = function () {
-
     return this.$context.getStoreData()
         .then(function (data) {
             data.footer.links = [
@@ -64,8 +63,10 @@ Footer.prototype.bind = function () {
     function isVisibleToTop() {
         if (windowHeight / 2 > $(window).scrollTop()) {
             $('#to-top').fadeOut(400);
+            $('.kl').fadeOut(400);
         } else {
             $('#to-top').fadeIn(400);
+            $('.kl').fadeIn(400);
         }
     }
 };

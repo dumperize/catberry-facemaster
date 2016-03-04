@@ -1,0 +1,141 @@
+.img-upload {
+  margin-top: 30px;
+  text-align: center;
+  display: none;
+  position: relative;
+  background-color: $color-bg;
+  padding: 30px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  &__title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  &__ico-close {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    @extend %icon;
+    @extend %icon_close;
+    @include icon_size(18px);
+    cursor: pointer;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  &__wrapper {
+    //image-cropper
+    /* ---- CropIt ---- */
+    padding: 50px;
+    width: 100%;
+    height: 330px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    .cropit-image-preview-container {
+      margin: 0 auto;
+      width: 220px;
+      height: 220px;
+      margin-bottom: 20px;
+      border: 1px dashed #999;
+      box-sizing: content-box;
+    }
+    .cropit-image-preview {
+      /* You can specify preview size in CSS */
+      width: 220px;
+      height: 220px;
+      cursor: -webkit-grab;
+      cursor: grab;
+    }
+    .cropit-image-preview.grabbing {
+      cursor: -webkit-grabbing;
+      cursor: grabbing;
+    }
+    .cropit-image-background {
+      opacity: .2;
+    }
+    /* ---- Слайдер ---- */
+    .slider-wrapper {
+      //    border: 1px solid blue;
+      height: 24px;
+      vertical-align: middle;
+      text-align: center;
+      position: relative;
+      * {
+        vertical-align: middle;
+      }
+    }
+    .cropit-slider {
+      display: inline-block;
+      width: 150px;
+      margin: 0 16px;
+      vertical-align: middle;
+    }
+    svg.icon-large {
+      width: 24px;
+      height: 24px;
+    }
+    svg.icon-small {
+      width: 18px;
+      height: 18px;
+    }
+    .js-open-file {
+      display: none;
+    }
+  }
+
+  /* ---- Кнопки ---- */
+  &__btn-cont {
+    display: inline-block;
+    margin: 0 auto;
+  }
+  &__save-img, &__select-img {
+    @extend .basic-button-auto;
+  }
+  &__select-img {
+    @extend .basic-button-auto_grey;
+  }
+
+  /* ---- Подсказки ---- */
+  &__help, &__help2 {
+    font-family: "Cheeseusaceu", serif;
+    font-size: 1.8rem;
+    color: #666;
+    width: 154px;
+    //border: 1px solid red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: 130px;
+    i {
+      background: url('/img/arrowDown.png') 0 0 no-repeat;
+      width: 71px;
+      height: 36px;
+      position: absolute;
+      display: block;
+      transform: scale(-1, 1);
+      left: -64px;
+      top: 10px;
+    }
+  }
+  &__help {
+    top: 67px;
+  }
+  &__help2 {
+    margin-top: 46px;
+    left: auto;
+    right: 50%;
+    margin-left: auto;
+    margin-right: 124px;
+    i {
+      transform: scale(1, -1) rotate(-50deg);
+      left: auto;
+      right: 0;
+      top: auto;
+      bottom: -38px;
+    }
+  }
+}
