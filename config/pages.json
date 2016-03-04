@@ -79,12 +79,18 @@
     "description": "",
     "keywords": ""
   },
+  "konkurs": {
+    "title": "Конкурсы газеы Презент",
+    "description": "Конкурсы газеы Презент",
+    "keywords": "презент, конкурсы"
+  },
   "master-rubrika": {},
   "master-page": {},
   "master-print-card": {},
   "news-item": {},
   "vacancy-item": {},
   "konkurs-item": {},
+  "konkurs-item-add": {},
   "company-rubrika": {},
   "company-page": {},
   "article-item": {},

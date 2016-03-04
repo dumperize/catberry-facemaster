@@ -1,0 +1,5 @@
+{
+	"name": "page-konkurs-item-add",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

@@ -47,7 +47,7 @@ DopFunction.prototype.render = function () {
         ],
         "menuBayda": [
             {
-                "url": "/404",
+                "url": "/konkurs",
                 "title": "Конкурсы газеты Презент"
             },
             {

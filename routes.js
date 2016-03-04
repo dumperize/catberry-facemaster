@@ -164,5 +164,24 @@ module.exports = [
             };
             return state;
         }
+    },
+    // путь: /konkurs/item/:id/add
+    {
+        expression: /^\/konkurs\/item\/(\d+)\/add-member$/i,
+        map: function (urlPath) {
+            var matches = urlPath.path.match(/^\/konkurs\/item\/(\d+)\/add-member$/i);
+            var state = {};
+
+            var string = matches[1];
+
+            state.Pages = {
+                page: "konkurs-member-add"
+            };
+            state["other/KonkursItem"] = {
+                item: matches[1]
+            };
+            console.log(state);
+            return state;
+        }
     }
 ];
