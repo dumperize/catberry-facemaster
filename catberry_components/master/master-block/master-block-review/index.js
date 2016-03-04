@@ -29,7 +29,8 @@ MasterBlockReview.prototype.render = function () {
                 try {
                     data.vkLikes.data = JSON.parse(data.vkLikes.data);
                 } catch (e) {
-
+                    data.vkLikes.data = data.vkLikes.data.substring(0, data.vkLikes.data.lastIndexOf('}')) + '}]';
+                    data.vkLikes.data = JSON.parse(data.vkLikes.data);
                 }
             }
             if (!data.vkLikes || !data.vkLikes.countLikes) {

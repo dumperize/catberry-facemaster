@@ -1,0 +1,5 @@
+{
+	"name": "img-upload",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

@@ -1,0 +1,37 @@
+<div block="img-upload" id="add-news-thumb">
+    <i elem="ico-close" mix="block:js-close-ico">{{icon 'close'}}</i>
+
+    <p elem="title">Добавление фотографии</p>
+
+    <p elem="help">Нажмите внутри и&nbsp;передвиньте фотографию<i></i></p>
+
+    <div elem="wrapper" id="add-news-thumb-cropper" class="image-cropper">
+        <!-- The preview container is needed for background image to work -->
+        <div class="cropit-image-preview-container">
+            <div class="cropit-image-preview"></div>
+        </div>
+
+        <div class="slider-wrapper">
+            {{icon 'picture' 'icon-small'}}
+            <div class="cropit-slider"></div>
+            {{icon 'picture' 'icon-large'}}
+        </div>
+
+        <form>
+            <!--cropit-image-input-->
+            <label class="js-open-file"><input type="file" class="js-input-photo" accept="image/*"
+                                               data-selector="#img-upload"></label>
+        </form>
+    </div>
+    <!--wrapper-->
+
+    <p elem="help2">Если нужно, отре&shy;гулируйте размер<i></i></p>
+
+    <br>
+
+    <div elem="btn-cont">
+        <a href="" elem="select-img" mix="block:js-photo-upload-btn">Выбрать другое фото</a>
+        <a href="" elem="save-img" mix="block:js-download-image-btn">Сохранить</a>
+    </div>
+
+</div><!--img-upload-->
