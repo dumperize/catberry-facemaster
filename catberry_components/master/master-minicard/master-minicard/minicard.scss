@@ -129,6 +129,29 @@
         margin-right: 0;
       }
     }
+    .find-text {
+      border: 1px solid #FFFEAD;
+      background-color: #FCFCE1;
+      padding: 6px 10px;
+      font-size: 1.2rem;
+      position: relative;
+      left: -16px;
+      max-height: 76px;
+      overflow: hidden;
+      strong {
+        display: inline-block;
+        margin-bottom: 2px;
+      }
+      &:after {
+        background-color: inherit;
+        content: '';
+        height: 4px;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+      }
+    }
   }
   &__company {
     float: right;

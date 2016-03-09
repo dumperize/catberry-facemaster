@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = PageArticleItem;
+var Typograf = require('typograf');
 
 /*
  * This is a Catberry Cat-component file.
@@ -13,7 +14,7 @@ module.exports = PageArticleItem;
  * @constructor
  */
 function PageArticleItem() {
-
+    this.tp = new Typograf({lang: 'ru'});
 }
 
 /**
@@ -23,8 +24,11 @@ function PageArticleItem() {
  * for template engine.
  */
 PageArticleItem.prototype.render = function () {
+    var self = this;
+
     return this.$context.getStoreData()
         .then(function(data) {
+            data.text = self.tp.execute(data.text);
             //console.log(data);
             return data;
         });
