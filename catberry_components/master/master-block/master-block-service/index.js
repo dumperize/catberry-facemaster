@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = MasterBlockService;
+var Typograf = require('typograf');
 
 /*
  * This is a Catberry Cat-component file.
@@ -13,7 +14,7 @@ module.exports = MasterBlockService;
  * @constructor
  */
 function MasterBlockService() {
-
+    this.tp = new Typograf({lang: 'ru'});
 }
 
 /**
@@ -23,6 +24,8 @@ function MasterBlockService() {
  * for template engine.
  */
 MasterBlockService.prototype.render = function () {
+    var self = this;
+
     return this.$context.getStoreData()
         .then(function (data) {
             if (data.services.length > data.page.services) {
@@ -50,11 +53,11 @@ MasterBlockService.prototype.render = function () {
                 fieldsValLength = data.services[item].length;
                 if (fieldsValHalfSum < (fieldsValSum / 2) - 10) {
                     if (fieldsValLength > 0) {
-                        part1.push(data.services[item]);
+                        part1.push(self.tp.execute(data.services[item]));
                     }
                 } else {
                     if (fieldsValLength > 0) {
-                        part2.push(data.services[item]);
+                        part2.push(self.tp.execute(data.services[item]));
                     }
                 }
                 fieldsValHalfSum += fieldsValLength;

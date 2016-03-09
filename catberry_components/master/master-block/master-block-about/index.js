@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = MasterBlockAbout;
+var Typograf = require('typograf');
 
 /*
  * This is a Catberry Cat-component file.
@@ -13,7 +14,7 @@ module.exports = MasterBlockAbout;
  * @constructor
  */
 function MasterBlockAbout() {
-
+    this.tp = new Typograf({lang: 'ru'});
 }
 
 /**
@@ -23,6 +24,8 @@ function MasterBlockAbout() {
  * for template engine.
  */
 MasterBlockAbout.prototype.render = function () {
+    var self = this;
+
     return this.$context.getStoreData()
         .then(function (data) {
             function replaceRawText(text) {
@@ -34,11 +37,11 @@ MasterBlockAbout.prototype.render = function () {
                 }
             }
             if (!data.about) {
-                data.aboutEduc = replaceRawText(data.aboutEduc);
-                data.aboutExp = replaceRawText(data.aboutExp);
-                data.aboutAddInfo = replaceRawText(data.aboutAddInfo);
+                data.aboutEduc = self.tp.execute(replaceRawText(data.aboutEduc));
+                data.aboutExp = self.tp.execute(replaceRawText(data.aboutExp));
+                data.aboutAddInfo = self.tp.execute(replaceRawText(data.aboutAddInfo));
             } else {
-                data.about = replaceRawText(data.about);
+                data.about = self.tp.execute(replaceRawText(data.about));
             }
             return {
                 aboutEduc: data.aboutEduc,
