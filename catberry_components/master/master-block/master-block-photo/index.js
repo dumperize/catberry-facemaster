@@ -25,7 +25,6 @@ function MasterBlockPhoto() {
 MasterBlockPhoto.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
-            console.log(data.albums);
             data.albums.forEach (function (item) {
                 if (item.photos.length > 10) {
                     item.photos.length = 10; //укорачиваем массив до 10 элементов (больше запрещено)

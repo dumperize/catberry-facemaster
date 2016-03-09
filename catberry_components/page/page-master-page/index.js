@@ -16,6 +16,7 @@ function PageMasterPage() {
 
 }
 
+PageMasterPage.prototype.masterID = null
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -23,7 +24,12 @@ function PageMasterPage() {
  * for template engine.
  */
 PageMasterPage.prototype.render = function () {
+    var self = this;
     return this.$context.getStoreData()
+        .then(function (data) {
+            self.masterID = data.id;
+            return data;
+        });
 };
 
 /**
@@ -40,7 +46,6 @@ PageMasterPage.prototype.bind = function () {
     $(window).bind('scroll', menuHighlight);
     $('.menu-mp a').bind('click', scrollToSection);
     $('.contacts-mp__show-contact').bind('click', showContact);
-    $('.js-show-callback-popup').bind('click', showCallbackPopup);
     autosize(ta);
     fixedSectionMenu();
     menuHighlight();
@@ -81,17 +86,56 @@ PageMasterPage.prototype.bind = function () {
         $('html, body').animate({
             scrollTop: $($(this).attr('href')).offset().top - 50
         }, 1000);
+
         return false;
     }
 
-    //показать popup - заказать звонок
-    function showCallbackPopup() {
-        var form = $('.callback-popup');
-        $.fancybox.open(form, {
-            padding: 0
-        });
-        return false;
+    return {
+        click: {
+            '.js-show-callback-popup': this.showCallbackPopup
+        }
     }
+};
+
+/**
+ * показать popup - заказать звонок
+ * @returns {boolean}
+ */
+PageMasterPage.prototype.showCallbackPopup = function (event) {
+    var self = this;
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.$context.createComponent('block-callback-request-popup', {
+        id: 'callback-request-popup',
+        'cat-store': 'master/MasterCallBackRequest',
+        'master-id': self.masterID
+    })
+        .then(function (data) {
+            $.fancybox.open('<div id="popup_callback"></div>', {
+                margin: 40,
+                padding: 20,
+                type: 'inline',
+                width: '80%',
+                maxWidth: '800px',
+                minWidth: '250px',
+                autoHeight: true,
+                autoSize: false,
+                afterShow: function () {
+                    var popup = document.getElementById('popup_callback');
+                    popup.insertBefore(data,popup.children[0]);
+                },
+                afterClose: function () {
+                    self.$context.collectGarbage();
+                }
+            });
+        });
+
+    //var form = $('#callback-request-popup .callback-popup');
+    //$.fancybox.open(form, {
+    //    padding: 0
+    //});
+    return false;
 };
 
 /**

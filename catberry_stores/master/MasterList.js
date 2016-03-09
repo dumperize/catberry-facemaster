@@ -31,7 +31,7 @@ function MasterList($uhr) {
             filter: '["and",["=", "rubrikaID", ":rubrikaID"]]',
             expand: 'activeComments,activeSales,activeVideos,vkLikes,activeAlbums,contacts,page,company',
             order: 'sort',
-            limit: 200
+            limit: 20
         }
     };
 }

@@ -100,21 +100,6 @@
         </div>
     </div>
 
-    <div block="callback-popup">
-        <form elem="form" id="callback-request-popup-form" method="" action="">
-            <input elem="input-text" type="text" placeholder="Ваше имя" name="callbackRequestForm[name]">
-            <input elem="input-text" type="text" placeholder="Ваш телефон" name="callbackRequestForm[phone]">
-            <textarea elem="textarea"
-                      placeholder="Ваш комментарий"
-                      name="callbackRequestForm[text]"></textarea>
-            <input elem="btn" type="submit" value="отправить заявку">
-            <span style="color: red; font-weight: bold">Отправка формы не работает - ERROR!</span>
-        </form>
-        <div block="success_response">
-            Ваша заявка отправлена Мастеру
-        </div>
-    </div>
-
     <ul block="menu-mp">
         {{#each isBlock}}
             {{#if access}}

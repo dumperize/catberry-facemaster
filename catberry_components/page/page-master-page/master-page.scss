@@ -79,31 +79,3 @@
     position: relative;
   }
 }
-.callback-popup {
-  background-color: $color-bg-grey-light;
-  padding: 20px;
-  display: none;
-  &__form {
-    width: 210px;
-  }
-  &__input-text {
-    @extend .basic-input;
-    padding: 8px 10px;
-    margin-bottom: 20px;
-    width: 210px;
-  }
-  &__textarea {
-    @extend .basic-input;
-    padding: 8px 10px;
-    margin-bottom: 20px;
-    width: 210px;
-    display: block;
-    resize: vertical;
-    min-height: 80px;
-    max-height: 240px;
-  }
-  &__btn {
-    @extend .basic-button-mid;
-    width: 210px;
-  }
-}
