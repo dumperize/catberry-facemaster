@@ -163,7 +163,9 @@ body.blackout:after {
 }
 .input-error {
   box-shadow: 0 0 3px 2px rgba(255, 0, 0, 0.3);
-  //border-radius: 2px;
+  input:focus {
+    outline: none;
+  }
 }
 .input-error-text {
   padding: 8px 10px;
@@ -172,8 +174,7 @@ body.blackout:after {
   font-weight: bold;
   font-size: 1.1rem;
   position: relative;
-  margin-top: -4px;
-  //top: -4px;
+  margin-top: -1px;
 }
 
 /* Подсказки - tips */

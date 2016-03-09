@@ -25,7 +25,10 @@ function PageKonkurs() {
 PageKonkurs.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function(data){
-            //console.log(data);
+            data.forEach(function (item) {
+                item.countMembers = Object.keys(item.activeMembers).length;
+            });
+            console.log(data[0]);
             return data;
         })
 };

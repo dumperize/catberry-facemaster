@@ -59,9 +59,15 @@ MasterBlockPhoto.prototype.bind = function () {
         $.fancybox(albumPhotos, {
             type: 'image',
             index: albumPhotos.index(this),
+            prevEffect: 'none',
+            nextEffect: 'none',
             helpers: {
-                overlay: {
-                    locked: false
+                title: {
+                    type: 'outside'
+                },
+                thumbs: {
+                    width: 50,
+                    height: 50
                 }
             }
         });

@@ -1,20 +1,27 @@
 .callback-popup {
   background-color: $color-bg-grey-light;
   padding: 20px;
+  &__title {
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    font-weight: bold;
+    //letter-spacing: 0.025em;
+    margin-bottom: 20px;
+  }
   &__form {
-    width: 210px;
+    max-width: 360px;
+  }
+  &__input {
+    margin-bottom: 20px;
   }
   &__input-text {
     @extend .basic-input;
     padding: 8px 10px;
-    margin-bottom: 20px;
-    width: 210px;
   }
   &__textarea {
     @extend .basic-input;
     padding: 8px 10px;
     margin-bottom: 20px;
-    width: 210px;
     display: block;
     resize: vertical;
     min-height: 80px;
@@ -23,6 +30,6 @@
   &__btn {
     @extend .basic-button-mid;
     width: 210px;
-
+    margin: 0 auto;
   }
 }
