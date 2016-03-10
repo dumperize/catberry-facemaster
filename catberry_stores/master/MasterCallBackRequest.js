@@ -6,7 +6,7 @@ var util = require('util'),
 	StoreBase = require('../../lib/StoreBase');
 
 /**
- * наследуемся от пагинатора для базового стора
+ * наследуемся от базового стора
  */
 util.inherits(Request, StoreBase);
 
@@ -34,5 +34,10 @@ Request.prototype.load = function () {
 };
 
 Request.prototype.handleSend = function (data) {
-	return this.send(this._path, {data: data});
+	console.log(typeof data);
+	return this.send(this._path, {data: data})
+		.then(function(res){
+			console.log(res);
+			return res;
+		});
 };

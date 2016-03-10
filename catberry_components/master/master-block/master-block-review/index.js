@@ -44,6 +44,7 @@ MasterBlockReview.prototype.render = function () {
             }
             //console.log(data.vkLikes);
             return {
+                id: data.id,
                 comments: data.comments.reverse(),
                 vkLikes: data.vkLikes,
                 name: data.name,
@@ -58,14 +59,4 @@ MasterBlockReview.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterBlockReview.prototype.bind = function () {
-
-};
-
-/**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
- */
-MasterBlockReview.prototype.unbind = function () {
-
 };

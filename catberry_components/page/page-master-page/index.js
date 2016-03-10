@@ -16,7 +16,6 @@ function PageMasterPage() {
 
 }
 
-PageMasterPage.prototype.masterID = null
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -24,12 +23,7 @@ PageMasterPage.prototype.masterID = null
  * for template engine.
  */
 PageMasterPage.prototype.render = function () {
-    var self = this;
     return this.$context.getStoreData()
-        .then(function (data) {
-            self.masterID = data.id;
-            return data;
-        });
 };
 
 /**
@@ -109,7 +103,7 @@ PageMasterPage.prototype.showCallbackPopup = function (event) {
     this.$context.createComponent('block-callback-request-popup', {
         id: 'callback-request-popup',
         'cat-store': 'master/MasterCallBackRequest',
-        'master-id': self.masterID
+        'master-id': self.$context.element.querySelector('.master-page').getAttribute('master-id')
     })
         .then(function (data) {
             $.fancybox.open('<div id="popup_callback"></div>', {
@@ -131,10 +125,6 @@ PageMasterPage.prototype.showCallbackPopup = function (event) {
             });
         });
 
-    //var form = $('#callback-request-popup .callback-popup');
-    //$.fancybox.open(form, {
-    //    padding: 0
-    //});
     return false;
 };
 

@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = BlockCallbackRequestPopup;
+var serializeForm = require("../../../lib/util/SerializeForm");
 
 /*
  * This is a Catberry Cat-component file.
@@ -26,6 +27,7 @@ BlockCallbackRequestPopup.prototype.formID = null;
  * for template engine.
  */
 BlockCallbackRequestPopup.prototype.render = function () {
+    console.log(this.$context.attributes);
     this.masterID = this.$context.attributes['master-id'];
 };
 
@@ -36,7 +38,6 @@ BlockCallbackRequestPopup.prototype.render = function () {
  */
 BlockCallbackRequestPopup.prototype.bind = function () {
     this.formID = this.$context.element.querySelector('#callback-request-popup-form');
-
     return {
         submit: {
             '.callback-popup__form': this.handleSubmit
@@ -52,7 +53,8 @@ BlockCallbackRequestPopup.prototype.bind = function () {
 BlockCallbackRequestPopup.prototype.handleSubmit = function (event) {
     event.preventDefault();
     event.stopPropagation();
-    console.log($(this.formID).serializeArray());
-    this.$context.sendAction('send', $(this.formID).serializeArray());
+    var data = serializeForm($(this.formID).serializeArray());
+    data['RequestMasterForm[masterID]'] = this.masterID;
+    this.$context.sendAction('send', data);
 
 };

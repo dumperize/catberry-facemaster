@@ -25,16 +25,8 @@
     <p elem="title">Оставить отзыв</p>
 
     <div elem="row">
-        <form block="add-comment" method="POST" action="">
-            <input elem="text-input" type="text" placeholder="Ваше имя" name="comment_form[name]">
-            <input elem="text-input" type="text" placeholder="Ваш номер телефона" name="comment_form[phone]">
-            <textarea elem="textarea" placeholder="Текст отзыва" name="comment_form[comment_text]"></textarea>
-            <input elem="btn" type="submit" value="отправить">
 
-            <p elem="success">
-                Ваш отзыв успешно отправлен, спасибо!
-            </p>
-        </form>
+       <cat-master-block-review-form id="master-block-review-form" cat-store="master/MasterReview" master-id="{{id}}"></cat-master-block-review-form>
 
         <div block="social-links">
             <div elem="wrapper">
