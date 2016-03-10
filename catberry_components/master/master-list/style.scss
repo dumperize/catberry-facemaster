@@ -12,6 +12,10 @@
 .master-list-info {
   padding: 20px;
   background-color: $color-bg-grey-xmedium;
+  position: relative;
+  @include at(xs) {
+    padding-bottom: 60px;
+  }
   &__text {
     display: table;
     font-size: 1.6rem;
@@ -19,6 +23,7 @@
       display: table-cell;
       vertical-align: middle;
       padding: 0 10px;
+      min-width: 50px;
       &:first-child {
         font-size: 2.6rem;
       }
@@ -43,5 +48,16 @@
     float: right;
     font-weight: bold;
     font-size: 1.8rem;
+    @include at(sm) {
+      font-size: 1.4rem;
+      padding: 0 12px;
+    }
+    @include at(xs) {
+      position: absolute;
+      float: none;
+      width: 230px;
+      left: 10px;
+      bottom: 10px;
+    }
   }
 }

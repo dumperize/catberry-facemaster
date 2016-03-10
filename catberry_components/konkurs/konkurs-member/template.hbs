@@ -1,7 +1,27 @@
-<div>
+<div block="konkurs-member">
     {{#each this}}
-        <div>
-            <a href="/konkurs/item/{{id}}">{{name}}</a>
+        <div elem="item">
+
+            <div block="member-cont">
+                {{#each photos}}
+                    <a href="http://konkurs.facemaster.ru/photo?key={{id}}" title="{{../nameWork}}"
+                       style="{{#is @index '>' 0}}display:none{{/is}}">
+                        {{#is @index '==' 0}}
+                            <img src="http://konkurs.facemaster.ru/photo?key={{id}}&square=210"
+                                 alt="{{../../description}}">
+                        {{/is}}
+                        <span>Участник {{../id}}</span>
+                    </a>
+                {{/each}}
+            </div>
+            <div block="vote-cont">
+                <a href="" elem="btn">Голосовать</a>
+                <div elem="info">
+                    <p elem="name">{{name}}</p>
+                    <p elem="count">{{getNumEnding countHits.countHits "голос, голоса, голосов"}}</p>
+                </div>
+            </div>
+
         </div>
     {{/each}}
 </div>

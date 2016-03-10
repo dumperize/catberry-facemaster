@@ -75,8 +75,6 @@ MasterList.prototype.structurData = function (data) {
  */
 MasterList.prototype.bind = function () {
     this._window.addEventListener('scroll', this._handleScroll);
-
-    setTimeout(this._allMinicardServicesCut, 100);
 };
 
 MasterList.prototype.unbind = function () {

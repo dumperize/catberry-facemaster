@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = MasterMinicard;
+var Typograf = require('typograf');
 
 /*
  * This is a Catberry Cat-component file.
@@ -16,6 +17,8 @@ function MasterMinicard($serviceLocator) {
     if (this.$context.isBrowser) {
         this._window = $serviceLocator.resolve('window');
     }
+    //var config = this.$context.locator.resolve('config');
+    this.tp = new Typograf({lang: 'ru'});
 }
 
 /**
@@ -62,15 +65,40 @@ MasterMinicard.prototype.render = function () {
                 master.commentsCount = master.comments.length;
             }
             var servicesNormally = [];
+            //если есть поисковая выдача заводим переменную servHightlight
+            if (master.hightlight) {
+                var servHightlight = master.hightlight.services;
+                var findText = [];
+                Object.keys(master.hightlight).forEach(function (item) {
+                    if (item != 'services') {
+                        findText[0] = '<p class="find-text"><strong>Текст найден на странице мастера:</strong><br>'
+                            + self.tp.execute(master.hightlight[item][0]) + '</p>';
+                        return false;
+                    }
+                });
+                //console.log(findText)
+            }
             Object.keys(master.services).forEach(function (item) {
                 var service = master.services[item];
-                service = service.replace(/\u00A0/g, " ");      //убираем неразрывный пробел
-                service = service.replace(/:|\.|,/g, '$& ');    //вставляем пробелы после двоеточия, запятой и точки.
+                if (servHightlight) {
+                    servHightlight.forEach(function (item2) {
+                        //console.log('service: ' + service + '\n\n' + 'hightlight: ' + tmp + '\n\n\n\n');
+                        var findStr = item2.slice(item2.indexOf('<em>') + 4, item2.indexOf('</em>'));
+                        var re = new RegExp(findStr, 'g');
+                        service = service.replace(re, '<em>' + findStr + '</em>');
+                    });
+                }
+                service = self.tp.execute(service);
                 servicesNormally.push(service);
             });
+            if (findText) {
+                servicesNormally = findText.concat(servicesNormally);
+                //console.log(servicesNormally);
+            }
             master.services = servicesNormally;
             master.index = index;
             master.store = store;
+            //console.log(master);
             return master;
         });
 };

@@ -1,0 +1,42 @@
+.search-result {
+  &__search-cont {
+    padding-bottom: 20px;
+    @include at(xs) {
+      .search {
+        height: 60px;
+        padding: 10px;
+        &__form {
+          display: block;
+        }
+        &__link {
+          display: none;
+        }
+        &__field {
+          margin-left: 0;
+          margin-right: 90px;
+        }
+      }
+    }
+  }
+  &__leftColumn {
+    @extend .col-lg-3;
+    @extend .col-md-12;
+    padding-left: 0;
+    @include to(lg) {
+      padding: 0 0 20px 0;
+    }
+  }
+  &__rightColumn {
+    @extend .col-lg-9;
+    @extend .col-md-12;
+    padding-right: 0;
+    @include to(lg) {
+      padding: 0;
+    }
+  }
+}
+
+.search-menu {
+  background-color: $color-bg-grey-light;
+  padding: 10px;
+}

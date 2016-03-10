@@ -107,14 +107,11 @@ PageMasterPage.prototype.showCallbackPopup = function (event) {
     })
         .then(function (data) {
             $.fancybox.open('<div id="popup_callback"></div>', {
-                margin: 40,
-                padding: 20,
+                padding: 0,
                 type: 'inline',
-                width: '80%',
-                maxWidth: '800px',
                 minWidth: '250px',
                 autoHeight: true,
-                autoSize: false,
+                autoSize: true,
                 afterShow: function () {
                     var popup = document.getElementById('popup_callback');
                     popup.insertBefore(data,popup.children[0]);

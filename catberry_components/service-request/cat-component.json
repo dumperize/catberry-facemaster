@@ -1,5 +1,0 @@
-{
-	"name": "service-request",
-	"template": "./template.hbs",
-	"errorTemplate": "./error.hbs"
-}

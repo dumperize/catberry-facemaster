@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = MasterBlockReview;
+var Typograf = require('typograf');
 
 /*
  * This is a Catberry Cat-component file.
@@ -13,7 +14,7 @@ module.exports = MasterBlockReview;
  * @constructor
  */
 function MasterBlockReview() {
-
+    this.tp = new Typograf({lang: 'ru'});
 }
 
 /**
@@ -23,6 +24,8 @@ function MasterBlockReview() {
  * for template engine.
  */
 MasterBlockReview.prototype.render = function () {
+    var self = this;
+
     return this.$context.getStoreData()
         .then(function (data) {
             if (data.vkLikes) {
@@ -42,6 +45,9 @@ MasterBlockReview.prototype.render = function () {
             if (data.vkLikes.data.length != 9) {
                 data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов (больше не требуется)
             }
+            data.comments.forEach(function (item, i) {
+                data.comments[i].text = self.tp.execute(item.text);
+            });
             //console.log(data.vkLikes);
             return {
                 id: data.id,

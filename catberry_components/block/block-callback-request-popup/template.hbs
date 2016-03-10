@@ -1,11 +1,21 @@
 <div block="callback-popup">
-    <h2>Отправить заявку Мастеру</h2>
+    <p elem="title">Отправить заявку Мастеру</p>
+
     <form elem="form" id="callback-request-popup-form" method="post" action="">
-        <input elem="input-text" type="text" placeholder="Ваше имя" name="RequestMasterForm[contactName]">
-        <input elem="input-text" type="text" placeholder="Ваш телефон" name="RequestMasterForm[contactPhone]">
+        <div elem="input">
+            <input elem="input-text" type="text" placeholder="Ваше имя" name="RequestMasterForm[contactName]">
+        </div>
+
+        <div elem="input">
+            <input elem="input-text" type="text" placeholder="Ваш телефон" name="RequestMasterForm[contactPhone]">
+        </div>
+
+        <div elem="input">
             <textarea elem="textarea"
                       placeholder="Ваш комментарий"
                       name="RequestMasterForm[text]"></textarea>
+        </div>
+
         <input elem="btn" type="submit" value="отправить заявку">
     </form>
 </div>
