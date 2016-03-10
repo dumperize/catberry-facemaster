@@ -1,0 +1,19 @@
+{{#unless success}}
+    <form id="add-comment-form" block="add-comment" method="POST" action="">
+        <div elem="error">
+            {{#each error}}
+                <p>{{message}}</p>
+            {{/each}}
+        </div>
+        <input elem="text-input" type="text" placeholder="Ваше имя" name="authorName" value="{{form.authorName}}">
+        <input elem="text-input" type="text" placeholder="Ваш номер телефона" name="authorContact"
+               value="{{form.authorContact}}">
+        <textarea elem="textarea" placeholder="Текст отзыва" name="text">{{form.text}}</textarea>
+        <input elem="btn" type="submit" value="отправить">
+
+    </form>
+{{else}}
+    <p block="success">
+        Ваш отзыв успешно отправлен, спасибо!
+    </p>
+{{/unless}}

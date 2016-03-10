@@ -180,7 +180,6 @@ module.exports = [
             state["other/KonkursItem"] = {
                 item: matches[1]
             };
-            console.log(state);
             return state;
         }
     }
