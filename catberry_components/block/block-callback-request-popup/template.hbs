@@ -1,25 +1,34 @@
-<div block="callback-popup">
-    <p elem="title">Отправить заявку Мастеру</p>
-
-    <form elem="form" id="callback-request-popup-form" method="post" action="">
-        <div elem="input">
-            <input elem="input-text" type="text" placeholder="Ваше имя" name="RequestMasterForm[contactName]">
+{{#unless success}}
+    <div block="callback-popup">
+        <p elem="title">Отправить заявку Мастеру</p>
+        <div elem="error">
+            {{#each error}}
+                <p>{{message}}</p>
+            {{/each}}
         </div>
 
-        <div elem="input">
-            <input elem="input-text" type="text" placeholder="Ваш телефон" name="RequestMasterForm[contactPhone]">
-        </div>
+        <form elem="form" id="callback-request-popup-form" method="post" action="">
+            <div elem="input">
+                <input elem="input-text" type="text" placeholder="Ваше имя" name="contactName"
+                       value="{{form.contactName}}">
+            </div>
 
-        <div elem="input">
+            <div elem="input">
+                <input elem="input-text" type="text" placeholder="Ваш телефон" name="contactPhone"
+                       value="{{form.contactPhone}}">
+            </div>
+
+            <div elem="input">
             <textarea elem="textarea"
                       placeholder="Ваш комментарий"
-                      name="RequestMasterForm[text]"></textarea>
-        </div>
+                      name="text">{{form.text}}</textarea>
+            </div>
 
-        <input elem="btn" type="submit" value="отправить заявку">
-    </form>
-</div>
-
-<div block="success_response">
-    Ваша заявка отправлена Мастеру
-</div>
+            <input elem="btn" type="submit" value="отправить заявку">
+        </form>
+    </div>
+{{else}}
+    <div block="success">
+        Ваша заявка отправлена Мастеру
+    </div>
+{{/unless}}

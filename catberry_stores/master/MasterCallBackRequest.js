@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = Request;
+module.exports = MasterCallBackRequest;
 
 var util = require('util'),
 	StoreBase = require('../../lib/StoreBase');
@@ -8,7 +8,7 @@ var util = require('util'),
 /**
  * наследуемся от базового стора
  */
-util.inherits(Request, StoreBase);
+util.inherits(MasterCallBackRequest, StoreBase);
 
 /*
  * This is a Catberry Store file.
@@ -21,23 +21,32 @@ util.inherits(Request, StoreBase);
  * @param {UHR} $uhr Universal HTTP request.
  * @constructor
  */
-function Request($uhr) {
+function MasterCallBackRequest($uhr) {
 	StoreBase.call(this);
 	this._path = '/master/add-callback';
 }
+
+MasterCallBackRequest.prototype.error = null;
+MasterCallBackRequest.prototype.success = false;
 
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
-Request.prototype.load = function () {
+MasterCallBackRequest.prototype.load = function () {
+	var self = this;
+	return {
+		success: self.success,
+		error: self.error
+	}
 };
 
-Request.prototype.handleSend = function (data) {
-	console.log(typeof data);
+MasterCallBackRequest.prototype.handleSend = function (data) {
+	var self = this;
 	return this.send(this._path, {data: data})
-		.then(function(res){
-			console.log(res);
-			return res;
+		.then(function (res) {
+			self.success = res.success;
+			self.error = res.error;
+			self.$context.changed();
 		});
 };

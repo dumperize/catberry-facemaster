@@ -19,6 +19,8 @@ function BlockCallbackRequestPopup() {
 
 BlockCallbackRequestPopup.prototype.masterID = null;
 BlockCallbackRequestPopup.prototype.formID = null;
+BlockCallbackRequestPopup.prototype.data = null;
+
 
 /**
  * Gets data context for template engine.
@@ -27,8 +29,14 @@ BlockCallbackRequestPopup.prototype.formID = null;
  * for template engine.
  */
 BlockCallbackRequestPopup.prototype.render = function () {
-    console.log(this.$context.attributes);
+    var self = this;
     this.masterID = this.$context.attributes['master-id'];
+
+    return this.$context.getStoreData()
+        .then(function (data) {
+            data.form = self.data;
+            return data;
+        })
 };
 
 /**
@@ -53,8 +61,7 @@ BlockCallbackRequestPopup.prototype.bind = function () {
 BlockCallbackRequestPopup.prototype.handleSubmit = function (event) {
     event.preventDefault();
     event.stopPropagation();
-    var data = serializeForm($(this.formID).serializeArray());
-    data['RequestMasterForm[masterID]'] = this.masterID;
-    this.$context.sendAction('send', data);
-
+    this.data = serializeForm($(this.formID).serializeArray());
+    this.data['masterID'] = this.masterID;
+    this.$context.sendAction('send', this.data);
 };
