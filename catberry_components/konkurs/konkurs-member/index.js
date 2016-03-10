@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = KonkursMember;
+var Typograf = require('typograf');
 
 /*
  * This is a Catberry Cat-component file.
@@ -13,7 +14,7 @@ module.exports = KonkursMember;
  * @constructor
  */
 function KonkursMember() {
-
+    this.tp = new Typograf({lang: 'ru'});
 }
 
 /**
@@ -23,9 +24,18 @@ function KonkursMember() {
  * for template engine.
  */
 KonkursMember.prototype.render = function () {
+    var self = this;
+
     return this.$context.getStoreData()
         .then(function(data){
-            //console.log(data);
+            data.sort(function (a, b) {
+                if (a.countHits.countHits > b.countHits.countHits) return 1;
+                if (a.countHits.countHits < b.countHits.countHits) return -1;
+            });
+            data.forEach(function (item) {
+               item.description = self.tp.execute(item.description);
+                //console.log(item);
+            });
             return data;
         })
 };
@@ -36,7 +46,35 @@ KonkursMember.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 KonkursMember.prototype.bind = function () {
+    $('.member-cont a').bind('click', showMemberImg);
+    $('.vote-cont__btn').bind('click', vote);
 
+    function showMemberImg() {
+        var arrImg = $(this).closest('.member-cont').find('a');
+        var workTitle = $(this).find('img').attr('alt');
+        $.fancybox(arrImg, {
+            type: 'image',
+            prevEffect: 'none',
+            nextEffect: 'none',
+            title: workTitle,
+            minWidth: '250px',
+            helpers: {
+                title: {
+                    type: 'inside'
+                },
+                thumbs: {
+                    width: 80,
+                    height: 80
+                }
+            }
+        });
+        return false;
+    }
+    function vote() {
+        $('.vote-cont__btn').hide();
+        $('.vote-cont__info').fadeIn(400);
+        return false;
+    }
 };
 
 /**
@@ -45,5 +83,5 @@ KonkursMember.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 KonkursMember.prototype.unbind = function () {
-
+    $('.member-cont a').unbind('click');
 };

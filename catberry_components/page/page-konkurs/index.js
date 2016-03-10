@@ -28,7 +28,6 @@ PageKonkurs.prototype.render = function () {
             data.forEach(function (item) {
                 item.countMembers = Object.keys(item.activeMembers).length;
             });
-            console.log(data[0]);
             return data;
         })
 };
