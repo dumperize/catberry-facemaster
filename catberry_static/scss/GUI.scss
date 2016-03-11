@@ -355,9 +355,15 @@ body.blackout:after {
 
 /* Стиль стандартного инпута */
 .basic-input {
-  padding: 3px 6px;
+  padding: 6px;
   width: 100%;
   border: none;
+}
+.basic-textarea {
+  padding: 6px;
+  width: 100%;
+  border: none;
+  resize: vertical;
 }
 
 /* углы */

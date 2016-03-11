@@ -34,6 +34,7 @@ function Pages($config) {
         'feedback': '',
         'konkurs': 'other/KonkursList',
         'konkurs-item': 'other/KonkursItem',
+        'konkurs-member-add': 'other/KonkursList',
         'login': '',
         'main': '',
         'master-page': 'master/MasterItem',
