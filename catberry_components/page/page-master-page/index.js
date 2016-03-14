@@ -23,74 +23,122 @@ function PageMasterPage() {
  * for template engine.
  */
 PageMasterPage.prototype.render = function () {
-    return this.$context.getStoreData()
+    return this.$context.getStoreData();
 };
 
+PageMasterPage.prototype._menuOffset = null;
 /**
  * Returns event binding settings for the component.
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 PageMasterPage.prototype.bind = function () {
-    var menu = $('.menu-mp');
-    var menuOffset = menu.offset();
-    var ta = $('textarea');
+    //функции для jquery работающие с window
+    this.function = {
+        fixedSectionMenu: this.fixedSectionMenu.bind(this),
+        menuHighlight: this.menuHighlight.bind(this),
+        scrollToSection: this.scrollToSection.bind(this)
+    };
+    //запомним базовое расположение блока меню
+    this._menuOffset = $('.menu-mp').offset().top;
 
-    $(window).bind('scroll', fixedSectionMenu);
-    $(window).bind('scroll', menuHighlight);
-    $('.menu-mp a').bind('click', scrollToSection);
-    $('.contacts-mp__show-contact').bind('click', showContact);
-    autosize(ta);
-    fixedSectionMenu();
-    menuHighlight();
+    //навесим обработчики для объекта window
+    $(window).bind('scroll', this.function.fixedSectionMenu);
+    $(window).bind('scroll', this.function.menuHighlight);
 
-    //показать контакты
-    function showContact() {
-        $(this).closest('.contacts-mp__cap').hide();
-        return false;
-    }
+    //установим блок на след пред мастера
+    this.setNextPrev();
+    //активизируем правильную позицию блока  меню
+    this.fixedSectionMenu();
+    //подсветим правильный блок
+    this.menuHighlight();
 
-    //плавающего меню
-    function fixedSectionMenu() {
-        if ($(window).scrollTop() + 30 > menuOffset.top) {
-            menu.addClass('fixed');
-        } else {
-            menu.removeClass('fixed');
-        }
-    }
-
-    //скролл до секции
-    function menuHighlight() {
-        $('.master-page__section-cont').each(function () {
-            if ($(window).scrollTop() + 50 > $(this).offset().top && $(window).scrollTop() + 30 < $(this).offset().top + $(this).innerHeight()) {
-                menu.find('.act').removeClass('act');
-                menu.find('[href=#' + $(this).children().attr('id') + ']').addClass('act');
-            }
-        });
-    }
-
-    //навигации внутри страницы мастера
-    function scrollToSection() {
-        $(window).unbind('scroll', menuHighlight);
-        setTimeout(function () {
-            $(window).bind('scroll', menuHighlight);
-        }, 1050);
-        menu.find('.act').removeClass('act');
-        $(this).addClass('act');
-        $('html, body').animate({
-            scrollTop: $($(this).attr('href')).offset().top - 50
-        }, 1000);
-
-        return false;
-    }
-
+    //вернем все обработчики событий
     return {
         click: {
-            '.js-show-callback-popup': this.showCallbackPopup
+            '.js-show-callback-popup': this.showCallbackPopup,
+            '.contacts-mp__show-contact': this.showContacts,
+            '.menu-mp a': this.function.scrollToSection
         }
     }
 };
 
+/**
+ * Does cleaning for everything that have NOT been set by .bind() method.
+ * This method is optional.
+ * @returns {Promise|undefined} Promise or nothing.
+ */
+PageMasterPage.prototype.unbind = function () {
+    $(window).unbind('scroll');
+    this.$context.collectGarbage();
+};
+
+/**
+ * скролл до секции
+ * @param event
+ */
+PageMasterPage.prototype.menuHighlight = function (event) {
+    var menu = $('.menu-mp');
+    $('.master-page__section-cont').each(function () {
+        if ($(window).scrollTop() + 50 > $(this).offset().top &&
+            $(window).scrollTop() + 30 < $(this).offset().top + $(this).innerHeight()) {
+            menu.find('.act').removeClass('act');
+            menu.find('[href=#' + $(this).children().attr('id') + ']').addClass('act');
+        }
+    });
+};
+
+/**
+ * навигации внутри страницы мастера
+ * @returns {boolean}
+ */
+PageMasterPage.prototype.scrollToSection = function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var menu = $('.menu-mp');
+    var self = this;
+
+    //удалим все классы act из меню
+    menu.find('.act').removeClass('act');
+    //выключим подсветку при авто прокрутке, а после включим ее
+    $(window).unbind('scroll', this.function.menuHighlight);
+    setTimeout(function () {
+        $(window).bind('scroll', self.function.menuHighlight);
+    }, 1050);
+
+    var target = event.target || event.srcElement;
+    var targetJquery = $(target);
+    var targetJqueryID = targetJquery.attr('href');
+
+    targetJquery.addClass('act');
+    $('html, body').animate({
+        scrollTop: $(targetJqueryID).offset().top - 50
+    }, 1000);
+};
+
+/**
+ * плавающего меню
+ * @param event
+ */
+PageMasterPage.prototype.fixedSectionMenu = function (event) {
+    var menu = $('.menu-mp');
+    if ($(window).scrollTop() + 30 > this._menuOffset) {
+        menu.addClass('fixed');
+    } else {
+        menu.removeClass('fixed');
+    }
+};
+
+/**
+ * показать контакты
+ * @param event
+ */
+PageMasterPage.prototype.showContacts = function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.$context.element.querySelector('.contacts-mp__cap').style.display = 'none';
+};
 /**
  * показать popup - заказать звонок
  * @returns {boolean}
@@ -114,7 +162,7 @@ PageMasterPage.prototype.showCallbackPopup = function (event) {
                 autoSize: true,
                 afterShow: function () {
                     var popup = document.getElementById('popup_callback');
-                    popup.insertBefore(data,popup.children[0]);
+                    popup.insertBefore(data, popup.children[0]);
                 },
                 afterClose: function () {
                     self.$context.collectGarbage();
@@ -126,18 +174,19 @@ PageMasterPage.prototype.showCallbackPopup = function (event) {
 };
 
 /**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
+ * Установим блок след пред мастера
  */
-PageMasterPage.prototype.unbind = function () {
-    var ta = document.querySelector('textarea');
-    var evt = document.createEvent('Event');
+PageMasterPage.prototype.setNextPrev = function () {
+    var self = this;
+    this.$context.createComponent('master-next-prev', {
+        id: "next-prev",
+        'cat-store': "master/MasterNextPrev"
+    })
+        .then(function (dom) {
 
-    $(window).unbind('scroll');
-    $('.menu-mp').find('a').unbind('click');
-    $('.contacts-mp__show-contact').unbind('click');
-    $('.js-show-callback-popup').unbind('click');
-    evt.initEvent('autosize:destroy', true, false);
-    ta.dispatchEvent(evt);
+            var domBlock = self.$context.element.querySelector('#next-prev-master');
+            if (domBlock && dom)
+                domBlock.innerHTML = dom.innerHTML;
+        })
+
 };

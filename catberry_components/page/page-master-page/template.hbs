@@ -1,4 +1,4 @@
-<cat-master-next-prev id="next-prev" cat-store="master/MasterNextPrev"></cat-master-next-prev>
+<div id="next-prev-master"></div>
 
 <h1 block="h1" mod="style">Страница Мастера</h1>
 <div block="master-page" master-id="{{id}}"><!-- mp - master-page -->
@@ -29,7 +29,8 @@
                     <p block="master-number">
                         <span elem="title">личный номер Мастера</span>
                         <span elem="number">№{{page.number}}</span>
-                        <span elem="print"><a href="/{{page.number}}/print-card" target="_blank" elem="print">распечатать визитку</a></span>
+                        <span elem="print"><a href="/{{page.number}}/print-card" target="_blank" elem="print">распечатать
+                            визитку</a></span>
                     </p>
                 </div>
             </div>
@@ -53,7 +54,7 @@
                         <i>{{icon "phone"}}</i>
                         {{#if contacts.phone}}
                             {{contacts.phone}}<br>
-                            <span style="color: red; font-weight: bold">workPhone - ERROR!</span>
+                            {{contacts.workPhone}}
                         {{else}}
                             не указано
                         {{/if}}

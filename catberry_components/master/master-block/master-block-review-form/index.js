@@ -33,7 +33,7 @@ MasterBlockReviewForm.prototype.render = function () {
         .then(function (data) {
             data.form = self.data;
             return data;
-        })
+        });
 };
 
 /**
@@ -42,12 +42,24 @@ MasterBlockReviewForm.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterBlockReviewForm.prototype.bind = function () {
+    //авторазмер для отзывов
+    var ta = $('textarea');
+    autosize(ta);
+
     this.formID = this.$context.element.querySelector('#add-comment-form');
     return {
         submit: {
             '#add-comment-form': this.handleSubmit
         }
     }
+};
+
+MasterBlockReviewForm.prototype.unbind = function () {
+    //Отвяжем авторазмер
+    var ta = document.querySelector('textarea');
+    var evt = document.createEvent('Event');
+    evt.initEvent('autosize:destroy', true, false);
+    ta.dispatchEvent(evt);
 };
 
 /**

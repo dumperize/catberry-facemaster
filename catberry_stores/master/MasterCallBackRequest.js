@@ -21,7 +21,7 @@ util.inherits(MasterCallBackRequest, StoreBase);
  * @param {UHR} $uhr Universal HTTP request.
  * @constructor
  */
-function MasterCallBackRequest($uhr) {
+function MasterCallBackRequest() {
 	StoreBase.call(this);
 	this._path = '/master/add-callback';
 }

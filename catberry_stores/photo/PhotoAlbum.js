@@ -6,7 +6,7 @@ var util = require('util'),
     StoreBase = require('../../lib/StoreBase');
 
 /**
- * наследуемся от пагинатора для базового стора
+ * наследуемся от базового стора
  */
 util.inherits(PhotoAlbum, StoreBase);
 

@@ -50,20 +50,10 @@ MasterNextPrev.prototype.load = function () {
             return Promise.all([promise1, promise2])
                 .then(function (data) {
                     return {
-                        prev: data[1].content[0],
-                        next: data[0].content[0]
+                        prev: data[1].content[0] && data[1].content[0].page ? data[1].content[0] : null,
+                        next: data[0].content[0] && data[0].content[0].page ? data[0].content[0] : null
                     }
                 })
         });
 
-};
-
-/**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
- */
-MasterNextPrev.prototype.handleSomeAction = function () {
-    // Here you can call this.$context.changed() if you know
-    // that remote data source has been changed.
-    // Also you can have many handle methods for other actions.
 };

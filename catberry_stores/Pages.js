@@ -22,6 +22,7 @@ function Pages($config) {
     this.$context.setDependency('rubrika/RubrikatorSale');
     this.$context.setDependency('rubrika/RubrikatorArticle');
     this.$context.setDependency('rubrika/RubrikaCompany');
+    this.$context.setDependency('master/MasterItem');
 
     this._loodStore = {
         'article': 'article/ArticleByRubrika',
@@ -43,7 +44,7 @@ function Pages($config) {
         'news-item': 'other/NewsItem',
         'oferta': '',
         'recommendation': 'other/Recommendation',
-        'recovery': '',
+        'recovery': 'user/Recovery',
         'registration': '',
         'request': 'Request',
         'sale': 'sale/SaleByRubrika',
@@ -84,7 +85,8 @@ Pages.prototype.load = function () {
         })
         .then(function () {
             if (!currentPage) {
-                return self.$context.redirect('/main');
+                self.$context.redirect('/main');
+                return null;
             }
             if (!PAGES.hasOwnProperty(currentPage)) {
                 self.$context.notFound();

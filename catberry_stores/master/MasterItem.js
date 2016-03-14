@@ -66,22 +66,43 @@ MasterItem.prototype.load = function () {
             data.page = masterPage;
             data.isBlock = self._geerateIsBlock(data);
 
-            //соберем id альбомов
-            var listID = [];
-            data.albums.forEach(function (album) {
-                listID.push(album.id);
-            });
-            return self.$context.sendAction("photo/PhotoAlbum", "setListID", listID);
+            var promiseAlbom = self._getPhotoAlboms(data);
+            var promiseCompanyContact = self._getCompanyContacts(data);
+            return Promise.all([promiseAlbom, promiseCompanyContact])
         })
-        .then(function (r) {
-            return self.$context.getStoreData('photo/PhotoAlbum');
-        })
-        .then(function (albums) {
-            data.albums = albums;
+        .then(function (res) {
+            data.albums = res[0];
+            if (res[1] && res[1].contacts)
+                data.contacts.workPhone = res[1].contacts.phone;
             return data;
         })
 };
 
+MasterItem.prototype._getCompanyContacts = function (data) {
+    var self = this;
+
+    if (!data.company)
+        return null;
+
+    return self.$context.sendAction("company/CompanyItemSmall", "setID", data.company.id)
+        .then(function (r) {
+            return self.$context.getStoreData('company/CompanyItemSmall');
+        });
+};
+
+MasterItem.prototype._getPhotoAlboms = function (data) {
+    var self = this;
+    //соберем id альбомов
+    var listID = [];
+
+    data.albums.forEach(function (album) {
+        listID.push(album.id);
+    });
+    return self.$context.sendAction("photo/PhotoAlbum", "setListID", listID)
+        .then(function (r) {
+            return self.$context.getStoreData('photo/PhotoAlbum');
+        })
+};
 
 MasterItem.prototype._geerateIsBlock = function (data) {
     var masterPage = data.page;
