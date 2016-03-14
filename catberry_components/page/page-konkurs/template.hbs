@@ -2,14 +2,28 @@
 <div block="konkurs-page">
     {{#each this}}
         <div elem="item">
+            <a href="/konkurs/item/{{id}}/add-member">подать заявку</a>
 
             <div block="konkurs">
                 <div elem="column-left">
                     <p elem="title">
-                        <a href="/konkurs/item/{{id}}">{{name}}</a><span elem="apply">(<a href="/konkurs/item/{{id}}/add-member">подать заявку</a>)</span>
+                        <a href="/konkurs/item/{{id}}">{{name}}</a>
+                        <span elem="apply">
+                            {{#is konkursStatus '==' 1}}
+                                (<a href="/konkurs/item/{{id}}/add-member">подать заявку</a>)
+                            {{/is}}
+                            {{#is konkursStatus '==' 2}}
+                                (этап голосования)
+                            {{/is}}
+                            {{#is konkursStatus '==' 3}}
+                                (завершён)
+                            {{/is}}
+                        </span>
                         <span elem="count-members">{{getNumEnding countMembers "участник, участника, участников"}}</span>
                     </p>
+
                     <p elem="desc">{{stripTags description}}</p>
+
                     <p elem="dates">
                         Приём заявок с {{receptionStartDate}} по {{receptionEndDate}}<br>
                         Начало голосования с {{voteStartDate}} по {{voteEndDate}}
@@ -17,7 +31,8 @@
                 </div>
                 <div elem="column-right">
                     {{#each photos}}
-                        <div elem="img-cont"><img src="http://konkurs.facemaster.ru/photo?key={{id}}&square=68" alt=""></div>
+                        <div elem="img-cont"><img src="http://konkurs.facemaster.ru/photo?key={{id}}&square=68" alt="">
+                        </div>
                     {{/each}}
                 </div>
             </div>

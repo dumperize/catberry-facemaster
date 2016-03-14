@@ -1,1 +1,80 @@
-форма добавления
+<h1 block="h1" mod="style">Для участия в конкурсе заполните анкету</h1>
+<div block="konkurs-member-add">
+    <form elem="form" action="" method="">
+        <div elem="column-left">
+            <div elem="input-cont" mod="table">
+                <label><span>Ф.И.О.</span><input type="text" name="" required></label>
+            </div>
+            <div elem="input-cont" mod="table">
+                <label><span>Эл. почта</span><input type="email" name="" required></label>
+            </div>
+            <div elem="input-cont" mod="table">
+                <label><span>Телефон</span><input type="text" name="" required></label>
+            </div>
+            <p elem="info-text">Я хочу принять участие в конкурсе:</p>
+
+            <div elem="input-cont">
+                <select name="" required>
+                    <option disabled>Выберите конкурс ↓</option>
+                    {{#each this}}
+                        {{#is konkursStatus '==' 1}}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/is}}
+                    {{/each}}
+                </select>
+            </div>
+            <div elem="input-cont">
+                <label>
+                    <span elem="info-text">Название работы:</span>
+                    <input type="text" name="" maxlength="60" required>
+                </label>
+
+                <p elem="help-text">Допустимое количество символов от 5 до 60</p>
+            </div>
+            <div elem="input-cont">
+                <label>
+                    <span elem="info-text">Описание:</span>
+                    <textarea name="" maxlength="800" required></textarea>
+                </label>
+
+                <p elem="help-text">Допустимое количество символов от 30 до 800</p>
+            </div>
+            <div elem="input-cont">
+                <label elem="agreement">
+                    <span><input type="checkbox" required></span>
+                    <span>Я даю свое согласие на обработку и&nbsp;хранение Компанией персональных и&nbsp;иных данных,
+                        их&nbsp;передачу для обработки другим Пользователям и/или третьим лицам, действующим по&nbsp;поручению Компании,
+                        в&nbsp;том числе для целей: получения статистических и&nbsp;аналитических данных для улучшения функционирования Сайта
+                        и/или Услуг, расширения спектра оказываемых Услуг, получения информационных и/или рекламных сообщений Компании
+                        или третьих лиц.
+                    </span>
+                </label>
+            </div>
+        </div>
+        <div elem="column-right">
+            <div block="add-photos" data-max-elem="8">
+                <div elem="elem-cont" id="elem-cont-template" style="display: none">
+                    <div elem="img-cont">
+                        <img elem="img" src="" alt="">
+                        <i elem="del-ico" mix="block:js-del-photo-from-album">{{icon 'close'}}</i>
+                    </div>
+                </div>
+
+                <div elem="wrapper">
+
+                </div>
+
+                <label elem="input-photo-load"><input type="file" multiple name="photo-load[]"
+                                                      mix="block: js-photo-load"></label>
+
+                <div elem="btn-cont">
+                    <a href="" elem="btn" mix="block:js-add-photo-to-album">Добавить фотографии</a>
+                </div>
+            </div>
+        </div>
+        <div elem="btn-cont">
+            <input type="submit" elem="btn" value="Подать заявку">
+            <input type="submit" elem="btn" mod="grey" value="Отказаться">
+        </div>
+    </form>
+</div>
