@@ -2,6 +2,10 @@
 
 module.exports = MasterBlockReviewForm;
 var serializeForm = require("../../../../lib/util/SerializeForm");
+var FormComponent = require("../../../../lib/util/FormComponent");
+
+var util = require('util');
+util.inherits(MasterBlockReviewForm, FormComponent);
 
 /*
  * This is a Catberry Cat-component file.
@@ -18,23 +22,6 @@ function MasterBlockReviewForm() {
 }
 
 MasterBlockReviewForm.prototype.masterID = null;
-MasterBlockReviewForm.prototype.data = null;
-
-/**
- * Gets data context for template engine.
- * This method is optional.
- * @returns {Promise<Object>|Object|null|undefined} Data context
- * for template engine.
- */
-MasterBlockReviewForm.prototype.render = function () {
-    var self = this;
-
-    return this.$context.getStoreData()
-        .then(function (data) {
-            data.form = self.data;
-            return data;
-        });
-};
 
 /**
  * Returns event binding settings for the component.
@@ -45,6 +32,8 @@ MasterBlockReviewForm.prototype.bind = function () {
     //авторазмер для отзывов
     var ta = $('textarea');
     autosize(ta);
+
+    this.showErrors();
 
     this.formID = this.$context.element.querySelector('#add-comment-form');
     return {

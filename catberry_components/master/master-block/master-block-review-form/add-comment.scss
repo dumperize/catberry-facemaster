@@ -1,0 +1,36 @@
+.add-comment {
+  margin-bottom: 30px;
+  @include at(lg) {
+    @extend .col-lg-8;
+  }
+  @extend .col-sm-7;
+  @include at(xs) {
+    @extend .col-xs-12;
+  }
+  &__input {
+    margin-bottom: 10px;
+  }
+  &__text-input {
+    @extend .basic-input;
+    padding: 8px 10px;
+    background-color: $color-bg-grey-light;
+  }
+  &__textarea {
+    @extend .basic-textarea;
+    padding: 8px 10px;
+    min-height: 100px;
+    max-height: 200px;
+    vertical-align: middle;
+    background-color: $color-bg-grey-light;
+  }
+  &__btn {
+    @extend .basic-button-mid;
+    width: 146px;
+  }
+  &__success {
+    padding-top: 30px;
+    color: $color-orange;
+    display: none;
+    font-size: 1.8rem;
+  }
+}

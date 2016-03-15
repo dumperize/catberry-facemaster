@@ -5,18 +5,18 @@
         <form elem="form" id="callback-request-popup-form" method="post" action="">
             <div elem="input">
                 <input elem="input-text" type="text" placeholder="Ваше имя" name="contactName"
-                       value="{{form.contactName}}">
+                       value="{{form.contactName}}" required>
             </div>
 
             <div elem="input">
                 <input elem="input-text" type="text" placeholder="Ваш телефон" name="contactPhone"
-                       value="{{form.contactPhone}}">
+                       value="{{form.contactPhone}}" required>
             </div>
 
             <div elem="input">
             <textarea elem="textarea"
                       placeholder="Ваш комментарий"
-                      name="text">{{form.text}}</textarea>
+                      name="text" required>{{form.text}}</textarea>
             </div>
 
             <input elem="btn" type="submit" value="отправить заявку">

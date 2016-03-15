@@ -2,6 +2,10 @@
 
 module.exports = BlockCallbackRequestPopup;
 var serializeForm = require("../../../lib/util/SerializeForm");
+var FormComponent = require("../../../lib/util/FormComponent");
+
+var util = require('util');
+util.inherits(BlockCallbackRequestPopup, FormComponent);
 
 /*
  * This is a Catberry Cat-component file.
@@ -19,9 +23,6 @@ function BlockCallbackRequestPopup() {
 
 BlockCallbackRequestPopup.prototype.masterID = null;
 BlockCallbackRequestPopup.prototype.formID = null;
-BlockCallbackRequestPopup.prototype.data = null;
-BlockCallbackRequestPopup.prototype.error = null;
-
 
 /**
  * Gets data context for template engine.
@@ -30,22 +31,8 @@ BlockCallbackRequestPopup.prototype.error = null;
  * for template engine.
  */
 BlockCallbackRequestPopup.prototype.render = function () {
-    var self = this;
     this.masterID = this.$context.attributes['master-id'];
-
-    return this.$context.getStoreData()
-        .then(function (data) {
-            if (!data.success) {
-                data.form = self.data;
-                self.error = data.error;
-            }
-            else {
-                data.form = '';
-                self.error = '';
-            }
-            //console.log(data);
-            return data;
-        })
+    return this._render();
 };
 
 /**
@@ -55,12 +42,9 @@ BlockCallbackRequestPopup.prototype.render = function () {
  */
 BlockCallbackRequestPopup.prototype.bind = function () {
     var self = this;
-    if (this.error) {
-        this.error.forEach(function (item) {
-            var input = self.$context.element.querySelector('[name=' + item.field + ']');
-            $(input).parent().addClass('input-error').append('<p class="standard-error">' + item.message + '</p>');
-        });
-    }
+
+    this.showErrors();
+
     this.formID = this.$context.element.querySelector('#callback-request-popup-form');
     return {
         submit: {
