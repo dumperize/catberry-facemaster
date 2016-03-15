@@ -34,7 +34,10 @@ BlockCallbackRequestPopup.prototype.render = function () {
 
     return this.$context.getStoreData()
         .then(function (data) {
-            data.form = self.data;
+            if (!data.success)
+                data.form = self.data;
+            else
+                data.form = '';
             return data;
         })
 };

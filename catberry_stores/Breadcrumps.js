@@ -107,7 +107,7 @@ Breadcrumps.prototype._getForRubAndTag = function (data) {
                     url: '/' + data.rubrika.parent.unique + '/' + podrubriks[num].unique
                 });
         });
-    linksPodrubriks.sort(function(a,b){
+    linksPodrubriks.sort(function (a, b) {
         return a.title > b.title;
     });
     links.push({
@@ -163,17 +163,26 @@ Breadcrumps.prototype._loadForCatalog = function (config, type) {
 };
 
 Breadcrumps.prototype._loadForMasterPage = function () {
+    var self = this;
+    var data = {};
     return this.$context.getStoreData('master/MasterItem')
-        .then(function (data) {
-            //console.log(data);
-            return [
-                {
-                    title: "Каталог услуг",
-                    url: "/catalog"
-                },
-                {
-                    title: data.name
-                }];
+        .then(function (res) {
+            data = res;
+            return self.$context.sendAction('rubrika/RubrikaNearby', 'setID', res.rubrikaID)
+        })
+        .then(function () {
+            return self.$context.getStoreData('rubrika/RubrikaNearby');
+        })
+        .then(function (res) {
+            var link = self._getForRubAndTag({rubrika: res});
+            link.push({
+                title: res.name,
+                url: '/' + res.parent.unique + '/' + res.unique
+            });
+            link.push({
+                title: data.name
+            });
+            return link;
         });
 };
 /**

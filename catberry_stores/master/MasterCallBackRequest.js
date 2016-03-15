@@ -3,7 +3,7 @@
 module.exports = MasterCallBackRequest;
 
 var util = require('util'),
-	StoreBase = require('../../lib/StoreBase');
+    StoreBase = require('../../lib/StoreBase');
 
 /**
  * наследуемся от базового стора
@@ -22,31 +22,38 @@ util.inherits(MasterCallBackRequest, StoreBase);
  * @constructor
  */
 function MasterCallBackRequest() {
-	StoreBase.call(this);
-	this._path = '/master/add-callback';
+    StoreBase.call(this);
+    this._path = '/master/add-callback';
 }
 
 MasterCallBackRequest.prototype.error = null;
 MasterCallBackRequest.prototype.success = false;
 
+MasterCallBackRequest.prototype.data = null;
+
+MasterCallBackRequest.prototype.$lifetime = 0;
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 MasterCallBackRequest.prototype.load = function () {
-	var self = this;
-	return {
-		success: self.success,
-		error: self.error
-	}
+    var self = this;
+    if (!this.data)
+        return {
+            success: false
+        };
+
+    return this.send(this._path, {data: this.data})
+        .then(function (res) {
+            self.data = null;
+            return {
+                success: res.success,
+                error: res.error
+            }
+        });
 };
 
 MasterCallBackRequest.prototype.handleSend = function (data) {
-	var self = this;
-	return this.send(this._path, {data: data})
-		.then(function (res) {
-			self.success = res.success;
-			self.error = res.error;
-			self.$context.changed();
-		});
+    this.data = data;
+    this.$context.changed();
 };
