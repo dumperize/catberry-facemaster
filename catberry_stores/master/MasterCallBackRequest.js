@@ -33,6 +33,12 @@ MasterCallBackRequest.prototype.data = null;
 
 MasterCallBackRequest.prototype.$lifetime = 0;
 /**
+ * Current lifetime of data (in milliseconds) that is returned by this store.
+ * @type {number} Lifetime in milliseconds.
+ */
+MasterCallBackRequest.prototype.$lifetime = 0;
+
+/**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */

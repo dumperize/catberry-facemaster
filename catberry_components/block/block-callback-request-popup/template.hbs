@@ -1,11 +1,6 @@
 {{#unless success}}
     <div block="callback-popup">
         <p elem="title">Отправить заявку Мастеру</p>
-        <div elem="error">
-            {{#each error}}
-                <p>{{message}}</p>
-            {{/each}}
-        </div>
 
         <form elem="form" id="callback-request-popup-form" method="post" action="">
             <div elem="input">
@@ -28,7 +23,5 @@
         </form>
     </div>
 {{else}}
-    <div block="success">
-        Ваша заявка отправлена Мастеру
-    </div>
+    <div block="success" mod="big">Ваша заявка отправлена Мастеру</div>
 {{/unless}}

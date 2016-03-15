@@ -20,6 +20,7 @@ function BlockCallbackRequestPopup() {
 BlockCallbackRequestPopup.prototype.masterID = null;
 BlockCallbackRequestPopup.prototype.formID = null;
 BlockCallbackRequestPopup.prototype.data = null;
+BlockCallbackRequestPopup.prototype.error = null;
 
 
 /**
@@ -38,6 +39,9 @@ BlockCallbackRequestPopup.prototype.render = function () {
                 data.form = self.data;
             else
                 data.form = '';
+            self.error = data.error;
+            data.form = self.data;
+            console.log(data);
             return data;
         })
 };
@@ -48,6 +52,13 @@ BlockCallbackRequestPopup.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 BlockCallbackRequestPopup.prototype.bind = function () {
+    var self = this;
+    if (this.error) {
+        this.error.forEach(function (item) {
+            var input = self.$context.element.querySelector('[name=' + item.field + ']');
+            $(input).parent().addClass('input-error').append('<p class="standard-error">' + item.message + '</p>');
+        });
+    }
     this.formID = this.$context.element.querySelector('#callback-request-popup-form');
     return {
         submit: {

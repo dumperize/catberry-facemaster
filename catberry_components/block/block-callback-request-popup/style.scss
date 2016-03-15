@@ -21,7 +21,7 @@
   &__textarea {
     @extend .basic-input;
     padding: 8px 10px;
-    margin-bottom: 20px;
+    //margin-bottom: 20px;
     display: block;
     resize: vertical;
     min-height: 80px;
@@ -31,5 +31,8 @@
     @extend .basic-button-mid;
     width: 210px;
     margin: 0 auto;
+  }
+  .success {
+    text-align: center;
   }
 }

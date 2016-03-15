@@ -161,21 +161,6 @@ body.blackout:after {
     z-index: 10;
   }
 }
-.input-error {
-  box-shadow: 0 0 3px 2px rgba(255, 0, 0, 0.3);
-  input:focus {
-    outline: none;
-  }
-}
-.input-error-text {
-  padding: 8px 10px;
-  background-color: $color-bg-warning;
-  color: #333;
-  font-weight: bold;
-  font-size: 1.1rem;
-  position: relative;
-  margin-top: -1px;
-}
 
 /* Подсказки - tips */
 .tips {
@@ -344,13 +329,44 @@ body.blackout:after {
   height: auto;
 }
 
-/* Стиль стандартной ошибки */
-.standard-error {
+/* Сообщение */
+.success, .standard-error {
   padding: 8px 10px;
   background-color: $color-bg-warning;
   color: #333;
   font-weight: bold;
   font-size: 1.1rem;
+}
+
+/* Стиль стандартной ошибки */
+.standard-error {
+  background-color: $color-bg-warning;
+}
+.input-error {
+  box-shadow: 0 0 3px 2px rgba(255, 0, 0, 0.3);
+  input, textarea {
+    background-color: lighten($color-red, 37%);
+  }
+  input:focus, textarea:focus {
+    outline: none;
+  }
+}
+.input-error-text {
+  padding: 8px 10px;
+  background-color: $color-bg-warning;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.1rem;
+  position: relative;
+  margin-top: -1px;
+}
+/* Стиль успеха */
+.success {
+  background-color: $color-green;
+  &_big {
+    font-size: 1.4rem;
+    padding: 12px 18px;
+  }
 }
 
 /* Стиль стандартного инпута */
