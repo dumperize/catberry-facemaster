@@ -6,14 +6,14 @@
     <form id="add-comment-form" elem="form" method="POST" action="">
         <div elem="input">
             <input elem="text-input" type="text" placeholder="Ваше имя" name="authorName"
-                   value="{{form.authorName}}">
+                   value="{{form.authorName}}" required="required">
         </div>
         <div elem="input">
             <input elem="text-input" type="text" placeholder="Ваш номер телефона" name="authorContact"
-                   value="{{form.authorContact}}">
+                   value="{{form.authorContact}}" required="required">
         </div>
         <div elem="input">
-            <textarea elem="textarea" placeholder="Текст отзыва" name="text">{{form.text}}</textarea>
+            <textarea elem="textarea" placeholder="Текст отзыва" name="text" required="required">{{form.text}}</textarea>
         </div>
         <input elem="btn" type="submit" value="Отправить">
     </form>

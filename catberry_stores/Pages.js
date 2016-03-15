@@ -25,7 +25,7 @@ function Pages($config) {
     this.$context.setDependency('master/MasterItem');
 
     this._loodStore = {
-        'article': 'article/ArticleByRubrika',
+        'article': '',
         'article-item': 'article/ArticleItem',
         'catalog': '',
         'company': '',
@@ -52,7 +52,7 @@ function Pages($config) {
         'search': 'search/Search',
         'vacancy': 'other/Vacancy',
         'vacancy-item': 'other/VacancyItem',
-        'video': 'video/VideoByRubrika'
+        'video': ''
     }
 }
 
