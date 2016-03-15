@@ -1,15 +1,18 @@
 <h1 block="h1" mod="style">Восстановить пароль</h1>
-<form block="recovery-pass-form" method="post" action="recovery">
-    <input elem="input-text" type="text" placeholder="Эл. почта или телефон" name="recovery-password[login]" autofocus="">
+<form id="recovery-pass-form" block="recovery-pass-form" method="post" action="recovery">
+    <input elem="input-text" type="text" placeholder="Эл. почта или телефон" name="login"
+           autofocus="" value="{{login}}">
 
-    <div elem="capcha" mod="registration">
-        <div elem="code-img">
-            <img src="img/assets/recovery-password/captcha.png" alt="capcha">
-        </div>
-        <a elem="reload-link" href="{{capcha.reload-url}}">Получить новый код</a>
-    </div>
+    <!--<div elem="capcha" mod="registration">-->
+    <!--<div elem="code-img">-->
+    <!--<img src="img/assets/recovery-password/captcha.png" alt="capcha">-->
+    <!--</div>-->
+    <!--<a elem="reload-link" href="">Получить новый код</a>-->
+    <!--</div>-->
 
-    <input elem="input-text" type="text" placeholder="Код с картинки" name="recovery-password[code]">
+    <!--<input elem="input-text" type="text" placeholder="Код с картинки" name="recovery-password[code]">-->
+
+    <div class="g-recaptcha" data-sitekey="6LfojxoTAAAAAJWYp_iimcC86bf11BRelsYfdvan"></div>
     <input elem="btn" type="submit" value="Восстановить">
 </form>
 

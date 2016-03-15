@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = PageRecovery;
+var serializeForm = require("../../../lib/util/SerializeForm");
 
 /*
  * This is a Catberry Cat-component file.
@@ -16,6 +17,8 @@ function PageRecovery() {
 
 }
 
+PageRecovery.prototype.data = null;
+
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -23,7 +26,13 @@ function PageRecovery() {
  * for template engine.
  */
 PageRecovery.prototype.render = function () {
+    var self = this;
 
+    return this.$context.getStoreData()
+        .then(function (data) {
+            data.form = self.data;
+            return data;
+        });
 };
 
 /**
@@ -32,7 +41,13 @@ PageRecovery.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 PageRecovery.prototype.bind = function () {
-
+    console.log(recaptcha);
+    this.formID = this.$context.element.querySelector('#recovery-pass-form');
+    return {
+        submit: {
+            '#recovery-pass-form': this.handleSubmit
+        }
+    }
 };
 
 /**
@@ -40,6 +55,9 @@ PageRecovery.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-PageRecovery.prototype.unbind = function () {
-
+PageRecovery.prototype.handleSubmit = function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.data = serializeForm($(this.formID).serializeArray());
+    this.$context.sendAction('send', this.data);
 };
