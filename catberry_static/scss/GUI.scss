@@ -93,6 +93,9 @@ body.blackout:after {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   cursor: pointer;
+  &:focus {
+    outline: none;
+  }
   &:hover {
     color: #FFF;
     text-decoration: none;
