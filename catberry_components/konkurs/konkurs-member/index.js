@@ -84,4 +84,5 @@ KonkursMember.prototype.bind = function () {
  */
 KonkursMember.prototype.unbind = function () {
     $('.member-cont a').unbind('click');
+    $('.vote-cont__btn').unbind('click');
 };
