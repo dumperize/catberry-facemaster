@@ -42,7 +42,6 @@ BlockCallbackRequestPopup.prototype.render = function () {
             else {
                 data.form = '';
                 self.error = '';
-
             }
             //console.log(data);
             return data;
