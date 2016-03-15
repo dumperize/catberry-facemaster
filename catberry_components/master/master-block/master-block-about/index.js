@@ -37,11 +37,19 @@ MasterBlockAbout.prototype.render = function () {
                 }
             }
             if (!data.about) {
-                data.aboutEduc = self.tp.execute(replaceRawText(data.aboutEduc));
-                data.aboutExp = self.tp.execute(replaceRawText(data.aboutExp));
-                data.aboutAddInfo = self.tp.execute(replaceRawText(data.aboutAddInfo));
+                if (data.aboutEduc) {
+                    data.aboutEduc = self.tp.execute(replaceRawText(data.aboutEduc));
+                }
+                if (data.aboutExp) {
+                    data.aboutExp = self.tp.execute(replaceRawText(data.aboutExp));
+                }
+                if (data.aboutAddInfo) {
+                    data.aboutAddInfo = self.tp.execute(replaceRawText(data.aboutAddInfo));
+                }
             } else {
-                data.about = self.tp.execute(replaceRawText(data.about));
+                if (data.about) {
+                    data.about = self.tp.execute(replaceRawText(data.about));
+                }
             }
             return {
                 aboutEduc: data.aboutEduc,
