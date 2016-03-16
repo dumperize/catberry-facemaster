@@ -183,7 +183,6 @@ PageMasterPage.prototype.setNextPrev = function () {
         'cat-store': "master/MasterNextPrev"
     })
         .then(function (dom) {
-
             var domBlock = self.$context.element.querySelector('#next-prev-master');
             if (domBlock && dom)
                 domBlock.innerHTML = dom.innerHTML;
