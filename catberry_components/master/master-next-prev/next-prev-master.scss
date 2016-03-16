@@ -4,6 +4,9 @@
   float: right;
   position: relative;
   top: -20px;
+  @include at(md) {
+    top: -10px;
+  }
   @include at(sm) {
     top: 10px;
   }
