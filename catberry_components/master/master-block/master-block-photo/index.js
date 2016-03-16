@@ -30,6 +30,7 @@ MasterBlockPhoto.prototype.render = function () {
                     item.photos.length = 10; //укорачиваем массив до 10 элементов (больше запрещено)
                 }
             });
+            //console.log(data.albums);
             return data.albums;
         });
 };

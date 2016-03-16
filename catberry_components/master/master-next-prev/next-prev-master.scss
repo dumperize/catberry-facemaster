@@ -3,18 +3,17 @@
   //border: 1px solid blue;
   float: right;
   position: relative;
-  top: -20px;
-  @include at(md) {
-    top: -10px;
-  }
   @include at(sm) {
-    top: 10px;
+    top: 6px;
+    img {
+      display: none;
+    }
   }
   @include at(xs) {
     top: 0;
     float: none;
     margin: 0 auto;
-    margin-top: 20px;
+    //margin-top: 20px;
     img {
       display: none;
     }
@@ -36,7 +35,7 @@
   }
   &__prev {
     padding-right: 8px;
-    padding-left: 0;
+    padding-left: 0 !important;
     span {
       text-align: right;
     }
