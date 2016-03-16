@@ -182,5 +182,16 @@ module.exports = [
             };
             return state;
         }
+    },
+    // путь: /404
+    {
+        expression: /^\/404$/i,
+        map: function (urlPath) {
+            return {
+                'Pages': {
+                    page: "404"
+                }
+            };
+        }
     }
 ];
