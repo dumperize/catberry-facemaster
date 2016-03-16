@@ -23,9 +23,7 @@ function MainFunction() {
  * for template engine.
  */
 MainFunction.prototype.render = function () {
-  return {
-    countMaster: '1 234 Мастера'
-  }
+    return this.$context.getStoreData();
 };
 
 /**
