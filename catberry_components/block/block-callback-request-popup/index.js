@@ -18,11 +18,11 @@ util.inherits(BlockCallbackRequestPopup, ComponentForm);
  * @constructor
  */
 function BlockCallbackRequestPopup() {
-
+    ComponentForm.call(this);
+    this.formID = '#callback-request-popup-form';
 }
 
 BlockCallbackRequestPopup.prototype.masterID = null;
-BlockCallbackRequestPopup.prototype.formID = null;
 
 /**
  * Gets data context for template engine.
@@ -35,23 +35,6 @@ BlockCallbackRequestPopup.prototype.render = function () {
     return this._render();
 };
 
-/**
- * Returns event binding settings for the component.
- * This method is optional.
- * @returns {Promise<Object>|Object|null|undefined} Binding settings.
- */
-BlockCallbackRequestPopup.prototype.bind = function () {
-    var self = this;
-
-    this.showErrors();
-
-    this.formID = this.$context.element.querySelector('#callback-request-popup-form');
-    return {
-        submit: {
-            '.callback-popup__form': this.handleSubmit
-        }
-    }
-};
 
 /**
  * Does cleaning for everything that have NOT been set by .bind() method.

@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = MasterCallBackRequest;
+module.exports = Auth;
 
 var util = require('util'),
     StoreForm = require('../../lib/StoreForm');
@@ -8,15 +8,15 @@ var util = require('util'),
 /**
  * наследуемся от базового стора
  */
-util.inherits(MasterCallBackRequest, StoreForm);
+util.inherits(Auth, StoreForm);
 
 
 /**
- * Creates new instance of the "company/CompanyItem" store.
+ * Creates new instance of the "user/Auth" store.
  * @param {UHR} $uhr Universal HTTP request.
  * @constructor
  */
-function MasterCallBackRequest() {
+function Auth() {
     StoreForm.call(this);
-    this._path = '/master/add-callback';
+    this._path = '/auth';
 }

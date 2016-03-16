@@ -1,16 +1,15 @@
 <div block="page-login">
-    <h1 block="h1" mod="style">Вход / регистрация </h1>
 
     {{#if success}}
         <p block="success">Вы успешно авторизовались, сейчас Вы будете перенаправлены в личный кабинет</p>
     {{else}}
         <h1 block="h1" mod="style">Вход / регистрация</h1>
 
-        <form block="login-form" method="post" action="">
-            <input elem="input-text" type="text" placeholder="Эл. почта или телефон" name="login">
-            <input elem="input-text" type="password" placeholder="Пароль" name="password">
+        <form block="login-form" method="post" action="" id="login-form">
+            <input elem="input-text" type="text" placeholder="Эл. почта или телефон" name="login" value="{{form.login}}">
+            <input elem="input-text" type="password" placeholder="Пароль" name="password" value="{{form.password}}">
             <label elem="label-checkbox"><input type="checkbox" id="remember-me"
-                                                name="remember-me"><span>Запомнить меня</span></label>
+                                                name="rememberme" value="{{form.rememberme}}"><span>Запомнить меня</span></label>
             <input elem="btn" type="submit" value="Войти">
 
             <p elem="href-cont">

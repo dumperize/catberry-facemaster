@@ -36,7 +36,7 @@ function Pages($config) {
         'konkurs': 'other/KonkursList',
         'konkurs-item': 'other/KonkursItem',
         'konkurs-member-add': 'other/KonkursList',
-        'login': '',
+        'login': 'user/Auth',
         'main': '',
         'master-page': 'master/MasterItem',
         'master-print-card': 'master/MasterItemSmall',

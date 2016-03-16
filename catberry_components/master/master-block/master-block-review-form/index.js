@@ -18,6 +18,8 @@ util.inherits(MasterBlockReviewForm, ComponentForm);
  * @constructor
  */
 function MasterBlockReviewForm() {
+    ComponentForm.call(this);
+    this.formID = '#add-comment-form';
     this.masterID = this.$context.attributes['master-id'];
 }
 
@@ -33,14 +35,7 @@ MasterBlockReviewForm.prototype.bind = function () {
     var ta = $('textarea');
     autosize(ta);
 
-    this.showErrors();
-
-    this.formID = this.$context.element.querySelector('#add-comment-form');
-    return {
-        submit: {
-            '#add-comment-form': this.handleSubmit
-        }
-    }
+    return this._bind();
 };
 
 MasterBlockReviewForm.prototype.unbind = function () {
