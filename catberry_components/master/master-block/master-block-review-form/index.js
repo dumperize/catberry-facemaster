@@ -2,10 +2,10 @@
 
 module.exports = MasterBlockReviewForm;
 var serializeForm = require("../../../../lib/util/SerializeForm");
-var FormComponent = require("../../../../lib/util/FormComponent");
+var ComponentForm = require("../../../../lib/ComponentForm");
 
 var util = require('util');
-util.inherits(MasterBlockReviewForm, FormComponent);
+util.inherits(MasterBlockReviewForm, ComponentForm);
 
 /*
  * This is a Catberry Cat-component file.

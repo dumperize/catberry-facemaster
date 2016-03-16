@@ -242,9 +242,9 @@ MasterMinicard.prototype._showFirstActWidget = function () {
  * @private
  */
 MasterMinicard.prototype._minicardWidgetVisibility = function () {
-    var width = window.innerWidth
-        || document.documentElement.clientWidth
-        || document.body.clientWidth;
+    var width = document.documentElement.clientWidth
+        || document.body.clientWidth
+        || window.innerWidth;
     var widget = this.$context.element.querySelector('.master-content-widget');
 
     if (width >= 750) {

@@ -6,6 +6,10 @@
   @include at(xs) {
     padding: 0;
   }
+  span {
+    margin-bottom: 4px;
+    display: inline-block;
+  }
   &__header {
     color: $color-text-blue;
     font-weight: bold;
@@ -21,7 +25,6 @@
     }
   }
   &__level {
-
   }
   &__list-container {
     display: none;
