@@ -3,12 +3,12 @@
 module.exports = Request;
 
 var util = require('util'),
-    StoreBase = require('../lib/StoreBase');
+    StoreForm = require('../lib/StoreForm');
 
 /**
  * наследуемся от пагинатора для базового стора
  */
-util.inherits(Request, StoreBase);
+util.inherits(Request, StoreForm);
 
 /*
  * This is a Catberry Store file.
@@ -21,18 +21,7 @@ util.inherits(Request, StoreBase);
  * @param {UHR} $uhr Universal HTTP request.
  * @constructor
  */
-function Request($uhr) {
-    StoreBase.call(this);
+function Request() {
+    StoreForm.call(this);
     this._path = '/request/add';
 }
-
-/**
- * Loads data from remote source.
- * @returns {Promise<Object>|Object|null|undefined} Loaded data.
- */
-Request.prototype.load = function () {
-};
-
-Request.prototype.handleSend = function (data) {
-    return this.send(this._path, {data: data});
-};

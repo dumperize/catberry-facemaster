@@ -41,6 +41,11 @@
   textarea {
     min-height: 84px;
     max-height: 160px;
+    vertical-align: middle;
+  }
+  .success {
+    max-width: 500px;
+    margin-bottom: 10px;
   }
 }
 
