@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = PageLogin;
+var serializeForm = require("../../../../lib/util/SerializeForm");
+var FormComponent = require("../../../../lib/util/FormComponent");
 
 /*
  * This is a Catberry Cat-component file.
