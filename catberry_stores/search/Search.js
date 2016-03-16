@@ -32,7 +32,7 @@ Search.prototype._loadDataPerPage = function (page) {
     var self = this;
     this._data.data.page = page;
     try {
-        this._data.data['SearchForm[query]'] = this.$context.location.query.values.query;
+        this._data.data['query'] = this.$context.location.query.values.query;
     } catch (e) {
     }
     return this.send(this._path, this._data)

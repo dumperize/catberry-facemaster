@@ -27,6 +27,7 @@ function MasterCount() {
 	this._path = '/master/active';
 	this._options = {
 		data: {
+			fields: 'id',
 			limit: 1
 		}
 	};

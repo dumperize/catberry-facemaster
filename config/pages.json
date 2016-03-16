@@ -103,5 +103,9 @@
   "company-rubrika": {},
   "company-page": {},
   "article-item": {},
-  "search": {}
+  "search": {
+    "title": "Поиск по сайту",
+    "description": "Поиск на сайте facemaster.ru",
+    "keywords": "поиск, поиск услуг, facemaster"
+  }
 }
