@@ -146,6 +146,7 @@ PageMasterPage.prototype.showContacts = function (event) {
     event.preventDefault();
     event.stopPropagation();
     this.$context.element.querySelector('.contacts-mp__cap').style.display = 'none';
+    this.$context.element.querySelector('.contacts-mp__list').style.display = 'block';
 };
 /**
  * показать popup - заказать звонок

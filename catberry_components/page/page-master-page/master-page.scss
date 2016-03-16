@@ -50,6 +50,7 @@
     }
     @include to(md) {
       @extend .col-xs-12;
+      height: auto;
       margin-bottom: 20px;
     }
     height: inherit;
