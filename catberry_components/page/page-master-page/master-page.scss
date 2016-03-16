@@ -79,3 +79,15 @@
     position: relative;
   }
 }
+#next-prev-master {
+  float: right;
+  position: relative;
+  margin-top: -8px;
+  min-height: 50px;
+  //border: 1px solid red;
+  @include at(xs) {
+    top: 0;
+    float: none;
+    margin-top: 20px;
+  }
+}

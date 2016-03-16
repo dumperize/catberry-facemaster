@@ -44,7 +44,9 @@ PageMasterPage.prototype.bind = function () {
 
     //навесим обработчики для объекта window
     $(window).bind('scroll', this.function.fixedSectionMenu);
+    $(window).bind('resize', this.function.fixedSectionMenu);
     $(window).bind('scroll', this.function.menuHighlight);
+    $(window).bind('resize', this.function.menuHighlight);
 
     //установим блок на след пред мастера
     this.setNextPrev();
@@ -70,6 +72,7 @@ PageMasterPage.prototype.bind = function () {
  */
 PageMasterPage.prototype.unbind = function () {
     $(window).unbind('scroll');
+    $(window).unbind('resize');
     this.$context.collectGarbage();
 };
 
@@ -123,7 +126,12 @@ PageMasterPage.prototype.scrollToSection = function (event) {
  */
 PageMasterPage.prototype.fixedSectionMenu = function (event) {
     var menu = $('.menu-mp');
-    if ($(window).scrollTop() + 30 > this._menuOffset) {
+    var menuScrollTop = $(window).scrollTop();
+    if (this._menuOffset == 0) {
+        menu.removeClass('fixed');
+        this._menuOffset = menu.offset().top;
+    }
+    if (menuScrollTop + 30 > this._menuOffset) {
         menu.addClass('fixed');
     } else {
         menu.removeClass('fixed');
