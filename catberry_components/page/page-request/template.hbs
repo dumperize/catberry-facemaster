@@ -1,7 +1,11 @@
 <div block="callback_request">
     <h1 block="h1" mod="style">Заказать услугу</h1>
 
-    <form elem="form" method="post" action="{{url}}" id="callback-request-form">
+    {{#if success}}
+        <div block="success">Ваша заявка отправлена</div>
+    {{/if}}
+
+    <form elem="form" method="post" action="" id="callback-request-form">
         <p elem="errors"></p>
 
         <p elem="intro">Опишите вашу задачу</p>
@@ -9,33 +13,31 @@
         <div elem="input">
             <textarea block="textarea"
                       placeholder="Я хочу (отремонтировать, организовать, установить, доставить)"
-                      name="RequestForm[text]"
-                      required="required"
-                      id="request-form-text"></textarea>
+                      name="text" required>{{form.text}}</textarea>
         </div>
         <p elem="intro">
             Оставьте ваши контакты
         </p>
 
         <div elem="input">
-            <input id="request-form-contact-name" block="input-text" type="text" required="required"
-                   placeholder="Ваше имя"
-                   name="RequestForm[contactName]">
+            <input block="input-text" type="text" placeholder="Ваше имя"
+                   name="contactName" value="{{form.contactName}}" required>
         </div>
         <div elem="input">
-            <input id="request-form-contact-phone" block="input-text" type="text" required="required"
-                   placeholder="Ваш телефон"
-                   name="RequestForm[contactPhone]">
+            <input block="input-text" type="text" placeholder="Ваш телефон"
+                   name="contactPhone" value="{{form.contactPhone}}" required>
         </div>
         <div elem="input">
-            <input id="request-form-contact-email" block="input-text" type="email"
-                   placeholder="Ваш email"
-                   name="RequestForm[contactEmail]">
+            <input block="input-text" type="email" placeholder="Ваша эл. почта"
+                   name="contactEmail" value="{{form.contactEmail}}">
         </div>
         <div elem="input">
             <label>
-                <input id="request-form-contact-agree" type="checkbox" required="required"
-                       name="RequestForm[contactAgree]">
+                {{#if form.contactAgree}}
+                    <input  type="checkbox" name="contactAgree" value="1" checked required>
+                {{else}}
+                    <input type="checkbox" name="contactAgree" value="1" required>
+                {{/if}}
                 согласен с
                 <span elem="info" mix="block: js-show-tip">
                     условиями<span elem="tip">
@@ -54,4 +56,3 @@
         </div>
     </form>
 </div>
-<div block="success_response">Ваша заявка отправлена</div>

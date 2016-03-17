@@ -10,7 +10,9 @@
                 <form>
                     <label elem="input-cont"><input type="text" placeholder="Заголовок новости"></label>
                     <label elem="input-cont"><input type="text" placeholder="Автор"></label>
-                    <div elem="photo-cont"><a elem="add-photo" mix="block: js-photo-upload" href="#add-news-thumb"><span>Загрузить фото</span></a></div>
+                    <div elem="photo-cont" mix="block: js-cropit-photo-result">
+                        <a elem="add-photo" mix="block: js-photo-upload" href="#add-news-thumb"><span>Загрузить фото</span></a>
+                    </div>
                     <textarea placeholder="Текст новости"></textarea>
                     <input type="submit" value="Предложить"><input type="button" value="Отмена" mix="block:js-hide-submit-news">
                 </form>
