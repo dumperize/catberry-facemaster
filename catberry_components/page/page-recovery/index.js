@@ -58,5 +58,9 @@ PageRecovery.prototype._makeKey = function () {
 PageRecovery.prototype.hadleChangeCaptha = function (event) {
     event.preventDefault();
     event.stopPropagation();
-    //поменять src и hidden input
+    var capcha = this.$context.element.querySelector('.recovery-pass-form__capcha-img');
+    var key = this._makeKey();
+
+    capcha.src = capcha.src.slice(0, capcha.src.indexOf('=') + 1) + key;
+    this.$context.element.querySelector('.recovery-pass-form__client-id').value = key;
 };
