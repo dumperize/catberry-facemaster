@@ -33,6 +33,7 @@ PageNews.prototype.render = function () {
  */
 PageNews.prototype.bind = function () {
     var submitNews = $('.submit-news');
+
     submitNews.bind('click', showAddNews);
     $('.js-hide-submit-news').bind('click', hideAddNews);
 
@@ -48,6 +49,30 @@ PageNews.prototype.bind = function () {
         });
         return false;
     }
+    return {
+        click: {
+            '.js-photo-upload': this._photoUpload
+        }
+    }
+};
+
+PageNews.prototype._photoUpload = function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var el = event.target;
+    var href = this.$context.element.querySelector('.js-photo-upload').href;
+    var unique = href.slice(href.indexOf('#'));
+    var self = this;
+
+    console.log(unique);
+    this.$context.createComponent('img-upload', {id: unique})
+        .then(function (data) {
+            console.log(data);
+            self.$context.element.querySelector('.news-list').insertBefore(data, self.$context.element.querySelector('.news'));
+            $(self.$context.element.querySelector('.js-open-file')).trigger('click');
+            return data;
+        });
 };
 
 /**

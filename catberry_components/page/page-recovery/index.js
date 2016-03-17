@@ -39,7 +39,7 @@ PageRecovery.prototype.render = function () {
 PageRecovery.prototype.bind = function () {
     var arr = this._bind();
     arr.click = {
-        '.recovery-pass-form__reload-link': this.hadleChangeCaptha
+        '.recovery-pass-form__reload-link': this.handleChangeCaptcha
     };
     return arr;
 };
@@ -55,10 +55,10 @@ PageRecovery.prototype._makeKey = function () {
     return text;
 };
 
-PageRecovery.prototype.hadleChangeCaptha = function (event) {
+PageRecovery.prototype.handleChangeCaptcha = function (event) {
     event.preventDefault();
     event.stopPropagation();
-    var capcha = this.$context.element.querySelector('.recovery-pass-form__capcha-img');
+    var capcha = this.$context.element.querySelector('.recovery-pass-form__captcha-img');
     var key = this._makeKey();
 
     capcha.src = capcha.src.slice(0, capcha.src.indexOf('=') + 1) + key;
