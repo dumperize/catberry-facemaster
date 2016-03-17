@@ -1,0 +1,5 @@
+{
+	"name": "page-news-form",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

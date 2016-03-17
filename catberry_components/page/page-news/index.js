@@ -32,22 +32,7 @@ PageNews.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 PageNews.prototype.bind = function () {
-    var submitNews = $('.submit-news');
-    submitNews.bind('click', showAddNews);
-    $('.js-hide-submit-news').bind('click', hideAddNews);
 
-    function showAddNews () {
-        submitNews.addClass('show');
-        $('.submit-news form').toggle(500);
-        submitNews.unbind('click', showAddNews);
-    }
-    function hideAddNews () {
-        $('.submit-news form').toggle(500, function() {
-            $('.submit-news').removeClass('show');
-            submitNews.bind('click', showAddNews);
-        });
-        return false;
-    }
 };
 
 /**
