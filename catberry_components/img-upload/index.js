@@ -87,20 +87,21 @@ ImgUpload.prototype.bind = function () {
 //Загрузка данных на сервер и вставка обрез. изображения в аватарку до загрузки на сервер
     $('.js-download-image-btn').click(function () {
             var data = $(this).closest('.img-upload').find('.image-cropper').first().cropit('export');
-            $.ajax({
-                url: $(this).children('a').attr('href'),
-                dataType: 'json',
-                type: 'GET', //важно! заменить на POST!
-                data: {
-                    //img: data
-                },
-                success: function (response) {
-                    if (response.success) {
-                        saveImgOnPage(this, data);
-                    }
-                }.bind($(this))
-            });
+            //$.ajax({
+            //    url: $(this).children('a').attr('href'),
+            //    dataType: 'json',
+            //    type: 'GET', //важно! заменить на POST!
+            //    data: {
+            //        //img: data
+            //    },
+            //    success: function (response) {
+            //        if (response.success) {
+            //            saveImgOnPage(this, data);
+            //        }
+            //    }.bind($(this))
+            //});
             //$('.master-data-edit__avatar').attr('src', data);
+            $('.js-cropit-photo-result').prepend('<img src="' + data + '" alt="">');
             closeImgUpload(this);
             return false;
         }

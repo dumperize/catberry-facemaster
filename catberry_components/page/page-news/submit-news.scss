@@ -67,6 +67,10 @@
     height: 76px;
     right: 0;
     top: 10px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
   }
   &__add-photo {
     @extend .basic-button-mid;

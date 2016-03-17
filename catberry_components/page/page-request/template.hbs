@@ -13,8 +13,7 @@
         <div elem="input">
             <textarea block="textarea"
                       placeholder="Я хочу (отремонтировать, организовать, установить, доставить)"
-                      name="text"
-                      id="request-form-text">{{form.text}}</textarea>
+                      name="text" required>{{form.text}}</textarea>
         </div>
         <p elem="intro">
             Оставьте ваши контакты
@@ -22,11 +21,11 @@
 
         <div elem="input">
             <input block="input-text" type="text" placeholder="Ваше имя"
-                   name="contactName" value="{{form.contactName}}">
+                   name="contactName" value="{{form.contactName}}" required>
         </div>
         <div elem="input">
             <input block="input-text" type="text" placeholder="Ваш телефон"
-                   name="contactPhone" value="{{form.contactPhone}}">
+                   name="contactPhone" value="{{form.contactPhone}}" required>
         </div>
         <div elem="input">
             <input block="input-text" type="email" placeholder="Ваша эл. почта"
@@ -35,9 +34,9 @@
         <div elem="input">
             <label>
                 {{#if form.contactAgree}}
-                    <input  type="checkbox" name="contactAgree" value="1" checked>
+                    <input  type="checkbox" name="contactAgree" value="1" checked required>
                 {{else}}
-                    <input type="checkbox" name="contactAgree" value="1">
+                    <input type="checkbox" name="contactAgree" value="1" required>
                 {{/if}}
                 согласен с
                 <span elem="info" mix="block: js-show-tip">

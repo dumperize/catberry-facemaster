@@ -7,10 +7,17 @@
   padding: 30px 20px;
   margin-bottom: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  @include at(xs) {
+    padding: 10px 10px 20px 10px;
+  }
   &__title {
     font-size: 2.2rem;
     font-weight: bold;
     margin-bottom: 8px;
+    @include at(xs) {
+      font-size: 1.4rem;
+      text-align: left;
+    }
   }
   &__ico-close {
     content: '';
@@ -35,6 +42,11 @@
     height: 330px;
     margin-bottom: 20px;
     overflow: hidden;
+    @include at(xs) {
+      padding: 10px 0;
+      margin-bottom: 0;
+      height: 280px;
+    }
     .cropit-image-preview-container {
       margin: 0 auto;
       width: 220px;
@@ -73,6 +85,9 @@
       width: 150px;
       margin: 0 16px;
       vertical-align: middle;
+      @include at(xs) {
+        margin: 0 10px;
+      }
     }
     svg.icon-large {
       width: 24px;
@@ -94,6 +109,7 @@
   }
   &__save-img, &__select-img {
     @extend .basic-button-auto;
+    margin-bottom: 10px;
   }
   &__select-img {
     @extend .basic-button-auto_grey;
@@ -110,6 +126,14 @@
     top: 50%;
     left: 50%;
     margin-left: 130px;
+    @include at(sm) {
+      font-size: 1.4rem;
+      width: 130px;
+      margin-left: 110px;
+    }
+    @include at(xs) {
+      display: none;
+    }
     i {
       background: url('/img/arrowDown.png') 0 0 no-repeat;
       width: 71px;
@@ -125,6 +149,10 @@
     top: 67px;
   }
   &__help2 {
+    @include at(sm) {
+      width: 140px;
+      padding-left: 30px;
+    }
     margin-top: 46px;
     left: auto;
     right: 50%;
