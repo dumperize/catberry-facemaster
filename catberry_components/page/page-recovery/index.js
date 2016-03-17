@@ -1,8 +1,10 @@
 'use strict';
 
 module.exports = PageRecovery;
-var serializeForm = require("../../../lib/util/SerializeForm");
+var ComponentForm = require("../../../lib/ComponentForm");
 
+var util = require('util');
+util.inherits(PageRecovery, ComponentForm);
 /*
  * This is a Catberry Cat-component file.
  * More details can be found here
@@ -10,54 +12,51 @@ var serializeForm = require("../../../lib/util/SerializeForm");
  */
 
 /**
- * Creates new instance of the "page-recovery" component.
+ * Creates new instance of the "page-login" component.
  * @constructor
  */
 function PageRecovery() {
+    ComponentForm.call(this);
 
+    this.formID = '#recovery-pass-form';
 }
 
-PageRecovery.prototype.data = null;
-
-/**
- * Gets data context for template engine.
- * This method is optional.
- * @returns {Promise<Object>|Object|null|undefined} Data context
- * for template engine.
- */
 PageRecovery.prototype.render = function () {
     var self = this;
 
-    return this.$context.getStoreData()
+    return this._render()
         .then(function (data) {
-            data.form = self.data;
+            var keycaptcha = self._makeKey();
+            if (data.form) {
+                data.form.clientID = keycaptcha;
+            }
+            data.keycaptcha = keycaptcha;
+            console.log(data);
             return data;
         });
 };
 
-/**
- * Returns event binding settings for the component.
- * This method is optional.
- * @returns {Promise<Object>|Object|null|undefined} Binding settings.
- */
 PageRecovery.prototype.bind = function () {
-    console.log(recaptcha);
-    this.formID = this.$context.element.querySelector('#recovery-pass-form');
-    return {
-        submit: {
-            '#recovery-pass-form': this.handleSubmit
-        }
-    }
+    var arr = this._bind();
+    arr.click = {
+        '.recovery-pass-form__reload-link': this.hadleChangeCaptha
+    };
+    return arr;
 };
 
-/**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
- */
-PageRecovery.prototype.handleSubmit = function (event) {
+PageRecovery.prototype._makeKey = function () {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 30; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    var date = new Date();
+    text += date.getTime();
+    return text;
+};
+
+PageRecovery.prototype.hadleChangeCaptha = function (event) {
     event.preventDefault();
     event.stopPropagation();
-    this.data = serializeForm($(this.formID).serializeArray());
-    this.$context.sendAction('send', this.data);
+    //поменять src и hidden input
 };

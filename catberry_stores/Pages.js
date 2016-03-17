@@ -85,10 +85,8 @@ Pages.prototype.load = function () {
                 return self.$context.getStoreData(self._loodStore[currentPage]);
         })
         .then(function () {
-            if (!currentPage) {
-                self.$context.redirect('/main');
-                return null;
-            }
+            if (!currentPage)
+                currentPage = 'main';
             if (!PAGES.hasOwnProperty(currentPage)) {
                 self.$context.notFound();
             }
