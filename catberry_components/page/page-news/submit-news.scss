@@ -23,6 +23,9 @@
     text-transform: uppercase;
     letter-spacing: 0.025em
   }
+  &__input {
+    margin-bottom: 14px;
+  }
   form {
     display: none;
     padding-top: 10px;
@@ -111,11 +114,10 @@
     }
   }
   textarea {
-    width: 100%;
-    border: none;
-    resize: vertical;
+    @extend .basic-input;
+    vertical-align: middle;
     padding: 8px;
     min-height: 100px;
-    margin-bottom: 14px;
+    max-height: 240px;
   }
 }

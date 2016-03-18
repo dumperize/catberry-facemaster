@@ -1,12 +1,12 @@
 'use strict';
 
 module.exports = PageNewsForm;
-var ComponentForm = require("../../../../lib/ComponentForm");
 var serializeForm = require("../../../../lib/util/SerializeForm");
-
+var ComponentCropIt = require("../../../../lib/ComponentCropIt");
 
 var util = require('util');
-util.inherits(PageNewsForm, ComponentForm);
+util.inherits(PageNewsForm, ComponentCropIt);
+
 
 /*
  * This is a Catberry Cat-component file.
@@ -19,7 +19,7 @@ util.inherits(PageNewsForm, ComponentForm);
  * @constructor
  */
 function PageNewsForm() {
-    ComponentForm.call(this);
+    ComponentCropIt.call(this);
 
     this.formID = '#news-add-form';
 }
@@ -63,14 +63,19 @@ PageNewsForm.prototype.bind = function () {
         return false;
     }
 
-    return this._bind();
+    var event = this._bind();
+    event.click = {
+        '.js-photo-upload': this._photoInitCropIt,
+        '.js-photo-remove': this._photoRemove
+    };
+    return event;
 };
 
 PageNewsForm.prototype.handleSubmit = function (event) {
     event.preventDefault();
     event.stopPropagation();
     var self = this;
-    var img = this.$context.element.querySelector('.js-cropit-photo-result img');
+    var img = this.$context.element.querySelector('.add-news-thumb-result img');
 
     this.data = serializeForm($(this.formDOM).serializeArray());
     this.imgsrc = img ? img.getAttribute('src') : null;
@@ -82,6 +87,25 @@ PageNewsForm.prototype.handleSubmit = function (event) {
         .then(function (res) {
             self.$context.sendAction('send', self.data);
         })
+};
+
+PageNewsForm.prototype._photoInitCropIt = function (event) {
+    var selfId = this.$context.attributes.id;
+    var data = {id: 'img-upload', callCompId: selfId, width: 220, height: 220, exportzoom: 1};
+    var f = function(data) {
+        document.querySelector('.news-list').insertBefore(data, document.querySelector('.news'));
+    };
+    this._photoCropIt(event, data, f)
+};
+
+PageNewsForm.prototype._photoRemove = function () {
+    this.$context.element.querySelector('.add-news-thumb-result img').remove();
+};
+
+PageNewsForm.prototype._imgResizeResult = function (img) {
+    $(this.$context.element.querySelector('.add-news-thumb-result')).prepend('<img src="' + img + '" alt="">');
+    $(self.$context.element.querySelector('.submit-news')).addClass('show');
+    $(self.$context.element.querySelector('.submit-news form')).show();
 };
 
 PageNewsForm.prototype.fileSave = function (base64) {

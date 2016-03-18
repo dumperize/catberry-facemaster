@@ -5,19 +5,6 @@
 
         <div block="news-list">
 
-            <div block="submit-news">
-                <p elem="title">Предложить новость</p>
-                <form>
-                    <label elem="input-cont"><input type="text" placeholder="Заголовок новости"></label>
-                    <label elem="input-cont"><input type="text" placeholder="Автор"></label>
-                    <div elem="photo-cont" mix="block: add-news-thumb-result">
-                        <i elem="del-ico" mix="block: js-photo-remove">{{icon 'close'}}</i>
-                        <a elem="add-photo" mix="block: js-photo-upload" href="#add-news-thumb"><span>Загрузить фото</span></a>
-                    </div>
-                    <textarea placeholder="Текст новости"></textarea>
-                    <input type="submit" value="Предложить"><input type="button" value="Отмена" mix="block:js-hide-submit-news">
-                </form>
-            </div>
             <cat-page-news-form id="cat-page-news-form" cat-store="other/NewsAdd"></cat-page-news-form>
 
             {{#each data}}

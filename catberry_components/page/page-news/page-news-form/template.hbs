@@ -5,22 +5,28 @@
     {{/if}}
     <form id="news-add-form">
         {{uploadImg}}
-        <label elem="input-cont"><input type="text" name="title" placeholder="Заголовок новости" value="{{form.title}}"></label>
+        <label elem="input-cont">
+            <input type="text" name="title" placeholder="Заголовок новости" value="{{form.title}}">
+        </label>
         <input type="hidden" name="uploadImg" value="{{form.uploadImg}}">
-        <label elem="input-cont"><input type="text" placeholder="Автор" name="author" value="{{form.author}}"></label>
+        <label elem="input-cont">
+            <input type="text" placeholder="Автор" name="author" value="{{form.author}}">
+        </label>
 
-        <div elem="photo-cont" mix="block: js-cropit-photo-result">
+        <div elem="photo-cont" mix="block: add-news-thumb-result">
             {{#if imgsrc}}
                 <img src="{{imgsrc}}" alt="">
             {{/if}}
+            <i elem="del-ico" mix="block: js-photo-remove">{{icon 'close'}}</i>
             <a elem="add-photo" mix="block: js-photo-upload" href="#add-news-thumb"><span>Загрузить фото</span></a>
         </div>
 
-        <textarea placeholder="Текст новости" name="text">{{form.text}}</textarea>
+        <div elem="input">
+            <textarea placeholder="Текст новости" name="text">{{form.text}}</textarea>
+        </div>
         <input type="submit" value="Предложить">
         <input type="button" value="Отмена" mix="block:js-hide-submit-news">
     </form>
 </div>
 
-<cat-img-upload id="img-upload"></cat-img-upload>
 
