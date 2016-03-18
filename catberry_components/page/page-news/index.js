@@ -1,6 +1,10 @@
 'use strict';
 
 module.exports = PageNews;
+var ComponentCropIt = require("../../../lib/ComponentCropIt");
+
+var util = require('util');
+util.inherits(PageNews, ComponentCropIt);
 
 /*
  * This is a Catberry Cat-component file.
@@ -13,7 +17,7 @@ module.exports = PageNews;
  * @constructor
  */
 function PageNews() {
-
+    ComponentCropIt.call(this);
 }
 
 /**
@@ -51,35 +55,28 @@ PageNews.prototype.bind = function () {
     }
     return {
         click: {
-            '.js-photo-upload': this._photoCropIt,
+            '.js-photo-upload': this._photoInitCropIt,
             '.js-photo-remove': this._photoRemove
         }
     }
 };
 
+PageNews.prototype._photoInitCropIt = function (event) {
+    var selfId = this.$context.attributes.id;
+    var data = {id: 'img-upload', callCompId: selfId, width: 220, height: 220, exportzoom: 1};
+    var f = function(data) {
+        this.$context.element.querySelector('.news-list').insertBefore(data, this.$context.element.querySelector('.news'));
+    };
+    this._photoCropIt(event, data, f)
+};
+
 PageNews.prototype._photoRemove = function () {
     this.$context.element.querySelector('.add-news-thumb-result img').remove();
 };
-
-PageNews.prototype._photoCropIt = function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    var el = event.target;
-    var selfId = this.$context.attributes.id;
-    var href = this.$context.element.querySelector('.js-photo-upload').href;
-    var unique = href.slice(href.indexOf('#'));
-    var self = this;
-
-    this.$context.createComponent('img-upload', {id: unique, callCompId: selfId, width: 220, height: 220, exportzoom: 1})
-        .then(function (data) {
-            self.$context.element.querySelector('.news-list').insertBefore(data, self.$context.element.querySelector('.news'));
-            $(self.$context.element.querySelector('.js-open-file')).trigger('click');
-            return data;
-        });
-};
 PageNews.prototype._imgResizeResult = function (img) {
     $(this.$context.element.querySelector('.add-news-thumb-result')).prepend('<img src="' + img + '" alt="">');
+    $(this.$context.element.querySelector('.submit-news')).addClass('show');
+    $(this.$context.element.querySelector('.submit-news form')).show();
 };
 
 /**
