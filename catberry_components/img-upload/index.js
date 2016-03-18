@@ -32,73 +32,84 @@ ImgUpload.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 ImgUpload.prototype.bind = function () {
-    var unique = this.$context.attributes.unique;
-
-    $('.js-photo-upload-btn').click(function () {
-        $(this).parents('.img-upload').first().find('.js-open-file').trigger('click'); //при клике на кнопку, происходит клик по лейблу с файл инпутом
-        return false;
-    });
-
-//Передаем значение value из jquery-ui slider в cropit для увел./умен. изображения
-    $('.cropit-slider').on('slide', function (event, ui) {
-        $(this).parents('.image-cropper').first().cropit('zoom', ui.value);
-        $(this).parents('.image-cropper').first().cropit('zoom', ui.value);
-    });
-//Загрузка данных на сервер и вставка обрез. изображения в аватарку до загрузки на сервер
-    $('.js-download-image-btn').click(function () {
-            var data = $(this).closest('.img-upload').find('.image-cropper').first().cropit('export');
-            $('.' + unique + '-result').prepend('<img src="' + data + '" alt="">');
-            closeImgUpload(this);
-            return false;
-        }
-    );
-//Закрытые псевдоокна
-    $('.js-close-ico').click(function () {
-        closeImgUpload(this);
-    });
-
-    function closeImgUpload(selector) {
-        $(selector).closest('.img-upload').css('display', 'none');
-        $(selector).closest('.img-upload').find('form').trigger('reset');
-        $('body').removeClass('blackout');
-    }
-
-    function saveImgOnPage(btnSelector, data) {
-        var idImgSave = '#' + btnSelector.closest('.img-upload').attr('id') + '-save';
-
-        $(idImgSave).append('<img class="mde-new-image">');
-        $(idImgSave).children('img').last().attr('src', data); //вставка обрез. изображения в аватарку
-        $(idImgSave).children('img').last().fadeIn(500, function () {
-            if (1 < $(idImgSave).children('img').length) {
-                $(idImgSave).children('img').first().remove();
-            }
-        });
-    }
-
-//При клике на cropit-image-preview меняем вид курсора
-    $('.cropit-image-preview').mousedown(function () {
-        $('.cropit-image-preview').addClass('grabbing');
-
-    });
-    $('.cropit-image-preview').mouseup(function () {
-        $('.cropit-image-preview').removeClass('grabbing');
-    });
     return {
         click: {
-            '.js-photo-upload': this._photoUpload
+            '.js-photo-upload-btn': this._photoUpload,
+            '.js-close-ico': this._close,
+            '.js-download-image-btn': this._saveImg,
+            '.js-rotate-ccw-btn': this._rotateImgRight,
+            '.js-rotate-cw-btn': this._rotateImgLeft
         },
         change: {
             '.js-input-photo': this._fileInputChange
+        },
+        mousedown: {
+            '.cropit-image-preview': this._cursorViewGrabbing
+        },
+        mouseup: {
+            '.cropit-image-preview': this._cursorViewDefault
         }
     };
+};
+
+// Передача обработаного изображения в обработчик компонента который вызвал текущий компонент
+ImgUpload.prototype._saveImg = function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var callcompid = this.$context.attributes.callcompid;
+    var img = $(this.$context.element.querySelector('.image-cropper')).cropit('export');
+
+    this.$context.getComponentById(callcompid)._imgResizeResult(img);
+    this._close();
+};
+
+ImgUpload.prototype._close = function (event) {
+    var self = this;
+    var callcompid = '#' + this.$context.attributes.callcompid;
+
+    $('html, body').animate({
+        scrollTop: $(callcompid).offset().top
+    }, 1000);
+    $(this.$context.element.querySelector('.img-upload')).fadeOut(400, function() {
+        $('body').addClass('blackout-del').removeClass('blackout').delay(500).removeClass('blackout-del');
+        self.$context.element.remove();
+        self.$context.collectGarbage();
+    });
+};
+
+ImgUpload.prototype._rotateImgRight = function () {
+    $(this.$context.element.querySelector('.image-cropper')).cropit('rotateCW');
+};
+ImgUpload.prototype._rotateImgLeft = function () {
+    $(this.$context.element.querySelector('.image-cropper')).cropit('rotateCCW');
+};
+
+//TODO не работает
+//При клике на cropit-image-preview меняем вид курсора
+ImgUpload.prototype._cursorViewGrabbing = function (event) {
+    console.log('cursorViewGrabbing');
+    $(this.$context.element.querySelector('.cropit-preview')).addClass('grabbing');
+};
+ImgUpload.prototype._cursorViewDefault = function (event) {
+    console.log('cursorViewDefault');
+    $(this.$context.element.querySelector('.cropit-preview')).removeClass('grabbing');
+};
+
+ImgUpload.prototype._photoUpload = function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    $(this.$context.element.querySelector('.js-open-file')).trigger('click');
 };
 
 //при изменении значения файл инпута уменьшаем большую фотографию и передаем её в cropit
 ImgUpload.prototype._fileInputChange = function (e) {
     var file = e.target.files[0];
-    var id = this.$context.attributes.id;
     var cropitElement = this.$context.element.querySelector('.image-cropper');
     var self = this;
+    var newWidth = this.$context.attributes.width || 220;
+    var newHeight = this.$context.attributes.height || 220;
+    var zoom = this.$context.attributes.exportzoom || 1;
 
     canvasResize(file, {
         width: 800,
@@ -107,51 +118,63 @@ ImgUpload.prototype._fileInputChange = function (e) {
         quality: 100,
         //rotate: 90,
         callback: function (data, width, height) {
-            if (width >= 220 && height >= 220) {
-                self._initCropit(id);                  //Инициализация cropit
-                $(cropitElement).cropit('imageSrc', data);   //передаем в cropit data (изображение)
+            if (width >= newWidth && height >= newHeight) {
+                self._initCropit(newWidth, newHeight, zoom);          //Инициализация cropit
+                $(cropitElement).cropit('imageSrc', data);      //передаем в cropit data (изображение)
             } else {
                 alert('Слишком маленькое изображение.\nВыберите другое изображение.');
-                $(id).find('.js-open-file').trigger('click');     //снова просим выбрать файл
+                $(id).find('.js-open-file').trigger('click');   //снова просим выбрать файл
             }
         }
     });
 };
 
-//Инициализация cropit и jquery-ui slider
-ImgUpload.prototype._initCropit = function (selector) {
+// Инициализация cropit и jquery-ui slider
+ImgUpload.prototype._initCropit = function (newWidth, newHeight, zoom) {
     var cropitElement = this.$context.element.querySelector('.image-cropper');
     var cropitSliderElement = this.$context.element.querySelector('.cropit-slider');
     var self = this;
-    console.log(selector);
 
     $(cropitSliderElement).slider({
         min: 0,
         max: 1,
-        step: 0.01
-    });
-    $(cropitElement).cropit({
-        imageBackground: true,
-        onImageLoaded: function (object) {
-            console.log('!!!');
-            self._openImgUpload(selector);
-            $(selector).find('.cropit-slider').slider('option', 'min', $(cropitElement).cropit('zoom'));
-            $(selector).find('.cropit-slider').slider('option', 'value', $(cropitElement).cropit('zoom'));
+        step: 0.005,
+        slide: function(event, ui) {
+            $(cropitElement).cropit('zoom', ui.value); // Передаем значение value из slider в cropit для увел./умен. изображения
         }
     });
-    console.log('initCropit');
+    $(cropitElement).cropit({
+        type: 'image/jpeg',
+        quality: .9,
+        imageBackground: true,
+        width: newWidth,
+        height: newHeight,
+        exportZoom: zoom,
+        onImageLoaded: function (object) {
+            self._openImgUpload();
+            $(self.$context.element.querySelector('.cropit-preview-container')).css({
+                width: newWidth,
+                height: newHeight
+            });
+            // Устанавливаем начальные значение min и value из cropit в slider для корректного увел./умен. изображения
+            $(cropitSliderElement).slider({
+                'min': $(cropitElement).cropit('zoom'),
+                'max': ($(cropitElement).cropit('maxZoom') / zoom),
+                'value': $(cropitElement).cropit('zoom')
+            });
+        }
+    });
 };
 
 //Открываем контейнер с компонентом
 ImgUpload.prototype._openImgUpload = function (selector) {
-    console.log('openImgUpload');
-
-    if ($(selector).is(':hidden')) {
+    var imgUpload = $('.img-upload');
+    if (imgUpload.is(':hidden')) {
         $('body').addClass('blackout');
-        $(selector).css('z-index', '1001');
-        $(selector).show();
+        imgUpload.css('z-index', '1001');
+        imgUpload.show();
         $('html, body').animate({
-            scrollTop: $(selector).offset().top - 20
+            scrollTop: imgUpload.offset().top - 20
         }, 1000);
     }
 };
@@ -161,5 +184,5 @@ ImgUpload.prototype._openImgUpload = function (selector) {
  * @returns {Promise|undefined} Promise or nothing.
  */
 ImgUpload.prototype.unbind = function () {
-    ('.js-photo-upload').unbind('click');
+
 };

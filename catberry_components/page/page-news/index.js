@@ -51,28 +51,35 @@ PageNews.prototype.bind = function () {
     }
     return {
         click: {
-            '.js-photo-upload': this._photoUpload
+            '.js-photo-upload': this._photoCropIt,
+            '.js-photo-remove': this._photoRemove
         }
     }
 };
 
-PageNews.prototype._photoUpload = function (event) {
+PageNews.prototype._photoRemove = function () {
+    this.$context.element.querySelector('.add-news-thumb-result img').remove();
+};
+
+PageNews.prototype._photoCropIt = function (event) {
     event.preventDefault();
     event.stopPropagation();
 
     var el = event.target;
+    var selfId = this.$context.attributes.id;
     var href = this.$context.element.querySelector('.js-photo-upload').href;
     var unique = href.slice(href.indexOf('#'));
     var self = this;
 
-    console.log(unique);
-    this.$context.createComponent('img-upload', {id: unique})
+    this.$context.createComponent('img-upload', {id: unique, callCompId: selfId, width: 220, height: 220, exportzoom: 1})
         .then(function (data) {
-            console.log(data);
             self.$context.element.querySelector('.news-list').insertBefore(data, self.$context.element.querySelector('.news'));
             $(self.$context.element.querySelector('.js-open-file')).trigger('click');
             return data;
         });
+};
+PageNews.prototype._imgResizeResult = function (img) {
+    $(this.$context.element.querySelector('.add-news-thumb-result')).prepend('<img src="' + img + '" alt="">');
 };
 
 /**

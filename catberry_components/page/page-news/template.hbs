@@ -11,14 +11,13 @@
                     <label elem="input-cont"><input type="text" placeholder="Заголовок новости"></label>
                     <label elem="input-cont"><input type="text" placeholder="Автор"></label>
                     <div elem="photo-cont" mix="block: add-news-thumb-result">
+                        <i elem="del-ico" mix="block: js-photo-remove">{{icon 'close'}}</i>
                         <a elem="add-photo" mix="block: js-photo-upload" href="#add-news-thumb"><span>Загрузить фото</span></a>
                     </div>
                     <textarea placeholder="Текст новости"></textarea>
                     <input type="submit" value="Предложить"><input type="button" value="Отмена" mix="block:js-hide-submit-news">
                 </form>
             </div>
-
-            <!--<cat-img-upload id="img-upload2" unique="add-news-thumb2"></cat-img-upload>-->
 
             {{#each data}}
                 <div block="news">
