@@ -40,16 +40,16 @@ PageRequest.prototype.bind = function () {
     return superClick;
 };
 
-PageRequest.prototype._clickInfoHandler = function (obj) {
+PageRequest.prototype._clickInfoHandler = function (event) {
     event.preventDefault();
     event.stopPropagation();
-    var el = obj.target;
+    var el = event.target;
     $(el).children().fadeIn(400).delay(30000).fadeOut(500);
 };
-PageRequest.prototype._clickCloseTipHandler = function (obj) {
+PageRequest.prototype._clickCloseTipHandler = function (event) {
     event.preventDefault();
     event.stopPropagation();
-    var el = obj.target;
+    var el = event.target;
     $(el).closest('.callback_request__tip').stop().fadeOut(500);
 };
 

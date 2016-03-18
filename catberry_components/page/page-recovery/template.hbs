@@ -1,17 +1,30 @@
-<h1 block="h1" mod="style">Восстановить пароль</h1>
-<form id="recovery-pass-form" block="recovery-pass-form" method="post" action="recovery">
-    <input elem="input-text" type="text" placeholder="Эл. почта или телефон" name="login"
-           autofocus="" value="{{form.login}}">
+<div block="page-recovery">
+    <h1 block="h1" mod="style">Восстановить пароль</h1>
 
-    <div elem="capcha" mod="registration">
-        <div elem="code-img">
-            <img src="http://api.facemaster.ru/captcha?clientID={{keycaptcha}}" alt="capcha">
+    {{#if success}}
+        <p block="success">Новый пароль выслан на указанный телефон и&nbsp;электронную почту.</p>
+    {{/if}}
+
+    <form id="recovery-pass-form" block="recovery-pass-form" method="post" action="recovery">
+
+        <div elem="input">
+            <input elem="input-text" type="text" placeholder="Эл. почта или телефон" name="login"
+                   autofocus="" value="{{form.login}}">
         </div>
-        <a elem="reload-link" href="">Получить новый код</a>
-    </div>
-    <input type="hidden" name="clientID" value="{{keycaptcha}}">
-    <input elem="input-text" type="text" placeholder="Код с картинки" name="captcha">
 
-    <input elem="btn" type="submit" value="Восстановить">
-</form>
+        <div elem="captcha" mod="registration">
+            <div elem="code-img">
+                <img elem="captcha-img" src="http://api.facemaster.ru/captcha?clientID={{keycaptcha}}" alt="captcha">
+            </div>
+            <a elem="reload-link" href="">Получить новый код</a>
+        </div>
+        <input type="hidden" elem="client-id" name="clientID" value="{{keycaptcha}}">
+
+        <div elem="input">
+            <input elem="input-text" type="text" placeholder="Код с картинки" name="captcha">
+        </div>
+
+        <input elem="btn" type="submit" value="Восстановить">
+    </form>
+</div>
 

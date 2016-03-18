@@ -1,15 +1,18 @@
-<div block="img-upload" id="add-news-thumb">
+<div block="img-upload">
     <i elem="ico-close" mix="block:js-close-ico">{{icon 'close'}}</i>
 
     <p elem="title">Добавление фотографии</p>
 
     <p elem="help">Нажмите внутри и&nbsp;передвиньте фотографию<i></i></p>
 
-    <div elem="wrapper" id="add-news-thumb-cropper" class="image-cropper">
+    <div elem="wrapper" class="image-cropper">
+        <p elem="rotate-cont">
+            <i elem="ico-rotate-left" mix="block: js-rotate-cw-btn">{{icon 'rotate-left'}}</i>
+            <i elem="ico-rotate-right" mix="block: js-rotate-ccw-btn">{{icon 'rotate-right'}}</i>
+        </p>
+
         <!-- The preview container is needed for background image to work -->
-        <div class="cropit-image-preview-container">
-            <div class="cropit-image-preview"></div>
-        </div>
+        <div class="cropit-preview"></div>
 
         <div class="slider-wrapper">
             {{icon 'picture' 'icon-small'}}
@@ -22,10 +25,9 @@
             <label class="js-open-file"><input type="file" class="js-input-photo" accept="image/*"
                                                data-selector="#img-upload"></label>
         </form>
+        <p elem="help2">Если нужно, отре&shy;гулируйте размер<i></i></p>
     </div>
     <!--wrapper-->
-
-    <p elem="help2">Если нужно, отре&shy;гулируйте размер<i></i></p>
 
     <br>
 
