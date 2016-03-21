@@ -1,9 +1,9 @@
-<div block="submit-news">
+<div block="submit-news" class="{{#if form}}show{{/if}}">
     <p elem="title">Предложить новость</p>
     {{#if success}}
         Ваша предложение было отправлено.
     {{/if}}
-    <form id="news-add-form">
+    <form id="news-add-form" style="{{#if form}}display: block{{/if}}">
         {{uploadImg}}
         <label elem="input-cont">
             <input type="text" name="title" placeholder="Заголовок новости" value="{{form.title}}">

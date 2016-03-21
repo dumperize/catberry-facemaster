@@ -35,6 +35,7 @@ PageNewsForm.prototype.render = function () {
             else {
                 data.imgsrc = self.imgsrc;
             }
+            //console.log(data);
             return data;
         });
 };
@@ -46,15 +47,19 @@ PageNewsForm.prototype.render = function () {
  */
 PageNewsForm.prototype.bind = function () {
     var submitNews = $('.submit-news');
-    submitNews.bind('click', showAddNews);
     $('.js-hide-submit-news').bind('click', hideAddNews);
 
+    // Привязываем обработчик или не привязываем в зависимости от класса (состояния)
+    if (submitNews.hasClass('show')) {
+        submitNews.unbind('click', showAddNews);
+    } else {
+        submitNews.bind('click', showAddNews);
+    }
     function showAddNews() {
         submitNews.addClass('show');
         $('.submit-news form').toggle(500);
         submitNews.unbind('click', showAddNews);
     }
-
     function hideAddNews() {
         $('.submit-news form').toggle(500, function () {
             $('.submit-news').removeClass('show');
@@ -104,8 +109,6 @@ PageNewsForm.prototype._photoRemove = function () {
 
 PageNewsForm.prototype._imgResizeResult = function (img) {
     $(this.$context.element.querySelector('.add-news-thumb-result')).prepend('<img src="' + img + '" alt="">');
-    $(self.$context.element.querySelector('.submit-news')).addClass('show');
-    $(self.$context.element.querySelector('.submit-news form')).show();
 };
 
 PageNewsForm.prototype.fileSave = function (base64) {
@@ -116,4 +119,13 @@ PageNewsForm.prototype.fileSave = function (base64) {
 
             //заставить при всех отправках форм больше не сохранять файл, пока не будет нажата кнопка "крестик" и загружена новая картинка
         });
+};
+/**
+ * Does cleaning for everything that have NOT been set by .bind() method.
+ * This method is optional.
+ * @returns {Promise|undefined} Promise or nothing.
+ */
+PageNewsForm.prototype.unbind = function () {
+    $('.js-hide-submit-news').unbind('click');
+    $('.submit-news').unbind('click');
 };
