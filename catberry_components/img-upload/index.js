@@ -122,8 +122,8 @@ ImgUpload.prototype._fileInputChange = function (e) {
         quality: 100,
         //rotate: 90,
         callback: function (data, width, height) {
-            if (width >= newWidth && height >= newHeight) {
-                self._initCropit(newWidth, newHeight, zoom);          //Инициализация cropit
+            if (width >= (newWidth * zoom) && height >= (newHeight * zoom)) {
+                self._initCropit(newWidth, newHeight, zoom);    //Инициализация cropit
                 $(cropitElement).cropit('imageSrc', data);      //передаем в cropit data (изображение)
             } else {
                 alert('Слишком маленькое изображение.\nВыберите другое изображение.');
