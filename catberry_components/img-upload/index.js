@@ -69,13 +69,17 @@ ImgUpload.prototype._close = function (event) {
     var callcompid = '#' + this.$context.attributes.callcompid;
 
     $('html, body').animate({
-        scrollTop: $(callcompid).offset().top
-    }, 1000);
-    $(this.$context.element.querySelector('.img-upload')).fadeOut(400, function() {
-        $('body').addClass('blackout-del').removeClass('blackout').delay(500).removeClass('blackout-del');
+        scrollTop: $(callcompid).offset().top - 20
+    }, 1000, function () {
         self.$context.element.remove();
         self.$context.collectGarbage();
     });
+    $('#bg-dark-layer').animate({
+        opacity: 0
+    }, 600, function () {
+        $(this).hide();
+    });
+    $(this.$context.element.querySelector('.img-upload')).animate({opacity: 0}, 600);
 };
 
 ImgUpload.prototype._rotateImgRight = function () {
@@ -176,6 +180,9 @@ ImgUpload.prototype._openImgUpload = function (selector) {
         $('html, body').animate({
             scrollTop: imgUpload.offset().top - 20
         }, 1000);
+        $('#bg-dark-layer').show().animate({
+            opacity: 1
+        }, 600);
     }
 };
 /**
