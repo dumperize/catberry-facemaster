@@ -1,9 +1,10 @@
 <div block="sale-cont-md">
 
     {{#each sales}}
-    <div elem="item-cont">
-        <cat-block-sale id="block-sale-{{id}}" cat-store="{{../model}}" id-block="{{id}}" index="{{@index}}"></cat-block-sale>
-    </div>
+        <div elem="item-cont">
+            <cat-block-sale id="block-sale-{{id}}" cat-store="{{../model}}" id-block="{{id}}" index="{{@index}}"
+                            class-mod="master"></cat-block-sale>
+        </div>
     {{/each}}
 
 </div>
