@@ -1,0 +1,14 @@
+.container {
+  //padding-left: 0;
+  //padding-right: 0;
+}
+.page {
+  &__row {
+    @extend .row;
+    //border: 1px solid red;
+  }
+}
+
+.content {
+  //@extend .col-xs-12;
+}

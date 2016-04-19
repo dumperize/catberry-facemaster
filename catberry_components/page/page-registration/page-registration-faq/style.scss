@@ -1,0 +1,81 @@
+.faq {
+  padding: 50px 0;
+  @extend .col-xs-12;
+  &__block {
+    @extend .col-md-6;
+  }
+  &__item {
+    padding: 20px 0;
+    &-title {
+      position: relative;
+      font-size: 2.1rem;
+      &:after {
+        content: ' ';
+        position: absolute;
+        right: 5px;
+        top: 18px;
+        display: none;
+        @extend %icon;
+        @extend %icon_block;
+        @extend %icon_size_small;
+        @extend %icon_strelka;
+      }
+    }
+    &-text {
+      padding-top: 10px;
+      font-size: 1.5rem;
+    }
+    @include to(md) {
+      text-align: center;
+      &-title {
+        font-size: 1.7rem;
+        line-height: 20px;
+      }
+      &-text {
+        padding-top: 10px;
+        font-size: 1.5rem;
+      }
+    }
+  }
+  @include at(xs) {
+    padding: 0;
+    &__block {
+      padding: 0;
+    }
+    &__item {
+      padding: 0;
+      background-color: $color-bg-grey-light;
+      margin: 10px 0;
+      &-title {
+        padding: 10px;
+        text-align: left;
+        height: 58px;
+        display: table;
+        &:after {
+          display: block;
+        }
+        &-inner{
+          display: table-cell;
+          vertical-align: middle;
+          width: 100%;
+        }
+      }
+      &-text {
+        display: none;
+        padding-bottom: 20px;
+      }
+      &_uncollapse {
+        .faq__item {
+          &-title {
+            &:after {
+              transform: rotate(90deg);
+            }
+          }
+          &-text {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

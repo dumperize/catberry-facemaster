@@ -1,0 +1,26 @@
+.article-cont-md {
+  @extend .row;
+  margin-bottom: -20px;
+  &__item-cont {
+    @extend .col-lg-4;
+    padding-bottom: 20px;
+    @include to(lg) {
+      @extend .col-sm-6;
+    }
+    @include to(lg) {
+      @extend .col-sm-6;
+    }
+    @include at(xs) {
+      @extend .col-xs-12;
+    }
+  }
+}
+.article-cont-md {
+  .article {
+    height: 324px;
+    max-height: 324px;
+  }
+  .article__author {
+    display: none;
+  }
+}

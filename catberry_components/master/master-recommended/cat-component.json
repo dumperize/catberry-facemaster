@@ -1,0 +1,5 @@
+{
+	"name": "master-recommended",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

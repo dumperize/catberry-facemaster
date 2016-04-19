@@ -1,0 +1,5 @@
+{
+	"name": "block-article",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

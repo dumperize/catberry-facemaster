@@ -1,0 +1,9 @@
+.loading {
+  min-height: 36px;
+  min-width: 36px;
+  background: url('../img/loader.svg') no-repeat center right;
+  position: absolute;
+  opacity: 0.5;
+  //border: 1px solid blue;
+  @extend .container;
+}

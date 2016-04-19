@@ -1,0 +1,97 @@
+{
+  "name": "fm",
+  "description": "Example Application based on Catberry Framework",
+  "main": "./server.js",
+  "authors": [
+    "Lena"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/dumperize/catberry-facemaster",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "fancybox": "~2.1.5",
+    "svg4everybody": "~2.0.0",
+    "autosize": "2.0.1",
+    "slick-carousel": "~1.5.9",
+    "jquery-ui": "~1.11.4",
+    "canvasresize-dist": "~1.2.7",
+    "cropit": "~0.4.5"
+  },
+  "overrides": {
+    "jquery": {
+      "main": "dist/jquery.min.js"
+    },
+    "fancybox": {
+      "main": [
+        "source/jquery.fancybox.pack.js",
+        "source/jquery.fancybox.css",
+        "source/**/*.png",
+        "source/**/*.gif",
+        "source/helpers/jquery.fancybox-buttons.js",
+        "source/helpers/jquery.fancybox-buttons.css",
+        "source/helpers/jquery.fancybox-thumbs.js",
+        "source/helpers/jquery.fancybox-thumbs.css",
+        "source/helpers/jquery.fancybox-media.js"
+      ],
+      "dependencies": {
+        "jquery": "~2.1.4",
+        "jquery-mousewheel": "~3.1.13"
+      }
+    },
+    "slick-carousel": {
+      "main": "slick/slick.min.js",
+      "dependencies": {
+        "jquery": ">=1.7"
+      }
+    },
+    "svg4everybody": {
+      "main": "dist/svg4everybody.js"
+    },
+    "autosize": {
+      "main": "src/autosize.js"
+    },
+    "jquery-ui": {
+      "main": [
+        "ui/minified/widget.min.js",
+        "ui/minified/mouse.min.js",
+        "ui/minified/slider.min.js",
+        "themes/base/slider.min.css",
+        "themes/base/images/*.png",
+        "themes/base/jquery-ui.min.css"
+      ],
+      "dependencies": {
+        "jquery": "~2.1.4"
+      }
+    },
+    "binaryajax": {
+      "main": "dist/binaryajax.min.js"
+    },
+    "canvasresize-dist": {
+      "main": "dist/canvasResize.min.js",
+      "dependencies": {
+        "jquery": "~2.1.4",
+        "jquery-ui": "~1.11.4",
+        "binaryajax": "~0.2.0"
+      }
+    },
+    "cropit": {
+      "main": "dist/jquery.cropit.js",
+      "dependencies": {
+        "jquery": "~2.1.4",
+        "jquery-ui": "~1.11.4"
+      }
+    }
+  },
+  "devDependencies": {
+    "jquery-mousewheel": "~3.1.13"
+  }
+}

@@ -1,0 +1,56 @@
+.breadcrumbs {
+  padding-top: 15px;
+  //@extend .col-xs-12;
+  font-size: 1.1rem;
+  position: relative;
+  @include at(xs) {
+    padding: 0;
+  }
+  span {
+    margin-bottom: 4px;
+    display: inline-block;
+  }
+  &__header {
+    color: $color-text-blue;
+    font-weight: bold;
+    margin-right: 4px;
+    + span {
+      display: none;
+    }
+  }
+  &__icon {
+    margin: 0 4px;
+    .icon {
+      @include icon_size(8px);
+    }
+  }
+  &__level {
+  }
+  &__list-container {
+    display: none;
+    background-color: $color-bg;
+    padding: 8px 10px;
+    margin-left: 5px;
+    //border-left: 1px solid $color-text;
+    position: absolute;
+    //top: 9px;
+    z-index: 1000;
+    //line-height: 15px;
+    box-shadow: 0 2px 4px 2px rgba(0,0,0,0.1);
+    li {
+      margin-bottom: 3px;
+    }
+    span {
+      margin: 0
+    }
+  }
+}
+.js-parent-rub, .js-parent-rub:hover {
+  text-decoration: none;
+}
+
+.js-parent-rub span {
+  border-bottom: 1px dashed;
+  line-height: 0.9;
+  display: inline-block;
+}

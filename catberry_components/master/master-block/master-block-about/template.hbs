@@ -1,0 +1,25 @@
+<div block="about-md">
+    {{#if aboutEduc}}
+        <p elem="text-caption">Образование:</p>
+        <div elem="text">{{{aboutEduc}}}</div>
+    {{/if}}
+
+    {{#if aboutExp}}
+        <p elem="text-caption">Опыт работы:</p>
+        <div elem="text">{{{aboutExp}}}</div>
+    {{/if}}
+
+    {{#if aboutAddInfo}}
+        <p elem="text-caption">Дополнительная информация:</p>
+        <div elem="text">{{{aboutAddInfo}}}</div>
+    {{/if}}
+
+    <!-- Для компаний -->
+    {{#if about}}
+        <div elem="text">{{{about}}}</div>
+    {{/if}}
+</div><!-- about-md -->
+
+
+
+

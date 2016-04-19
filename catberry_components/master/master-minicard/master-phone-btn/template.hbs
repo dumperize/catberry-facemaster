@@ -1,0 +1,15 @@
+<div block="phone-btn">
+    <p elem="tip" mix="block:js-master-phone-tip">
+        Пожалуйста скажите мастеру что нашли его на нашем сайте
+        <i mix="block:js-close-tip">{{icon "close"}}</i>
+    </p>
+    <button elem="button" mix="block:js-show-phone" data-id="{{owner}}">
+        Показать телефон
+    </button>
+    <div elem="phone-details" mix="block:js-show-phone-details">
+        <p elem="phone">{{phone}}</p>
+        {{#if page}}
+            <a elem="url" href="/{{page}}">еще контакты</a>
+        {{/if}}
+    </div>
+</div>

@@ -1,0 +1,15 @@
+.about-md {
+  &__text-caption {
+    color: #444;
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+    font-weight: bold;
+  }
+  &__text {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    p {
+      margin-bottom: 6px
+    }
+  }
+}

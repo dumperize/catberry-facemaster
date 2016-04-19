@@ -1,0 +1,5 @@
+{
+	"name": "master-minicard",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

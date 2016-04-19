@@ -1,0 +1,9 @@
+<div block="article-cont-md">
+
+    {{#each articles}}
+        <div elem="item-cont">
+            <cat-block-article id="block-article-{{id}}" cat-store="{{../model}}" id-block="{{id}}" index="{{@index}}"></cat-block-article>
+        </div>
+    {{/each}}
+
+</div>

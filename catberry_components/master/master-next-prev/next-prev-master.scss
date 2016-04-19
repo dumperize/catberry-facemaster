@@ -1,0 +1,54 @@
+.next-prev-master {
+  display: table;
+  //border: 1px solid blue;
+  float: right;
+  position: relative;
+  @include at(sm) {
+    top: 6px;
+    img {
+      display: none;
+    }
+  }
+  @include at(xs) {
+    top: 0;
+    float: none;
+    margin: 0 auto;
+    //margin-top: 20px;
+    img {
+      display: none;
+    }
+  }
+  a {
+    display: table-cell;
+    text-decoration: none;
+    vertical-align: middle;
+    padding-left: 8px;
+    + a {
+      border-left: 1px solid #BBB;
+    }
+    &:hover {
+      color: $color-orange;
+      svg {
+        fill: $color-orange;
+      }
+    }
+  }
+  &__prev {
+    padding-right: 8px;
+    padding-left: 0 !important;
+    span {
+      text-align: right;
+    }
+  }
+  * {
+    vertical-align: middle;
+  }
+  span {
+    display: inline-block;
+    font-size: 1.1rem;
+    padding: 0 6px;
+  }
+  svg {
+    display: inline-block;
+  }
+}

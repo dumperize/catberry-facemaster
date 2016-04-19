@@ -1,0 +1,7 @@
+{
+  "title": "Catberry Project",
+  "logger": {
+    "level": 0
+  },
+  "api": "http://api.facemaster.ru"
+}

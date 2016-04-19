@@ -1,0 +1,124 @@
+// File for scss-vars.
+
+// For example: main colors, paddings and so on.
+$font-size: 16px;
+
+$base-icon-size: 64px;
+// Colors ======================================================================
+$color-text:             #5C5A59;
+$color-text-dark:        #58595b;
+$color-text-blue:        #1c75bc;
+$color-text-red:         #ED686E;
+$color-a:                #808285;
+$color-a-hover:          #005b8d;
+$color-bg:               #f0f3fa;
+$color-bg-grey-light:    #e6e7e8;
+$color-bg-grey-xmedium:  #d3d5d6;
+$color-bg-grey-medium:   #bbbdc0;
+$color-bg-grey-dark:     #949599;
+$color-bg-black-light:   #59595c;
+$color-bg-warning:       #FA8072;
+
+$color-orange:           #EF850D;
+$color-yellow:           #efd200;
+$color-yellow-deep:      #f7941e;
+$color-red:              #ef4036;
+$color-pink:             #ed686f;
+$color-blue-light:       #aae4f7;
+$color-blue:             #5dc8ed;
+$color-blue-dark:        #00A79D;
+$color-green-light:      #a0e094;
+$color-green:            #8dc63f;
+$color-green-deep:       #009444;
+$color-purpur:           #662c91;
+$color-magenta:          #bd1e2c;
+$color-brown:            #a97c50;
+
+// Buttons =====================================================================
+$button-mid-height:       40px;
+$button-mid-width:       150px;
+
+
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+// Extra small screen / phone
+//** Deprecated `$screen-xs` as of v3.0.1
+$screen-xs:                  250px !default;
+//** Deprecated `$screen-xs-min` as of v3.2.0
+$screen-xs-min:              $screen-xs !default;
+//** Deprecated `$screen-phone` as of v3.0.1
+$screen-phone:               $screen-xs-min !default;
+
+// Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1
+$screen-sm:                  500px !default;
+$screen-sm-min:              $screen-sm !default;
+//** Deprecated `$screen-tablet` as of v3.0.1
+$screen-tablet:              $screen-sm-min !default;
+
+// Medium screen / desktop
+//** Deprecated `$screen-md` as of v3.0.1
+$screen-md:                  750px !default;
+$screen-md-min:              $screen-md !default;
+//** Deprecated `$screen-desktop` as of v3.0.1
+$screen-desktop:             $screen-md-min !default;
+
+// Large screen / wide desktop
+//** Deprecated `$screen-lg` as of v3.0.1
+$screen-lg:                  1000px !default;
+$screen-lg-min:              $screen-lg !default;
+//** Deprecated `$screen-lg-desktop` as of v3.0.1
+$screen-lg-desktop:          $screen-lg-min !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+//** Number of columns in the grid.
+$grid-columns:              12 !default;
+//** Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width:         20px !default;
+// Navbar collapse
+//** Point at which the navbar becomes uncollapsed.
+$grid-float-breakpoint:     $screen-sm-min !default;
+//** Point at which the navbar begins collapsing.
+$grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
+
+
+//== Container sizes
+//
+//## Define the maximum width of `.container` for different screen sizes.
+
+$container-xs:                 (250px) !default;
+// Small screen / tablet
+$container-tablet:             (460px + $grid-gutter-width) !default;
+//** For `$screen-sm-min` and up.
+$container-sm:                 $container-tablet !default;
+
+// Medium screen / desktop
+$container-desktop:            (710px + $grid-gutter-width) !default;
+//** For `$screen-md-min` and up.
+$container-md:                 $container-desktop !default;
+
+// Large screen / wide desktop
+$container-large-desktop:      (960px + $grid-gutter-width) !default;
+//** For `$screen-lg-min` and up.
+$container-lg:                 $container-large-desktop !default;
+
+
+//== Container sizes
+//
+$slicer-breakpoints: (
+        xs : 0px, // Small
+        sm : 500px, // Medium
+        md : 750px, //
+        lg : 1000px, // Large
+);

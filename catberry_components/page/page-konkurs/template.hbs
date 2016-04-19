@@ -1,0 +1,41 @@
+<h1 block="h1" mod="style">Конкурсы газеты «Презент»</h1>
+<div block="konkurs-page">
+    <a href="/konkurs/item/{{this.0.id}}/add-member">подать заявку</a>
+    {{#each this}}
+        <div elem="item">
+            <div block="konkurs">
+                <div elem="column-left">
+                    <p elem="title">
+                        <a href="/konkurs/item/{{id}}">{{name}}</a>
+                        <span elem="apply">
+                            {{#is konkursStatus '==' 1}}
+                                (<a href="/konkurs/item/{{id}}/add-member">подать заявку</a>)
+                            {{/is}}
+                            {{#is konkursStatus '==' 2}}
+                                (этап голосования)
+                            {{/is}}
+                            {{#is konkursStatus '==' 3}}
+                                (завершён)
+                            {{/is}}
+                        </span>
+                        <span elem="count-members">{{getNumEnding countMembers "участник, участника, участников"}}</span>
+                    </p>
+
+                    <p elem="desc">{{stripTags description}}</p>
+
+                    <p elem="dates">
+                        Приём заявок с {{receptionStartDate}} по {{receptionEndDate}}<br>
+                        Начало голосования с {{voteStartDate}} по {{voteEndDate}}
+                    </p>
+                </div>
+                <div elem="column-right">
+                    {{#each photos}}
+                        <div elem="img-cont"><img src="http://konkurs.facemaster.ru/photo?key={{id}}&square=68" alt="">
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+
+        </div>
+    {{/each}}
+</div>

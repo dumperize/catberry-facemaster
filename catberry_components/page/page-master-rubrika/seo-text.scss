@@ -1,0 +1,15 @@
+.seo-text {
+  padding-top: 20px;
+  @extend .col-sm-12;
+  &__text {
+    background-color: $color-bg-grey-light;
+    padding: 20px;
+    color: $color-bg-grey-dark;
+    font-size: 1.3rem;
+    &.format {
+      li {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

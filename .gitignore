@@ -1,0 +1,17 @@
+node_modules
+
+.DS_Store
+._.DS_Store
+
+.idea
+*.log
+/nbproject/*
+
+__BrowserBundle.js
+public/bundle.js
+public/vendor.min.js
+public/css
+public/icon-svg
+public/img/vendor
+
+bower_components

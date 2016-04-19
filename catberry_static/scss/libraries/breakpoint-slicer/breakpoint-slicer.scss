@@ -1,0 +1,142 @@
+//
+// Breakpoint Slicer FORK of https://github.com/lolmaus/breakpoint-slicer
+// depend of https://github.com/Team-Sass/breakpoint version 2.x
+// ----------------------------------------------------------------------------------------------------
+
+//@import "libraries/breakpoint-slicer/source/variables";
+//@import "libraries/breakpoint-slicer/source/_functions";
+
+
+
+
+// INITIALISATION
+// -----------------------------------------------
+// Initialisation with a hack
+// We are adding a fake infinit breakpoint at the end of the map
+//$slicer-breakpoints: map-merge($slicer-breakpoints, ( virtual-inifite-size: 9999px ));
+
+
+// BETWEEN
+// -----------------------------------------------
+// Wraps the content block provided with a media query
+// with min-width equal to the left edge of the left slice
+// and max-width equal to the right edge of the right slice
+//
+// between($slice-left, $slice-right)
+// - $slice-left  : <slice name> A name of the left slice.
+// - $slice-right : <slice name> A name of the left slice.
+// - $no-query    : [<.class>]     A class to provide the no-query fallback (see Breakpoint docs).
+@mixin between($slice-left, $slice-right, $no-query: false) {
+
+    @if not map-has-key($slicer-breakpoints, $slice-left) {
+        @warn "Wrong left column name provided: #{$slice-left}. Should be in #{breakpoint-names()}.";
+    } @else if not map-has-key($slicer-breakpoints, $slice-right) {
+        @warn "Wrong right column name provided: #{$slice-right}. Should be in #{breakpoint-names()}.";
+    } @else {
+
+        $context: left-bp-of-slice($slice-left) right-bp-of-slice($slice-right);
+
+        // Setting the breakpoint
+        @include breakpoint($context, $no-query) {
+            @content
+        }
+
+    }
+}
+
+
+
+
+// Wraps the content block provided with a media query
+// with **min-width and max-width** equal to the edges of a slice
+//
+// at($slice-name, $no-query: false)
+// - $slice-name  : <slice name> A name of a slice.
+// - $no-query    : [<.class>]     A class to provide the no-query fallback (see Breakpoint docs).
+@mixin at($slice-name, $no-query: false){
+    $slice: index-of-breakpoint-name($slice-name);
+    @if not $slice {
+        @warn("Unknown '#{$slice-name}' slice.");
+    }@else{
+        @if ($slice < total-slices()){
+            @include between($slice-name, nth-breakpoint-name($slice + 1), $no-query) {
+                @content
+            }
+        } @else {
+            @include from($slice-name, $no-query) {
+                @content
+            }
+        }
+    }
+}
+
+
+
+// Wraps the content block provided with a media query
+// with **min-width** equal to the right edge of a slice
+//
+// from($slice-name, $no-query: false)
+// - $slice-name  : <slice name> A name of a slice.
+// - $no-query    : [<.class>]     A class to provide the no-query fallback (see Breakpoint docs).
+@mixin from($slice-name, $no-query: false){
+
+    @if not map-has-key($slicer-breakpoints, $slice-name) {
+        @warn "Wrong left column name provided: #{$slice-name}. Should be in #{breakpoint-names()}.";
+    } @else {
+
+        $context: left-bp-of-slice($slice-name);
+
+        // Setting the breakpoint
+        @include breakpoint($context, $no-query) {
+            @content
+        }
+
+    }
+
+}
+
+
+// Wraps the content block provided with a media query
+// with **max-width equal** to the right edge of a slice
+//
+// below($slice, $no-query: false)
+// - $slice-name  : <slice name> A name of a slice.
+// - $no-query    : [<.class>]     A class to provide the no-query fallback (see Breakpoint docs).
+@mixin below($slice-name, $no-query: false){
+
+    @if not map-has-key($slicer-breakpoints, $slice-name) {
+        @warn "Wrong left column name provided: #{$slice-name}. Should be in #{breakpoint-names()}.";
+    } @else {
+
+        $context: 'max-width' right-bp-of-slice($slice-name);
+
+        // Setting the breakpoint
+        @include breakpoint($context, $no-query) {
+            @content
+        }
+
+    }
+}
+
+
+// Wraps the content block provided with a media query
+// with **max-width equal** to the right edge of a slice
+//
+// below($slice, $no-query: false)
+// - $slice-name  : <slice name> A name of a slice.
+// - $no-query    : [<.class>]     A class to provide the no-query fallback (see Breakpoint docs).
+@mixin to($slice-name, $no-query: false){
+
+    @if not map-has-key($slicer-breakpoints, $slice-name) {
+        @warn "Wrong left column name provided: #{$slice-name}. Should be in #{breakpoint-names()}.";
+    } @else {
+
+        $context: 'max-width' right-bp-of-slice($slice-name);
+
+        // Setting the breakpoint
+        @include breakpoint($context, $no-query) {
+            @content
+        }
+
+    }
+}

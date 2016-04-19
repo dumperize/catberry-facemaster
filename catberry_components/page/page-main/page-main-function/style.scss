@@ -1,0 +1,394 @@
+.main-function {
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  @extend .col-lg-9;
+  @extend .col-md-8;
+  &__inner {
+    @extend .row;
+    background-color: $color-blue-light;
+    padding-bottom: 10px;
+  }
+  @include at(xs) {
+    padding-right: 10px;
+    padding-left: 10px;
+    &__inner {
+      position: relative;
+      padding-bottom: 60px;
+    }
+  }
+  .search {
+    background-color: transparent;
+    margin: 19px 0;
+    @include at(sm) {
+      margin: 12px 0;
+    }
+    @include at(xs) {
+      height: 40px;
+      &__link {
+        background-color: $color-blue;
+        text-align: left;
+        font-weight: normal;
+        margin: 0 10px;
+        padding-left: 40px;
+        height: 40px;
+        line-height: 36px;
+        font-size: 1.6rem;
+        border-top: 2px solid darken($color-blue, 20%);
+        &:hover {
+          background-color: darken($color-blue, 5%);
+        }
+      }
+      .icon_search {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        left: 16px;
+        top: 10px;
+      }
+    }
+    &__submit {
+      background-color: $color-blue;
+      &:hover {
+        background-color: darken($color-blue, 5%)
+      }
+    }
+  }
+}
+
+.or {
+  position: absolute;
+  top: 70px;
+  margin-right: -25px;
+  right: 33.6%;
+  height: 52px;
+  width: 52px;
+  border-radius: 50%;
+  background-color: $color-blue-light;
+  z-index: 10;
+  padding-top: 17px;
+  text-align: center;
+  font-weight: bold;
+  @include to(lg) {
+    right: 50%;
+  }
+  @include at(sm) {
+    height: 44px;
+    width: 44px;
+    margin-right: -22px;
+    top: 64px;
+    padding-top: 13px;
+    font-weight: normal;
+  }
+  @include at(xs) {
+    background-color: transparent;
+    height: auto;
+    text-align: center;
+    padding-top: 0;
+    right: 0;
+    top: 58px;
+    width: 100%;
+    transform: none;
+    margin: 2px 0;
+    font-size: 1.2rem;
+  }
+}
+
+.find-master, .call-back {
+  &__inner {
+    display: block;
+    color: $color-text;
+    text-decoration: none;
+    padding: 25px 20px 20px 20px;
+    &-rel {
+      height: 225px;
+      position: relative;
+    }
+    &:hover {
+      color: $color-text;
+    }
+    @include at(md) {
+      padding: 25px 15px 15px 15px;
+      &-rel {
+        height: 210px;
+      }
+    }
+    @include at(sm) {
+      padding: 25px 10px 10px 10px;
+      &-rel {
+        height: 100px;
+      }
+    }
+    @include at(xs) {
+      padding: 5px;
+      &-rel {
+        height: 25px;
+      }
+    }
+  }
+}
+
+.find-master {
+  padding-right: 5px;
+  @extend .col-lg-8;
+  @extend .col-sm-6;
+  @extend .col-xs-12;
+  @include at(xs) {
+    padding-right: 10px;
+    margin-bottom: 10px;
+  }
+  &__inner {
+    background-color: $color-green;
+    border-top: 5px solid $color-green-deep;
+    @include at(xs) {
+      &:hover {
+        background-color: darken($color-green, 5%);
+      }
+    }
+    &-rel {
+      padding-top: 25px;
+      @include to(lg) {
+        padding-top: 0;
+      }
+    }
+  }
+  &__title {
+    text-transform: uppercase;
+    color: #fff;
+    padding-left: 200px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 4.6rem;
+    @include at(md) {
+      padding-left: 0;
+      font-size: 3.3rem;
+      line-height: 1;
+    }
+    @include at(sm) {
+      margin-left: 60px;
+      padding: 0;
+      text-align: left;
+      font-size: 2.2rem;
+      line-height: 1.1em;
+    }
+    @include at(xs) {
+      margin: 0 0 0 35px;
+      padding: 0;
+      text-align: left;
+      text-transform: none;
+      font-size: 1.6rem;
+      line-height: 1.5em;
+    }
+  }
+  &__btn {
+    width: 100%;
+    display: block;
+    font-size: 1.8rem;
+    line-height: 46px;
+    height: 46px;
+    background-color: rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    color: $color-text-dark;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+    @include at(md) {
+      @include font-tuning(15, 46);
+      font-size: 1.5rem;
+    }
+    @include at(sm) {
+      height: 30px;
+      line-height: 30px;
+      font-size: 1.5rem;
+    }
+    @include at(xs) {
+      display: none;
+    }
+  }
+  &__icon {
+    float: left;
+    margin-left: 30px;
+    margin-top: -20px;
+    .icon {
+      display: block;
+      @include icon_size(128px);
+    }
+    @include at(md) {
+      .icon {
+        @include icon_size(64px);
+        margin: 0 auto;
+      }
+      float: none;
+      margin: 0 0 10px 0;
+    }
+    @include at(sm) {
+      .icon {
+        @include icon_size(48px);
+      }
+      margin: 0;
+    }
+    @include at(xs) {
+      margin: 0;
+      .icon {
+        @include icon_size(24px);
+      }
+    }
+  }
+  @include at(xs) {
+    &__inner {
+      padding-top: 6px;
+      padding-bottom: 9px;
+      border-width: 2px;
+    }
+    &:after {
+      @extend .or;
+      content: 'или';
+      display: block;
+      position: absolute;
+      bottom: -17px;
+      top: auto;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.call-back {
+  padding-left: 5px;
+  color: $color-text-dark;
+  @extend .col-lg-4;
+  @extend .col-sm-6;
+  @extend .col-xs-12;
+  &__inner {
+    background-color: $color-yellow;
+    border-top: 5px solid $color-yellow-deep;
+  }
+  &__title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 3.1rem;
+    line-height: 1.1em;
+    @include at(md) {
+      font-size: 2.3rem;
+    }
+    @include at(sm) {
+      margin-left: 60px;
+      text-align: left;
+      font-size: 2.2rem;
+    }
+    @include at(xs) {
+      margin: 0 0 0 35px;
+      padding: 0;
+      text-align: left;
+      text-transform: none;
+      font-size: 1.6rem;
+      line-height: 25px;
+    }
+  }
+  &__text {
+    text-align: center;
+    font-size: 1.2rem;
+    @include to(md) {
+      display: none;
+    }
+  }
+  &__btn {
+    @extend .find-master__btn;
+  }
+  &__icon {
+    .icon {
+      display: block;
+      margin: 0 auto;
+      @include icon_size(48px);
+      &_star-in-sun {
+        display: none;
+      }
+      @include to(lg) {
+        &_star-line {
+          display: none;
+        }
+        &_star-in-sun {
+          display: block;
+        }
+      }
+      @include at(md) {
+        margin-bottom: 10px;
+        @include icon_size(64px);
+      }
+      @include at(sm) {
+        margin: 0;
+        float: left;
+        @include icon_size(48px);
+      }
+      @include at(xs) {
+        margin: 0;
+        float: left;
+        @include icon_size(24px);
+        &_star-line {
+          display: block;
+        }
+        &_star-in-sun {
+          display: none;
+        }
+      }
+    }
+  }
+  @include at(xs) {
+    padding-left: 10px;
+    position: absolute;
+    bottom: 10px;
+    &__inner {
+      padding-top: 6px;
+      padding-bottom: 9px;
+      border-width: 2px;
+      &:hover {
+        background-color: lighten($color-yellow, 4%);
+      }
+    }
+  }
+}
+
+.catalogs {
+  padding-top: 10px;
+  @extend .col-xs-12;
+  &__inner {
+    @extend .row;
+  }
+  &__services {
+    text-align: center;
+    font-weight: bold;
+    padding-right: 0;
+    font-size: 1.9rem;
+    line-height: 1.1em;
+    @extend .col-lg-2;
+    @extend .col-xs-12;
+    &-link {
+      color: inherit;
+      padding-top: 5px;
+      height: 75px;
+      display: block;
+      background-color: $color-blue;
+    }
+    @include to(lg) {
+      padding-right: 10px;
+      font-size: 1.5rem;
+      line-height: 25px;
+      &-link {
+        //padding-top: 0;
+        padding: 2px 0;
+        margin-bottom: 1px;
+        height: auto;
+      }
+    }
+  }
+  &__dop {
+    @extend .col-lg-10;
+    @extend .col-xs-12;
+  }
+  @include at(xs) {
+    display: none;
+  }
+}

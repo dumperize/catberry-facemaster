@@ -1,0 +1,104 @@
+<h1 block="h1" mod="style">Для участия в конкурсе заполните анкету</h1>
+{{#if success}}
+    <p block="success">Ваша заявка успешно отправленна, спасибо!</p>
+    <br>
+{{else}}
+    <div block="konkurs-member-add">
+        <form elem="form" action="" method="post" id="konkurs-member-add-form">
+            <div elem="column-left">
+                <div elem="input-cont" mod="table">
+                    <label><span>Ф.И.О.</span>
+                        <span><input type="text" name="name" value="{{form.name}}" required="required"></span></label>
+                </div>
+                <div elem="input-cont" mod="table">
+                    <label><span>Эл. почта</span>
+                        <span><input type="email" name="email" value="{{form.email}}"
+                                     required="required"></span></label>
+                </div>
+                <div elem="input-cont" mod="table">
+                    <label><span>Телефон</span>
+                        <span><input type="text" name="phone" value="{{form.phone}}" required="required"></span></label>
+                </div>
+                <p elem="info-text">Я хочу принять участие в конкурсе:</p>
+
+                <div elem="input-cont">
+                <span><select name="konkursID" required="required">
+                    <option>Выберите конкурс ↓</option>
+                    {{#each konkursList}}
+                        {{#is id "==" ../form.konkursID}}
+                            <option selected value="{{id}}">{{name}}</option>
+                        {{else }}
+                            <option value="{{id}}">{{name}}</option>
+                        {{/is}}
+                    {{/each}}
+                </select></span>
+                </div>
+                <div elem="input-cont">
+                    <label>
+                        <span elem="info-text">Название работы:</span>
+                        <span><input type="text" name="nameWork" maxlength="60" value="{{form.nameWork}}"
+                                     required="required"></span>
+                    </label>
+
+                    <p elem="help-text">Допустимое количество символов от 5 до 60</p>
+                </div>
+                <div elem="input-cont">
+                    <label>
+                        <span elem="info-text">Описание:</span>
+                        <label><textarea name="description" maxlength="800"
+                                         required="required">{{form.description}}</textarea></label>
+                    </label>
+
+                    <p elem="help-text">Допустимое количество символов от 30 до 800</p>
+                </div>
+                <div elem="input-cont">
+                    <label elem="agreement">
+                        <span><input type="checkbox" name="agreement" required="required" checked></span>
+                    <span>Я даю свое согласие на обработку и&nbsp;хранение Компанией персональных и&nbsp;иных данных,
+                        их&nbsp;передачу для обработки другим Пользователям и/или третьим лицам, действующим по&nbsp;поручению Компании,
+                        в&nbsp;том числе для целей: получения статистических и&nbsp;аналитических данных для улучшения функционирования Сайта
+                        и/или Услуг, расширения спектра оказываемых Услуг, получения информационных и/или рекламных сообщений Компании
+                        или третьих лиц.
+                    </span>
+                    </label>
+                </div>
+            </div>
+
+            <div elem="column-right">
+                <div block="add-photos" data-max-elem="8">
+
+                    {{#each img}}
+                        <div elem="elem-cont">
+                            <div elem="img-cont">
+                                <img src="{{imgSrc this 200}}" alt="">
+                                <i elem="del-ico" mix="block:js-del-photo-from-album">{{icon 'close'}}</i>
+                            </div>
+                        </div>
+                    {{/each}}
+
+                    <div elem="elem-cont" id="elem-cont-template" style="display: none">
+                        <div elem="img-cont">
+                            <img elem="img" src="" alt="">
+                            <i elem="del-ico" mix="block:js-del-photo-from-album">{{icon 'close'}}</i>
+                        </div>
+                    </div>
+
+                    <div elem="wrapper">
+
+                    </div>
+
+                    <label elem="input-photo-load"><input type="file" multiple name="photo-load[]"
+                                                          mix="block: js-photo-load"></label>
+
+                    <div elem="btn-cont">
+                        <a href="" elem="btn" mix="block:js-add-photo-to-album">Добавить фотографии</a>
+                    </div>
+                </div>
+            </div>
+            <div elem="btn-cont">
+                <input type="submit" elem="btn" value="Подать заявку">
+                <input type="submit" elem="btn" mod="grey" value="Отказаться">
+            </div>
+        </form>
+    </div>
+{{/if}}

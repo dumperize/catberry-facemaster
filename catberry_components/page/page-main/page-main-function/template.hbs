@@ -1,0 +1,43 @@
+<div block="main-function">
+    <div elem="inner">
+        <cat-search id="search"></cat-search>
+        <div block="or">или</div>
+        <div block="find-master" mix="block:js-find-master">
+            <a elem="inner" href="/catalog">
+                <div elem="inner-rel">
+                    <div elem="icon">
+                        {{icon "man-in-sun" "icon_white"}}
+                    </div>
+
+                    <p elem="title">Выбери Мастера</p>
+                    <span elem="btn">У нас {{getNumEnding countMaster "Мастер, Мастера, Мастеров"}}</span>
+                </div>
+            </a>
+        </div>
+        <div block="call-back">
+            <a elem="inner" href="/request">
+                <div elem="inner-rel">
+                    <div elem="icon">
+                        {{icon "star-in-sun"}}
+                        {{icon "star-line"}}
+                    </div>
+
+                    <p elem="title">Закажи услугу</p>
+
+                    <p elem="text">Мы бесплатно отправим вашу заявку всем подходящим Мастерам</p>
+                    <span elem="btn">Создать заявку</span>
+                </div>
+            </a>
+        </div>
+        <div block="catalogs">
+            <div elem="inner">
+                <div elem="services">
+                    <a href="/catalog" elem="services-link">Весь каталог услуг</a>
+                </div>
+                <div elem="dop">
+                    <cat-rubrikator-list id="rubrikator-list" data-mod="page_main"></cat-rubrikator-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

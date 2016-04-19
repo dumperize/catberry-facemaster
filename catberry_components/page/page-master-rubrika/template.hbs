@@ -1,0 +1,85 @@
+<div block="inner-top">
+    <div elem="title">
+        <cat-common-h1 id="common-h1" name="{{currentSeo.pageTitle}}"></cat-common-h1>
+    </div>
+
+    <div elem="search">
+        <cat-search id="search"></cat-search>
+    </div>
+    <div elem="callback">
+        <a block="request" href="/request">
+            <div elem="icon">{{icon "star-in-sun"}}</div>
+            <span elem="text">Отправить задание мастерам</span>
+            <span elem="text-xs">Закажи услугу</span>
+        </a>
+    </div>
+
+    {{#is rubrika.activeBanners.0.type '==' 1}}
+        <div block="moneyr-top">
+            {{#each rubrika.activeBanners}}
+                {{#is this.type '==' 1}}
+                    <div elem="item">
+                        {{#is this.link '==' ''}}
+                            {{#each imgID}}
+                                <img src="{{imgSrc this}}" alt="">
+                            {{/each}}
+                        {{else}}
+                            <a href="http://{{this.link}}">
+                                {{#each imgID}}
+                                    <img src="{{imgSrc this}}" alt="">
+                                {{/each}}
+                            </a>
+                        {{/is}}
+                    </div>
+                {{/is}}
+            {{/each}}
+        </div>
+    {{/is}}
+
+</div>
+<div block="inner-content">
+    <div elem="left-side">
+        <cat-master-filter id="master-filter" cat-store="Tag"></cat-master-filter>
+
+        <div block="moneyr-side">
+            {{#each rubrika.activeBanners}}
+                {{#is this.type '==' 2}}
+                    <div elem="item">
+                        {{#is this.link '==' ''}}
+                            <img src="{{imgSrc this.imgID}}" alt="">
+                        {{else}}
+                            <a href="{{this.link}}"><img src="{{imgSrc this.imgID}}" alt=""></a>
+                        {{/is}}
+                    </div>
+                {{/is}}
+            {{/each}}
+        </div>
+
+    </div>
+    <div elem="right-side">
+
+        {{#is section "==" "master"}}
+            <cat-master-recommended id="master-recommended"
+                                    cat-store="master/MasterRecommended"></cat-master-recommended>
+            <cat-master-list id="master-list" cat-store="master/MasterList"></cat-master-list>
+        {{/is}}
+
+        {{#is section "==" "sovety"}}
+            <cat-common-list id="master-list-article" cat-store="article/ArticleList"
+                             type="article"></cat-common-list>
+        {{else}}
+            <cat-common-list id="master-list-{{section}}" cat-store="{{section}}/{{capitalizeFirst section}}List"
+                             type="{{section}}"></cat-common-list>
+        {{/is}}
+
+    </div>
+</div>
+<div block="row">
+    {{#if currentSeo.text}}
+        <div block="seo-text">
+            <div elem="text" mix="block:format">
+                {{{currentSeo.text}}}
+            </div>
+        </div>
+    {{/if}}
+</div>

@@ -1,0 +1,5 @@
+{
+	"name": "konkurs-member-vote",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

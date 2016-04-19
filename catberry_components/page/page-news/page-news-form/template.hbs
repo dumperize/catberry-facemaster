@@ -1,0 +1,26 @@
+<div block="submit-news">
+    <p elem="title">Предложить новость</p>
+    {{#if success}}
+        Ваша предложение было отправлено.
+    {{/if}}
+    <form id="news-add-form">
+        {{uploadImg}}
+        <label elem="input-cont"><input type="text" name="title" placeholder="Заголовок новости" value="{{form.title}}"></label>
+        <input type="hidden" name="uploadImg" value="{{form.uploadImg}}">
+        <label elem="input-cont"><input type="text" placeholder="Автор" name="author" value="{{form.author}}"></label>
+
+        <div elem="photo-cont" mix="block: js-cropit-photo-result">
+            {{#if imgsrc}}
+                <img src="{{imgsrc}}" alt="">
+            {{/if}}
+            <a elem="add-photo" mix="block: js-photo-upload" href="#add-news-thumb"><span>Загрузить фото</span></a>
+        </div>
+
+        <textarea placeholder="Текст новости" name="text">{{form.text}}</textarea>
+        <input type="submit" value="Предложить">
+        <input type="button" value="Отмена" mix="block:js-hide-submit-news">
+    </form>
+</div>
+
+<cat-img-upload id="img-upload"></cat-img-upload>
+

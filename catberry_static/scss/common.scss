@@ -1,0 +1,233 @@
+// Common styles of the project
+*, :before, :after {
+    box-sizing: border-box;
+}
+html {font-size: 62.5%}
+body {font-size: 1.4rem; font-family: 'PT Sans Caption', sans-serif;} /* 1rem = 10px */
+
+html, body {
+    height: 100%;
+    background-color: $color-bg;
+    color: $color-text;
+}
+
+/* ----- fancybox ----- */
+html.fancybox-lock {
+    overflow: visible !important; // предотвращаем скролл страницы при открытом окне фансибокса
+}
+.fancybox-inner {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    height: auto !important;
+}
+.fancybox-wrap:after {
+    display: block;
+    content: '';
+    height: 20px;
+}
+/* ----- */
+
+.bg {
+    &_grey {
+        background: $color-bg-grey-light;
+    }
+    &_orange {
+        background: $color-orange;
+    }
+}
+
+.format {
+    ul, ol {
+        line-height: 1.3em;
+        margin-bottom: 14px;
+        margin-top: 14px
+    }
+    ul li {
+        position: relative;
+        padding-left: 17px;
+        padding-right: 20px;
+        margin-bottom: 10px;
+    }
+    ul li:before {
+        content: "—";
+        position: absolute;
+        left: 0px;
+    }
+    p {
+        margin-bottom: 10px;
+    }
+}
+
+h1, .h1 {
+    font-size: 2.4rem;
+    font-weight: normal;
+}
+
+.h1_style {
+    text-transform: uppercase;
+    color: $color-orange;
+    font-weight: bold
+}
+h2, .h2{
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: $color-text;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+}
+
+p {
+    line-height: 1.3em
+}
+
+.page {
+}
+
+.page__wrapper {
+    min-height: 100%;
+    margin-bottom: -50px;
+}
+
+* html .page__wrapper {
+    height: 100%;
+}
+
+.page__buffer {
+    height: 50px;
+    width: 40px;
+}
+.wait-spinner {
+    text-align: center;
+    display: none;
+    &__animate {
+        display: inline-block;
+        width: 48px;
+        height: 48px;
+        vertical-align: middle;
+        animation: spin 1s steps(12) infinite;
+    }
+    @keyframes spin {
+        0%   { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .icon_spinner {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto;
+    }
+}
+//
+// Grid system
+// --------------------------------------------------
+
+// Container widths
+//
+// Set the container width, and override it for fixed navbars in media queries.
+
+.container {
+    //border: 1px solid blue;
+    @include container-fixed;
+
+    @media (max-width: $screen-sm-min - 1) {
+        width: $container-xs;
+    }
+    @media (min-width: $screen-sm-min) {
+        width: $container-sm;
+    }
+    @media (min-width: $screen-md-min) {
+        width: $container-md;
+    }
+    @media (min-width: $screen-lg-min) {
+        width: $container-lg;
+    }
+}
+
+// Fluid container
+//
+// Utilizes the mixin meant for fixed width containers, but without any defined
+// width for fluid, full width layouts.
+
+.container-fluid {
+    @include container-fixed;
+}
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+
+.row {
+    @include make-row;
+}
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+@include make-grid-columns;
+
+// Extra small grid
+//
+// Columns, offsets, pushes, and pulls for extra small devices like
+// smartphones.
+
+@include make-grid(xs);
+
+// Small grid
+//
+// Columns, offsets, pushes, and pulls for the small device range, from phones
+// to tablets.
+
+@media (min-width: $screen-sm-min) {
+    @include make-grid(sm);
+}
+
+// Medium grid
+//
+// Columns, offsets, pushes, and pulls for the desktop device range.
+
+@media (min-width: $screen-md-min) {
+    @include make-grid(md);
+}
+
+// Large grid
+//
+// Columns, offsets, pushes, and pulls for the large desktop device range.
+
+@media (min-width: $screen-lg-min) {
+    @include make-grid(lg);
+}
+
+.page-title {
+    &_landing {
+        text-align: center;
+        font-weight: bold;
+        color: $color-orange;
+        @include at(lg) {
+            @include font-tuning(35, 42);
+        }
+        @include at(md) {
+            @include font-tuning(30, 36);
+        }
+        @include at(sm) {
+            @include font-tuning(21, 28);
+        }
+        @include at(xs) {
+            @include font-tuning(18, 25);
+        }
+    }
+}
+
+.sub-title {
+    @include at(lg) {
+        @include font-tuning(25, 46);
+    }
+    @include at(md) {
+        @include font-tuning(20, 25);
+    }
+    @include at(sm) {
+        @include font-tuning(17, 23);
+    }
+    @include at(xs) {
+        @include font-tuning(15, 20);
+    }
+}

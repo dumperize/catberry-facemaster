@@ -1,0 +1,62 @@
+<div block="page_oth_news">
+    <h1 block="h1" mod="style">{{title}}</h1>
+
+    <div block="other-news">
+
+        <div elem="content">
+
+            <div elem="title-cont">
+                <div elem="title-img"><img src="{{imgSrc img 100 100}}" alt="{{title}}"></div>
+                <p elem="title">{{title}}</p>
+
+                <p elem="author">Новость добавил:<br>{{author}}<br>{{formatDate date "%d %Z %Y"}}</span></p>
+            </div>
+
+            <div elem="text">
+                {{{text}}}
+            </div>
+
+            <div elem="footer">
+                <!--<div id="vk_like"></div>-->
+                <!--<script type="text/javascript">-->
+                <!--VK.Widgets.Like("vk_like", {type: "button"});-->
+                <!--</script>-->
+            </div>
+        </div>
+
+        <div elem="secondary">
+
+            <div elem="vk-widget">
+                <!-- VK Widget -->
+                <div id="vk_groups"></div>
+                <script type="text/javascript">
+                    VK.Widgets.Group("vk_groups", {
+                        mode: 0,
+                        width: "220",
+                        height: "400",
+                        color1: 'FFFFFF',
+                        color2: '2B587A',
+                        color3: '5B7FA6'
+                    }, 62420424);
+                </script>
+            </div>
+
+            <div elem="news-nav">
+                <p elem="nav-links">
+                    <a href="/news/"><span>Все новости</span> ›</a><br>
+                    {{#if prev}}
+                        <a href="/news/item/{{prev.id}}">‹ <span>пред.</span></a>
+                    {{/if}}
+                    <span>|</span>
+                    {{#if next}}
+                    <a href="/news/item/{{next.id}}"><span>след.</span> ›</a>
+                    {{/if}}
+                </p>
+            </div>
+
+        </div>
+
+        <!-- {{id}}{{preview}} -->
+
+    </div>
+</div>

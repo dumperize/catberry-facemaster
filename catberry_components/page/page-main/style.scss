@@ -1,0 +1,8 @@
+.main-page{
+  padding-top: 20px;
+  @extend .row;
+  @include at(xs) {
+    margin: 0;
+    padding-top: 10px;
+  }
+}

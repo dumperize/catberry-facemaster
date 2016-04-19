@@ -1,0 +1,60 @@
+<h1 block="h1" mod="style">Каталог скидок и подарков</h1>
+<div block="sale-catalog">
+    {{#each list}}
+        {{#if parent.active}}
+            <div elem="item">
+                <p elem="title" style="background-color: {{parent.color}}">
+                    {{parent.name}}
+                    <span>{{parent.saleCount}}</span>
+                </p>
+
+                <div elem="shares">
+                    {{#each sale}}
+                        <div elem="sale-item">
+                            <cat-block-sale id="block-sale-{{id}}" cat-store="{{../../model}}" num="{{@../index}}"
+                                            id-block="{{id}}" index="{{@index}}"></cat-block-sale>
+                        </div>
+                    {{/each}}
+                </div>
+
+                <div elem="subhead">
+                    {{#if root}}
+                        {{#if parent.active}}
+                            <ul elem="list">
+                                {{#each podrubriks}}
+                                    {{#if root}}
+                                        <li elem="root" class="{{#if parent.active}}act{{/if}}">
+                                            {{icon "strelka"}}
+                                            <a href="/sale/catalog/{{parent.id}}">{{parent.name}}
+                                                <span>{{parent.saleCount}}</span></a>
+                                            {{#if parent.active}}
+                                                <ul>
+                                                    {{#each podrubriks}}
+                                                        <li elem="child" class="{{#if active}}act{{/if}}">
+                                                            {{icon "strelka"}}
+                                                            <a href="/sale/catalog/{{id}}">{{name}}
+                                                                <span>{{saleCount}}</span></a>
+                                                        </li>
+                                                    {{/each}}
+                                                </ul>
+                                            {{/if}}
+                                        </li>
+
+                                    {{else}}
+                                        <li elem="child" class="{{#if active}}act{{/if}}">
+                                            {{icon "strelka"}}
+                                            <a href="/sale/catalog/{{id}}">{{name}}
+                                                <span>{{saleCount}}</span></a>
+                                        </li>
+                                    {{/if}}
+                                {{/each}}
+                            </ul>
+                        {{/if}}
+                    {{/if}}
+                </div>
+            </div>
+            <cat-common-paginator id="common-paginator{{parent.id}}" cat-store="Paginator"
+                                  model="sale/SaleByRubrika"></cat-common-paginator>
+        {{/if}}
+    {{/each}}
+</div><!-- sale-catalog -->

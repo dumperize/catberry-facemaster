@@ -1,0 +1,49 @@
+.moneyr-side {
+  //border: 1px solid blue;
+  //min-height: 200px;
+  overflow: hidden;
+  @include to(lg) {
+    display: none;
+  }
+  &__item {
+    + div {
+      padding-top: 20px;
+    }
+  }
+}
+.moneyr-side.fixed {
+  position: fixed;
+  top: 20px;
+  bottom: auto;
+  width: 230px;
+}
+.moneyr-side.fixed.bottom, .moneyr-side.bottom{
+  position: absolute;
+  top: auto;
+  bottom: 0;
+}
+.moneyr-top {
+  background-color: #FFF;
+  //border: 1px solid blue;
+  max-height: 110px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+  padding-bottom: 10px;
+  &__item {
+    max-height: 100px;
+    overflow: hidden;
+  }
+  @include at(md) {
+    max-height: 85px;
+    img:first-child {
+      display: none;
+    }
+  }
+  @include to(md) {
+    display: none;
+  }
+}

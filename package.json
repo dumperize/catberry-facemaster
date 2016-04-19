@@ -1,0 +1,35 @@
+{
+  "name": "catberry-project",
+  "version": "0.0.0",
+  "description": "Empty project based on Catberry Framework",
+  "main": "./server.js",
+  "browser": {
+    "./config/environment.json": "./config/browser.json"
+  },
+  "author": "Catberry",
+  "license": "MIT",
+  "dependencies": {
+    "catberry": "^8.0.0",
+    "catberry-handlebars": "^3.0.1",
+    "catberry-uhr": "^5.0.0",
+    "catberry-logger": "^1.0.0",
+    "express": "^4.13.4",
+    "serve-static": "^1.10.2",
+    "errorhandler": "^1.4.3",
+    "typograf": "~5.1.0",
+    "digits": "0.2.0",
+    "fm-hbs": "^0.1.1",
+    "fm-catberry-walle": "^0.1.3",
+    "fm-catberry-handlebars": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "start": "npm run release",
+    "release": "node ./build.js release && node ./server.js release",
+    "debug": "node ./build.js & node ./server.js",
+    "debug-win": "powershell -Command \"Start-Process -NoNewWindow node ./build.js; Start-Process -NoNewWindow -Wait node ./server.js\""
+  }
+}
+

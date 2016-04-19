@@ -1,0 +1,65 @@
+.company-rubrika {
+  @extend .row;
+  &__item {
+    //border: 1px solid blue;
+    @extend .col-lg-3;
+    @extend .col-md-4;
+    @extend .col-sm-6;
+    @extend .col-xs-12;
+    padding-bottom: 20px;
+  }
+}
+.company-minicard {
+  position: relative;
+  background-color: $color-bg-grey-light;
+  &:hover {
+    background-color: $color-bg-grey-xmedium;
+  }
+  color: $color-text;
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 10px;
+    @include cf;
+    &:hover {
+      color: inherit;
+    }
+  }
+  &__title {
+    text-align: center;
+    height: 40px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: table;
+    width: 100%;
+    margin-bottom: 10px;
+    span {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+  &__img-cont {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    float: left;
+    margin-right: 10px;
+    img {
+      width: 100%;
+      vertical-align: middle;
+    }
+  }
+  &__count, &__like {
+    margin-bottom: 10px;
+  }
+  &__like {
+    svg {
+      margin-right: 6px;
+    }
+    span {
+      //font-size: 1.8rem;
+    }
+  }
+}

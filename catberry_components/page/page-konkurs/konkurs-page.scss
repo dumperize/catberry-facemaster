@@ -1,0 +1,102 @@
+.konkurs-page {
+  &__item {
+    padding-bottom: 20px;
+  }
+}
+
+.konkurs {
+  padding: 20px;
+  background-color: $color-bg-grey-light;
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+  @include to(lg) {
+    height: auto;
+    padding-bottom: 60px;
+    min-height: 260px;
+  }
+  @include to(md) {
+    padding-bottom: 220px;
+  }
+  @include at(xs) {
+    padding-bottom: 390px;
+  }
+  &__title {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+    @include at(xs) {
+      font-size: 2rem;
+    }
+    > a {
+      margin-right: 8px;
+    }
+  }
+  &__count-members {
+    float: right;
+    @include to(lg) {
+      float: none;
+      display: block;
+    }
+  }
+  &__apply {
+    font-size: 1.6rem;
+    @include at(xs) {
+      font-size: 1.4rem;
+      display: block;
+    }
+  }
+  &__dates {
+    position: absolute;
+    bottom: 20px;
+    color: #999;
+    font-size: 1.2rem;
+  }
+  &__column-left {
+    margin-right: 294px;
+    padding-right: 20px;
+    @include to(md) {
+      margin-right: 0;
+      padding-right: 0;
+    }
+  }
+  &__column-right {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 294px;
+    @include to(md) {
+      top: auto;
+      bottom: 60px;
+      right: 0;
+      width: 100%;
+      padding: 0 18px;
+    }
+    @include at(xs) {
+      bottom: 90px;
+    }
+  }
+  &__img-cont {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    width: 70px;
+    height: 70px;
+    //max-height: 70px;
+    line-height: 70px;
+    img {
+      width: 68px;
+      margin: -100%;
+      vertical-align: middle;
+      border-radius: 50%;
+      @include at(xs) {
+        width: 64px;
+      }
+    }
+    @include at(xs) {
+      width: 68px;
+      height: 68px;
+      line-height: 68px;
+    }
+  }
+}

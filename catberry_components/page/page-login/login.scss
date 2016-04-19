@@ -1,0 +1,78 @@
+.page-login {
+  //@extend .col-xs-12;
+}
+.login-form, .recovery-pass-form  {
+  background-color: $color-bg-grey-light;
+  padding: 20px;
+  max-width: 300px;
+  margin-bottom: 20px;
+  &__input {
+    margin-bottom: 10px;
+  }
+  &__input-text {
+    @extend .basic-input;
+    padding: 8px;
+  }
+  &__btn {
+    @extend .basic-button-auto;
+    width: 100%;
+    display: block;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    &_long-text {
+      @include at(xs) {
+        font-size: 1.4rem;
+        padding: 0 4px;
+      }
+    }
+  }
+  &__label-checkbox {
+    display: block;
+    margin-bottom: 14px;
+    input {
+      vertical-align: middle;
+    }
+    span {
+      vertical-align: middle;
+      padding-left: 4px;
+    }
+  }
+
+  &__href-cont {
+    @include at(xs) {
+      font-size: 1.2rem;
+    }
+  }
+  &__registration {
+    float: left;
+  }
+  &__recovery {
+    float: right;
+  }
+  &__entry {
+    text-align: center;
+  }
+  &__capcha {
+    margin-top: 10px;
+  }
+  &__code-img {
+    float: left;
+    margin-right: 10px;
+    @include at(xs) {
+      margin-right: 0;
+      float: none;
+      text-align: center;
+    }
+  }
+  &__reload-link {
+    width: 100px;
+    display: inline-block;
+    @include at(xs) {
+      width: auto;
+      display: block;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+  }
+}

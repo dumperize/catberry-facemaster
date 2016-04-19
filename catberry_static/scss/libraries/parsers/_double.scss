@@ -1,0 +1,94 @@
+//////////////////////////////
+// Import Pieces
+//////////////////////////////
+@function breakpoint-parse-default-pair($first, $second) {
+    $default: breakpoint-get('default pair');
+    $min: '';
+    $max: '';
+
+    // Sort into min and max
+    $min: min($first, $second);
+    $max: max($first, $second);
+
+    // Set Context
+    $context-setter: private-breakpoint-set-context(min-#{$default}, $min);
+    $context-setter: private-breakpoint-set-context(max-#{$default}, $max);
+
+    // Make them EMs if need be
+    @if (breakpoint-get('to ems') == true) {
+        $min: breakpoint-to-base-em($min);
+        $max: breakpoint-to-base-em($max);
+    }
+
+    @return '(min-#{$default}: #{$min}) and (max-#{$default}: #{$max})';
+}
+
+@function breakpoint-parse-double-string($first, $second) {
+    $feature: '';
+    $value: '';
+
+    // Test to see which is the feature and which is the value
+    @if (breakpoint-string-value($first) == true) {
+        $feature: $first;
+        $value: $second;
+    }
+    @else {
+        $feature: $second;
+        $value: $first;
+    }
+
+    // Set Context
+    $context-setter: private-breakpoint-set-context($feature, $value);
+
+    @return '(#{$feature}: #{$value})';
+}
+
+@function breakpoint-parse-double-default($first, $second) {
+    $feature: '';
+    $value: '';
+
+    @if type-of($first) == 'string' {
+        $feature: $first;
+        $value: $second;
+    }
+    @else {
+        $feature: $second;
+        $value: $first;
+    }
+
+    // Set Context
+    $context-setter: private-breakpoint-set-context($feature, $value);
+
+    @if (breakpoint-get('to ems') == true) {
+        $value: breakpoint-to-base-em($value);
+    }
+
+    @return '(#{$feature}: #{$value})'
+}
+
+@function breakpoint-parse-double($feature, $empty-media, $first) {
+    $parsed: '';
+    $leader: '';
+    // If we're forcing
+    @if not ($empty-media) or not ($first) {
+        $leader: 'and ';
+    }
+
+    $first: nth($feature, 1);
+    $second: nth($feature, 2);
+
+    // If we've got two numbers, we know we need to use the default pair because there are no media queries that has a media feature that is a number
+    @if type-of($first) == 'number' and type-of($second) == 'number' {
+        $parsed: breakpoint-parse-default-pair($first, $second);
+    }
+        // If they are both strings, we send it through the string parser
+    @else if type-of($first) == 'string' and type-of($second) == 'string' {
+        $parsed: breakpoint-parse-double-string($first, $second);
+    }
+        // If it's a string/number pair, we parse it as a normal double
+    @else {
+        $parsed: breakpoint-parse-double-default($first, $second);
+    }
+
+    @return $leader + $parsed;
+}

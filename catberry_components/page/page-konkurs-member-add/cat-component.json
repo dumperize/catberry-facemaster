@@ -1,0 +1,5 @@
+{
+	"name": "page-konkurs-member-add",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

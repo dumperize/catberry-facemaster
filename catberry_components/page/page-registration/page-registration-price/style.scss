@@ -1,0 +1,516 @@
+.price-wr {
+  position: relative;
+  z-index: 10;
+}
+
+.price {
+  padding: 50px 0 0 0;
+  overflow: hidden;
+  &-tabs-list {
+    margin-top: 20px;
+    @include cf;
+    &__item {
+      background-color: $color-bg-grey-xmedium;
+      float: left;
+      text-align: center;
+      position: relative;
+      z-index: 7;
+      bottom: -1px;
+      border-bottom: 2px solid $color-bg-grey-medium;
+      cursor: pointer;
+      font-size: 1.8rem;
+      line-height: 1;
+
+      @include at(lg) {
+        width: 450px;
+        padding: 30px 0;
+        &:first-child {
+          margin: 0 10px 0 30px;
+        }
+        &:last-child {
+          margin: 0 30px 0 10px;
+        }
+        &_active, &.resp-tab-active {
+          width: 410px;
+          padding: 40px 0 30px;
+        }
+      }
+      @include at(md) {
+        width: 305px;
+        padding: 20px 0;
+        &:first-child {
+          margin: 0 10px 0 50px;
+        }
+        &:last-child {
+          margin: 0 50px 0 10px;
+        }
+        &_active, &.resp-tab-active {
+          width: 345px;
+          padding: 30px 0 20px;
+        }
+      }
+      @include at(sm) {
+        width: 190px;
+        padding: 10px 10px;
+        &:first-child {
+          margin: 0 10px 0 40px;
+        }
+        &:last-child {
+          margin: 0 40px 0 10px;
+        }
+        &_active, &.resp-tab-active {
+          width: 235px;
+          padding: 20px 10px 10px;
+        }
+      }
+    }
+  }
+  &-tabs {
+    position: relative;
+  }
+  @include at(xs) {
+    padding: 20px 0 0 0;
+  }
+}
+
+.sub-title_landing {
+  text-align: center;
+}
+
+.price-tabs {
+  margin-top: 10px;
+  @include from(sm) {
+    margin-top: 90px;
+  }
+}
+
+.tab-content {
+  border: 1px solid $color-bg-grey-xmedium;
+  border-bottom: none;
+  top: 0;
+  z-index: 4;
+  position: absolute;
+  padding: 65px;
+  height: 1px;
+  background-color: $color-bg;
+
+  @include at(md) {
+    padding: 45px 25px;
+  }
+  @include at(sm) {
+    padding: 45px 30px;
+  }
+  @include at(xs) {
+    margin: 10px 0;
+    position: relative;
+    height: auto;
+    padding: 0 20px;
+    border: none;
+    > * {
+      display: none;
+    }
+    .tab-content__name {
+      display: block;
+    }
+  }
+
+  &:first-child {
+    .tab-content__name {
+      left: 0;
+      @include at(lg) {
+        margin: 0 10px 0 30px;
+      }
+      @include at(md) {
+        margin: 0 10px 0 35px;
+      }
+      @include at(sm) {
+        margin: 0 10px 0 30px;
+      }
+    }
+  }
+  &:last-child {
+    .tab-content__name {
+      right: 0;
+      @include at(lg) {
+        margin: 0 30px 0 10px;
+      }
+      @include at(md) {
+        margin: 0 35px 0 10px;
+      }
+      @include at(sm) {
+        margin: 0 30px 0 10px;
+      }
+    }
+  }
+  &__name {
+    background-color: $color-bg-grey-xmedium;
+    text-align: center;
+    position: relative;
+    z-index: 7;
+    border-bottom: 2px solid $color-bg-grey-medium;
+    cursor: pointer;
+    font-size: 1.8rem;
+    line-height: 1;
+    .icon {
+      display: none;
+    }
+
+    @include at(lg) {
+      position: absolute;
+      top: -79px;
+      width: 430px;
+      padding: 30px 0;
+    }
+    @include at(md) {
+      position: absolute;
+      top: -57px;
+      width: 305px;
+      padding: 20px 0;
+    }
+    @include at(sm) {
+      position: absolute;
+      top: -57px;
+      width: 190px;
+      padding: 10px 10px;
+    }
+    @include at(xs) {
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: normal;
+      line-height: 1em;
+      padding: 10px 20px;
+      text-align: left;
+      margin-right: -20px;
+      margin-left: -20px;
+      .icon {
+        display: block;
+        float: right;
+        margin-top: 7px;
+      }
+    }
+  }
+
+  &_active {
+    height: auto;
+    z-index: 5;
+    position: relative;
+    padding: 35px 20px;
+    .tab-content__name {
+      border: 1px solid $color-bg-grey-xmedium;
+      border-bottom: none;
+      background-color: $color-bg;
+      cursor: auto;
+    }
+    @include at(lg) {
+      .tab-content__name {
+        width: 470px;
+      }
+    }
+    @include at(md) {
+      .tab-content__name {
+        width: 335px;
+      }
+    }
+    @include at(sm) {
+      .tab-content__name {
+        width: 210px;
+      }
+    }
+    @include at(xs) {
+      padding: 0 20px 35px;
+      border: 1px solid $color-bg-grey-xmedium;
+      > * {
+        display: block;
+      }
+
+      .tab-content__name {
+        border: none;
+        margin-bottom: 35px;
+        .icon {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+}
+
+.ofers-block {
+  @extend .row;
+  &__item {
+    padding-bottom: 20px;
+    @extend .col-md-4;
+  }
+  &-plus {
+    padding: 20px 0 00px 0;
+    color: #1a97cc;
+    @extend .row;
+    &__item {
+      position: relative;
+      @extend .col-md-6;
+      @extend .col-sm-12;
+      @extend .col-xs-6;
+      &:first-child:after {
+        content: '+';
+        position: absolute;
+        top: 30%;
+        right: -3px;
+      }
+      &_single {
+        @extend .col-md-12;
+        @extend .col-sm-12;
+        @extend .col-xs-12;
+        &:after {
+          display: none;
+        }
+      }
+    }
+    &__icon {
+      margin: 0 auto;
+      .icon {
+        @include icon_size(48px);
+      }
+    }
+
+    @include at(sm) {
+      padding: 20px 0 0px 0;
+      &_prof {
+        padding: 0;
+      }
+      &__item {
+        height: 70px;
+        &:first-child:after {
+          display: none;
+        }
+      }
+      &__icon {
+        float: right;
+        margin-left: 10px;
+      }
+      &__text {
+        text-align: right;
+        padding-top: 18px;
+        @include font-tuning(12, 13);
+      }
+
+      &_single {
+        @include vertical-align;
+      }
+    }
+    &-dop {
+      margin: 20px 20px 0 20px;
+      @extend .row;
+      &__item {
+        @extend .col-xs-3;
+      }
+      &__icon {
+        margin: 0 auto;
+        .icon {
+          @include icon_size(24px);
+        }
+      }
+
+      @include at(sm) {
+        width: 48px;
+        float: right;
+        margin: 0 8px 0 18px;
+        &__item {
+          padding: 0;
+          width: 24px;
+          float: left;
+        }
+        &__icon {
+          margin: 3px 3px;
+          .icon {
+            @include icon_size(18px);
+          }
+        }
+      }
+    }
+  }
+  &-medals {
+    width: 200px;
+    @include cf;
+    &__icon {
+      .icon {
+        @include icon_size(48px)
+      }
+    }
+    @include at(sm) {
+      width: 50px;
+    }
+  }
+}
+
+.description-tarif {
+  background-color: $color-bg-grey-light;
+  border-top: 2px solid $color-bg-grey-medium;
+  text-align: center;
+  height: 370px;
+  padding-bottom: 90px;
+  position: relative;
+  &__medals {
+    height: 55px;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  &__title {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+  &__sub-title {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  &__descr-text {
+    font-size: 1.4rem;
+    line-height: 1;
+    @include at(md) {
+      font-size: 1rem;
+    }
+  }
+  &__btn {
+    width: 100%;
+  }
+  &__part-1 {
+    padding: 45px 20px 0px 20px;
+    @extend .col-md-12;
+    @extend .col-sm-7;
+  }
+  &__part-2 {
+    padding: 0 20px;
+    @extend .col-md-12;
+    @extend .col-sm-5;
+  }
+  &__part-3 {
+    width: 100%;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    @extend .col-sm-12;
+  }
+  &_long {
+    height: 390px;
+  }
+  @include at(sm) {
+    height: 290px;
+    &__part-1 {
+      padding: 20px 0 20px 20px;
+      height: 215px;
+    }
+    &__part-2 {
+      padding: 20px 20px 20px 0;
+      height: 215px;
+    }
+    &__medals {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 15px;
+      height: auto;
+    }
+    &__title {
+      padding: 60px 0 0 50px;
+      text-align: left;
+    }
+    &__sub-title {
+      padding: 0 0 0 50px;
+      text-align: left;
+    }
+    &__descr-text {
+      text-align: right;
+      margin-left: -40px;
+      margin-top: 10px;
+      color: #1a97cc;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+    &_long {
+      height: 310px;
+    }
+  }
+  @include at(xs) {
+    height: auto;
+  }
+}
+
+.price-table {
+  margin: 30px 0;
+  &__head-text {
+    background-color: $color-bg-grey-xmedium;
+    padding: 25px 0;
+    font-weight: normal;
+    border-top: 2px solid $color-bg-grey-medium;
+    border-left: 2px solid $color-bg-grey-medium;
+    border-right: 2px solid $color-bg-grey-medium;
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+  &__tr {
+    &:first-child {
+      border-top: 2px solid $color-bg-grey-medium;
+      .price-table__td {
+        padding-top: 20px;
+      }
+    }
+    &:last-child {
+      border-bottom: 2px solid $color-bg-grey-medium;
+    }
+  }
+  &__td {
+    padding: 10px 15px;
+    border-left: 2px solid $color-bg-grey-medium;
+    border-right: 2px solid $color-bg-grey-medium;
+    text-align: center;
+    font-size: 1.2rem;
+    &:first-child {
+      padding: 10px 20px;
+      text-align: left;
+      font-size: 1.4rem;
+      line-height: 16px;
+    }
+  }
+  &__round {
+    width: 22px;
+    height: 22px;
+    display: block;
+    border-radius: 50%;
+    line-height: 20px;
+    margin: 0 auto;
+    &_grey {
+      border: 1px solid $color-bg-grey-xmedium;
+      color: $color-bg-grey-xmedium;
+    }
+    &_green {
+      border: 1px solid #47ba58;
+      color: #47ba58;
+    }
+  }
+  &__btn {
+    font-size: 14px;
+    font-weight: normal;
+    @extend .btn;
+    @extend .btn_color_pink;
+    @extend .btn_size_medium;
+    @include at(md) {
+      font-size: 12px;
+    }
+  }
+  @include to(md) {
+    display: none;
+  }
+  &-first-column {
+    width: 40%;
+  }
+
+  &-second-column, &-third-colum, &-forth-column {
+    width: 20%;
+  }
+}
+
+.btn_reg-plus {
+  @extend .btn_size_big;
+  @extend .btn_uppercase;
+  @extend .btn_color_black;
+}

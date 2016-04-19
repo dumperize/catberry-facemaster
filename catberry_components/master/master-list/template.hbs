@@ -1,0 +1,32 @@
+<div block="master-list">
+
+    {{#unless isHaveMaster}}
+        <div block="master-list-info">
+            <a elem="btn" href="/registration">Стать мастером</a>
+            <p elem="text">
+                <span>:-(</span>
+                <span>Тут ещё нет Мастера.<br>Вы можете быть первым!</span>
+            </p>
+        </div>
+    {{/unless}}
+
+    {{#each list}}
+        <div elem="item">
+            <cat-master-minicard id="master-minicard-{{id}}" index="{{@index}}" master-id="{{id}}" cat-store="{{../model}}"></cat-master-minicard>
+        </div>
+    {{/each}}
+
+    {{#if isHaveMaster}}
+        <div block='wait-spinner' id="wait-spinner">
+            <div elem="animate">{{icon "spinner"}}</div>
+        </div>
+
+        <div block="master-list-info" mod="good">
+            <a elem="btn" href="/registration">Стать мастером</a>
+            <p elem="text">
+                <span>:-)</span>
+                <span>Вы тоже Мастер?<br>Разместите здесь свою информацию!</span>
+            </p>
+        </div>
+    {{/if}}
+</div><!--master-list-->

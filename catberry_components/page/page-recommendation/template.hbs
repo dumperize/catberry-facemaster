@@ -1,0 +1,29 @@
+<div block="page_oht_recommendation">
+    <cat-common-h1 id="common-h1" name="Мастера о сайте"></cat-common-h1>
+
+    <div elem="list">
+
+        <div block="recommendation-list">
+            {{#each data}}
+                <div block="recommendation">
+                    <div elem="inner">
+                        <div elem="img-wr">
+                            <img src="{{imgSrc photo 225 225}}" alt="{{title}}" elem="img">
+                        </div>
+                        <div elem="content">
+                            <p elem="title">{{title}}</p>
+
+                            <div elem="intro">{{{stripStyle text}}}</div>
+
+                            <p elem="date" style="color: red">ERROR{{date}}</p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+
+        <cat-common-paginator id="common-paginator" cat-store="Paginator"
+                              model="other/Recommendation"></cat-common-paginator>
+
+    </div>
+</div>

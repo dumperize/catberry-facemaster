@@ -1,0 +1,5 @@
+{
+	"name": "common-breadcrumps",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

@@ -1,0 +1,35 @@
+<div block="page_oth_news">
+    <cat-common-h1 id="common-h1" name="Новости"></cat-common-h1>
+
+    <div elem="list">
+
+        <div block="news-list">
+
+            <cat-page-news-form id="cat-page-news-form" cat-store="other/NewsAdd"></cat-page-news-form>
+
+            {{#each data}}
+                <div block="news">
+                    <div elem="inner">
+                        <div elem="img-wr">
+                            <img src="{{imgSrc img}}" alt="{{title}}" elem="img">
+                        </div>
+                        <div elem="content">
+                            <p elem="title">{{title}}</p>
+
+                            <p elem="intro">{{{stripTags preview}}}</p>
+
+                            <p elem="date">{{formatDate date "%d %Z %Y"}}
+                                <a elem="more" href="/news/item/{{id}}">подробнее<i>{{icon "strelka"}}</i></a>
+                            </p>
+                        </div>
+                        <div elem="author-cont">
+                            <p elem="author">Новость добавил:<br>{{author}}</p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+
+        <cat-common-paginator id="common-paginator" cat-store="Paginator" model="other/News"></cat-common-paginator>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div block="sale-popup" class="{{#unless name}}sale-popup_master{{/unless}}">
+    <p elem="title">
+        {{#is type "==" 1}}
+            Подарок
+        {{/is}}
+        {{#is type "==" 2}}
+            Скидка {{discount}}%
+        {{/is}}
+        {{#is type "==" 3}}
+            -{{discount}} руб.
+        {{/is}}
+    </p>
+
+    <div elem="img-cont">
+        <img src="{{imgSrc imgid 200 200}}" alt="{{title}}">
+    </div>
+    {{#if name}}
+        <div elem="master-info">
+            <p elem="head"></p>
+
+            <div block="master-micro-inf" mod="video">
+                <p elem="title">Скидку добавил:</p>
+                <a href="/{{number}}" elem="cont">
+                    <span elem="img"><img src="{{imgSrc imgid2 50 50}}" alt="{{name}}"></span>
+                    <span elem="name"><br>{{name}}</span>
+                </a>
+            </div>
+
+            <div elem="to-page">
+                <a block="to-master-page" href="/{{number}}">На страницу
+                    мастера<i>{{icon "strelka"}}</i></a>
+            </div>
+        </div>
+    {{/if}}
+    <p elem="text">{{text}}</p>
+</div>

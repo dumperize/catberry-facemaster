@@ -1,0 +1,75 @@
+<div block="catalog" class="{{#is catalog '==' 'article'}}catalog catalog_article{{/is}}">
+
+    <div elem="secondary">
+        <p elem="menu-ico">Каталог <span>{{icon "menu"}}</span></p>
+        <ul elem="list">
+            <li class="{{#unless currentRubrika}}act{{/unless}}">
+                {{icon "strelka"}}
+                <a href="/{{catalog}}">Все<span></span></a>
+            </li>
+            {{#each rubrikator}}
+                {{#with parent}}
+                    <li class="{{#is ../../currentRubrika.id '==' id}}act{{/is}}">
+                        {{icon "strelka"}}
+                        <a href="/{{../../catalog}}/catalog/{{id}}">{{name}}<span>{{articleCount}} {{videoCount}}</span></a>
+                    </li>
+                {{/with}}
+            {{/each}}
+        </ul>
+    </div>
+
+
+    <div elem="content">
+        {{#each data}}
+            <div elem="item">
+                <div block="catalog-item"
+                     class="{{#is ../catalog '==' 'article'}}catalog-item catalog-item_article{{/is}}">
+
+                    {{#if img}}
+                        <div elem="img-cont">
+                            <cat-block-video id="block-video-{{../id}}"
+                                             cat-store="video/VideoByRubrika" id-block="{{../id}}" index="{{@index}}">
+                            </cat-block-video>
+                        </div>
+                    {{else}}
+                        <div elem="img-cont"><img src="{{imgSrc imgID 180 180}}"></div>
+                    {{/if}}
+
+                    <div elem="wrapper">
+                        <p elem="title">{{{title}}}<span elem="add-date">{{formatDate date "%d.%m.%Y"}}</span></p>
+
+                        {{#is ../catalog '==' 'video'}}
+                            <div elem="video-cont"></div>
+                        {{/is}}
+
+                        <p elem="text">
+                            {{#is ../catalog '==' 'video'}}{{{description}}}{{/is}}
+                            {{#is ../catalog '==' 'article'}}{{{stripTags text}}}{{/is}}
+                        </p>
+                    </div>
+
+
+                    {{#is ../catalog '==' 'article'}}
+                        <a elem="more"
+                           href="/{{owner.page.number}}/article/{{id}}">подробнее<i>{{icon "strelka"}}</i></a>
+                    {{/is}}
+
+
+                    <div elem="social-cont"></div>
+
+                    <div block="master-micro-inf" mod="video">
+                        <p elem="title">Видео добавил:</p>
+                        <a href="/{{owner.page.number}}" elem="cont">
+                            <span><img src="{{imgSrc owner.imgID 50 50}}" alt="{{owner.name}}"></span>
+                            <span><br>{{owner.name}}</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+    <cat-common-paginator id="common-paginator" cat-store="Paginator"
+                          model="{{catalog}}/{{capitalizeFirst catalog}}ByRubrika"></cat-common-paginator>
+</div>

@@ -1,0 +1,5 @@
+{
+	"name": "pages-footer",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

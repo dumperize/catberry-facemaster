@@ -1,0 +1,10 @@
+.video-md {
+  @extend .row;
+  margin-bottom: -20px;
+  &__item-cont {
+    @extend .col-lg-4;
+    @extend .col-sm-6;
+    @extend .col-xs-12;
+    padding-bottom: 20px;
+  }
+}

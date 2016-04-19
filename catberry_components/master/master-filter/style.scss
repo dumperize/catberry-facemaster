@@ -1,0 +1,152 @@
+.filter {
+  padding-bottom: 20px;
+}
+
+.filter-section {
+  //display: none;
+  &__title {
+    display: block;
+    height: 42px;
+    line-height: 42px;
+    font-size: 1.2rem;
+    background-color: $color-bg-grey-xmedium;
+    color: $color-text-dark;
+    text-decoration: none;
+    padding: 0 10px 0 15px;
+    &:hover {
+      background-color: darken($color-bg-grey-xmedium, 5%);
+      color: $color-text-dark;
+    }
+    &_master {
+      &.active {
+        background-color: $color-green;
+        color: #FFFFFF;
+        &:hover {
+          background-color: darken($color-green, 5%);
+        }
+      }
+    }
+    &_video {
+      &.active {
+        background-color: $color-purpur;
+        color: #FFFFFF;
+        &:hover {
+          background-color: darken($color-purpur, 5%);
+        }
+      }
+    }
+    &_sale {
+      &.active {
+        background-color: $color-orange;
+        color: #FFFFFF;
+        &:hover {
+          background-color: darken($color-orange, 5%);
+        }
+      }
+    }
+    &_sovety {
+      &.active {
+        background-color: $color-blue-dark;
+        color: #FFFFFF;
+        &:hover {
+          background-color: darken($color-blue-dark, 5%);
+        }
+      }
+    }
+    &_company {
+      &.active {
+        background-color: $color-brown;
+        color: #FFFFFF;
+        &:hover {
+          background-color: darken($color-brown, 5%);
+        }
+      }
+    }
+  }
+  &__icon {
+    .icon {
+      display: block;
+      @include icon_size(18px);
+    }
+    @include vertical-align;
+    float: left;
+    margin-right: 10px;
+    color: #ffffff;
+    @include at(md) {
+      margin-right: 8px;
+    }
+  }
+  &__arrow {
+    float: right;
+    @include vertical-align;
+    .icon {
+      display: block;
+      @include icon_size(12px);
+      &.down {
+        transform: rotate(90deg);
+        fill: #fff;
+      }
+    }
+  }
+  &__section {
+    padding: 10px 0;
+    font-size: 1.2rem;
+  }
+
+}
+
+.sort-by {
+  margin-bottom: 10px;
+  padding: 0 10px;
+  &__title {
+    font-weight: bold;
+  }
+  &__form {
+    padding-top: 5px;
+  }
+}
+
+.filter-by {
+  position: relative;
+  overflow: hidden;
+  padding: 0 10px;
+  &__more {
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+  }
+  &__title {
+    font-weight: bold;
+    padding: 5px 0;
+  }
+  &__tag {
+    padding-bottom: 3px;
+  }
+  &__tag-active {
+    display: inline-block;
+    position: relative;
+    color: #ffffff;
+    background-color: $color-bg-grey-dark;
+    padding: 5px 30px 5px 10px;
+    left: -10px;
+    margin: 5px 0;
+    line-height: 16px;
+  }
+  &__close {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    &-link {
+      display: block;
+    }
+    &-icon {
+      .icon {
+        @include icon_size(8px);
+        fill: #fff;
+      }
+    }
+  }
+}
+
+

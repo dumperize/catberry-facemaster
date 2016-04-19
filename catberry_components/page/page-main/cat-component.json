@@ -1,0 +1,5 @@
+{
+	"name": "page-main",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

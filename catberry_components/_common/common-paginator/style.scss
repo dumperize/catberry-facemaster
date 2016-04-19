@@ -1,0 +1,37 @@
+.paginator{
+  padding-top: 20px;
+  float: right;
+  text-align: right;
+//  padding: 20px 0;
+  height: 28px;
+//  border: 1px solid blue;
+  @include at(xs) {
+    float: none;
+    text-align: center;
+  }
+  &__title{
+    font-size: 1.3rem;
+    float: left;
+    padding: 6px;
+  }
+  ul {
+    float: right;
+    li {
+      float: left;
+      @include at(xs) {
+        margin-bottom: 6px;
+      }
+    }
+  }
+  a, span {
+    background-color: #FFF;
+    display: inline-block;
+    padding: 4px 7px;
+    text-decoration: none;
+    margin-left: 4px;
+  }
+  span {
+    background-color: $color-orange;
+    color: #FFF;
+  }
+}

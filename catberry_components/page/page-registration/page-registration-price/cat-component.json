@@ -1,0 +1,5 @@
+{
+	"name": "page-registration-price",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

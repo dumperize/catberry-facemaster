@@ -1,0 +1,49 @@
+.page-404 {
+  padding: 20px 20%;
+  @include at(md) {
+    padding: 20px 10%;
+  }
+  @include to(md) {
+    padding: 20px 0;
+  }
+  &__info {
+    color: $color-orange;
+    display: table;
+    margin: 0 auto;
+    font-size: 4.2rem;
+    @include to(md) {
+      font-size: 3.4rem;
+    }
+    @include at(xs) {
+      display: block;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    span {
+      display: table-cell;
+      vertical-align: middle;
+      white-space: nowrap;
+      @include at(xs) {
+        font-size: 2.8rem;
+        display: block;
+      }
+      &:first-child {
+        font-size: 12rem;
+        padding-right: 20px;
+        @include to(md) {
+          font-size: 10rem;
+        }
+        @include at(xs) {
+          font-size: 10rem;
+          display: block;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+  &__help-text {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 2rem;
+  }
+}

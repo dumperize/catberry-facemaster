@@ -1,0 +1,58 @@
+<div block="callback_request">
+    <h1 block="h1" mod="style">Заказать услугу</h1>
+
+    {{#if success}}
+        <div block="success">Ваша заявка отправлена</div>
+    {{/if}}
+
+    <form elem="form" method="post" action="" id="callback-request-form">
+        <p elem="errors"></p>
+
+        <p elem="intro">Опишите вашу задачу</p>
+
+        <div elem="input">
+            <textarea block="textarea"
+                      placeholder="Я хочу (отремонтировать, организовать, установить, доставить)"
+                      name="text" required>{{form.text}}</textarea>
+        </div>
+        <p elem="intro">
+            Оставьте ваши контакты
+        </p>
+
+        <div elem="input">
+            <input block="input-text" type="text" placeholder="Ваше имя"
+                   name="contactName" value="{{form.contactName}}" required>
+        </div>
+        <div elem="input">
+            <input block="input-text" type="text" placeholder="Ваш телефон"
+                   name="contactPhone" value="{{form.contactPhone}}" required>
+        </div>
+        <div elem="input">
+            <input block="input-text" type="email" placeholder="Ваша эл. почта"
+                   name="contactEmail" value="{{form.contactEmail}}">
+        </div>
+        <div elem="input">
+            <label>
+                {{#if form.contactAgree}}
+                    <input  type="checkbox" name="contactAgree" value="1" checked required>
+                {{else}}
+                    <input type="checkbox" name="contactAgree" value="1" required>
+                {{/if}}
+                согласен с
+                <span elem="info" mix="block: js-show-tip">
+                    условиями<span elem="tip">
+                        Я даю свое согласие на обработку и&nbsp;хранение Компанией персональных и&nbsp;иных данных,
+                        их&nbsp;передачу для обработки другим Пользователям и/или третьим лицам, действующим по&nbsp;поручению Компании,
+                        в&nbsp;том числе для целей: получения статистических и&nbsp;аналитических данных для улучшения функционирования Сайта
+                        и/или Услуг, расширения спектра оказываемых Услуг, получения информационных и/или рекламных сообщений Компании
+                        или третьих лиц.
+                    <i mix="block:js-close-tip">{{icon "close"}}</i>
+                    </span></span>
+                подачи заяки
+            </label>
+        </div>
+        <div elem="submit">
+            <input block="btn-accent" type="submit" value="отправить заявку">
+        </div>
+    </form>
+</div>

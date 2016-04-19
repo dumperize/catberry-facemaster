@@ -1,0 +1,101 @@
+.catalog-list {
+  font-size: 1.4rem;
+  &__item {
+    &-link {
+      color: inherit;
+      display: block;
+      text-decoration: none;
+    }
+  }
+  &__icon {
+    float: left;
+    margin-right: 10px;
+    @include vertical-align;
+    .icon {
+      @include icon_size(24px);
+    }
+  }
+  @include at(lg) {
+    &__item {
+      &-link {
+        height: 50px;
+        @include vertical-align;
+      }
+    }
+  }
+
+  &_page_main {
+    font-size: 1.2rem;
+    @include at(md) {
+      margin-top: 5px;
+    }
+
+    .catalog-list {
+      &__item {
+        @extend .col-lg-3;
+        @extend .col-sm-4;
+        &-link {
+          border: 1px solid transparent;
+          &:hover {
+            border: 1px solid $color-text;
+            color: inherit;
+          }
+        }
+      }
+      @include to(lg) {
+        padding: 10px 10px 0 10px;
+        &__item {
+          padding:0;
+          &-link {
+            height: 30px;
+            padding: 8px 0 5px 10px;
+            font-size: 1.2rem;
+          }
+        }
+        &__icon {
+          .icon {
+            @include icon_size(18px);
+          }
+        }
+      }
+      @include at(lg) {
+        &__item {
+          height: 75px;
+          &-link {
+            padding: 7px 10px 11px 10px;
+            height: 50px;
+            @include vertical-align;
+          }
+        }
+        &__icon {
+          margin-top: 5px;
+        }
+      }
+      @include at(sm) {
+        padding-left: 5px;
+        padding-right: 5px;
+        &__item {
+          padding: 0;
+          &-link {
+            padding: 8px 5px 5px 5px;
+          }
+        }
+        &__icon {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  &_page_rubrikator {
+    .catalog-list {
+      &__item {
+        height: 50px;
+        font-size: 1.7rem;
+        line-height: 1;
+        &-link {
+          padding: 17px 0px;
+        }
+      }
+    }
+  }
+}

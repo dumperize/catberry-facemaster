@@ -1,0 +1,128 @@
+<div id="next-prev-master"></div>
+
+<h1 block="h1" mod="style" style="padding: 4px 0">Страница Мастера</h1>
+<div block="master-page" master-id="{{id}}"><!-- mp - master-page -->
+
+    <div elem="row">
+
+        <div elem="card">
+
+            <div elem="avatar-cont">
+                <img elem="img" src="{{imgSrc imgID 225 225}}" alt="{{name}}">
+                <i elem="like" style="color: red; font-weight: bold">{{icon "like"}} 129</i>
+            </div>
+
+            <div block="master-card-mp">
+                <h1 elem="name">{{name}}</h1>
+
+                <p elem="spec">{{spec}}</p>
+
+                {{#if company}}
+                    <p elem="company">
+                        <span><img elem="logo" src="{{imgSrc company.imgID null 70}}" alt="{{company.name}}"></span>
+                        <span>{{company.name}}</span>
+                    </p>
+                {{/if}}
+
+
+                <div elem="master-number">
+                    <p block="master-number">
+                        <span elem="title">личный номер Мастера</span>
+                        <span elem="number">№{{page.number}}</span>
+                        <span elem="print"><a href="/{{page.number}}/print-card" target="_blank" elem="print">распечатать
+                            визитку</a></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div elem="contact-cont">
+            <div block="contacts-mp">
+                <div elem="cap">
+                    <p elem="icon-cont">
+                        <i>{{icon "phone"}}</i><br>
+                        <span>+7 *** ***-**-**</span>
+                    </p>
+
+                    <a href="#" elem="show-contact">Показать контакты</a>
+                </div>
+
+
+                <ul elem="list">
+
+                    <li>
+                        <i>{{icon "phone"}}</i>
+                        {{#if contacts.phone}}
+                            {{contacts.phone}}<br>
+                            {{contacts.workPhone}}
+                        {{else}}
+                            не указано
+                        {{/if}}
+                    </li>
+
+                    <li>
+                        <i>{{icon "email"}}</i>
+                        {{#if contacts.email}}
+                            <a href="mailto:{{contacts.email}}" elem="anch">{{contacts.email}}</a>
+                        {{else}}
+                            не указано
+                        {{/if}}
+                    </li>
+
+                    <li><i>{{icon "skype"}}</i>
+                        {{#if contacts.skype}}
+                            {{contacts.skype}}
+                        {{else}}
+                            не указано
+                        {{/if}}
+                    </li>
+
+                    <li><i>{{icon "icq"}}</i>
+                        {{#if contacts.icq}}
+                            {{contacts.icq}}
+                        {{else}}
+                            не указано
+                        {{/if}}
+                    </li>
+
+                    <li><i>{{icon "placemark"}}</i>
+                        {{#if contacts.addr}}
+                            {{contacts.addr}}<br>
+                            <span elem="onmap"><a href="#" elem="anch">на карте</a> →</span>
+                        {{else}}
+                            не указано
+                        {{/if}}
+                    </li>
+                </ul>
+
+                <a href="#callback-request-popup" elem="a-callback" mix="block:js-show-callback-popup">заказать
+                    звонок</a>
+            </div>
+        </div>
+    </div>
+
+    <ul block="menu-mp">
+        {{#each isBlock}}
+            {{#if access}}
+                <li>{{#if active}}<a href="#master-block-{{@key}}">{{name}}</a>{{else}}<span>{{name}}</span>{{/if}}</li>
+            {{/if}}
+        {{/each}}
+    </ul>
+    <!-- menu-mp -->
+
+    <div elem="content">
+        {{#each isBlock}}
+            {{#if access}}
+                {{#if active}}
+                    <p elem="section-title">{{name}}</p>
+
+                    <div elem="section-cont">
+                        <cat-master-block-{{@key}} id="master-block-{{@key}}"
+                                                   cat-store="master/MasterItem"></cat-master-block-{{@key}}>
+                    </div>
+                {{/if}}
+            {{/if}}
+        {{/each}}
+    </div>
+</div>
+<!-- master-page -->

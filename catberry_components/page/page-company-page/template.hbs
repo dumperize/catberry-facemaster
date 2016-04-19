@@ -1,0 +1,67 @@
+<h1 block="h1" mod="style">Страница компании</h1>
+<div block="company-page"><!-- cp - company-page -->
+    <div elem="row">
+
+        <div elem="card">
+
+            <div elem="avatar-cont">
+                <img src="{{imgSrc imgID 225 225}}" alt="{{name}}">
+                <!--<i elem="like" style="color: red; font-weight: bold">{{icon "like"}} 129</i>-->
+            </div>
+
+            <div block="company-card-cp">
+                <h1 elem="name"><span>{{name}}</span></h1>
+            </div>
+        </div>
+
+        <div elem="contact-cont">
+            <div block="contacts-cp">
+                <p elem="addr">{{contacts.addr}}</p>
+            </div>
+        </div>
+    </div>
+
+    <ul block="menu-mp">
+        {{#each isBlock}}
+            {{#if access}}
+                <li>{{#if active}}<a href="#master-block-{{@key}}">{{name}}</a>{{else}}<span>{{name}}</span>{{/if}}</li>
+            {{/if}}
+        {{/each}}
+    </ul>
+    <!-- menu-mp -->
+
+    <div elem="content">
+        {{#each isBlock}}
+            {{#if access}}
+                {{#if active}}
+                    {{#is name '==' 'Мастера'}}
+                        <p elem="section-title">{{name}}</p>
+
+                        <div elem="section-cont">
+                            <div id="master-block-master">
+                                {{#each ../../../../masters}}
+
+                                    <div elem="master-item">
+                                        <cat-master-minicard id="master-minicard-{{id}}" master-id="{{id}}"
+                                                             cat-store="company/CompanyItem"
+                                                             index="{{@index}}"></cat-master-minicard>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    {{else}}
+                        <p elem="section-title">{{name}}</p>
+
+                        <div elem="section-cont">
+                            <cat-master-block-{{@key}} id="master-block-{{@key}}"
+                                                       cat-store="company/CompanyItem"></cat-master-block-{{@key}}>
+                        </div>
+                    {{/is}}
+
+                {{/if}}
+            {{/if}}
+        {{/each}}
+
+    </div>
+</div>
+

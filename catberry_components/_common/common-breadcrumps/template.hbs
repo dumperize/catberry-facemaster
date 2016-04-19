@@ -1,0 +1,27 @@
+<div block="breadcrumbs">
+    <span elem="header">Вы находитесь: </span>
+    {{#each this}}
+        <span elem="icon">➜</span>
+        {{#if url}}
+            {{#if links}}
+                <a href="#" elem="level" mod="link" mix="block:js-parent-rub"><span>{{title}}</span></a>
+            {{else}}
+                <a href="{{url}}" elem="level" mod="link">{{title}}</a>
+            {{/if}}
+        {{else}}
+            <span elem="level">{{title}}</span>
+        {{/if}}
+        {{#if links}}
+            <div elem="list-container" mix="block:js-breadcrumbs-list">
+                <ul elem="list">
+                    {{#each links}}
+                        <li elem="list-item">
+                            <span elem="icon"></span>
+                            <a href="{{url}}" elem="level" mod="link">{{title}}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        {{/if}}
+    {{/each}}
+</div>

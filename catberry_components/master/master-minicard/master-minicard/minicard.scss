@@ -1,0 +1,357 @@
+.master-minicard {
+  $width-lg: 164px;
+  @extend .fade-in; // плавное появление
+
+  @extend .bg_grey;
+  padding: 20px;
+  position: relative;
+  //height: 20px;
+  height: 298px;
+  overflow: hidden;
+  color: $color-text;
+  @include at(xs) {
+    padding-bottom: 114px;
+    height: auto;
+  }
+  &_free {
+    height: 256px;
+    @include at(xs) {
+      height: auto;
+    }
+  }
+  &__photo-cont {
+    width: $width-lg;
+    height: $width-lg;
+    overflow: hidden;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    float: left;
+    position: relative;
+    @include at(xs) {
+      width: 184px;
+      height: 184px;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+    }
+  }
+  &__like {
+    //background-color: $color-bg-grey-dark;
+    background-color: rgba(148, 149, 153, 0.7);
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    display: inline-block;
+    font-style: normal;
+    padding: 0 8px;
+    padding-bottom: 2px;
+    text-align: center;
+    color: #FFF;
+    svg {
+      fill: #FFF;
+      position: relative;
+      top: 3px;
+    }
+  }
+  &__contact-wrap {
+    width: $width-lg;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    @include at(xs) {
+      width: 210px;
+    }
+  }
+  &__to-page, &__show-services {
+    @extend .to-master-page;
+    display: block;
+    @include at(xs) {
+      display: none;
+    }
+  }
+  &__show-services {
+    display: none;
+    @include at(xs) {
+      display: block;
+    }
+  }
+  &__name, &__spec {
+    font-weight: bold;
+  }
+  &__name {
+    font-size: 1.8rem;
+    line-height: 1.2em;
+    margin-bottom: 5px;
+    text-transform: capitalize;
+  }
+  &__spec {
+    font-size: 1.4rem;
+  }
+  &__services {
+    position: relative;
+    margin-left: 164px + 20px;
+    padding: 10px 0;
+    font-size: 1.3rem;
+    margin-right: 36px;
+    //border: 1px solid blue;
+    overflow: hidden;
+    @include at(xs) {
+      margin-left: 0;
+      max-height: none;
+      //margin-bottom: 80px;
+      display: none;
+    }
+    em {
+      color: #FA8072;
+      font-style: normal;
+    }
+    li {
+      padding-left: 16px;
+      margin: 6px 0;
+      line-height: 1.3em;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+    }
+    li:before {
+      content: "—";
+      position: absolute;
+      left: 0;
+    }
+    &_half {
+      margin-right: 210px;
+      @include at(sm) {
+        margin-right: 20px;
+      }
+      @include at(xs) {
+        margin-right: 0;
+      }
+    }
+    .find-text {
+      border: 1px solid #FFFEAD;
+      background-color: #FCFCE1;
+      padding: 6px 10px;
+      font-size: 1.2rem;
+      position: relative;
+      left: -16px;
+      max-height: 76px;
+      overflow: hidden;
+      strong {
+        display: inline-block;
+        margin-bottom: 2px;
+      }
+      &:after {
+        background-color: inherit;
+        content: '';
+        height: 4px;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+      }
+    }
+  }
+  &__company {
+    float: right;
+    //border: 1px solid green;
+    @include to(md) {
+      display: none;
+    }
+    display: table;
+    text-align: center;
+    width: 214px;
+    height: 60px;
+    overflow: hidden;
+    margin: 0 0 10px 10px;
+
+    span {
+      display: table-cell;
+      //float: left;
+      width: 100px;
+      //text-align: left;
+      vertical-align: middle;
+      font-size: 1.3rem;
+      line-height: 1.2em;
+    }
+    span:first-child {
+      width: auto;
+      text-align: right;
+    }
+    &__logo {
+      max-height: 60px;
+      max-width: 204px;
+      height: auto;
+      width: auto;
+    }
+    span {
+      //border: 1px solid blue;
+    }
+  }
+  &__logo-cont {
+    width: 80px;
+    height: 60px;
+    overflow: hidden;
+    display: inline-block;
+    padding-left: 0 !important;
+  }
+}
+/* ----- Виджет на миникарточке мастера ----- */
+.master-content-widget {
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+  //border: 1px solid blue;
+  z-index: 1;
+  @include at(xs) {
+    bottom: auto;
+    top: 20px;
+  }
+  &__gift.act i {
+    fill: #f7931e;
+    + div p:first-child {
+      background-color: #f7931e;
+    }
+  }
+  &__photo.act i {
+    fill: #662c91;
+    + div p:first-child {
+      background-color: #662c91;
+    }
+  }
+  &__video.act i {
+    fill: #8dc53e;
+    + div p:first-child {
+      background-color: #8dc53e;
+    }
+  }
+  &__comment.act i {
+    fill: #bd1e2c;
+    + div p:first-child {
+      background-color: #bd1e2c;
+    }
+  }
+  li {
+    width: 46px;
+    height: 46px;
+    margin: 0;
+    float: right;
+    clear: right;
+  }
+  li.act {
+    margin-left: 170px;
+  }
+  i {
+    width: 46px;
+    height: 46px;
+    display: block;
+    text-align: center;
+    fill: #bbb;
+    line-height: 0;
+    svg {
+      position: relative;
+      top: 14px;
+      width: 18px;
+      height: 18px;
+      fill: inherit;
+    }
+    + div {
+      height: 184px;
+      width: 170px; //test
+      padding: 5px;
+      position: absolute;
+      background-color: #FFF;
+      right: 45px;
+      bottom: 0;
+      display: none;
+    }
+  }
+  &__info {
+    width: 100%;
+    height: 70px;
+    display: table;
+    color: #FFF;
+    margin-bottom: 8px;
+    > span {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      padding: 0 10px;
+      overflow: hidden;
+    }
+    &_cont {
+      display: block;
+      overflow: hidden;
+      text-align: center;
+      //line-height: 70px;
+      > span {
+        display: block;
+        padding: 0;
+      }
+      //img {
+      //  width: 100%;
+      //  margin: -100%;
+      //}
+    }
+    &_gift {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+  &__text {
+    font-size: 1rem;
+    //border: 1px solid blue;
+    height: 90px;
+    overflow: hidden;
+    clear: left; // проверить
+  }
+  li.act.show {
+    background-color: #FFF;
+    i + div {
+      display: block;
+    }
+  }
+  &_company {
+    bottom: 10px;
+    right: 10px;
+    //border: 1px solid blue;
+    margin-left: 130px;
+    width: auto;
+    @include at(xs) {
+      bottom: 10px;
+      top: auto;
+    }
+    li {
+      float: left;
+      clear: none;
+      //border: 1px solid red;
+      width: 28px;
+      height: 28px;
+      @include at(xs) {
+        margin-right: 4px;
+      }
+    }
+    li.act {
+      margin-left: 0;
+    }
+    .master-content-widget__gift {
+      i svg {
+        top: -1px;
+      }
+    }
+    i {
+      width: 28px;
+      height: 28px;
+      padding: 5px;
+      svg {
+        top: 0;
+      }
+    }
+  }
+}
+/* ----- Переопределяем высоту блока video ----- */
+.master-content-widget .video-cont__img-cont {
+  max-height: 70px;
+  line-height:70px;
+}

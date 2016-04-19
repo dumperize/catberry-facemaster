@@ -1,0 +1,108 @@
+.master_recommended {
+  //@extend .bg_grey;
+  background: url("/img/other/recommendBg.png") $color-bg-grey-light 90px 19px no-repeat;
+  height: 125px;
+  padding: 6px 15px 0 250px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+  @include cf;
+  &__slider {
+    padding: 0 30px;
+    float: left;
+    width: 440px;
+    height: 114px;
+    overflow: hidden;
+    @include cf;
+  }
+  &__wraper_inner {
+    width: 510px;
+    height: 114px;
+    float: left;
+    overflow: hidden;
+    @include cf;
+  }
+  &__title {
+    position: absolute;
+    color: $color-orange;
+    left: 12px;
+    top: 15px;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+  }
+  &__master {
+    display: block;
+    float: left;
+    width: 95px;
+    text-align: center;
+    text-decoration: none;
+    &-photo {
+      width: 80px;
+    }
+    &-name, &-recommendations {
+      text-decoration: none;
+      color: $color-text;
+      font-size: 1.1rem;
+    }
+    &-name {
+      height: 17px;
+      overflow: hidden;
+    }
+    &-recommendations {
+      font-weight: bold;
+      white-space: nowrap;
+    }
+  }
+  .slick-prev {
+    cursor: pointer;
+    transform: rotate(180deg) translateY(50%);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    &.slick-disabled{
+      visibility: hidden;
+    }
+    .icon {
+      @extend %icon;
+      @extend %icon_block;
+      @extend %icon_size_xsmall;
+      @extend %icon_strelka;
+    }
+  }
+  .slick-next {
+    cursor: pointer;
+    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    &.slick-disabled{
+      visibility: hidden;
+    }
+    .icon {
+      @extend %icon;
+      @extend %icon_block;
+      @extend %icon_size_xsmall;
+      @extend %icon_strelka;
+    }
+  }
+  &-arrows {
+    float: left;
+    padding: 45px 5px;
+    &__arrow-left {
+      @extend %icon;
+      @extend %icon_block;
+      @extend %icon_size_xsmall;
+      @extend %icon_strelka;
+      transform: rotate(180deg);
+    }
+    &__arrow-right {
+      @extend %icon;
+      @extend %icon_block;
+      @extend %icon_size_xsmall;
+      @extend %icon_strelka;
+    }
+  }
+  @include to(md){
+    display: none;
+  }
+}

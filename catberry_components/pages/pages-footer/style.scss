@@ -1,0 +1,109 @@
+.footer {
+  margin: 50px 0 20px 0;
+  font-size: 1.25rem;
+  &__coordinator {
+    padding-bottom: 20px;
+    @extend .col-xs-12;
+  }
+  &__copyright {
+    @extend .col-lg-7;
+    @extend .col-md-6;
+    @extend .col-xs-12;
+    &-text {
+      font-size: 1.1rem;
+    }
+  }
+  &__links {
+    @extend .col-lg-3;
+    @extend .col-md-4;
+    @extend .col-sm-9;
+    &-a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  &__counters {
+    @extend .col-md-2;
+    @extend .col-sm-3;
+  }
+  @include at(xs) {
+    text-align: center;
+    &__coordinator, &__copyright {
+      padding: 0;
+    }
+  }
+}
+
+#bigYandexCounter {
+  float: right;
+  @include at(xs) {
+    display: none;
+  }
+}
+
+#smallYandexCounter {
+  display: none;
+  @include at(xs) {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.to-top {
+  text-align: right;
+  float: right;
+  width: 100px;
+  position: relative;
+  display: none;
+  a {
+    display: block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 2rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    opacity: 0.6;
+    position: fixed;
+    bottom: 0;
+    //right: 0;
+    text-decoration: none;
+    text-align: center;
+    z-index: 100;
+    transition: height 0.1s ease-in-out 0.1s;
+    transition-property: height, line-height;
+    &:hover {
+      opacity: 1;
+      height: 56px;
+      line-height: 56px;
+    }
+    span {
+      font-size: 3rem;
+    }
+  }
+}
+.kl {
+  display: none;
+  width: 128px;
+  height: 128px;
+  position: fixed;
+  right: 5%;
+  bottom: -5px;
+  background-color: transparent;
+  z-index: 1000;
+  //margin-left: -64px;
+  .icon_kl_color {
+    width: 128px;
+    height: 128px;
+    background-color: transparent;
+    fill: none;
+    display: inline;
+    overflow: hidden;
+    transform-origin: 0px 0px;
+  }
+  //svg {
+  //  width: 128px;
+  //  height: 128px;
+  //}
+}

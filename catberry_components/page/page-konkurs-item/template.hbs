@@ -1,0 +1,16 @@
+<h1 block="h1" mod="style">{{name}}</h1>
+<div block="konkurs-item">
+    <p elem="slogan">Победителя конкурса выбираете Вы!</p>
+
+    <p elem="desc">{{description}}</p>
+
+    <p elem="apply"><a href="/konkurs/item/{{id}}/add-member">Добавить участника</a></p>
+
+    <p elem="dates">
+        Приём заявок с {{receptionStartDate}} по {{receptionEndDate}}<br>
+        Начало голосования с {{voteStartDate}} по {{voteEndDate}}
+    </p>
+
+    <cat-konkurs-member id="konkurs-member" cat-store="other/KonkursMember" konkurs-id="{{id}}"
+                        status="{{statusMember}}"></cat-konkurs-member>
+</div>

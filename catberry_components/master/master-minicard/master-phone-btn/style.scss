@@ -1,0 +1,83 @@
+.phone-btn {
+  position: relative;
+  &__button {
+    font-size: 1.1rem;
+    @extend .btn;
+    @extend .btn_size_xmedium;
+    @extend .btn_color_black;
+    @extend .btn_uppercase;
+  }
+  &__phone-details {
+    display: none;
+    height: 42px;
+    text-align: center;
+  }
+  &__phone {
+    color: $color-text-dark;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  &__url {
+    color: $color-orange;
+    font-size: 1.1rem;
+  }
+  &__tip {
+    width: 186px;
+    font-size: 1.4rem;
+    padding: 10px;
+    padding-right: 16px;
+    background-color: $color-yellow;
+    color: #333;
+    position: absolute;
+    top: -20px;
+    right: -196px;
+    font-weight: bold;
+    z-index: 2;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    display: none;
+    @include at(xs) {
+      bottom: 54px;
+      right: auto;
+      top: auto;
+      left: 50%;
+      margin-left: -93px;
+      width: 190px;
+    }
+    &:before {
+      width: 0;
+      height: 0;
+      content: '';
+      display: block;
+      border: 10px solid transparent;
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      margin-top: -10px;
+      border-right-color: $color-yellow;
+      @include at(xs) {
+        bottom: -20px;
+        right: 50%;
+        margin-top: 0;
+        margin-right: -10px;
+        left: auto;
+        top: auto;
+        border-right-color: transparent;
+        border-top-color: $color-yellow;
+      }
+    }
+    i {
+      position: absolute;
+      top: 5px;
+      right: 7px;
+      fill: #FFFFFF;
+      &:hover {
+        cursor: pointer;
+        fill: #ff0000;
+      }
+    }
+    svg {
+      fill: inherit;
+      width: 10px;
+    }
+  }
+}

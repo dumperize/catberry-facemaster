@@ -1,0 +1,5 @@
+{
+	"name": "page-catalog",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

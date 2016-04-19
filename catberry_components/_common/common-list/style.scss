@@ -1,0 +1,13 @@
+.common-list {
+  //@extend .col-xs-12;
+  &__item {
+    @extend .fade-in; // плавное появление
+    @extend .col-md-4;
+    @extend .col-sm-6;
+    @extend .col-xs-12;
+    padding-bottom: 20px;
+  }
+}
+.common-list .video-cont .video-cont__name {
+  display: block;
+}

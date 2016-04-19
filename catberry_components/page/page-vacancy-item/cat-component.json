@@ -1,0 +1,5 @@
+{
+	"name": "page-vacancy-item",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

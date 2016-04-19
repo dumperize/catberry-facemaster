@@ -1,0 +1,6 @@
+.page_oth_news{
+  //@extend .col-xs-12;
+  @include at(xs){
+    padding:0;
+  }
+}

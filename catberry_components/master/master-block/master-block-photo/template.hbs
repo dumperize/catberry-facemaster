@@ -1,0 +1,32 @@
+<div block="photo-md">
+
+    <div>
+        {{#each this}}
+            {{#if photos.0.imgID}}
+                <div elem="album-cover" mix="block: js-select-album" id="album-{{id}}">
+                    <a href="/master-data-edit/json3.json">
+                        <img src="{{imgSrc photos.0.imgID 200 200}}" alt="{{name}}"><br>
+                        <span>{{name}}</span>
+                    </a>
+                </div>
+            {{/if}}
+        {{/each}}
+    </div>
+
+    <div>
+        {{#each this}}
+            <div elem="album-cont" id="cont-album-{{id}}">
+                <p elem="album-title">{{name}}</p>
+
+                <div elem="wrapper">
+                    {{#each photos}}
+                        <a href="{{imgSrc imgID}}" elem="img-prev">
+                            <img src="{{imgSrc imgID 200 200}}" alt="{{description}}"><br>
+                        </a>
+                    {{/each}}
+                </div>
+
+            </div>
+        {{/each}}
+    </div>
+</div><!-- photo-md -->

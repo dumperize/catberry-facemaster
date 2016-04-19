@@ -1,0 +1,41 @@
+<div block="rubriks-column">
+    <div block="rubrika-list" mod="tool-collapsed" mix="block:js-rubrika-collapsed">
+        <div elem="title">
+            <p elem="name">Развернуть все рубрики</p>
+            <i elem="icon">{{icon "arrRight"}}</i>
+        </div>
+    </div>
+{{#each rubrikator}}
+    {{#is @index '==' 7}}
+        </div>
+        <div block="rubriks-column">
+    {{/is}}
+
+    {{#is @index '==' 15}}
+        </div>
+        <div block="rubriks-column">
+    {{/is}}
+
+        <div block="rubrika-list">
+            <div elem="title" mix="block:js-rubrika-list" style="border-right-color: {{parent.color}}">
+                <p elem="name">{{parent.name}}</p>
+
+                <p elem="count">{{parent.count}}</p>
+            </div>
+            <div elem="list">
+                <ul>
+                    {{#each podrubriks}}
+                        {{#is ../../catalog "==" "company"}}
+                            <li elem="list-li"><a href="/company/catalog/{{id}}" elem="list-a">{{name}}
+                                <span elem="list-count">{{count}}</span></a></li>
+                        {{else}}
+                            <li elem="list-li"><a href="/{{../parent.unique}}/{{unique}}" elem="list-a">{{name}}
+                                <span elem="list-count">{{count}}</span></a></li>
+                        {{/is}}
+
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+{{/each}}
+</div>

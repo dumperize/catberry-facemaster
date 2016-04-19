@@ -1,0 +1,96 @@
+.submit-news {
+  padding: 10px;
+  background-color: $color-bg-grey-light;
+  display: inline-block;
+  @include at(xs) {
+    display: block;
+  }
+  &.show {
+    display: block;
+    &:hover {
+      background-color: $color-bg-grey-light;
+      cursor: auto;
+    }
+  }
+  &:hover {
+    background-color: $color-bg-grey-light - #111111;
+    cursor: pointer;
+  }
+  &__title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.025em
+  }
+  form {
+    display: none;
+    padding-top: 10px;
+    width: 50%;
+    min-width: 210px;
+    position: relative;
+    @include at(md) {
+      width: 70%;
+    }
+    @include to(md) {
+      width: 100%;
+    }
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+    margin-right: 100px;
+    input {
+      @extend .basic-input;
+      padding: 8px;
+    }
+  }
+  [type="submit"], [type="button"] {
+    @extend .basic-button-mid;
+    display: inline-block;
+    margin-right: 10px;
+    @include at(xs) {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  [type="button"] {
+    color: inherit;
+    background-color: $color-bg-grey-xmedium;
+    &:hover {
+      background-color: $color-bg-grey-xmedium - #111111;
+    }
+  }
+  &__photo-cont {
+    position: absolute;
+    width: 90px;
+    height: 76px;
+    right: 0;
+    top: 10px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+  &__add-photo {
+    @extend .basic-button-mid;
+    display: table;
+    text-align: center;
+    width: 90px;
+    height: 76px;
+    font-size: 1.1rem;
+    line-height: normal;
+    span {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+  textarea {
+    width: 100%;
+    border: none;
+    resize: vertical;
+    padding: 8px;
+    min-height: 100px;
+    margin-bottom: 14px;
+  }
+}

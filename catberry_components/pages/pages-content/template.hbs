@@ -1,0 +1,15 @@
+<div block="page" mix="block:container">
+    <div elem="row">
+        <cat-loader id="pages-content-loader"></cat-loader>
+
+        {{#unless isActive.main}}
+            {{#unless isActive.master-print-card}}
+                <cat-common-breadcrumps id="breadcrumps" cat-store="Breadcrumps"></cat-common-breadcrumps>
+            {{/unless}}
+        {{/unless}}
+
+        <div block="content">
+            <cat-page-{{current}} id="page-current-{{current}}" cat-store="{{currentStore}}"></cat-page-{{current}}>
+        </div>
+    </div>
+</div>

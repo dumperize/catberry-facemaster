@@ -1,0 +1,5 @@
+{
+	"name": "master-block-sale",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

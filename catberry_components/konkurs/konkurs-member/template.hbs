@@ -1,0 +1,21 @@
+<div block="konkurs-member">
+    {{#each this}}
+        <div elem="item">
+
+            <div block="member-cont">
+                {{#each photos}}
+                    <a href="http://konkurs.facemaster.ru/photo?key={{id}}" title="{{../nameWork}}"
+                       style="{{#is @index '>' 0}}display:none{{/is}}">
+                        {{#is @index '==' 0}}
+                            <img src="http://konkurs.facemaster.ru/photo?key={{id}}&square=210"
+                                 alt="{{../../description}}">
+                        {{/is}}
+                        <span>Участник {{../id}}</span>
+                    </a>
+                {{/each}}
+            </div>
+            <cat-konkurs-member-vote id="konkurs-member-vote-{{id}}" status="{{../status}}" memberid="{{id}}"
+                                     name="{{name}}" counthits="{{countHits.countHits}}"></cat-konkurs-member-vote>
+        </div>
+    {{/each}}
+</div>
