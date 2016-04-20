@@ -12,4 +12,9 @@ function Recommendation() {
 
     this._path = '/about-comment';
     this._url = "/recommendation/page/";
+    this._options = {
+        data: {
+            order: 'createDate DESC'
+        }
+    };
 }
