@@ -11,6 +11,22 @@
 
 module.exports = [
 	'/:page[Pages]',
+	// поиск в рубрике мастера
+	// путь: /:masterID/article/:id
+	{
+		expression: /^\/search\/(\d+)$/i,
+		map: function (urlPath) {
+			var matches = urlPath.path.match(/^\/search\/(\d+)$/i);
+			return {
+				Pages: {
+					page: "search"
+				},
+				'search/Search': {
+					rubrikaID: matches[1]
+				}
+			}
+		}
+	},
 	//id мастера
 	{
 		expression: /^\/([\/\d]+)$/i,

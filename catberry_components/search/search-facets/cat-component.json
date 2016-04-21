@@ -1,0 +1,5 @@
+{
+	"name": "search-facets",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

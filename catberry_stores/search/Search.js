@@ -33,6 +33,7 @@ Search.prototype._loadDataPerPage = function (page) {
     this._data.data.page = page;
     try {
         this._data.data['query'] = this.$context.location.query.values.query;
+        this._data.data['rubrikaID'] = this.$context.state.rubrikaID;//this.$context.location.query.values.rubrikaID;
     } catch (e) {
     }
     return this.send(this._path, this._data)
