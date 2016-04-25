@@ -30,4 +30,3 @@ uhrPlugin.register(cat.locator);
 
 // starts the application when DOM is ready
 cat.startWhenReady();
-
