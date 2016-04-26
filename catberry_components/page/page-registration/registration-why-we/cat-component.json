@@ -1,5 +1,5 @@
 {
-	"name": "page-news-form",
+	"name": "registration-why-we",
 	"template": "./template.hbs",
 	"errorTemplate": "./error.hbs"
 }

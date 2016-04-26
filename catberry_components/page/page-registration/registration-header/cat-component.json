@@ -1,5 +1,5 @@
 {
-	"name": "page-registration-more-page",
+	"name": "registration-header",
 	"template": "./template.hbs",
 	"errorTemplate": "./error.hbs"
 }

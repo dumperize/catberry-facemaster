@@ -1,5 +1,5 @@
 {
-	"name": "page-registration-price",
+	"name": "news-form",
 	"template": "./template.hbs",
 	"errorTemplate": "./error.hbs"
 }

@@ -1,5 +1,5 @@
 {
-	"name": "page-registration-why-we",
+	"name": "counter-ga",
 	"template": "./template.hbs",
 	"errorTemplate": "./error.hbs"
 }
