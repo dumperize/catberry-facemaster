@@ -31,12 +31,14 @@
 
     <p elem="spec">{{spec}}</p>
 
-    <ul elem="services" mix="block: js-minicard-services-cut"
-        class="{{#if isWidget}}master-minicard__services_half{{/if}}">
-        {{#each services}}
-            <li>{{{this}}}</li>
-        {{/each}}
-    </ul>
+    {{#if services}}
+        <ul elem="services" mix="block: js-minicard-services-cut"
+            class="{{#if isWidget}}master-minicard__services_half{{/if}}">
+            {{#each services}}
+                <li>{{{this}}}</li>
+            {{/each}}
+        </ul>
+    {{/if}}
     {{#if page}}
         <ul block="master-content-widget">
             <li elem="gift" class="{{#if page.sales}}{{#if sales.0.title}}act{{/if}}{{/if}}">

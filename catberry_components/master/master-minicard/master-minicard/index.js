@@ -64,38 +64,40 @@ MasterMinicard.prototype.render = function () {
             if (master.page && master.page.comments && master.comments) {
                 master.commentsCount = master.comments.length;
             }
-            var servicesNormally = [];
-            //если есть поисковая выдача заводим переменную servHightlight
-            if (master.hightlight) {
-                var servHightlight = master.hightlight.services;
-                var findText = [];
-                Object.keys(master.hightlight).forEach(function (item) {
-                    if (item != 'services') {
-                        findText[0] = '<p class="find-text"><strong>Текст найден на странице мастера:</strong><br>'
-                            + self.tp.execute(master.hightlight[item][0]) + '</p>';
-                        return false;
-                    }
-                });
-                //console.log(findText)
-            }
-            Object.keys(master.services).forEach(function (item) {
-                var service = master.services[item];
-                if (servHightlight) {
-                    servHightlight.forEach(function (item2) {
-                        //console.log('service: ' + service + '\n\n' + 'hightlight: ' + tmp + '\n\n\n\n');
-                        var findStr = item2.slice(item2.indexOf('<em>') + 4, item2.indexOf('</em>'));
-                        var re = new RegExp(findStr, 'g');
-                        service = service.replace(re, '<em>' + findStr + '</em>');
+            if (master.service) {
+                var servicesNormally = [];
+                //если есть поисковая выдача заводим переменную servHightlight
+                if (master.hightlight) {
+                    var servHightlight = master.hightlight.services;
+                    var findText = [];
+                    Object.keys(master.hightlight).forEach(function (item) {
+                        if (item != 'services') {
+                            findText[0] = '<p class="find-text"><strong>Текст найден на странице мастера:</strong><br>'
+                                + self.tp.execute(master.hightlight[item][0]) + '</p>';
+                            return false;
+                        }
                     });
+                    //console.log(findText)
                 }
-                service = self.tp.execute(service);
-                servicesNormally.push(service);
-            });
-            if (findText) {
-                servicesNormally = findText.concat(servicesNormally);
-                //console.log(servicesNormally);
+                Object.keys(master.services).forEach(function (item) {
+                    var service = master.services[item];
+                    if (servHightlight) {
+                        servHightlight.forEach(function (item2) {
+                            //console.log('service: ' + service + '\n\n' + 'hightlight: ' + tmp + '\n\n\n\n');
+                            var findStr = item2.slice(item2.indexOf('<em>') + 4, item2.indexOf('</em>'));
+                            var re = new RegExp(findStr, 'g');
+                            service = service.replace(re, '<em>' + findStr + '</em>');
+                        });
+                    }
+                    service = self.tp.execute(service);
+                    servicesNormally.push(service);
+                });
+                if (findText) {
+                    servicesNormally = findText.concat(servicesNormally);
+                    //console.log(servicesNormally);
+                }
+                master.services = servicesNormally;
             }
-            master.services = servicesNormally;
             master.index = index;
             master.store = store;
             //console.log(master);
@@ -201,6 +203,10 @@ MasterMinicard.prototype._minicardServicesCut = function () {
     var services = this.$context.element.querySelector('.master-minicard__services');
     var name = this.$context.element.querySelector('.master-minicard__name');
     var spec = this.$context.element.querySelector('.master-minicard__spec');
+
+    if (!services) {
+        return;
+    }
 
     var servicesList = services.querySelectorAll('li');
     var servicesCount = servicesList.length;

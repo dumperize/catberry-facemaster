@@ -1,7 +1,6 @@
 .master-minicard {
   $width-lg: 164px;
   @extend .fade-in; // плавное появление
-
   @extend .bg_grey;
   padding: 20px;
   position: relative;
@@ -12,11 +11,44 @@
   @include at(xs) {
     padding-bottom: 114px;
     height: auto;
+    &_free {
+      padding-bottom: 60px;
+    }
   }
   &_free {
-    height: 256px;
+    /* Бесплатник */
+    height: 140px;
     @include at(xs) {
       height: auto;
+    }
+    .master-minicard {
+      &__photo-cont {
+        width: 100px;
+        height: 100px;
+        @include at(xs) {
+          width: 145px;
+          height: 145px;
+          float: none;
+        }
+      }
+      &__show-services {
+        display: none;
+      }
+      &__contact-wrap {
+        @include from(sm) {
+          left: 140px;
+          .phone-btn__phone {
+            text-align: left;
+          }
+          .phone-btn__tip {
+            top: -17px;
+            right: -146px;
+          }
+        }
+        .phone-btn__phone {
+          line-height: 42px;
+        }
+      }
     }
   }
   &__photo-cont {
@@ -197,6 +229,7 @@
     padding-left: 0 !important;
   }
 }
+
 /* ----- Виджет на миникарточке мастера ----- */
 .master-content-widget {
   position: absolute;
@@ -350,8 +383,9 @@
     }
   }
 }
+
 /* ----- Переопределяем высоту блока video ----- */
 .master-content-widget .video-cont__img-cont {
   max-height: 70px;
-  line-height:70px;
+  line-height: 70px;
 }

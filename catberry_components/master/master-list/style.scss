@@ -48,6 +48,7 @@
     float: right;
     font-weight: bold;
     font-size: 1.8rem;
+    text-align: center;
     @include at(sm) {
       font-size: 1.4rem;
       padding: 0 12px;
