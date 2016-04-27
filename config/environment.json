@@ -1,40 +1,10 @@
 {
-  "title": "FaceMaster.ru",
-  "logger": {
-    "appenders": [
-      {
-        "type": "console",
-        "category": "catberry"
-      },
-      {
-        "type": "logLevelFilter",
-        "level": "ERROR",
-        "appender": {
-          "type": "file",
-          "filename": "erros.log",
-          "maxLogSize": 104857600,
-          "backups": 10,
-          "pollInterval": 15
-        }
-      },
-      {
-        "type": "logLevelFilter",
-        "level": "TRACE",
-        "appender": {
-          "type": "file",
-          "filename": "trace.log",
-          "maxLogSize": 104857600,
-          "backups": 10,
-          "pollInterval": 15
-        }
-      }
-    ],
-    "levels": {
-      "catberry": "TRACE"
-    }
-  },
+  "title": "Catberry Project",
   "server": {
     "port": 3000
+  },
+  "logger": {
+    "level": 0
   },
   "api": "http://api.facemaster.ru"
 }

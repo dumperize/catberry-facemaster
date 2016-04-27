@@ -27,8 +27,9 @@ PageArticleItem.prototype.render = function () {
     var self = this;
 
     return this.$context.getStoreData()
-        .then(function(data) {
-            data.text = self.tp.execute(data.text);
+        .then(function (data) {
+            if (data)
+                data.text = self.tp.execute(data.text);
             //console.log(data);
             return data;
         });

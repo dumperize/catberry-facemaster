@@ -1,0 +1,21 @@
+{{#is status "==" "vote"}}
+    <div block="vote-cont">
+        <a href="" elem="btn" data-id="{{memberid}}">Голосовать</a>
+
+        <div elem="info" mod="hidden">
+            <p elem="name">{{name}}</p>
+
+            <p elem="count">{{getNumEnding counthits "голос, голоса, голосов"}}</p>
+        </div>
+    </div>
+{{/is}}
+
+{{#is status "==" "end-yet"}}
+    <div block="vote-cont">
+        <div elem="info">
+            <p elem="name">{{name}}</p>
+
+            <p elem="count">{{getNumEnding counthits "голос, голоса, голосов"}}</p>
+        </div>
+    </div>
+{{/is}}

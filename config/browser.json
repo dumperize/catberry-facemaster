@@ -1,5 +1,7 @@
 {
-  "title": "FaceMaster.ru",
-  "isRelease": true,
+  "title": "Catberry Project",
+  "logger": {
+    "level": 0
+  },
   "api": "http://api.facemaster.ru"
 }

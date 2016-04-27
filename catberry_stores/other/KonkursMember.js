@@ -46,3 +46,11 @@ KonkursMember.prototype.load = function () {
         })
 
 };
+
+KonkursMember.prototype.handleVote = function (data) {
+    var self = this;
+    return this.$context.sendAction('other/KonkursVote', 'setData', data)
+        .then(function (data) {
+            return self.$context.getStoreData('other/KonkursVote');
+        })
+};

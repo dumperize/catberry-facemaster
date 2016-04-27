@@ -19,25 +19,6 @@
       text-align: left;
     }
   }
-  &__rotate-cont {
-    position: absolute;
-    width: 100%;
-    top: 16px;
-    left: 0;
-    z-index: 1;
-    text-align: center;
-    i {
-      display: inline-block;
-      cursor: pointer;
-      margin: 0 5px;
-      width: 26px;
-      height: 26px;
-    }
-    svg {
-      width: 26px;
-      height: 26px;
-    }
-  }
   &__ico-close {
     content: '';
     display: block;
@@ -58,16 +39,15 @@
     /* ---- CropIt ---- */
     padding: 50px;
     width: 100%;
-    //min-height: 330px;
-    //margin-bottom: 20px;
+    height: 330px;
+    margin-bottom: 20px;
     overflow: hidden;
-    position: relative;
     @include at(xs) {
       padding: 10px 0;
       margin-bottom: 0;
-      //min-height: 280px;
+      height: 280px;
     }
-    .cropit-preview-container {
+    .cropit-image-preview-container {
       margin: 0 auto;
       width: 220px;
       height: 220px;
@@ -75,19 +55,18 @@
       border: 1px dashed #999;
       box-sizing: content-box;
     }
-    .cropit-preview {
+    .cropit-image-preview {
       /* You can specify preview size in CSS */
       width: 220px;
       height: 220px;
-      display: inline-block;
       cursor: -webkit-grab;
       cursor: grab;
     }
-    .cropit-preview.grabbing {
+    .cropit-image-preview.grabbing {
       cursor: -webkit-grabbing;
       cursor: grabbing;
     }
-    .cropit-preview-background {
+    .cropit-image-background {
       opacity: .2;
     }
     /* ---- Слайдер ---- */
@@ -172,13 +151,11 @@
   &__help2 {
     @include at(sm) {
       width: 140px;
-      padding-left: 38px;
+      padding-left: 30px;
     }
     margin-top: 46px;
     left: auto;
     right: 50%;
-    bottom: 90px;
-    top: auto;
     margin-left: auto;
     margin-right: 124px;
     i {

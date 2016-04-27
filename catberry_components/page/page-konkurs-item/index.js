@@ -23,11 +23,31 @@ function PageKonkursItem() {
  * for template engine.
  */
 PageKonkursItem.prototype.render = function () {
+    var self = this;
     return this.$context.getStoreData()
-        .then(function(data){
-            //console.log(data);
+        .then(function (data) {
+            var now = new Date();
+            var voteStartDate = self.getDate(data.voteStartDate);
+            var voteEndDate = self.getDate(data.voteEndDate);
+            var receptionStartDate = self.getDate(data.receptionStartDate);
+            var receptionEndDate = self.getDate(data.receptionEndDate);
+
+            if (now > voteStartDate && now < voteEndDate) {
+                data.statusMember = 'vote';
+            } else if (now > receptionStartDate && now < receptionEndDate) {
+                data.statusMember = 'reception';
+            } else if (now < receptionStartDate){
+                data.statusMember = 'not-start';
+            } else {
+                data.statusMember = 'end-yet';
+            }
+
             return data;
         })
+};
+PageKonkursItem.prototype.getDate = function (d) {
+    var splitDate = d.split('.');
+    return new Date(splitDate[2] + '-' + splitDate[1] + '-' + splitDate[0]);
 };
 
 /**

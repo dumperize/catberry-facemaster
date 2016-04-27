@@ -24,7 +24,7 @@
     "slick-carousel": "~1.5.9",
     "jquery-ui": "~1.11.4",
     "canvasresize-dist": "~1.2.7",
-    "cropit": "~0.5.1"
+    "cropit": "~0.4.5"
   },
   "overrides": {
     "jquery": {

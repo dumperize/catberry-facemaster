@@ -16,7 +16,7 @@ var Typograf = require('typograf');
 function KonkursMember() {
     this.tp = new Typograf({lang: 'ru'});
 }
-
+KonkursMember.prototype.konkursID = null;
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -25,17 +25,26 @@ function KonkursMember() {
  */
 KonkursMember.prototype.render = function () {
     var self = this;
+    var status = this.$context.attributes['status'];
 
     return this.$context.getStoreData()
-        .then(function(data){
-            data.sort(function (a, b) {
-                if (a.countHits.countHits > b.countHits.countHits) return 1;
-                if (a.countHits.countHits < b.countHits.countHits) return -1;
-            });
+        .then(function (data) {
+            if (status == 'end-yet') {
+                data.sort(function (a, b) {
+                    return b.countHits.countHits - a.countHits.countHits;
+                });
+            } else {
+                data.sort(function (a, b) {
+                    if (Math.random() < .5) return -1; else return 1;
+                });
+            }
+
             data.forEach(function (item) {
-               item.description = self.tp.execute(item.description);
+                item.description = self.tp.execute(item.description);
                 //console.log(item);
             });
+            //console.log(data);
+            data.status = status;
             return data;
         })
 };
@@ -46,8 +55,9 @@ KonkursMember.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 KonkursMember.prototype.bind = function () {
+    this.konkursID = this.$context.attributes['konkurs-id'];
+
     $('.member-cont a').bind('click', showMemberImg);
-    $('.vote-cont__btn').bind('click', vote);
 
     function showMemberImg() {
         var arrImg = $(this).closest('.member-cont').find('a');
@@ -70,10 +80,11 @@ KonkursMember.prototype.bind = function () {
         });
         return false;
     }
-    function vote() {
-        $('.vote-cont__btn').hide();
-        $('.vote-cont__info').fadeIn(400);
-        return false;
+
+    return {
+        click: {
+            '.vote-cont__btn': this.handleVote
+        }
     }
 };
 
@@ -84,5 +95,38 @@ KonkursMember.prototype.bind = function () {
  */
 KonkursMember.prototype.unbind = function () {
     $('.member-cont a').unbind('click');
-    $('.vote-cont__btn').unbind('click');
+};
+
+KonkursMember.prototype.handleVote = function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    var self = this;
+    var target = event.target;
+    var id = $(target).attr('data-id');
+    $('.vote-cont__btn').hide();
+    $('.vote-cont__info').fadeIn(400);
+    this.$context.sendAction('vote', {
+        konkursID: self.konkursID,
+        memberID: id
+    })
+        .then(function (data) {
+
+            if (!data.success) {
+                var error = '';
+                data.error.forEach(function (el) {
+                    error += el.message;
+                });
+                alert(error);
+            } else {
+                var el = self.$context.getComponentById('konkurs-member-vote-' + id);
+                var attr = el.render();
+                attr.counthits++;
+                attr.id += '-new';
+                attr.status = 'end-yet';
+                self.$context.createComponent('konkurs-member-vote', attr)
+                    .then(function (dom) {
+                        self.$context.element.querySelector('#konkurs-member-vote-' + id).innerHTML = dom.innerHTML;
+                    });
+            }
+        });
 };

@@ -1,5 +1,6 @@
 {
 	"name": "document",
-	"template": "./template.hbs"
+	"template": "./document.hbs",
+	"logic": "./Document.js"
 }
 

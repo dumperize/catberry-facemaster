@@ -14,14 +14,8 @@
                     </a>
                 {{/each}}
             </div>
-            <div block="vote-cont">
-                <a href="" elem="btn">Голосовать</a>
-                <div elem="info">
-                    <p elem="name">{{name}}</p>
-                    <p elem="count">{{getNumEnding countHits.countHits "голос, голоса, голосов"}}</p>
-                </div>
-            </div>
-
+            <cat-konkurs-member-vote id="konkurs-member-vote-{{id}}" status="{{../status}}" memberid="{{id}}"
+                                     name="{{name}}" counthits="{{countHits.countHits}}"></cat-konkurs-member-vote>
         </div>
     {{/each}}
 </div>

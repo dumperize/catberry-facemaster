@@ -27,11 +27,8 @@
     @include at(lg) {
       border-right: 1px solid $color-bg-grey-dark;
     }
-    @include from(md) {
+    @include from(sm) {
       min-height: 200px;
-    }
-    @include at(sm) {
-      min-height: 120px; // настроить
     }
   }
   &__author-cont {

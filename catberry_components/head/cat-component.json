@@ -1,5 +1,6 @@
 {
 	"name": "head",
-	"template": "./template.hbs"
+	"template": "./head.hbs",
+	"logic": "./Head.js"
 }
 

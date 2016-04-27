@@ -40,7 +40,9 @@
     font-size: 1.3rem;
     height: 54px;
     overflow: hidden;
-    display: none;
+    &_hidden {
+      display: none;
+    }
   }
   &__name {
     white-space: nowrap;

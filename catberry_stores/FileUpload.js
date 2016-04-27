@@ -25,26 +25,22 @@ function FileUpload() {
     StoreBase.call(this);
     this._path = '/files/upload';
 }
-FileUpload.prototype._imgData = null;
+
+FileUpload.prototype.$lifetime = 0;
+
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
-FileUpload.prototype.load = function () {
+FileUpload.prototype.load = function (data) {
     var self = this;
 
-    if (!this._imgData)
-        return null;
-
-    return this.send(this._path, {data: this._imgData})
+    return this.send(this._path, {data: data})
         .then(function (res) {
-            self._imgData = null;
             return res.list;
         });
 };
 
-FileUpload.prototype.handleSetData = function (data) {
-    this._imgData = data;
-    return true;
+FileUpload.prototype.handleLoad = function (data) {
+    return this.load(data);
 };
-

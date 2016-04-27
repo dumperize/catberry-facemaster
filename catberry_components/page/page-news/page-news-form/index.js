@@ -1,12 +1,12 @@
 'use strict';
 
 module.exports = PageNewsForm;
+var ComponentForm = require("../../../../lib/ComponentForm");
 var serializeForm = require("../../../../lib/util/SerializeForm");
-var ComponentCropIt = require("../../../../lib/ComponentCropIt");
+
 
 var util = require('util');
-util.inherits(PageNewsForm, ComponentCropIt);
-
+util.inherits(PageNewsForm, ComponentForm);
 
 /*
  * This is a Catberry Cat-component file.
@@ -19,7 +19,7 @@ util.inherits(PageNewsForm, ComponentCropIt);
  * @constructor
  */
 function PageNewsForm() {
-    ComponentCropIt.call(this);
+    ComponentForm.call(this);
 
     this.formID = '#news-add-form';
 }
@@ -35,7 +35,6 @@ PageNewsForm.prototype.render = function () {
             else {
                 data.imgsrc = self.imgsrc;
             }
-            //console.log(data);
             return data;
         });
 };
@@ -47,19 +46,15 @@ PageNewsForm.prototype.render = function () {
  */
 PageNewsForm.prototype.bind = function () {
     var submitNews = $('.submit-news');
+    submitNews.bind('click', showAddNews);
     $('.js-hide-submit-news').bind('click', hideAddNews);
 
-    // Привязываем обработчик или не привязываем в зависимости от класса (состояния)
-    if (submitNews.hasClass('show')) {
-        submitNews.unbind('click', showAddNews);
-    } else {
-        submitNews.bind('click', showAddNews);
-    }
     function showAddNews() {
         submitNews.addClass('show');
         $('.submit-news form').toggle(500);
         submitNews.unbind('click', showAddNews);
     }
+
     function hideAddNews() {
         $('.submit-news form').toggle(500, function () {
             $('.submit-news').removeClass('show');
@@ -68,19 +63,14 @@ PageNewsForm.prototype.bind = function () {
         return false;
     }
 
-    var event = this._bind();
-    event.click = {
-        '.js-photo-upload': this._photoInitCropIt,
-        '.js-photo-remove': this._photoRemove
-    };
-    return event;
+    return this._bind();
 };
 
 PageNewsForm.prototype.handleSubmit = function (event) {
     event.preventDefault();
     event.stopPropagation();
     var self = this;
-    var img = this.$context.element.querySelector('.add-news-thumb-result img');
+    var img = this.$context.element.querySelector('.js-cropit-photo-result img');
 
     this.data = serializeForm($(this.formDOM).serializeArray());
     this.imgsrc = img ? img.getAttribute('src') : null;
@@ -94,23 +84,6 @@ PageNewsForm.prototype.handleSubmit = function (event) {
         })
 };
 
-PageNewsForm.prototype._photoInitCropIt = function (event) {
-    var selfId = this.$context.attributes.id;
-    var data = {id: 'img-upload', callCompId: selfId, width: 220, height: 220, exportzoom: 1};
-    var f = function(data) {
-        document.querySelector('.news-list').insertBefore(data, document.querySelector('.news'));
-    };
-    this._photoCropIt(event, data, f)
-};
-
-PageNewsForm.prototype._photoRemove = function () {
-    this.$context.element.querySelector('.add-news-thumb-result img').remove();
-};
-
-PageNewsForm.prototype._imgResizeResult = function (img) {
-    $(this.$context.element.querySelector('.add-news-thumb-result')).prepend('<img src="' + img + '" alt="">');
-};
-
 PageNewsForm.prototype.fileSave = function (base64) {
     var self = this;
     return this.$context.sendAction('fileUpload', {fileData: base64})
@@ -119,13 +92,4 @@ PageNewsForm.prototype.fileSave = function (base64) {
 
             //заставить при всех отправках форм больше не сохранять файл, пока не будет нажата кнопка "крестик" и загружена новая картинка
         });
-};
-/**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
- */
-PageNewsForm.prototype.unbind = function () {
-    $('.js-hide-submit-news').unbind('click');
-    $('.submit-news').unbind('click');
 };
