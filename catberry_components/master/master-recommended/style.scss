@@ -63,10 +63,10 @@
       visibility: hidden;
     }
     .icon {
-      @extend %icon;
-      @extend %icon_block;
-      @extend %icon_size_xsmall;
-      @extend %icon_strelka;
+      //@extend %icon;
+      //@extend %icon_block;
+      //@extend %icon_size_xsmall;
+      //@extend %icon_strelka;
     }
   }
   .slick-next {
@@ -79,27 +79,27 @@
       visibility: hidden;
     }
     .icon {
-      @extend %icon;
-      @extend %icon_block;
-      @extend %icon_size_xsmall;
-      @extend %icon_strelka;
+      //@extend %icon;
+      //@extend %icon_block;
+      //@extend %icon_size_xsmall;
+      //@extend %icon_strelka;
     }
   }
   &-arrows {
     float: left;
     padding: 45px 5px;
     &__arrow-left {
-      @extend %icon;
-      @extend %icon_block;
-      @extend %icon_size_xsmall;
-      @extend %icon_strelka;
+      //@extend %icon;
+      //@extend %icon_block;
+      //@extend %icon_size_xsmall;
+      //@extend %icon_strelka;
       transform: rotate(180deg);
     }
     &__arrow-right {
-      @extend %icon;
-      @extend %icon_block;
-      @extend %icon_size_xsmall;
-      @extend %icon_strelka;
+      //@extend %icon;
+      //@extend %icon_block;
+      //@extend %icon_size_xsmall;
+      //@extend %icon_strelka;
     }
   }
   @include to(md){

@@ -130,9 +130,7 @@
 
 .find-master {
   padding-right: 5px;
-  @extend .col-lg-8;
-  @extend .col-sm-6;
-  @extend .col-xs-12;
+  @extend .col-lg-8, .col-sm-6, .col-xs-12;
   @include at(xs) {
     padding-right: 10px;
     margin-bottom: 10px;
@@ -237,6 +235,9 @@
       }
     }
   }
+  &:after {
+    @extend .or;
+  }
   @include at(xs) {
     &__inner {
       padding-top: 6px;
@@ -244,7 +245,6 @@
       border-width: 2px;
     }
     &:after {
-      @extend .or;
       content: 'или';
       display: block;
       position: absolute;
@@ -259,9 +259,7 @@
 .call-back {
   padding-left: 5px;
   color: $color-text-dark;
-  @extend .col-lg-4;
-  @extend .col-sm-6;
-  @extend .col-xs-12;
+  @extend .col-lg-4, .col-sm-6, .col-xs-12;
   &__inner {
     background-color: $color-yellow;
     border-top: 5px solid $color-yellow-deep;
@@ -363,8 +361,7 @@
     padding-right: 0;
     font-size: 1.9rem;
     line-height: 1.1em;
-    @extend .col-lg-2;
-    @extend .col-xs-12;
+    @extend .col-lg-2, .col-xs-12;
     &-link {
       color: inherit;
       padding-top: 5px;
@@ -385,8 +382,7 @@
     }
   }
   &__dop {
-    @extend .col-lg-10;
-    @extend .col-xs-12;
+    @extend .col-lg-10, .col-xs-12;
   }
   @include at(xs) {
     display: none;

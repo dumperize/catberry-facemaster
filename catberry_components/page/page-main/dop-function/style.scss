@@ -1,7 +1,5 @@
 .dop-function {
-  @extend .col-lg-3;
-  @extend .col-md-4;
-  @extend .col-ms-12;
+  @extend .col-lg-3, .col-md-4, .col-xs-12;
   @include from(md) {
     padding-right: 20px;
     padding-left: 20px;
@@ -20,8 +18,7 @@
 
 .become-master, .about-company, .bayda {
   padding-bottom: 10px;
-  @extend .col-md-12;
-  @extend .col-sm-4;
+  @extend .col-md-12, .col-sm-4;
 
   &__inner {
     background-color: $color-green-light;
@@ -64,10 +61,10 @@
   &__icon {
     float: left;
     margin-right: 10px;
-    @extend %icon;
-    @extend %icon_block;
-    @extend %icon_man;
-    @extend %icon_size_small;
+    //@extend %icon;
+    //@extend %icon_block;
+    //@extend %icon_man;
+    //@extend %icon_size_small;
   }
 
   &__menu-cube {
@@ -153,10 +150,10 @@
         position: absolute;
         right: 10px;
         top: 12px;
-        @extend %icon;
-        @extend %icon_block;
-        @extend %icon_strelka;
-        @extend %icon_size_xxsmall;
+        //@extend %icon;
+        //@extend %icon_block;
+        //@extend %icon_strelka;
+        //@extend %icon_size_xxsmall;
       }
     }
   }

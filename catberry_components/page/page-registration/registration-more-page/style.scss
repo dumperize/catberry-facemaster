@@ -14,10 +14,7 @@
     @extend .row;
   }
   &__pic {
-    @extend .col-lg-offset-1;
-    @extend .col-lg-5;
-    @extend .col-md-offset-0;
-    @extend .col-md-6;
+    @extend .col-lg-offset-1, .col-lg-5, .col-md-offset-0, .col-md-6;
     &-img {
       &_offset-1 {
         padding-right: 22%;
@@ -28,8 +25,7 @@
     border-top: 1px solid $color-bg-grey-medium;
   }
   &__text {
-    @extend .col-lg-5;
-    @extend .col-md-6;
+    @extend .col-lg-5, .col-md-6;
 
     &-title {
       &:after {
@@ -38,10 +34,10 @@
         right: 5px;
         top: 5px;
         display: none;
-        @extend %icon;
-        @extend %icon_block;
-        @extend %icon_size_small;
-        @extend %icon_strelka;
+        //@extend %icon;
+        //@extend %icon_block;
+        //@extend %icon_size_small;
+        //@extend %icon_strelka;
       }
       &-count {
         &:before {

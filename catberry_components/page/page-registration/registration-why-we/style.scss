@@ -27,6 +27,7 @@
 
 .our-plus {
   @extend .col-md-4;
+  @extend .bg_grey;
   @include from(sm) {
     &:after {
       content: ' ';
@@ -38,7 +39,6 @@
       right: 50%;
       box-shadow: 0px -8px 8px -8px rgba(0, 0, 0, .4);
       transform: translate(50%);
-      @extend .bg_grey;
     }
     &__round {
       padding-top: 55px;
@@ -54,7 +54,8 @@
   @include at(xs) {
     padding-top: 15px;
     padding-bottom: 15px;
-    @include cf();
+    background-color: transparent;
+    @include cf;
   }
   &__title {
     font-weight: bold;

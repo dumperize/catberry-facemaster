@@ -1,12 +1,6 @@
 .add-comment {
   margin-bottom: 30px;
-  @include at(lg) {
-    @extend .col-lg-8;
-  }
-  @extend .col-sm-7;
-  @include at(xs) {
-    @extend .col-xs-12;
-  }
+  @extend .col-lg-8, .col-sm-7, .col-xs-12;
   &__input {
     margin-bottom: 10px;
   }

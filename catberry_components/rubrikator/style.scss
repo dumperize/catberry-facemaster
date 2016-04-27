@@ -1,8 +1,6 @@
 
 .rubriks-column {
-  @extend .col-md-4;
-  @extend .col-sm-6;
-  @extend .col-xs-12;
+  @extend .col-md-4, .col-sm-6,.col-xs-12;
   &:nth-child(2) {
     @include at(sm){
       float: right;
@@ -65,10 +63,10 @@
         position: absolute;
         top:17px;
         right: 12px;
-        @extend %icon;
-        @extend %icon_block;
-        @extend %icon_size_small;
-        @extend %icon_strelka;
+        //@extend %icon;
+        //@extend %icon_block;
+        //@extend %icon_size_small;
+        //@extend %icon_strelka;
         &_rotate{
           transform: rotate(90deg);
         }

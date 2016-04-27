@@ -86,13 +86,7 @@
 }
 .social-links {
   margin-bottom: 30px;
-  @include at(lg) {
-    @extend .col-lg-4;
-  }
-  @extend .col-sm-5;
-  @include at(xs) {
-    @extend .col-xs-12;
-  }
+  @extend .col-lg-4, .col-sm-5, .col-xs-12;
   &__wrapper {
     height: 234px;
     padding: 12px 20px;

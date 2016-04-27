@@ -15,10 +15,10 @@
         right: 5px;
         top: 18px;
         display: none;
-        @extend %icon;
-        @extend %icon_block;
-        @extend %icon_size_small;
-        @extend %icon_strelka;
+        //@extend %icon;
+        //@extend %icon_block;
+        //@extend %icon_size_small;
+        //@extend %icon_strelka;
       }
     }
     &-text {
