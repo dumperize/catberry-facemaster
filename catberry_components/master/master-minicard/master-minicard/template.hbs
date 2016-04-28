@@ -1,4 +1,4 @@
-<div block="master-minicard" class="{{#unless page.id}}master-minicard_free{{/unless}}">
+<div block="master-minicard" class="{{#unless page.id}}master-minicard_free {{#unless services}}master-minicard_free-new{{/unless}}{{/unless}}">
 
     <div elem="photo-cont">
         <img elem="photo" src="{{imgSrc imgID 200 200}}" alt="{{name}}">

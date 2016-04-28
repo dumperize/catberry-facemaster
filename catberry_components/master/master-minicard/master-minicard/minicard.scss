@@ -11,11 +11,17 @@
   @include at(xs) {
     padding-bottom: 114px;
     height: auto;
-    &_free {
+    &_free-new {
       padding-bottom: 60px;
     }
   }
   &_free {
+    height: 254px;
+    @include at(xs) {
+      height: auto;
+    }
+  }
+  &_free-new {
     /* Бесплатник */
     height: 140px;
     @include at(xs) {
