@@ -96,8 +96,7 @@ Pages.prototype.load = function () {
                 currentStore: self._loodStore[currentPage],
                 isActive: {},
 
-                header: self.getHeaderData(),
-                footer: self.getFooterData()
+                header: self.getHeaderData()
             };
             Object.keys(PAGES)
                 .forEach(function (page) {
@@ -118,13 +117,6 @@ Pages.prototype.getHeaderData = function () {
                 clear: self.getClear()
             };
         });
-};
-
-Pages.prototype.getFooterData = function () {
-    return {
-        phone: '(8482) 74-44-19',
-        clear: this.getClear()
-    };
 };
 
 /**

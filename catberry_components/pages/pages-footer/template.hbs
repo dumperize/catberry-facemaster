@@ -1,28 +1,31 @@
-{{#unless clear}}
-    <footer block="footer">
-        <div class="container">
+<footer block="footer">
+    <div class="container">
 
-            <div block="to-top" id="to-top">
-                <a href="#"><span>↑</span> вверх</a>
-            </div>
-
-            <div class="row">
-                <div elem="coordinator">Координатор сайта: {{phone}}</div>
-                <div elem="copyright">
-                    <p elem="copyright-who">© FaceMaster — Фейсмастер</p>
-
-                    <p elem="copyright-text">При полном или частичном воспроизведении информации
-                        активная ссылка на Фейсмастер обязательна.</p>
-                </div>
-
-
-                <div elem="links">
-                    {{#each links}}
-                        <a href="{{url}}" elem="links-a">{{{title}}}</a>&nbsp;
-                    {{/each}}
-                </div>
-
-            </div>
+        <div block="to-top" id="to-top">
+            <a href="#"><span>↑</span> вверх</a>
         </div>
-    </footer>
-{{/unless}}
+
+        <div class="row">
+            <div elem="coordinator">Координатор сайта: {{phone}}</div>
+            <div elem="copyright">
+                <p elem="copyright-who">© FaceMaster — Фейсмастер</p>
+
+                <p elem="copyright-text">При полном или частичном воспроизведении информации
+                    активная ссылка на Фейсмастер обязательна.</p>
+            </div>
+
+
+            <div elem="links">
+                {{#each links}}
+                    <a href="{{url}}" elem="links-a">{{{title}}}</a>&nbsp;
+                {{/each}}
+            </div>
+
+            <div elem="counters">
+                <cat-counter-ya></cat-counter-ya>
+                <cat-counter-ga></cat-counter-ga>
+            </div>
+
+        </div>
+    </div>
+</footer>

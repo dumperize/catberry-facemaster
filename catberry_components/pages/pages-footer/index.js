@@ -23,24 +23,23 @@ function Footer() {
  * for template engine.
  */
 Footer.prototype.render = function () {
-    return this.$context.getStoreData()
-        .then(function (data) {
-            data.footer.links = [
-                {
-                    "url": "/oferta",
-                    "title": "Оферта"
-                },
-                {
-                    "url": "/contact",
-                    "title": "Контакты"
-                },
-                {
-                    "url": "/feedback",
-                    "title": "Обратная связь"
-                }
-            ];
-            return data.footer;
-        });
+    return {
+        links: [
+            {
+                "url": "/oferta",
+                "title": "Оферта"
+            },
+            {
+                "url": "/contact",
+                "title": "Контакты"
+            },
+            {
+                "url": "/feedback",
+                "title": "Обратная связь"
+            }
+        ],
+        phone: '(8482) 74-44-19'
+    };
 };
 
 /**
