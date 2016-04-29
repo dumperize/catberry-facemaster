@@ -28,7 +28,7 @@ function KonkursListSmall() {
     this._path = '/konkurs';
     this._options = {
         data: {
-            filter: '["and",["=","status",1],[">=","receptionEndDate","' + now + '"]]',
+            filter: '["and",["=","status",1],["<=","receptionStartDate","' + now + '"],[">=","receptionEndDate","' + now + '"]]',
             order: 'voteStartDate DESC'
         }
     };
@@ -37,6 +37,7 @@ function KonkursListSmall() {
 KonkursListSmall.prototype.load = function () {
     return this._load()
         .then(function (result) {
+
             return result.content;
         })
 };

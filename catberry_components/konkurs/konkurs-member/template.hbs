@@ -7,8 +7,7 @@
                     <a href="http://konkurs.facemaster.ru/photo?key={{id}}" title="{{../nameWork}}"
                        style="{{#is @index '>' 0}}display:none{{/is}}">
                         {{#is @index '==' 0}}
-                            <img src="http://konkurs.facemaster.ru/photo?key={{id}}&square=210"
-                                 alt="{{../../description}}">
+                            <img src="{{imgSrc key 210 210}}" alt="{{../description}}">
                         {{/is}}
                         <span>Участник {{../id}}</span>
                     </a>

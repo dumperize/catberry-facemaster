@@ -45,7 +45,12 @@ MasterPhoneBtn.prototype._clickPhoneHandler = function (obj) {
     $(el).hide();
     $(el).siblings('.js-show-phone-details').show();
     $(el).closest('.master-minicard').find('.js-master-phone-tip').fadeIn(400).delay(4000).fadeOut(500);
+    //отправка данных в статистику
+    this.$context.locator.resolve('uhr')
+        .get('http://stat.facemaster.ru/update/update-phone?masterID=' + this.$context.attributes.owner, {})
+        .then(result => result.content);
 };
+
 MasterPhoneBtn.prototype._clickCloseTipHandler = function (obj) {
     var el = obj.target;
     $(el).closest('.js-master-phone-tip').stop().fadeOut(500);

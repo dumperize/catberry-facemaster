@@ -33,7 +33,7 @@
       position: absolute;
     }
     &:before {
-      background: url(%=staticPrefixForCss=%registration/arrow.png) no-repeat 0 0;
+      background: url(/img/registration/arrow.png) no-repeat 0 0;
       width: 140px;
       height: 253px;
       top: 30px;
@@ -41,7 +41,7 @@
       z-index: 3;
     }
     &:after {
-      background: url(%=staticPrefixForCss=%registration/earth.png) no-repeat 0 0;
+      background: url(/img/registration/earth.png) no-repeat 0 0;
       width: 185px;
       height: 338px;
       top: -75px;
@@ -65,7 +65,7 @@
           content: ' ';
           display: block;
           position: absolute;
-          background: url(%=staticPrefixForCss=%registration/wheel.png) no-repeat 0 0;
+          background: url(/img/registration/wheel.png) no-repeat 0 0;
           width: 94px;
           height: 59px;
           top: -28px;

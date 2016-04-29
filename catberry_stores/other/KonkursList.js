@@ -2,6 +2,7 @@
 
 module.exports = KonkursList;
 
+var dateFormat = require('../../lib/util/DateFormat');
 var util = require('util'),
     StoreBase = require('../../lib/StoreBase');
 
@@ -20,10 +21,14 @@ function KonkursList() {
     this._api = 'http://konkurs.facemaster.ru';
 
     StoreBase.call(this);
+
+    var now = Date.now();
+    now = dateFormat(now, "yyyy-mm-dd");
+
     this._path = '/konkurs';
     this._options = {
         data: {
-            filter: '["and",["=","status",1]]',
+            filter: '["and",["=","status",1],["<=","receptionStartDate","' + now + '"]]',
             expand: 'activeMembers,photos',
             order: 'voteStartDate DESC'
         }

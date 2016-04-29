@@ -1,6 +1,5 @@
 <h1 block="h1" mod="style">Конкурсы газеты «Презент»</h1>
 <div block="konkurs-page">
-    <a href="/konkurs/item/{{this.0.id}}/add-member">подать заявку</a>
     {{#each this}}
         <div elem="item">
             <div block="konkurs">
@@ -30,7 +29,7 @@
                 </div>
                 <div elem="column-right">
                     {{#each photos}}
-                        <div elem="img-cont"><img src="http://konkurs.facemaster.ru/photo?key={{id}}&square=68" alt="">
+                        <div elem="img-cont"><img src="{{imgSrc key 68 68}}" alt="">
                         </div>
                     {{/each}}
                 </div>

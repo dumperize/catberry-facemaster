@@ -48,6 +48,8 @@ Head.prototype.load = function () {
                 return self._loadForMasterPage();
             if (page.current == "news-item")
                 return self._loadForNewsItem();
+            if (page.current == "konkurs-item")
+                return self._loadForKonkursItem();
             if (page.current == "video" || page.current == "sale" || page.current == "article")
                 return self._loadForCatalog(PAGES[page.current], page.current);
 
@@ -78,6 +80,17 @@ Head.prototype._loadForNewsItem = function () {
                 title: data.title,
                 description: data.preview,
                 keywords: 'новость, facemaster'
+            }
+        });
+};
+
+Head.prototype._loadForKonkursItem = function () {
+    return this.$context.getStoreData('other/KonkursItem')
+        .then(function (data) {
+            return {
+                title: data.name + ' - конкурсы газеты Презент',
+                description: data.description,
+                keywords: 'конкурсы, facemaster'
             }
         });
 };

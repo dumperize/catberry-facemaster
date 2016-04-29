@@ -43,7 +43,6 @@ KonkursMember.prototype.render = function () {
                 item.description = self.tp.execute(item.description);
                 //console.log(item);
             });
-            //console.log(data);
             data.status = status;
             return data;
         })

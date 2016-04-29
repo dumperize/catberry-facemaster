@@ -50,6 +50,10 @@ Breadcrumps.prototype.load = function () {
             if (page.current == "news-item")
                 return self._loadForNewsItem();
 
+            if (page.current == "konkurs-item")
+                return self._loadForKonkursItem();
+
+
             if (page.current == "video" || page.current == "sale" || page.current == "article")
                 return self._loadForCatalog(PAGES[page.current], page.current);
 
@@ -134,6 +138,22 @@ Breadcrumps.prototype._loadForNewsItem = function () {
             });
             links.push({
                 title: data.title
+            });
+            return links;
+        });
+};
+
+Breadcrumps.prototype._loadForKonkursItem = function () {
+    var self = this;
+    return this.$context.getStoreData('other/KonkursItem')
+        .then(function (data) {
+            var links = [];
+            links.push({
+                title: "Конкурсы",
+                url: "/konkurs"
+            });
+            links.push({
+                title: data.name
             });
             return links;
         });
