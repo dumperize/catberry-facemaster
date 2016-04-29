@@ -23,7 +23,6 @@ function MainFunction() {
  * for template engine.
  */
 MainFunction.prototype.render = function () {
-    return this.$context.getStoreData();
 };
 
 /**
