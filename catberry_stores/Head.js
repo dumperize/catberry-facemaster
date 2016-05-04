@@ -50,6 +50,8 @@ Head.prototype.load = function () {
                 return self._loadForNewsItem();
             if (page.current == "konkurs-item")
                 return self._loadForKonkursItem();
+            if (page.current == "article-item")
+                return self._loadForArticleItem();
             if (page.current == "video" || page.current == "sale" || page.current == "article")
                 return self._loadForCatalog(PAGES[page.current], page.current);
 
@@ -95,6 +97,17 @@ Head.prototype._loadForKonkursItem = function () {
         });
 };
 
+Head.prototype._loadForArticleItem = function () {
+    return this.$context.getStoreData('article/ArticleItem')
+        .then(function (data) {
+            return {
+                title: data.title,
+                description: data.text.replace(/<\/?[^>]+>/g, '').slice(0, 100) + '...',
+                keywords: data.title + ', статья, полезная информация, facemaster'
+            }
+        });
+};
+
 Head.prototype._loadForCatalog = function (config, type) {
     var typeCapitalizeFirstLetter = type.charAt(0).toUpperCase() + type.slice(1);
     return this.$context.getStoreData('rubrika/Rubrikator' + typeCapitalizeFirstLetter)
@@ -115,7 +128,7 @@ Head.prototype._loadForMasterPage = function () {
             return {
                 title: data.name,
                 description: data.name + '. ' + data.services[0],
-                keywords:  data.name + ', facemaster'
+                keywords: data.name + ', facemaster'
             }
         });
 };

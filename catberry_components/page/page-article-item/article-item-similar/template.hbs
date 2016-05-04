@@ -1,0 +1,10 @@
+{{#if empty}}
+    <div block="article-similar">
+        <p>Другие статьи на эту тему:</p>
+        <ul elem="list">
+            {{#each list}}
+                <li><a href="/{{owner.page.number}}/article/{{id}}">{{title}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+{{/if}}

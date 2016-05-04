@@ -1,9 +1,9 @@
 <div block="article-item">
 
-    <h1 block="h1" mod="style">{{title}}</h1>
+    <h1 block="h1" mod="style">Полезно почитать</h1>
 
     <div elem="title-cont">
-        <div elem="title-img"><img src="{{imgSrc owner.imgID 100 100}}" alt="{{title}}"></div>
+        <div elem="title-img"><img src="{{imgSrc owner.imgID 100 100}}" alt="{{owner.name}}"></div>
         <p elem="title">{{title}}</p>
 
         <p elem="author">Статью добавил:<br><a
@@ -20,5 +20,7 @@
         <!--VK.Widgets.Like("vk_like", {type: "button"});-->
         <!--</script>-->
     </div>
+
+    <cat-article-item-similar id="article-item-similar" cat-store="article/ArticleSimilar"></cat-article-item-similar>
 
 </div><!-- article-item -->

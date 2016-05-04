@@ -53,6 +53,9 @@ Breadcrumps.prototype.load = function () {
             if (page.current == "konkurs-item")
                 return self._loadForKonkursItem();
 
+            if (page.current == "article-item")
+                return self._loadForArticleItem();
+
 
             if (page.current == "video" || page.current == "sale" || page.current == "article")
                 return self._loadForCatalog(PAGES[page.current], page.current);
@@ -154,6 +157,22 @@ Breadcrumps.prototype._loadForKonkursItem = function () {
             });
             links.push({
                 title: data.name
+            });
+            return links;
+        });
+};
+
+Breadcrumps.prototype._loadForArticleItem = function () {
+    var self = this;
+    return this.$context.getStoreData('article/ArticleItem')
+        .then(function (data) {
+            var links = [];
+            links.push({
+                title: "Секреты Мастеров",
+                url: "/article"
+            });
+            links.push({
+                title: data.title
             });
             return links;
         });

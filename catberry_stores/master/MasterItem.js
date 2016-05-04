@@ -45,6 +45,7 @@ MasterItem.prototype.load = function () {
     return this.$context.getStoreData('master/MasterPage')
         .then(function (page) {
             masterPage = page;
+            console.log(page);
             self._optionsData.data.filter[':id'] = page.masterID;
             return self._load()
         })

@@ -1,0 +1,5 @@
+{
+	"name": "article-item-similar",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}
