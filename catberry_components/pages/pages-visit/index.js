@@ -6,13 +6,13 @@
  * http://catberry.org/documentation#cat-components-interface
  */
 
-class ArticleItemSimilar {
+class PagesVisit {
 
     /**
-     * Creates a new instance of the "article-item-similar" component.
+     * Creates a new instance of the "pages-visit" component.
      */
     constructor() {
-        this.var = 1;
+
     }
 
     /**
@@ -22,11 +22,8 @@ class ArticleItemSimilar {
      */
     render() {
         return this.$context.getStoreData()
-            .then(data => {
-                return {
-                    list: data,
-                    empty: (data.length > 0)
-                };
+            .then(function (data) {
+                return {visitCount: data}
             });
     }
 
@@ -49,5 +46,5 @@ class ArticleItemSimilar {
     }
 }
 
-module.exports = ArticleItemSimilar;
+module.exports = PagesVisit;
 

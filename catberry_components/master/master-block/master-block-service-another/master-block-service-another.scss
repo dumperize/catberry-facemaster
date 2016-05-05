@@ -1,0 +1,10 @@
+.services-another {
+  margin-bottom: 15px;
+  &__name {
+    font-size: 14pt;
+    margin: 15px 0 5px 0;
+  }
+  &__list {
+    @extend .service-md__list;
+  }
+}

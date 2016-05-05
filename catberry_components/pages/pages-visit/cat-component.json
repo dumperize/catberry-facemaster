@@ -1,0 +1,5 @@
+{
+	"name": "pages-visit",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

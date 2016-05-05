@@ -6,13 +6,13 @@
  * http://catberry.org/documentation#cat-components-interface
  */
 
-class ArticleItemSimilar {
+class MasterBlockServiceAnother {
 
     /**
-     * Creates a new instance of the "article-item-similar" component.
+     * Creates a new instance of the "master-block-service-another" component.
      */
     constructor() {
-        this.var = 1;
+
     }
 
     /**
@@ -22,12 +22,12 @@ class ArticleItemSimilar {
      */
     render() {
         return this.$context.getStoreData()
-            .then(data => {
+            .then(function (data) {
                 return {
                     list: data,
-                    empty: (data.length > 0)
-                };
-            });
+                    exist: (data.length > 0)
+                }
+            })
     }
 
     /**
@@ -49,5 +49,5 @@ class ArticleItemSimilar {
     }
 }
 
-module.exports = ArticleItemSimilar;
+module.exports = MasterBlockServiceAnother;
 
