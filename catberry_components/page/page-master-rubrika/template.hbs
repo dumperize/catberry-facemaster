@@ -14,27 +14,23 @@
         </a>
     </div>
 
-    {{#is rubrika.activeBanners.0.type '==' 1}}
+    {{#if topBanner}}
         <div block="moneyr-top">
-            {{#each rubrika.activeBanners}}
-                {{#is this.type '==' 1}}
-                    <div elem="item">
-                        {{#is this.link '==' ''}}
-                            {{#each imgID}}
-                                <img src="{{imgSrc this}}" alt="">
-                            {{/each}}
-                        {{else}}
-                            <a href="http://{{this.link}}">
-                                {{#each imgID}}
-                                    <img src="{{imgSrc this}}" alt="">
-                                {{/each}}
-                            </a>
-                        {{/is}}
-                    </div>
-                {{/is}}
-            {{/each}}
+            <div elem="item">
+                {{#if  topBanner.link}}
+                    {{#each topBanner.imgID}}
+                        <img src="{{imgSrc this}}" alt="">
+                    {{/each}}
+                {{else}}
+                    <a href="http://{{topBanner.link}}">
+                        {{#each topBanner.imgID}}
+                            <img src="{{imgSrc this}}" alt="">
+                        {{/each}}
+                    </a>
+                {{/if}}
+            </div>
         </div>
-    {{/is}}
+    {{/if}}
 
 </div>
 <div block="inner-content">

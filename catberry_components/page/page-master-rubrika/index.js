@@ -30,9 +30,11 @@ PageMasterRubrika.prototype.render = function () {
                     if (item.type == 2) {
                         item.imgID = item.imgID[0];
                     }
+                    if (item.type == 1) {
+                        data.topBanner = item;
+                    }
                 });
             }
-            //console.log(data.rubrika.activeBanners);
             return data;
         });
 };
