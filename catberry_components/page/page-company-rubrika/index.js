@@ -23,14 +23,7 @@ function PageCompanyRubrika() {
  * for template engine.
  */
 PageCompanyRubrika.prototype.render = function () {
-    var store = this.$context.attributes['cat-store'];
     return this.$context.getStoreData()
-        .then(function (data) {
-            return {
-                list: data,
-                model: store
-            }
-        });
 };
 
 /**

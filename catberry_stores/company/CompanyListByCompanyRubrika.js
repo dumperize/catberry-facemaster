@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = RubrikaCompany;
+module.exports = CompanyListByCompanyRubrika;
 
 var util = require('util'),
     StoreBase = require('../../lib/StoreBase');
@@ -8,7 +8,7 @@ var util = require('util'),
 /**
  * наследуемся от пагинатора для базового стора
  */
-util.inherits(RubrikaCompany, StoreBase);
+util.inherits(CompanyListByCompanyRubrika, StoreBase);
 
 /*
  * This is a Catberry Store file.
@@ -21,13 +21,15 @@ util.inherits(RubrikaCompany, StoreBase);
  * @param {UHR} $uhr Universal HTTP request.
  * @constructor
  */
-function RubrikaCompany($uhr) {
+function CompanyListByCompanyRubrika() {
     StoreBase.call(this);
 
-    this._path = '/rubrika-company';
+    this._pathBase = '/company/byrubrikacompany/';
+    this._path = this._pathBase;
     this._options = {
         data: {
-            filter: '["and", ["=","id",":id"]]'
+            order: 'sort',
+            expand: 'mastersData'
         }
     };
 }
@@ -35,16 +37,18 @@ function RubrikaCompany($uhr) {
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
-RubrikaCompany.prototype.load = function () {
+CompanyListByCompanyRubrika.prototype.load = function () {
     var self = this;
     var id = this.$context.state.catalog;
-    if (!id)
-        this.$context.notFound();
-
-    this._optionsData.data.filter[':id'] = id;
-    return this._load()
-        .then(function (result) {
-            return result.content[0];
+    return this.$context.getStoreData('rubrika/RubrikaCompany')
+        .then(function (data) {
+            if (!data.id)
+                self.$context.notFound();
+            self._path = self._pathBase + data.id;
+            return self._load()
+                .then(function (result) {
+                    return result.content;
+                });
         });
 };
 

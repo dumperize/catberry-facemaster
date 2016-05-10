@@ -23,37 +23,6 @@ function Pages($config) {
     this.$context.setDependency('rubrika/RubrikatorArticle');
     this.$context.setDependency('rubrika/RubrikaCompany');
     this.$context.setDependency('master/MasterItem');
-
-    this._loodStore = {
-        'article': '',
-        'article-item': 'article/ArticleItem',
-        'catalog': '',
-        'company': '',
-        'company-page': 'company/CompanyItem',
-        'company-rubrika': 'rubrika/RubrikaCompany',
-        'contact': '',
-        'feedback': '',
-        'konkurs': 'other/KonkursList',
-        'konkurs-item': 'other/KonkursItem',
-        'konkurs-member-add': 'other/KonkursMemberForm',
-        'login': 'user/Auth',
-        'main': '',
-        'master-page': 'master/MasterItem',
-        'master-print-card': 'master/MasterItemSmall',
-        'master-rubrika': 'Tag',
-        'news': 'other/News',
-        'news-item': 'other/NewsItem',
-        'oferta': '',
-        'recommendation': 'other/Recommendation',
-        'recovery': 'user/Recovery',
-        'registration': '',
-        'request': 'Request',
-        'sale': 'sale/SaleByRubrika',
-        'search': 'search/Search',
-        'vacancy': 'other/Vacancy',
-        'vacancy-item': 'other/VacancyItem',
-        'video': ''
-    }
 }
 
 /**
@@ -69,8 +38,6 @@ Pages.prototype._config = null;
  */
 Pages.prototype.$lifetime = 3600000;
 
-Pages.prototype._loodStore = {};
-
 /**
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
@@ -81,28 +48,23 @@ Pages.prototype.load = function () {
 
     return Promise.resolve(1)
         .then(function () {
-            if (self._loodStore[currentPage])
-                return self.$context.getStoreData(self._loodStore[currentPage]);
-        })
-        .then(function () {
             if (!currentPage)
                 currentPage = 'main';
             if (!PAGES.hasOwnProperty(currentPage)) {
                 self.$context.notFound();
             }
 
-            var result = {
+            if (PAGES[currentPage] && PAGES[currentPage].store)
+                return self.$context.getStoreData(PAGES[currentPage].store);
+        })
+        .then(function () {
+            return {
                 current: currentPage,
-                currentStore: self._loodStore[currentPage],
+                currentStore: PAGES[currentPage].store,
                 isActive: {},
 
                 header: self.getHeaderData()
             };
-            Object.keys(PAGES)
-                .forEach(function (page) {
-                    result.isActive[page] = (currentPage === page);
-                });
-            return result;
         });
 };
 
@@ -133,7 +95,7 @@ Pages.prototype.getClear = function () {
  */
 Pages.prototype.getSpecialClass = function () {
     if (this.$context.state.page == 'master-rubrika') {
-        return this.$context.getStoreData(this._loodStore['master-rubrika'])
+        return this.$context.getStoreData(PAGES['master-rubrika'].store)
             .then(function (data) {
                 var haveTopBanner = data.rubrika.activeBanners.some(function (banner) {
                     return (banner.type == 1);

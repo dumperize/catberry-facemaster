@@ -9,10 +9,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta property="og:title" content="{{social.title}}"/>
-<meta property="og:url" content="{{social.url}}"/>
-<meta property="og:description" content="{{social.description}}"/>
-<meta property="og:image" content="{{social.img}}"/>
+{{#if social.title}}
+    <meta property="og:title" content="{{social.title}}"/>
+{{/if}}
+{{#if social.url}}
+    <meta property="og:url" content="{{social.url}}"/>
+{{/if}}
+{{#if social.description}}
+    <meta property="og:description" content="{{social.description}}"/>
+{{/if}}
+{{#if social.img}}
+    <meta property="og:image" content="{{social.img}}"/>
+{{/if}}
 <meta property="og:image:type" content="image/jpeg"/>
 <meta property="og:image:width" content="500"/>
 <meta property="og:image:height" content="300"/>

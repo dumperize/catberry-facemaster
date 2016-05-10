@@ -30,25 +30,6 @@ PageArticleItem.prototype.render = function () {
         .then(function (data) {
             if (data)
                 data.text = self.tp.execute(data.text);
-            //console.log(data);
             return data;
         });
-};
-
-/**
- * Returns event binding settings for the component.
- * This method is optional.
- * @returns {Promise<Object>|Object|null|undefined} Binding settings.
- */
-PageArticleItem.prototype.bind = function () {
-
-};
-
-/**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
- */
-PageArticleItem.prototype.unbind = function () {
-
 };

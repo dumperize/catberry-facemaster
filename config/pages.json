@@ -1,111 +1,229 @@
 {
-  "main": {
-    "title": "Поиск Мастеров в сфере услуг",
-    "description": "Поиск Мастеров в сфере услуг",
-    "keywords": "поиск услуг, мастера, специалисты Тольятти"
+  "article": {
+    "store": "",
+    "title": "Секреты мастеров",
+    "description": "Здесь собраны лучшие рекоммендации и советы от наших Мастеров.",
+    "keywords": "секреты мастеров, советы, facemaster.ru",
+    "social": {
+      "title": "Секреты мастеров. Сайт Facemaster.ru",
+      "description": "Здесь собраны лучшие рекоммендации и советы от наших Мастеров."
+    }
+  },
+  "article-item": {
+    "store": "article/ArticleItem"
   },
   "catalog": {
+    "store": "",
     "title": "Каталог услуг",
     "description": "Каталог услуг сайта facemaster",
-    "keywords": "facemaster, каталог услуг"
-  },
-  "request": {
-    "title": "Заказать услугу",
-    "description": "Отправить заявку на услугу всем Мастерам",
-    "keywords": "facemaster, отправить заявку, услуи"
-  },
-  "registration": {
-    "title": "Стать Мастером",
-    "description": "Регистрация для новых Мастеров сайта facemaster.ru ",
-    "keywords": "facemaster, регистрация, стать Мастером"
-  },
-  "login": {
-    "title": "Вход для Мастеров",
-    "description": "Форма входя для Мастеров сайта facemaster.ru",
-    "keywords": "facemaster, вход для мастеров"
-  },
-  "recovery": {
-    "title": "Воссановить пароль",
-    "description": "Восстановление пароля для входа в Личный кабинет",
-    "keywords": "facemaster, восстановить пароль"
-  },
-  "sale": {
-    "title": " Скидки и подарки",
-    "description": "Каталог скидок и подарков от Мастеров. Здесь собраны все лучшие предложения по услугам и товарам.",
-    "keywords": "скидки, купоны, мастера, акции"
-  },
-  "video": {
-    "title": "Видео Мастеров",
-    "description": "Каталог видео Мастеров сайта facemaster.ru.",
-    "keywords": "видео, каталог видео, мастера"
-  },
-  "article": {
-    "title": "Секреты мастеров",
-    "description": "",
-    "keywords": ""
+    "keywords": "facemaster, каталог услуг",
+    "social": {
+      "title": "Каталог услуг. Сайт Facemaster.ru",
+      "description": "Каталог услуг сайта facemaster.ru"
+    }
   },
   "company": {
+    "store": "",
     "title": "Каталог компаний",
-    "description": "",
-    "keywords": ""
+    "description": "Каталог компаний сайта facemaster.ru",
+    "keywords": "facemaster, каталог компаний",
+    "social": {
+      "title": "Каталог компаний. Сайт Facemaster.ru",
+      "description": "Каталог компаний сайта facemaster.ru"
+    }
   },
-  "recommendation": {
-    "title": "Рекомендации Мастеров",
-    "description": "Рекомендации Мастеров",
-    "keywords": "отзывы, рекомендации"
+  "company-page": {
+    "store": "company/CompanyItem"
   },
-  "news": {
-    "title": "Новости",
-    "description": "",
-    "keywords": ""
-  },
-  "vacancy": {
-    "title": "Вакансии",
-    "description": "",
-    "keywords": ""
-  },
-  "oferta": {
-    "title": "Оферта",
-    "description": "",
-    "keywords": ""
+  "company-rubrika": {
+    "store": "rubrika/RubrikaCompany"
   },
   "contact": {
+    "store": "",
     "title": "Контакты",
-    "description": "",
-    "keywords": ""
+    "description": "Контакты cайта facemaster.ru",
+    "keywords": "контакты, facemaster.ru, фейсмастер",
+    "social": {
+      "title": "Контакты. Сайт Facemaster.ru",
+      "description": "Контакты сайта facemaster.ru"
+    }
   },
   "feedback": {
+    "store": "",
     "title": "Обратная связь",
-    "description": "",
-    "keywords": ""
-  },
-  "404": {
-    "title": "Страница не найдена",
-    "description": "Страница не найдена",
-    "keywords": "Страница не найдена, 404"
+    "description": "Обратная связь для пользователей сайта facemaster.ru",
+    "keywords": "обратная связь, facemaster.ru",
+    "social": {
+      "title": "Обратная связь. Сайт Facemaster.ru",
+      "description": "Обратная связь для пользователей сайта facemaster.ru"
+    }
   },
   "konkurs": {
+    "store": "other/KonkursList",
     "title": "Конкурсы газеты Презент",
     "description": "Конкурсы газеты Презент",
-    "keywords": "презент, конкурсы"
+    "keywords": "презент, конкурсы",
+    "social": {
+      "title": "Конкурсы газеты Презент",
+      "description": "Конкурсы газеты Презент"
+    }
+  },
+  "konkurs-item": {
+    "store": "other/KonkursItem"
   },
   "konkurs-member-add": {
+    "store": "other/KonkursMemberForm",
     "title": "Добавить участника конкурса газеты Презент",
     "description": "Конкурсы газеты Презент",
-    "keywords": "презент, конкурсы"
+    "keywords": "презент, конкурсы",
+    "social": {
+      "title": "Добавить участника конкурса газеты Презент",
+      "description": "Добавить участника конкурса газеты Презент"
+    }
   },
-  "master-rubrika": {},
-  "master-page": {},
-  "master-print-card": {},
-  "news-item": {},
-  "vacancy-item": {},
-  "konkurs-item": {},
-  "company-rubrika": {},
-  "company-page": {},
-  "article-item": {},
+  "login": {
+    "store": "user/Auth",
+    "title": "Вход для Мастеров",
+    "description": "Форма входя для Мастеров сайта facemaster.ru",
+    "keywords": "facemaster, вход для мастеров",
+    "social": {
+      "title": "Вход для Мастеров",
+      "description": "Вход для Мастеров"
+    }
+  },
+  "main": {
+    "store": "",
+    "title": "Поиск Мастеров в сфере услуг",
+    "description": "Поиск Мастеров в сфере услуг",
+    "keywords": "поиск услуг, мастера, специалисты Тольятти",
+    "social": {
+      "title": "Поиск Мастеров в сфере услуг. Сайт facemaster.r",
+      "description": "Сайт facemaster.ru предназначен для поиска Мастеров в сфере услуг. Здесь можно найти специалистов по ремонту квартир, парикмахеров, няню для ребенка и т.д."
+    }
+  },
+  "master-page": {
+    "store": "master/MasterItem"
+  },
+  "master-print-card": {
+    "store": "master/MasterItemSmall"
+  },
+  "master-rubrika": {
+    "store": "Tag"
+  },
+  "news": {
+    "store": "other/News",
+    "title": "Новости",
+    "description": "Новости сайта Facemaster.ru.",
+    "keywords": "новости компании, facemaster.ru",
+    "social": {
+      "title": "Новости сайта Facemaster.ru.",
+      "description": "Новости сайта Facemaster.ru."
+    }
+  },
+  "news-item": {
+    "store": "other/NewsItem"
+  },
+  "oferta": {
+    "store": "",
+    "title": "Оферта",
+    "description": "Оферта, пользовательское соглашение сайта facemaster.ru.",
+    "keywords": "оферта, пользовательское соглашение, facemaster.ru",
+    "social": {
+      "title": "Оферта. FaceMaster.ru.",
+      "description": "Оферта. FaceMaster.ru."
+    }
+  },
+  "recommendation": {
+    "store": "other/Recommendation",
+    "title": "Рекомендации Мастеров",
+    "description": "Рекомендации Мастеров",
+    "keywords": "отзывы, рекомендации",
+    "social": {
+      "title": "Рекомендации Мастеров сайта FaceMaster.ru.",
+      "description": "Рекомендации Мастеров сайта FaceMaster.ru."
+    }
+  },
+  "recovery": {
+    "store": "user/Recovery",
+    "title": "Воссановить пароль",
+    "description": "Восстановление пароля для входа в Личный кабинет",
+    "keywords": "facemaster, восстановить пароль",
+    "social": {
+      "title": "Воссановить пароль на сайте FaceMaster.ru.",
+      "description": "Воссановить пароль на сайте FaceMaster.ru."
+    }
+  },
+  "registration": {
+    "store": "",
+    "title": "Стать Мастером",
+    "description": "Регистрация для новых Мастеров сайта facemaster.ru ",
+    "keywords": "facemaster, регистрация, стать Мастером",
+    "social": {
+      "title": "Стать Мастером. Регистрация на сайте FaceMaster.ru.",
+      "description": "Стать Мастером. Регистрация на сайте FaceMaster.ru."
+    }
+  },
+  "request": {
+    "store": "Request",
+    "title": "Заказать услугу",
+    "description": "Отправить заявку на услугу всем Мастерам",
+    "keywords": "facemaster, отправить заявку, услуи",
+    "social": {
+      "title": "Заказать услугу на сайте FaceMaster.ru.",
+      "description": "Заказать услугу на сайте FaceMaster.ru."
+    }
+  },
+  "sale": {
+    "store": "sale/SaleByRubrika",
+    "title": "Скидки и подарки",
+    "description": "Каталог скидок и подарков от Мастеров. Здесь собраны все лучшие предложения по услугам и товарам.",
+    "keywords": "скидки, купоны, мастера, акции",
+    "social": {
+      "title": "Скидки и подарки",
+      "description": "Каталог скидок и подарков от Мастеров. Здесь собраны все лучшие предложения по услугам и товарам."
+    }
+  },
   "search": {
+    "store": "search/Search",
     "title": "Поиск по сайту",
     "description": "Поиск на сайте facemaster.ru",
-    "keywords": "поиск, поиск услуг, facemaster"
+    "keywords": "поиск, поиск услуг, facemaster",
+    "social": {
+      "title": "Поиск на сайте facemaster.ru",
+      "description": "Найти Мастера на сайте facemaster.ru"
+    }
+  },
+  "vacancy": {
+    "store": "other/Vacancy",
+    "title": "Вакансии",
+    "description": "Список открытых вакансий в компании facemaster.ru",
+    "keywords": "вакансии компании",
+    "social": {
+      "title": "Вакансии в компании facemaster.ru",
+      "description": "Список открытых вакансий в компании facemaster.ru"
+    }
+  },
+  "vacancy-item": {
+    "store": "other/VacancyItem"
+  },
+  "video": {
+    "store": "",
+    "title": "Видео Мастеров",
+    "description": "Каталог видео Мастеров сайта facemaster.ru.",
+    "keywords": "видео, каталог видео, мастера",
+    "social": {
+      "title": "Видео Мастеров",
+      "description": "Каталог видео Мастеров. Здесь собраны все лучшие видео наших Мастеров."
+    }
+  },
+  "404": {
+    "store": "",
+    "title": "Страница не найдена",
+    "description": "Страница не найдена",
+    "keywords": "Страница не найдена, 404",
+    "social": {
+      "title": "Страница не найдена",
+      "description": "Страница не найдена"
+    }
   }
 }

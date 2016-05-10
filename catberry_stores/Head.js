@@ -40,26 +40,123 @@ Head.prototype.$lifetime = 60000;
  */
 Head.prototype.load = function () {
     var self = this;
+    var func = {
+        "article": this._loadForCatalog,
+        "article-item": this._loadForArticleItem,
+        "company-page": this._loadForCompanyItem,
+        "company-rubrika": this._loadForCompanyRubrika,
+        "konkurs-item": this._loadForKonkursItem,
+        "master-page": this._loadForMasterPage,
+        "master-print-card": this._loadForMasterPrintCard,
+        "master-rubrika": this._loadForRubrika,
+        "news-item": this._loadForNewsItem,
+        "sale": this._loadForCatalog,
+        "vacancy-item": this._loadForVacancyItem,
+        "video": this._loadForCatalog
+
+    };
     return this.$context.getStoreData('Pages')
         .then(function (page) {
-            if (page.current == "master-rubrika")
-                return self._loadForRubrika();
-            if (page.current == "master-page")
-                return self._loadForMasterPage();
-            if (page.current == "news-item")
-                return self._loadForNewsItem();
-            if (page.current == "konkurs-item")
-                return self._loadForKonkursItem();
-            if (page.current == "article-item")
-                return self._loadForArticleItem();
-            if (page.current == "video" || page.current == "sale" || page.current == "article")
-                return self._loadForCatalog(PAGES[page.current], page.current);
+            var getData = func[page.current];
+            if (getData)
+                return getData.call(self, PAGES[page.current], page.current);
 
             var data = PAGES[page.current];
             return {
                 title: data.title + '. FaceMaster.ru. Специалисты Тольятти',
                 description: data.description,
-                keywords: data.keywords
+                keywords: data.keywords,
+                social: data.social
+            }
+        });
+};
+
+Head.prototype._loadForArticleItem = function (arr) {
+    return this.$context.getStoreData(arr.store)
+        .then(function (data) {
+            return {
+                title: data.title,
+                description: data.text.replace(/<\/?[^>]+>/g, '').slice(0, 100) + '...',
+                keywords: data.title + ', статья, полезная информация, facemaster',
+                social: {
+                    title: data.title,
+                    description: data.text.replace(/<\/?[^>]+>/g, '').slice(0, 100) + '...'
+                }
+            }
+        });
+};
+
+Head.prototype._loadForCompanyItem = function (arr) {
+    return this.$context.getStoreData(arr.store)
+        .then(function (data) {
+            return {
+                title: data.name,
+                description: data.name,
+                keywords: data.title + ', компании, facemaster',
+                social: {
+                    title: data.name,
+                    description: data.name
+                }
+            }
+        });
+};
+
+Head.prototype._loadForCompanyRubrika = function (arr) {
+    return this.$context.getStoreData(arr.store)
+        .then(function (data) {
+            return {
+                title: data.name,
+                description: data.name,
+                keywords: data.name + ', компании, facemaster',
+                social: {
+                    title: data.name,
+                    description: data.name
+                }
+            }
+        });
+};
+
+Head.prototype._loadForKonkursItem = function (arr) {
+    return this.$context.getStoreData(arr.store)
+        .then(function (data) {
+            return {
+                title: data.name + ' - конкурсы газеты Презент',
+                description: data.description,
+                keywords: 'конкурсы, facemaster',
+                social: {
+                    title: data.name,
+                    description: data.description
+                }
+            }
+        });
+};
+
+Head.prototype._loadForMasterPage = function (arr) {
+    return this.$context.getStoreData(arr.store)
+        .then(function (data) {
+            return {
+                title: data.name,
+                description: data.name + '. ' + data.services[0],
+                keywords: data.name + ', facemaster',
+                social: {
+                    title: data.name,
+                    description: data.name + '. ' + data.services[0]
+                }
+            }
+        });
+};
+
+Head.prototype._loadForMasterPrintCard = function (arr) {
+    return this.$context.getStoreData(arr.store)
+        .then(function (data) {
+            return {
+                title: data.name,
+                description: data.name + '. Визитка.',
+                keywords: data.name + ', facemaster',
+                social: {
+                    title: data.name,
+                    description: data.name + '. Визитка.'
+                }
             }
         });
 };
@@ -70,7 +167,11 @@ Head.prototype._loadForRubrika = function () {
             return {
                 title: data.currentSeo.headTitle,
                 description: data.currentSeo.description,
-                keywords: data.currentSeo.keywords
+                keywords: data.currentSeo.keywords,
+                social: {
+                    title: data.currentSeo.headTitle,
+                    description: data.currentSeo.description
+                }
             }
         });
 };
@@ -80,30 +181,27 @@ Head.prototype._loadForNewsItem = function () {
         .then(function (data) {
             return {
                 title: data.title,
-                description: data.preview,
-                keywords: 'новость, facemaster'
-            }
-        });
-};
-
-Head.prototype._loadForKonkursItem = function () {
-    return this.$context.getStoreData('other/KonkursItem')
-        .then(function (data) {
-            return {
-                title: data.name + ' - конкурсы газеты Презент',
-                description: data.description,
-                keywords: 'конкурсы, facemaster'
-            }
-        });
-};
-
-Head.prototype._loadForArticleItem = function () {
-    return this.$context.getStoreData('article/ArticleItem')
-        .then(function (data) {
-            return {
-                title: data.title,
                 description: data.text.replace(/<\/?[^>]+>/g, '').slice(0, 100) + '...',
-                keywords: data.title + ', статья, полезная информация, facemaster'
+                keywords: 'новость, facemaster',
+                social: {
+                    title: data.title,
+                    description: data.text.replace(/<\/?[^>]+>/g, '').slice(0, 100) + '...'
+                }
+            }
+        });
+};
+
+Head.prototype._loadForVacancyItem = function (arr) {
+    return this.$context.getStoreData(arr.store)
+        .then(function (data) {
+            return {
+                title: data.post,
+                description: data.text.replace(/<\/?[^>]+>/g, '').slice(0, 100) + '...',
+                keywords: data.post + ', вакансии, facemaster',
+                social: {
+                    title: data.post,
+                    description: data.text.replace(/<\/?[^>]+>/g, '').slice(0, 100) + '...'
+                }
             }
         });
 };
@@ -121,16 +219,6 @@ Head.prototype._loadForCatalog = function (config, type) {
             return config;
         });
 
-};
-Head.prototype._loadForMasterPage = function () {
-    return this.$context.getStoreData('master/MasterItem')
-        .then(function (data) {
-            return {
-                title: data.name,
-                description: data.name + '. ' + data.services[0],
-                keywords: data.name + ', facemaster'
-            }
-        });
 };
 
 /**

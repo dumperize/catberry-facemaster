@@ -27,7 +27,7 @@ BlockCompany.prototype.render = function () {
     var id = this.$context.attributes['id-block'];
     var index = this.$context.attributes['index'];
 
-    if (model == 'rubrika/RubrikaCompany') {
+    if (model == 'company/CompanyListByCompanyRubrika') {
         return this.$context.getStoreData()
             .then(function (data) {
                 return data[index];
