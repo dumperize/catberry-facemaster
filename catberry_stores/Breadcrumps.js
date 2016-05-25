@@ -39,31 +39,164 @@ Breadcrumps.prototype.$lifetime = 60000;
  */
 Breadcrumps.prototype.load = function () {
     var self = this;
+    var func = {
+        "article": this._loadForCatalog,
+        "article-item": this._loadForArticleItem,
+        "company-page": this._loadForCompanyItem,
+        "company-rubrika": this._loadForCompanyRubrika,
+        "konkurs-item": this._loadForKonkursItem,
+        "master-page": this._loadForMasterPage,
+        "master-rubrika": this._loadForRubrika,
+        "news-item": this._loadForNewsItem,
+        "sale": this._loadForCatalog,
+        "video": this._loadForCatalog
+    };
     var brcrmp = [];
     return this.$context.getStoreData('Pages')
         .then(function (page) {
-            if (page.current == "master-rubrika")
-                return self._loadForRubrika();
-            if (page.current == "master-page")
-                return self._loadForMasterPage();
 
-            if (page.current == "news-item")
-                return self._loadForNewsItem();
-
-            if (page.current == "konkurs-item")
-                return self._loadForKonkursItem();
-
-            if (page.current == "article-item")
-                return self._loadForArticleItem();
-
-
-            if (page.current == "video" || page.current == "sale" || page.current == "article")
-                return self._loadForCatalog(PAGES[page.current], page.current);
+            var getData = func[page.current];
+            if (getData)
+                return getData.call(self, PAGES[page.current], page.current);
 
             brcrmp.push({
                 title: PAGES[page.current].title
             });
             return brcrmp;
+        });
+};
+
+Breadcrumps.prototype._loadForCatalog = function (config, type) {
+    var typeCapitalizeFirstLetter = type.charAt(0).toUpperCase() + type.slice(1);
+    var self = this;
+    return this.$context.getStoreData('rubrika/Rubrikator' + typeCapitalizeFirstLetter)
+        .then(function (data) {
+            var links = [];
+            if (data.active) {
+                links.push({
+                    title: config.title,
+                    url: "/" + type
+                });
+                links.push({
+                    title: data.active.name
+                });
+            } else {
+                links.push({
+                    title: config.title
+                });
+            }
+            return links;
+        });
+};
+
+Breadcrumps.prototype._loadForArticleItem = function (arr) {
+    var self = this;
+    return this.$context.getStoreData(arr.store)
+        .then(function (data) {
+            var links = [];
+            links.push({
+                title: "Секреты Мастеров",
+                url: "/article"
+            });
+            links.push({
+                title: data.title
+            });
+            return links;
+        });
+};
+
+Breadcrumps.prototype._loadForCompanyItem = function (arr) {
+    var self = this;
+    return this.$context.getStoreData(arr.store)
+        .then(function (data) {
+            var links = [];
+            links.push({
+                title: "Каталог компаний",
+                url: "/company"
+            });
+            links.push({
+                title: data.name
+            });
+            return links;
+        });
+};
+
+Breadcrumps.prototype._loadForCompanyRubrika = function (arr) {
+    var self = this;
+    return this.$context.getStoreData(arr.store)
+        .then(function (data) {
+            var links = [];
+            links.push({
+                title: "Каталог компаний",
+                url: "/company"
+            });
+
+            var linksPodrubriks = [];
+            data.nearby.forEach(function (el) {
+                    if (el.status == 1)
+                        linksPodrubriks.push({
+                            id: el.id,
+                            title: el.name,
+                            url: '/company/catalog/' + el.id
+                        });
+                });
+            linksPodrubriks.sort(function (a, b) {
+                return a.title > b.title;
+            });
+            linksPodrubriks = linksPodrubriks.filter(function (el) {
+                return el.id != data.id;
+            });
+
+            links.push({
+                title: data.parent.name,
+                url: '/company/catalog/' + data.parent.id,
+                links: linksPodrubriks
+            });
+
+            links.push({
+                title: data.name
+            });
+            return links;
+        });
+};
+
+Breadcrumps.prototype._loadForKonkursItem = function (arr) {
+    var self = this;
+    return this.$context.getStoreData(arr.store)
+        .then(function (data) {
+            var links = [];
+            links.push({
+                title: "Конкурсы",
+                url: "/konkurs"
+            });
+            links.push({
+                title: data.name
+            });
+            return links;
+        });
+};
+
+Breadcrumps.prototype._loadForMasterPage = function () {
+    var self = this;
+    var data = {};
+    return this.$context.getStoreData('master/MasterItem')
+        .then(function (res) {
+            data = res;
+            return self.$context.sendAction('rubrika/RubrikaNearby', 'setID', res.rubrikaID)
+        })
+        .then(function () {
+            return self.$context.getStoreData('rubrika/RubrikaNearby');
+        })
+        .then(function (res) {
+            var link = self._getForRubAndTag({rubrika: res});
+            link.push({
+                title: res.name,
+                url: '/' + res.parent.unique + '/' + res.unique
+            });
+            link.push({
+                title: data.name
+            });
+            return link;
         });
 };
 
@@ -77,6 +210,22 @@ Breadcrumps.prototype._loadForRubrika = function () {
             } else {
                 links = self._getForRubrika(data);
             }
+            return links;
+        });
+};
+
+Breadcrumps.prototype._loadForNewsItem = function () {
+    var self = this;
+    return this.$context.getStoreData('other/NewsItem')
+        .then(function (data) {
+            var links = [];
+            links.push({
+                title: "Новости",
+                url: "/news"
+            });
+            links.push({
+                title: data.title
+            });
             return links;
         });
 };
@@ -130,97 +279,3 @@ Breadcrumps.prototype._getForRubAndTag = function (data) {
     return links;
 };
 
-Breadcrumps.prototype._loadForNewsItem = function () {
-    var self = this;
-    return this.$context.getStoreData('other/NewsItem')
-        .then(function (data) {
-            var links = [];
-            links.push({
-                title: "Новости",
-                url: "/news"
-            });
-            links.push({
-                title: data.title
-            });
-            return links;
-        });
-};
-
-Breadcrumps.prototype._loadForKonkursItem = function () {
-    var self = this;
-    return this.$context.getStoreData('other/KonkursItem')
-        .then(function (data) {
-            var links = [];
-            links.push({
-                title: "Конкурсы",
-                url: "/konkurs"
-            });
-            links.push({
-                title: data.name
-            });
-            return links;
-        });
-};
-
-Breadcrumps.prototype._loadForArticleItem = function () {
-    var self = this;
-    return this.$context.getStoreData('article/ArticleItem')
-        .then(function (data) {
-            var links = [];
-            links.push({
-                title: "Секреты Мастеров",
-                url: "/article"
-            });
-            links.push({
-                title: data.title
-            });
-            return links;
-        });
-};
-
-Breadcrumps.prototype._loadForCatalog = function (config, type) {
-    var typeCapitalizeFirstLetter = type.charAt(0).toUpperCase() + type.slice(1);
-    var self = this;
-    return this.$context.getStoreData('rubrika/Rubrikator' + typeCapitalizeFirstLetter)
-        .then(function (data) {
-            var links = [];
-            if (data.active) {
-                links.push({
-                    title: config.title,
-                    url: "/" + type
-                });
-                links.push({
-                    title: data.active.name
-                });
-            } else {
-                links.push({
-                    title: config.title
-                });
-            }
-            return links;
-        });
-};
-
-Breadcrumps.prototype._loadForMasterPage = function () {
-    var self = this;
-    var data = {};
-    return this.$context.getStoreData('master/MasterItem')
-        .then(function (res) {
-            data = res;
-            return self.$context.sendAction('rubrika/RubrikaNearby', 'setID', res.rubrikaID)
-        })
-        .then(function () {
-            return self.$context.getStoreData('rubrika/RubrikaNearby');
-        })
-        .then(function (res) {
-            var link = self._getForRubAndTag({rubrika: res});
-            link.push({
-                title: res.name,
-                url: '/' + res.parent.unique + '/' + res.unique
-            });
-            link.push({
-                title: data.name
-            });
-            return link;
-        });
-};

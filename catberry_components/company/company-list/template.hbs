@@ -1,7 +1,12 @@
 <div block="company-rubrika">
     {{#each list}}
         <div elem="item">
-            <cat-block-company id="block-company-{{id}}" cat-store="{{../model}}" index="{{@index}}" id-block="{{id}}"></cat-block-company>
+            <cat-block-company id="block-company-{{id}}" cat-store="{{../model}}" index="{{@index}}"
+                               id-block="{{id}}"></cat-block-company>
+        </div>
+    {{else}}
+        <div elem="item">
+            <p>Нет результатов.</p>
         </div>
     {{/each}}
 </div>

@@ -24,6 +24,7 @@ util.inherits(CompanyListByCompanyRubrika, StoreBase);
 function CompanyListByCompanyRubrika() {
     StoreBase.call(this);
 
+    this.$context.setDependency('rubrika/RubrikaCompany');
     this._pathBase = '/company/byrubrikacompany/';
     this._path = this._pathBase;
     this._options = {

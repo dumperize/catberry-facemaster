@@ -27,6 +27,7 @@ function RubrikaCompany($uhr) {
     this._path = '/rubrika-company';
     this._options = {
         data: {
+            expand: 'parent,nearby',
             filter: '["and", ["=","id",":id"]]'
         }
     };
