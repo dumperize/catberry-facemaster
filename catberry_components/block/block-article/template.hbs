@@ -1,10 +1,10 @@
 <div block="article">
-    <a href="/{{owner.page.number}}/article/{{id}}" elem="link" mix="block:js-open-article">
+    <a href="/{{masterNumber}}/article/{{article.id}}" elem="link" mix="block:js-open-article">
         <div elem="pic">
-            <img elem="img" src="{{imgSrc imgID 210 210}}" alt="{{title}}">
+            <img elem="img" src="{{imgSrc article.imgID 210 210}}" alt="{{title}}">
         </div>
         <div elem="text">
-            <p>{{title}}</p>
+            <p>{{article.title}}</p>
         </div>
         <p elem="author">{{owner.name}}</p>
     </a>

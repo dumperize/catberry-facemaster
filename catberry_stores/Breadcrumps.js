@@ -224,12 +224,3 @@ Breadcrumps.prototype._loadForMasterPage = function () {
             return link;
         });
 };
-/**
- * Handles action named "some-action" from any component.
- * @returns {Promise<Object>|Object|null|undefined} Response to component.
- */
-Breadcrumps.prototype.handleSomeAction = function () {
-    // Here you can call this.$context.changed() if you know
-    // that remote data source has been changed.
-    // Also you can have many handle methods for other actions.
-};

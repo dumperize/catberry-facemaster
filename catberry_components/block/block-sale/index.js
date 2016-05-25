@@ -42,7 +42,7 @@ Sale.prototype.render = function () {
             if (model == 'sale/SaleByRubrika') {
                 var num = self.$context.attributes['num'];
                 var sale = data[num].sale[index];
-                sale.page = sale.owner.page;
+                sale.publication = sale.owner.publication;
 
                 self._salePopUpData.id = 'popup-sale-' + data[num].sale[index].id;
                 self._salePopUpData.imgid = data[num].sale[index].imgID;
@@ -51,7 +51,7 @@ Sale.prototype.render = function () {
                 self._salePopUpData.discount = data[num].sale[index].discount;
 
                 self._salePopUpData.name = sale.owner.name;
-                self._salePopUpData.number = sale.owner.page.number;
+                self._salePopUpData.number = sale.owner.publication.number;
                 self._salePopUpData.imgid2 = sale.owner.imgID;
                 return sale;
             }
@@ -62,9 +62,8 @@ Sale.prototype.render = function () {
             self._salePopUpData.discount = data.list[index].discount;
 
             self._salePopUpData.name = data.list[index].owner.name;
-            self._salePopUpData.number = data.list[index].owner.page.number;
+            self._salePopUpData.number = data.list[index].owner.publication.number;
             self._salePopUpData.imgid2 = data.list[index].owner.imgID;
-            //console.log(data.list[index]);
             return data.list[index];
         });
 };
@@ -102,12 +101,4 @@ Sale.prototype.handlePopUp = function (event) {
             });
         });
     return false;
-};
-/**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
- */
-Sale.prototype.unbind = function () {
-
 };

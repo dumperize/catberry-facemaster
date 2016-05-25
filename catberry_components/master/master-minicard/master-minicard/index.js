@@ -45,15 +45,15 @@ MasterMinicard.prototype.render = function () {
         .then(function (master) {
             if (!master)
                 return;
-            if (master.page && (
-                    (master.page.sales && master.sales[0]) ||
-                    (master.page.albums && master.albums[0]) ||
-                    (master.page.videos && master.videos[0]) ||
-                    (master.page.comments && master.comments[0])
-                )) {
-                master.isWidget = true;
-            }
-            if (master.page && master.page.albums && master.albums) {
+
+            master.isWidget = (master.publication && (
+                (master.publication.sales && master.sales[0]) ||
+                (master.publication.albums && master.albums[0]) ||
+                (master.publication.videos && master.videos[0]) ||
+                (master.publication.comments && master.comments[0])
+            ));
+
+            if (master.publication && master.publication.albums && master.albums) {
                 master.albumsCount = master.albums.length;
                 master.albumsTitle = [];
                 master.albums.forEach(function (el) {
@@ -61,7 +61,7 @@ MasterMinicard.prototype.render = function () {
                 });
                 master.albumsTitle = master.albumsTitle.join(', ');
             }
-            if (master.page && master.page.comments && master.comments) {
+            if (master.publication && master.publication.comments && master.comments) {
                 master.commentsCount = master.comments.length;
             }
             if (master.service) {

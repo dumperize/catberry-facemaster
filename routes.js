@@ -33,7 +33,7 @@ module.exports = [
 		map: function (urlPath) {
 			var matches = urlPath.path.match(/^\/([\/\d]+)$/i);
 			return {
-				'master/MasterPage': {
+				'master/MasterPublication': {
 					item: matches[1]
 				},
 				Pages: {
@@ -52,7 +52,7 @@ module.exports = [
 				Pages: {
 					page: "master-print-card"
 				},
-				'master/MasterPage': {
+				'master/MasterPublication': {
 					item: matches[1]
 				}
 			}

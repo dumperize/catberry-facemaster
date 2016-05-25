@@ -50,8 +50,8 @@ MasterNextPrev.prototype.load = function () {
             return Promise.all([promise1, promise2])
                 .then(function (data) {
                     return {
-                        prev: data[1].content[0] && data[1].content[0].page ? data[1].content[0] : null,
-                        next: data[0].content[0] && data[0].content[0].page ? data[0].content[0] : null
+                        prev: data[1].content[0] && data[1].content[0].publication.number ? data[1].content[0] : null,
+                        next: data[0].content[0] && data[0].content[0].publication.number ? data[0].content[0] : null
                     }
                 })
         });

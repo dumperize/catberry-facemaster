@@ -2,7 +2,12 @@
 
     {{#each articles}}
         <div elem="item-cont">
-            <cat-block-article id="block-article-{{id}}" cat-store="{{../model}}" id-block="{{id}}" index="{{@index}}"></cat-block-article>
+            <cat-block-article id="block-article-{{id}}"
+                               cat-store="{{../model}}"
+                               id-block="{{id}}"
+                               index="{{@index}}"
+                               master-number="{{../masterNumber}}"
+                               master-name="{{../masterName}}"></cat-block-article>
         </div>
     {{/each}}
 

@@ -23,7 +23,7 @@ util.inherits(MasterItemSmall, StoreBase);
  */
 function MasterItemSmall($uhr) {
     StoreBase.call(this);
-    this.$context.setDependency('master/MasterPage');
+    this.$context.setDependency('master/MasterPublication');
 
     this._path = '/master';
     this._options = {
@@ -40,9 +40,10 @@ function MasterItemSmall($uhr) {
  */
 MasterItemSmall.prototype.load = function () {
     var self = this;
-    return this.$context.getStoreData('master/MasterPage')
-        .then(function (page) {
-            self._optionsData.data.filter[':id'] = page.masterID;
+    return this.$context.getStoreData('master/MasterPublication')
+        .then(function (publication) {
+
+            self._optionsData.data.filter[':id'] = publication.masterID;
 
             return self._load()
                 .then(function (result) {
@@ -51,7 +52,7 @@ MasterItemSmall.prototype.load = function () {
 
                     var data = result.content[0];
                     data.services = JSON.parse(data.services);
-                    data.page = page;
+                    data.publication = publication;
                     return data;
                 });
         });

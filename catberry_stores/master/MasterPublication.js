@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = MasterPage;
+module.exports = MasterPublication;
 
 var dateFormat = require('../../lib/util/DateFormat');
 var util = require('util'),
@@ -9,7 +9,7 @@ var util = require('util'),
 /**
  * наследуемся от базового стора
  */
-util.inherits(MasterPage, StoreBase);
+util.inherits(MasterPublication, StoreBase);
 
 /*
  * This is a Catberry Store file.
@@ -22,13 +22,13 @@ util.inherits(MasterPage, StoreBase);
  * @param {UHR} $uhr Universal HTTP request.
  * @constructor
  */
-function MasterPage($uhr) {
+function MasterPublication($uhr) {
     StoreBase.call(this);
 
-    this._path = '/master-page';
+    this._path = '/master-publication';
     this._options = {
         data: {
-            filter: '["and", ["=","number", ":number"],["<=", "dateStart", ":dateStart"],[">=", "dateEnd", ":dateEnd"]]'
+            filter: '["and",["=","page","1"], ["=","number", ":number"],["<=", "dateStart", ":dateStart"],[">=", "dateEnd", ":dateEnd"]]'
         }
     };
 }
@@ -37,7 +37,7 @@ function MasterPage($uhr) {
  * Loads data from remote source.
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
-MasterPage.prototype.load = function () {
+MasterPublication.prototype.load = function () {
     var self = this;
     var id = this.$context.state.item;
     if (!id)
@@ -53,7 +53,6 @@ MasterPage.prototype.load = function () {
         .then(function (result) {
             if (result.content.length == 0)
                 self.$context.notFound();
-
             return result.content[0];
         })
 };

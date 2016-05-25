@@ -23,7 +23,7 @@ util.inherits(MasterItem, StoreBase);
  */
 function MasterItem($uhr) {
     StoreBase.call(this);
-    this.$context.setDependency('master/MasterPage');
+    this.$context.setDependency('master/MasterPublication');
 
     this._path = '/master';
     this._options = {
@@ -40,12 +40,12 @@ function MasterItem($uhr) {
  */
 MasterItem.prototype.load = function () {
     var self = this;
-    var masterPage, data;
+    var masterPublication, data;
 
-    return this.$context.getStoreData('master/MasterPage')
-        .then(function (page) {
-            masterPage = page;
-            self._optionsData.data.filter[':id'] = page.masterID;
+    return this.$context.getStoreData('master/MasterPublication')
+        .then(function (publication) {
+            masterPublication = publication;
+            self._optionsData.data.filter[':id'] = publication.masterID;
             return self._load()
         })
         .then(function (result) {
@@ -63,7 +63,7 @@ MasterItem.prototype.load = function () {
 
 
             data.services = JSON.parse(data.services);
-            data.page = masterPage;
+            data.publication = masterPublication;
             data.isBlock = self._geerateIsBlock(data);
 
             var promiseAlbom = self._getPhotoAlboms(data);
@@ -105,10 +105,10 @@ MasterItem.prototype._getPhotoAlboms = function (data) {
 };
 
 MasterItem.prototype._geerateIsBlock = function (data) {
-    var masterPage = data.page;
+    var masterPublication = data.publication;
     return {
         service: {
-            access: masterPage.services,
+            access: masterPublication.services,
             name: "Услуги",
             active: true
         },
@@ -118,7 +118,7 @@ MasterItem.prototype._geerateIsBlock = function (data) {
             active: true
         },
         sale: {
-            access: masterPage.sales,
+            access: masterPublication.sales,
             name: "Скидки и подарки",
             active: (data.sales.length > 0)
         },
@@ -128,27 +128,27 @@ MasterItem.prototype._geerateIsBlock = function (data) {
             active: data.aboutEduc || data.aboutExp || data.aboutAddInfo
         },
         article: {
-            access: masterPage.articles,
+            access: masterPublication.articles,
             name: "Полезно почитать",
             active: (data.articles.length > 0)
         },
         photo: {
-            access: masterPage.albums,
+            access: masterPublication.albums,
             name: "Фото",
             active: (data.albums.length > 0)
         },
         video: {
-            access: masterPage.videos,
+            access: masterPublication.videos,
             name: "Видео",
             active: (data.videos.length > 0)
         },
         link: {
-            access: masterPage.links,
+            access: masterPublication.links,
             name: "Ссылки",
             active: (data.contacts.links)
         },
         review: {
-            access: masterPage.comments,
+            access: masterPublication.comments,
             name: "Отзывы и рекомендации",
             active: true
         }

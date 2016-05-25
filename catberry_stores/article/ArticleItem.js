@@ -47,7 +47,7 @@ ArticleItem.prototype.load = function () {
     this._optionsData.data.filter[':id'] = id;
     return this._load()
         .then(function (result) {
-            if ((result.content.length == 0) || (result.content[0].owner.page.number != masterID))
+            if ((result.content.length == 0) || (result.content[0].owner.publication.number != masterID))
                 self.$context.notFound();
             return result.content[0];
         });

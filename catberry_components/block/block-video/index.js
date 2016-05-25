@@ -27,35 +27,36 @@ Video.prototype.render = function () {
     var model = this.$context.attributes['cat-store'];
     var id = this.$context.attributes['id-block'];
     var index = this.$context.attributes['index'];
+
     var self = this;
     return this.$context.getStoreData()
         .then(function (data) {
             var video;
             if (model == 'master/MasterItem') {
                 video = data.videos[index];
-                video.number = data.page.number;
+                video.number = self.$context.attributes['master-number'];
                 video.name = data.name;
                 video.imgid = data.imgID;
             } else if (model == 'master/MasterList' || model == 'search/Search') {
                 var masterIndex = self.$context.attributes['master-index'];
                 video = data.list[masterIndex].activeVideos[0];
-                video.number = data.list[masterIndex].page.number;
+                video.number = data.list[masterIndex].publication.number;
                 video.name = data.list[masterIndex].name;
                 video.imgid = data.list[masterIndex].imgID;
             } else if (model == 'company/CompanyItem') {
                 var masterIndex = self.$context.attributes['master-index'];
                 video = data.masters[masterIndex].activeVideos[0];
-                video.number = data.masters[masterIndex].page.number;
+                video.number = data.masters[masterIndex].publication.number;
                 video.name = data.masters[masterIndex].name;
                 video.imgid = data.masters[masterIndex].imgID;
             } else if (model == 'video/VideoByRubrika') {
                 video = data.data[index];
-                video.number = video.owner.page.number;
+                video.number = video.owner.publication.number;
                 video.name = video.owner.name;
                 video.imgid = video.owner.imgID;
             } else {
                 video = data.list[index];
-                video.number = video.owner.page.number;
+                video.number = video.owner.publication.number;
                 video.name = video.owner.name;
                 video.imgid = video.owner.imgID;
             }

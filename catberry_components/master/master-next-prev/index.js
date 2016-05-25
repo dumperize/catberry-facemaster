@@ -35,21 +35,3 @@ MasterNextPrev.prototype.render = function () {
             return data;
         });
 };
-
-/**
- * Returns event binding settings for the component.
- * This method is optional.
- * @returns {Promise<Object>|Object|null|undefined} Binding settings.
- */
-MasterNextPrev.prototype.bind = function () {
-
-};
-
-/**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
- */
-MasterNextPrev.prototype.unbind = function () {
-
-};

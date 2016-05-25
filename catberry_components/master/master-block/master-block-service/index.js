@@ -28,8 +28,8 @@ MasterBlockService.prototype.render = function () {
 
     return this.$context.getStoreData()
         .then(function (data) {
-            if (data.services.length > data.page.services) {
-                data.services.length = data.page.services; //укорачиваем массив услуг до значения page.services
+            if (data.services.length > data.publication.services) {
+                data.services.length = data.publication.services; //укорачиваем массив услуг до значения page.services
             }
             //console.log(data.services);
             var fieldsValSum = 0;
@@ -69,23 +69,5 @@ MasterBlockService.prototype.render = function () {
                 services: data.services
             }
         });
-
-};
-
-/**
- * Returns event binding settings for the component.
- * This method is optional.
- * @returns {Promise<Object>|Object|null|undefined} Binding settings.
- */
-MasterBlockService.prototype.bind = function () {
-
-};
-
-/**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
- */
-MasterBlockService.prototype.unbind = function () {
 
 };

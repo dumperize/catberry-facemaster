@@ -1,6 +1,6 @@
 <div block="next-prev-master" style="{{#unless next}}margin-right: -8px;{{/unless}}">
     {{#if prev}}
-        <a elem="prev" href="/{{prev.page.number}}">
+        <a elem="prev" href="/{{prev.publication.number}}">
             <!-- Важно! Прослойка между <a> и <svg>. -->
             {{icon "arrLeft"}}
             <span>{{{prev.name}}}</span>
@@ -8,7 +8,7 @@
         </a>
     {{/if}}
     {{#if next}}
-        <a elem="next" href="/{{next.page.number}}">
+        <a elem="next" href="/{{next.publication.number}}">
             <img src="{{imgSrc next.imgID 50 50}}" alt="">
             <span>{{{next.name}}}</span>{{icon "arrRight"}}
         </a>

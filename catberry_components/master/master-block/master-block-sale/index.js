@@ -26,28 +26,9 @@ MasterBlockSale.prototype.render = function () {
     var self = this;
     return this.$context.getStoreData()
         .then(function (data) {
-            //console.log(data);
             return {
                 model: self.$context.attributes['cat-store'],
                 sales: data.sales
             }
         });
-};
-
-/**
- * Returns event binding settings for the component.
- * This method is optional.
- * @returns {Promise<Object>|Object|null|undefined} Binding settings.
- */
-MasterBlockSale.prototype.bind = function () {
-
-};
-
-/**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
- */
-MasterBlockSale.prototype.unbind = function () {
-    $('.sale a').unbind('click');
 };

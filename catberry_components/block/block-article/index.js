@@ -23,36 +23,24 @@ function Article() {
  * for template engine.
  */
 Article.prototype.render = function () {
-    var model = this.$context.attributes['cat-store'];
-    var id = this.$context.attributes['id-block'];
-    var index = this.$context.attributes['index'];
+    var attr = this.$context.attributes;
 
-    if (model == 'master/MasterItem') {
+    if (attr['cat-store'] == 'master/MasterItem') {
         return this.$context.getStoreData()
             .then(function (data) {
-                return data.articles[index];
+                return {
+                    article: data.articles[attr.index],
+                    masterNumber: attr['master-number'],
+                    masterName: attr['master-name']
+                };
             });
     }
     return this.$context.getStoreData()
         .then(function (data) {
-            return data.list[index];
+            return {
+                article: data.list[attr.index],
+                masterNumber: attr['master-number'],
+                masterName: attr['master-name']
+            }
         });
-};
-
-/**
- * Returns event binding settings for the component.
- * This method is optional.
- * @returns {Promise<Object>|Object|null|undefined} Binding settings.
- */
-Article.prototype.bind = function () {
-
-};
-
-/**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
- */
-Article.prototype.unbind = function () {
-
 };

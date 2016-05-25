@@ -28,24 +28,8 @@ MasterBlockVideo.prototype.render = function () {
         .then(function (data) {
             return {
                 model: self.$context.attributes['cat-store'],
-                videos: data.videos
+                videos: data.videos,
+                masterNumber: data.publication.number
             }
         });
-};
-
-/**
- * Returns event binding settings for the component.
- * This method is optional.
- * @returns {Promise<Object>|Object|null|undefined} Binding settings.
- */
-MasterBlockVideo.prototype.bind = function () {
-
-};
-
-/**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
- */
-MasterBlockVideo.prototype.unbind = function () {
 };

@@ -1,8 +1,8 @@
-<div block="master-minicard" class="{{#unless page.id}}master-minicard_free {{#unless services}}master-minicard_free-new{{/unless}}{{/unless}}">
+<div block="master-minicard" class="{{#unless publication.id}}master-minicard_free {{#unless services}}master-minicard_free-new{{/unless}}{{/unless}}">
 
     <div elem="photo-cont">
         <img elem="photo" src="{{imgSrc imgID 200 200}}" alt="{{name}}">
-        {{#if page}}
+        {{#if publication}}
             <i elem="like">{{icon "like"}} {{vkLikes.countLikes}}</i>
         {{/if}}
     </div>
@@ -11,11 +11,11 @@
         <cat-master-phone-btn
                 id="master-phone-btn-{{id}}"
                 phone="{{contacts.phone}}"
-                page="{{page.number}}"
+                page="{{publication.number}}"
                 owner="{{id}}"></cat-master-phone-btn>
 
-        {{#if page.number}}
-            <a elem="to-page" href="/{{page.number}}">На страницу мастера<i>{{icon "strelka"}}</i></a>
+        {{#if publication.number}}
+            <a elem="to-page" href="/{{publication.number}}">На страницу мастера<i>{{icon "strelka"}}</i></a>
         {{/if}}
         <a elem="show-services" href="#" mix="block:js-services-toggle">Показать услуги</a>
     </div>
@@ -39,9 +39,9 @@
             {{/each}}
         </ul>
     {{/if}}
-    {{#if page}}
+    {{#if publication}}
         <ul block="master-content-widget">
-            <li elem="gift" class="{{#if page.sales}}{{#if sales.0.title}}act{{/if}}{{/if}}">
+            <li elem="gift" class="{{#if publication.sales}}{{#if sales.0.title}}act{{/if}}{{/if}}">
                 <i>{{icon "gift"}}</i>
 
                 <div>
@@ -60,7 +60,7 @@
                     <p elem="text">{{sales.0.title}}</p>
                 </div>
             </li>
-            <li elem="photo" class="{{#if page.albums}}{{#if albums.0.name}}act{{/if}}{{/if}}">
+            <li elem="photo" class="{{#if publication.albums}}{{#if albums.0.name}}act{{/if}}{{/if}}">
                 <i>{{icon "picture"}}</i>
 
                 <div>
@@ -74,9 +74,9 @@
                     <p elem="text">{{albumsTitle}}</p>
                 </div>
             </li>
-            <li elem="video" class="{{#if page.videos}}{{#if videos.0.title}}act{{/if}}{{/if}}">
+            <li elem="video" class="{{#if publication.videos}}{{#if videos.0.title}}act{{/if}}{{/if}}">
                 <i>{{icon "video"}}</i>
-                {{#if page.videos}}
+                {{#if publication.videos}}
                     {{#if videos.0.title}}
                         <div>
                             <div elem="info" mod="cont">
@@ -91,7 +91,7 @@
                     {{/if}}
                 {{/if}}
             </li>
-            <li elem="comment" class="{{#if page.comments}}{{#if comments.0.text}}act{{/if}}{{/if}}">
+            <li elem="comment" class="{{#if publication.comments}}{{#if comments.0.text}}act{{/if}}{{/if}}">
                 <i>{{icon "dialog"}}</i>
 
                 <div>
