@@ -22,7 +22,9 @@
             {{#each list}}
                 <div elem="item">
                     <cat-block-article id="block-article-{{id}}" cat-store="{{../model}}"
-                                       id-block="{{id}}" index="{{@index}}"></cat-block-article>
+                                       id-block="{{id}}" index="{{@index}}"
+                                       master-number="{{owner.publication.number}}"
+                                       master-name="{{owner.name}}"></cat-block-article>
                 </div>
             {{/each}}
         {{/is}}
