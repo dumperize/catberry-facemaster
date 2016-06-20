@@ -1,10 +1,10 @@
 .feedback-page {
-    @extend .col-xs-12;
+
 }
 .feedback-block {
     @extend .bg_grey;
-    @extend .col-lg-6;
-    @extend .col-md-8;
+    @extend .col-lg-4;
+    @extend .col-md-6;
     padding: 15px;
     &__success-msg{
         padding-bottom: 10px;
@@ -12,6 +12,8 @@
         font-size: 1.8rem;
     }
     &__form {
+        //max-width: 320px;
+        @include cf;
         label {
             display: block;
             margin-bottom: 10px;
@@ -26,16 +28,18 @@
         input {
             border: none;
             padding: 3px 6px;
-            width: 290px;
+            width: 100%;
+
         }
         input[type=submit] {
-            margin-left: 160px;
+            //margin-left: 160px;
             display: inline-block;
             width: auto;
             padding: 0 24px;
+            float: right;
         }
         textarea {
-            width: 290px;
+            width: 100%;
             border: none;
             padding: 3px 6px;
             resize: vertical;

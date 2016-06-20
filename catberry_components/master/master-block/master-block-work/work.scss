@@ -27,7 +27,12 @@
       }
     }
   }
+  &__day_today, &__hour_today {
+    background-color: lighten($color-orange, 20%) !important;
+    color: #333;
+  }
   &__day_today {
+    border-bottom: 1px solid lighten($color-orange, 10%) !important;
     &:after {
       content: '';
       position: absolute;

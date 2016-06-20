@@ -23,7 +23,16 @@ function PageMasterPage() {
  * for template engine.
  */
 PageMasterPage.prototype.render = function () {
-    return this.$context.getStoreData();
+    return this.$context.getStoreData()
+        .then(function (data) {
+            if (!data.contacts.addrCoord || data.contacts.addrCoord == '') {
+                if (!data.contacts.addr || data.contacts.addr == '') {
+                    data.contacts.addr = 'Тольятти';
+                }
+                data.contacts.addrCoord = encodeURIComponent(data.contacts.addr);
+            }
+            return data;
+        });
 };
 
 PageMasterPage.prototype._menuOffset = null;
@@ -60,7 +69,8 @@ PageMasterPage.prototype.bind = function () {
         click: {
             '.js-show-callback-popup': this.showCallbackPopup,
             '.contacts-mp__show-contact': this.showContacts,
-            '.menu-mp a': this.function.scrollToSection
+            '.menu-mp a': this.function.scrollToSection,
+            '.js-show-map': this._showMap
         }
     }
 };
@@ -74,6 +84,25 @@ PageMasterPage.prototype.unbind = function () {
     $(window).unbind('scroll');
     $(window).unbind('resize');
     this.$context.collectGarbage();
+};
+
+PageMasterPage.prototype._showMap = function (e) {
+    e.preventDefault();
+
+    var coord = e.currentTarget.getAttribute('data-coord');
+    var iframe = '<div class="map-cont"><iframe frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=' + coord + '&key=AIzaSyC14driclnh9TFQ9_1NJOk_rOxtgiptvnw" allowfullscreen></iframe></div>'
+
+    $.fancybox(iframe, {
+        margin: 40,
+        padding: 0,
+        type: 'inline',
+        width: '80%',
+        height: '80%',
+        maxWidth: '800px',
+        minWidth: '250px',
+        autoHeight: true,
+        autoSize: false
+    });
 };
 
 /**

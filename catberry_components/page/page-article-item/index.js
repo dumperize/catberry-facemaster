@@ -28,6 +28,7 @@ PageArticleItem.prototype.render = function () {
 
     return this.$context.getStoreData()
         .then(function (data) {
+            //console.log(data);
             if (data)
                 data.text = self.tp.execute(data.text);
             return data;

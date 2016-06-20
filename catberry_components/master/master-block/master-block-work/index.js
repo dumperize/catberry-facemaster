@@ -25,25 +25,36 @@ function MasterBlockWork() {
 MasterBlockWork.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
-            var tempArr = new Array(7);
-            data.schedule.forEach(function (item) {
-                item.open = item.open.substr(0, 5);
-                item.close = item.close.substr(0, 5);
-                tempArr[item.day - 1] = item;
-            });
-            data.schedule = tempArr;
-            if (data.workCondition && data.workCondition.data != '') {
-                if (data.workCondition.data.comming) {
-                    data.workCondition.data.comming = data.workCondition.data.comming.split(',');
+            // проверяем редактировали ли мы данные
+            if (!data.isEdit) {
+                var tempArr = ['', '', '', '', '', '', ''];
+                if (data.schedule) {
+                    data.schedule.forEach(function (item) {
+                        if (item) {
+                            item.open = item.open.substr(0, 5);
+                            item.close = item.close.substr(0, 5);
+                        }
+                        tempArr[item.day - 1] = item;
+                    });
+                    data.schedule = tempArr;
+                    //console.log(data.schedule);
                 }
-                if (data.workCondition.data.payment || data.workCondition.data.coop) {
-                    data.workCondition.isActive = true;
-                } else {
-                    data.workCondition.isActive = false;
+                if (data.workCondition && data.workCondition.data && data.workCondition.data.length != 0) {
+                    if (data.workCondition.data.comming) {
+                        data.workCondition.data.comming = data.workCondition.data.comming.split(',');
+                    }
                 }
+                data.workCondition.isActive = (data.workCondition.data.payment || data.workCondition.data.coop);
+                data.isEdit = true;
             }
+            var days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+            var dayOfWeek = new Date().getDay();
+            dayOfWeek == 0 ? dayOfWeek = 6 : dayOfWeek = dayOfWeek - 1;
+
             //console.log(data.workCondition);
             return {
+                days: days,
+                dayOfWeek: dayOfWeek,
                 schedule: data.schedule,
                 districts: data.districts,
                 workCondition: data.workCondition ? data.workCondition.data : ''

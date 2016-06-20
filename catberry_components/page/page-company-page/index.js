@@ -13,7 +13,7 @@ module.exports = PageCompanyPage;
  * @constructor
  */
 function PageCompanyPage($serviceLocator) {
-// we can use window from the locator in a browser only
+    // we can use window from the locator in a browser only
     if (this.$context.isBrowser) {
         this._window = $serviceLocator.resolve('window');
     }
@@ -29,6 +29,12 @@ PageCompanyPage.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function(data) {
             //console.log(data);
+            if (!data.contacts.addrCoord || data.contacts.addrCoord == '') {
+                if (!data.contacts.addr || data.contacts.addr == '') {
+                    data.contacts.addr = 'Тольятти';
+                }
+                data.contacts.addrCoord = encodeURIComponent(data.contacts.addr);
+            }
             return data;
         });
 };

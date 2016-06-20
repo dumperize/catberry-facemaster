@@ -3,19 +3,19 @@
     <table elem="timetable">
         <thead>
         <tr>
-            <td elem="day">Пн</td>
-            <td elem="day">Вт</td>
-            <td elem="day">Ср</td>
-            <td elem="day" mod="today">Чт</td>
-            <td elem="day">Пт</td>
-            <td elem="day">Сб</td>
-            <td elem="day">Вс</td>
+            {{#each days}}
+                <td elem="day" class="{{#is ../dayOfWeek '==' @index}}time-and-work-mp__day_today{{/is}}">
+                    {{this}}
+                </td>
+            {{/each}}
         </tr>
         </thead>
         <tbody>
         <tr>
             {{#each schedule}}
-                <td>{{open}}<br>{{close}}</td>
+                <td elem="hour" class="{{#is ../dayOfWeek '==' @index}}time-and-work-mp__hour_today{{/is}}">
+                    {{open}}<br>{{close}}
+                </td>
             {{/each}}
         </tr>
         </tbody>

@@ -28,7 +28,9 @@ PageMasterRubrika.prototype.render = function () {
             if (data.rubrika.activeBanners) {
                 data.rubrika.activeBanners.forEach(function (item) {
                     if (item.type == 2) {
-                        item.imgID = item.imgID[0];
+                        if (typeof item.imgID != 'string') {
+                            item.imgID = item.imgID[0];
+                        }
                     }
                     if (item.type == 1) {
                         data.topBanner = item;

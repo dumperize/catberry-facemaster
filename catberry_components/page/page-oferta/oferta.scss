@@ -1,3 +1,6 @@
 .oferta-page {
-    @extend .col-xs-12;
+    //@extend .col-xs-12;
+    p {
+        line-height: 1.5;
+    }
 }
