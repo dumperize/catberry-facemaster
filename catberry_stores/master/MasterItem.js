@@ -64,9 +64,9 @@ MasterItem.prototype.load = function () {
 
             data.services = JSON.parse(data.services);
             data.publication = masterPublication;
-            data.isBlock = self._geerateIsBlock(data);
+            data.isBlock = self._generateIsBlock(data);
 
-            var promiseAlbom = self._getPhotoAlboms(data);
+            var promiseAlbom = self._getPhotoAlbums(data);
             var promiseCompanyContact = self._getCompanyContacts(data);
             return Promise.all([promiseAlbom, promiseCompanyContact])
         })
@@ -90,7 +90,7 @@ MasterItem.prototype._getCompanyContacts = function (data) {
         });
 };
 
-MasterItem.prototype._getPhotoAlboms = function (data) {
+MasterItem.prototype._getPhotoAlbums = function (data) {
     var self = this;
     //соберем id альбомов
     var listID = [];
@@ -104,7 +104,7 @@ MasterItem.prototype._getPhotoAlboms = function (data) {
         })
 };
 
-MasterItem.prototype._geerateIsBlock = function (data) {
+MasterItem.prototype._generateIsBlock = function (data) {
     var masterPublication = data.publication;
     return {
         service: {

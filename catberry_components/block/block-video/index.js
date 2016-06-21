@@ -45,10 +45,17 @@ Video.prototype.render = function () {
                 video.imgid = data.list[masterIndex].imgID;
             } else if (model == 'company/CompanyItem') {
                 var masterIndex = self.$context.attributes['master-index'];
-                video = data.masters[masterIndex].activeVideos[0];
-                video.number = data.masters[masterIndex].publication.number;
-                video.name = data.masters[masterIndex].name;
-                video.imgid = data.masters[masterIndex].imgID;
+                if (data.masters[masterIndex] && data.masters[masterIndex].activeVideos[0]) {
+                    video = data.masters[masterIndex].activeVideos[0];
+                    video.number = data.masters[masterIndex].publication.number;
+                    video.name = data.masters[masterIndex].name;
+                    video.imgid = data.masters[masterIndex].imgID;
+                } else {
+                    video = data.videos[index];
+                    video.number = 'company/' + data.number;
+                    video.name = data.name;
+                    video.imgid = data.imgID;
+                }
             } else if (model == 'video/VideoByRubrika') {
                 video = data.data[index];
                 video.number = video.owner.publication.number;

@@ -26,10 +26,11 @@ MasterBlockVideo.prototype.render = function () {
     var self = this;
     return this.$context.getStoreData()
         .then(function (data) {
+            //console.log(data);
             return {
                 model: self.$context.attributes['cat-store'],
                 videos: data.videos,
-                masterNumber: data.publication.number
+                masterNumber: data.number || data.publication.number
             }
         });
 };

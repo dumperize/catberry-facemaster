@@ -25,9 +25,10 @@ function MasterBlockPhoto() {
 MasterBlockPhoto.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
+            //console.log(data);
             data.albums.forEach (function (item) {
-                if (item.photos.length > 10) {
-                    item.photos.length = 10; //укорачиваем массив до 10 элементов (больше запрещено)
+                if (item.photos.length > 9) {
+                    item.photos.length = 9; //укорачиваем массив до 10 элементов (больше запрещено)
                 }
             });
             //console.log(data.albums);
@@ -41,39 +42,59 @@ MasterBlockPhoto.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterBlockPhoto.prototype.bind = function () {
-    var album = $('.photo-md__album-cover');
-    var albumCont = $('.photo-md__album-cont');
-    var albumPhotos = $('.photo-md__img-prev');
-    album.bind('click', showAlbum);
-    albumPhotos.bind('click', showAlbumImg);
-    album.first().addClass('act');
+    $('.photo-md__album-cover').first().addClass('act');
 
-    function showAlbum() {
-        albumCont.hide();
-        album.removeClass('act');
-        $(this).addClass('act');
-        $('#cont-' + ($(this).attr('id'))).show();
-        return false;
+    return {
+        click: {
+            '.js-select-album': this._handleShowAlbum,
+            '.photo-md__img-prev': this._handleShowAlbumImg
+        }
     }
+};
 
-    function showAlbumImg() {
-        $.fancybox(albumPhotos, {
-            type: 'image',
-            index: albumPhotos.index(this),
-            prevEffect: 'none',
-            nextEffect: 'none',
-            helpers: {
-                title: {
-                    type: 'outside'
-                },
-                thumbs: {
-                    width: 80,
-                    height: 80
-                }
+MasterBlockPhoto.prototype._handleShowAlbum = function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var obj = event.target;
+    if (!$(obj).hasClass('photo-md__album-cover')) {
+        obj = $(obj).closest('.photo-md__album-cover');
+    }
+    var album = this.$context.element.querySelectorAll('.photo-md__album-cover');
+    var albumCont = this.$context.element.querySelectorAll('.photo-md__album-cont');
+
+    $(albumCont).hide();
+    $(album).removeClass('act');
+    $(obj).addClass('act');
+    $('#cont-' + ($(obj).attr('id'))).show();
+};
+
+MasterBlockPhoto.prototype._handleShowAlbumImg = function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var obj = event.target;
+    if (!$(obj).hasClass('photo-md__img-prev')) {
+        obj = $(obj).closest('.photo-md__img-prev');
+    }
+    var albumPhotos = this.$context.element.querySelectorAll('.photo-md__img-prev');
+
+    $.fancybox($(albumPhotos), {
+        type: 'image',
+        index: $(albumPhotos).index(obj),
+        padding: 10,
+        prevEffect: 'none',
+        nextEffect: 'none',
+        helpers: {
+            title: {
+                type: 'inside'
+            },
+            thumbs: {
+                width: 80,
+                height: 80
             }
-        });
-        return false;
-    }
+        }
+    });
 };
 
 /**

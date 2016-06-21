@@ -21,8 +21,11 @@ util.inherits(CompanyItem, StoreBase);
  * @param {UHR} $uhr Universal HTTP request.
  * @constructor
  */
-function CompanyItem($uhr) {
+function CompanyItem(locator) {
     StoreBase.call(this);
+    this._uhr = locator.resolve('uhr');
+    this._config = this.$context.locator.resolve('config');
+    this._api = this._api || this._config.api;
 
     this._path = '/company';
     this._options = {
@@ -41,6 +44,7 @@ CompanyItem.prototype.load = function () {
     var self = this;
     var id = this.$context.state.id;
     var company = [];
+    var promises = [];
     if (!id)
         return;
 
@@ -60,10 +64,16 @@ CompanyItem.prototype.load = function () {
             return self.$context.sendAction("master/MasterListForCompany", "setListID", listID);
         })
         .then(function (r) {
-            return self.$context.getStoreData('master/MasterListForCompany');
+            promises[0] = self.$context.getStoreData('master/MasterListForCompany');
+            // Если есть альбом, подтаскиваем фотографии отдельным запросом
+            if (company.albums[0].id) {
+                promises[1] = self._uhr.get(self._api + '/album/' + company.albums[0].id, {data: {expand: 'photos'}});
+            }
+            return Promise.all(promises);
         })
-        .then(function(masters){
-            company.masters = masters;
+        .then(function (resultArr) {
+            company.albums = [resultArr[1].content];
+            company.masters = resultArr[0];
             company.isBlock = {
                 master: {
                     access: true,

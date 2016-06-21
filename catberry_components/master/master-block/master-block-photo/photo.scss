@@ -1,82 +1,84 @@
+.mde-album-cover {
+  padding: 6px;
+  background-color: $color-bg-grey-light;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  vertical-align: top;
+  display: block;
+  position: relative;
+  &:hover {
+    background-color: $color-orange + #111111;
+    cursor: pointer;
+    > a {
+      color: #333;
+    }
+  }
+  img {
+    width: 100%;
+    vertical-align: middle;
+  }
+  a span {
+    display: inline-block;
+    max-height: 30px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  &__icon {
+    display: inline-block;
+    position: relative;
+    background-color: #FFF;
+    min-height: 191px;
+    line-height: 191px;
+    width: 100%;
+    svg {
+      vertical-align: middle;
+      width: 64px;
+      height: 64px;
+    }
+  }
+}
+
 .photo-md {
+  //padding-bottom: 20px;
   @include at(xs) {
     text-align: center;
   }
+  &__item-cont {
+    @extend .col-sm-4, .col-xs-6;
+    padding: 0 7px 14px 7px;
+    //padding-bottom: 16px;
+  }
+  &__row {
+    @extend .row;
+    margin: 0 -7px;
+  }
+  &__cf {
+    @include cf;
+  }
   &__album-cover, &__img-prev {
-    display: inline-block;
-    padding: 5px;
-    background-color: $color-bg-grey-light;
-    //width: 156px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1.2rem;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    vertical-align: top;
-    position: relative;
-    @include between(sm, md) {
-      &:nth-child(3n) {
-        margin-right: 0;
-      }
-    }
-    &:hover {
-      background-color: $color-orange + #111111;
-      cursor: pointer;
-      > a {
-        color: #333;
-      }
-    }
-    img {
-      @include img-max-size(160px, 160px);
-      vertical-align: middle;
-      @include to(lg) {
-        @include img-max-size(140px, 140px);
-      }
-      @include at(xs) {
-        @include img-max-size(200px, 200px);
-      }
-    }
-    > a span {
-      display: inline-block;
-      max-height: 30px;
-      overflow: hidden;
-      margin-top: 8px;
-      max-width: 160px;
-    }
+    @extend .mde-album-cover;
+  }
+  &__album-cover {
+    //padding: 7px;
   }
   &__img-prev {
-    //width: 148px;
-    border: 1px solid $color-bg-grey-medium;
-    img {
-      @include img-max-size(146px, 146px);
-      vertical-align: middle;
-      @include to(lg) {
-        @include img-max-size(120px, 120px);
-      }
-      @include at(xs) {
-        @include img-max-size(194px, 194px);
-      }
-    }
+    border: 1px solid darken($color-bg-grey-light, 10%);
   }
   &__album-title {
     color: #444;
     font-size: 1.6rem;
     margin-bottom: 12px;
+    padding: 0 10px;
   }
   &__album-cont {
-    padding: 20px;
-    padding-right: 10px;
+    @include cf;
+    padding: 16px 10px 10px 10px;
     background-color: $color-bg-grey-xmedium;
     margin-top: 10px;
     display: none;
     &:first-child {
       display: block;
-    }
-    @include to(lg) {
-      padding: 16px;
-    }
-    @include at(xs) {
-      padding: 12px;
     }
   }
   &__album-cover.act {
@@ -84,5 +86,8 @@
     > a {
       color: #333;
     }
+  }
+  .empty-data {
+    margin-left: 0;
   }
 }

@@ -42,6 +42,8 @@ PageMasterPage.prototype._menuOffset = null;
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 PageMasterPage.prototype.bind = function () {
+    window.scrollTo(0,0);
+
     //функции для jquery работающие с window
     this.function = {
         fixedSectionMenu: this.fixedSectionMenu.bind(this),

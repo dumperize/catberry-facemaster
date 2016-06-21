@@ -1,32 +1,38 @@
 <div block="photo-md">
 
-    <div>
+    <div elem="row">
         {{#each this}}
-            {{#if photos.0.imgID}}
-                <div elem="album-cover" mix="block: js-select-album" id="album-{{id}}">
-                    <a href="/master-data-edit/json3.json">
-                        <img src="{{imgSrc photos.0.imgID 200 200}}" alt="{{name}}"><br>
-                        <span>{{name}}</span>
-                    </a>
-                </div>
-            {{/if}}
-        {{/each}}
-    </div>
-
-    <div>
-        {{#each this}}
-            <div elem="album-cont" id="cont-album-{{id}}">
-                <p elem="album-title">{{name}}</p>
-
-                <div elem="wrapper">
-                    {{#each photos}}
-                        <a href="{{imgSrc imgID}}" elem="img-prev">
-                            <img src="{{imgSrc imgID 200 200}}" alt="{{description}}"><br>
+            {{#is status '==' 1}}
+                <div elem="item-cont">
+                    <div elem="album-cover" mix="block: js-select-album" id="album-{{id}}">
+                        <a href="">
+                            <img src="{{imgSrc photos.0.imgID 222 222}}" alt="{{name}}"><br>
+                            <span>{{name}}</span>
                         </a>
-                    {{/each}}
+                    </div>
                 </div>
-
-            </div>
+            {{/is}}
         {{/each}}
     </div>
+
+    <div elem="cf">
+        {{#each this}}
+            {{#is status '==' 1}}
+                <div elem="album-cont" id="cont-album-{{id}}">
+                    <p elem="album-title">{{name}}</p>
+
+                    <div elem="wrapper">
+                        {{#each photos}}
+                            <div elem="item-cont">
+                                <a href="{{imgSrc imgID}}" title="{{description}}" elem="img-prev">
+                                    <img src="{{imgSrc imgID 209 209}}" alt="{{description}}"><br>
+                                </a>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            {{/is}}
+        {{/each}}
+    </div>
+
 </div><!-- photo-md -->
