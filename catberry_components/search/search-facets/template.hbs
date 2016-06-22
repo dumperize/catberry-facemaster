@@ -1,5 +1,5 @@
 <ul block="search-menu">
     {{#each list}}
-    <li><a href="{{../url}}/{{id}}?query={{../query}}">{{rubrikaName}} {{count}}</a></li>
+        <li><a href="{{../url}}{{#if id}}/{{id}}{{/if}}?query={{../query}}">{{rubrikaName}}</a><span>{{count}}</span></li>
     {{/each}}
 </ul>

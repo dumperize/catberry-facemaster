@@ -64,6 +64,7 @@ MasterMinicard.prototype.render = function () {
             if (master.publication && master.publication.comments && master.comments) {
                 master.commentsCount = master.comments.length;
             }
+            // TODO доделать поисковыую выдачу и hightlight
             if (master.service) {
                 var servicesNormally = [];
                 //если есть поисковая выдача заводим переменную servHightlight

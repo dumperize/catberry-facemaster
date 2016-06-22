@@ -25,6 +25,7 @@ function Tag() {
     StoreBase.call(this);
     this.$context.setDependency('rubrika/Rubrika');
     this._path = '/tag';
+    this._order = 'sort';
     this._options = {
         data: {
             filter: '["and",["=", "unique", ":unique"],["=","status","1"]]',
@@ -109,4 +110,28 @@ Tag.prototype.handleGetSections = function () {
             result.push('master');
             return result;
         });
+};
+
+Tag.prototype._getCurrentSeo = function (data, section) {
+    var result;
+    var seo = data.seo;
+
+    Object.keys(seo)
+        .forEach(function (key) {
+            if (section == seo[key].section)
+                result = seo[key];
+        });
+    if (!result)
+        return {
+            headTitle: data.name,
+            pageTitle: data.name
+        };
+    return result;
+};
+
+Tag.prototype.handleSetOrder = function (order) {
+    console.log(order);
+    if (this._order == order) return;
+    this._order = order;
+    this.$context.sendAction('master/MasterList', 'setOrder', 'name');
 };

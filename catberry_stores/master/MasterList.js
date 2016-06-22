@@ -26,6 +26,7 @@ function MasterList($uhr) {
     this._currentFeed = [];
     this._pathBase = '/master';
     this._path = this._pathBase + '/active';
+    this._order = 'sort';
     this._options = {
         data: {
             filter: '["and",["=", "rubrikaID", ":rubrikaID"]]',
@@ -68,4 +69,11 @@ MasterList.prototype._clearFeed = function (tag) {
         this._currentRubrika = tag.rubrika.id;
         this._currentTag = tag.tag.id;
     }
+};
+
+MasterList.prototype.handleSetOrder = function (order) {
+    console.log(order);
+    if (this._order == order) return;
+    this._order = order;
+    this.$context.changed();
 };

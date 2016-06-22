@@ -199,6 +199,9 @@ MasterFilter.prototype.bind = function () {
     return {
         click: {
             '.js-filter-toggle-btn.active': this._clickSection
+        },
+        change: {
+            '#sort-by-name': this._changeOrder
         }
     }
 };
@@ -213,6 +216,12 @@ MasterFilter.prototype._clickSection = function (obj) {
     el.parent().find('.js-filter-toggle-section').slideToggle();
     el.find('.filter-section__arrow-icon').toggleClass('down');
 };
+
+MasterFilter.prototype._changeOrder = function (e) {
+    console.log('changed');
+    this.$context.sendAction('setOrder', 'name');
+};
+
 
 /**
  * Does cleaning for everything that have NOT been set by .bind() method.

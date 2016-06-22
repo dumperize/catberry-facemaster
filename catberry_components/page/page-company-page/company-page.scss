@@ -3,6 +3,21 @@
   &__master-item {
     padding-bottom: 20px;
   }
+  &__content {
+    @include to(lg) {
+      margin-left: 0 !important;
+    }
+  }
+  .menu-mp {
+    @include to(lg) {
+      display: none;
+    }
+  }
+  .video-md {
+    &__item-cont {
+      @extend .col-md-4, .col-sm-6, .col-xs-12;
+    }
+  }
 }
 .company-card-cp {
   height: inherit;
@@ -30,21 +45,28 @@
   height: inherit;
   background-color: $color-bg-grey-light;
   position: relative;
+  @include to(md) {
+    min-height: 250px;
+  }
   &__addr {
     margin: 0 0 3px 10px;
-    padding-top: 5px;
-  }
-  &__work-phone {
-    margin: 0 0 3px 10px;
+    padding-top: 4px;
   }
   &__map-cont {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 180px;
+    height: 200px;
+    width: 100%;
+    @include to(md) {
+      min-height: 225px;
+    }
     iframe {
       width: 100%;
-      min-height: 180px;
+      min-height: 200px;
+      @include to(md) {
+        min-height: 225px;
+      }
     }
   }
 }

@@ -24,8 +24,14 @@ class SearchFacets {
         var self = this;
         return this.$context.getStoreData()
             .then(function (data) {
+                var tmpArr = [{rubrikaName: 'Поиск по сайту', count: 0}];
+                //console.log(data);
+                data.forEach(function (item, i) {
+                    tmpArr[i + 1] = item;
+                    tmpArr[0].count += item.count;
+                });
                 return {
-                    list: data,
+                    list: tmpArr,
                     url: '/search',
                     query: self.$context.location.query.values.query
                 }
