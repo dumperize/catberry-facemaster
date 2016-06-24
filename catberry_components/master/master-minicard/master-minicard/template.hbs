@@ -1,4 +1,4 @@
-<div block="master-minicard" class="{{#unless publication.id}}master-minicard_free {{#unless services}}master-minicard_free-new{{/unless}}{{/unless}}">
+<div block="master-minicard" class="{{#unless publication.page}}master-minicard_free {{#unless services}}master-minicard_free-new{{/unless}}{{/unless}}">
 
     <div elem="photo-cont">
         <img elem="photo" src="{{imgSrc imgID 200 200}}" alt="{{name}}">
@@ -11,10 +11,10 @@
         <cat-master-phone-btn
                 id="master-phone-btn-{{id}}"
                 phone="{{contacts.phone}}"
-                page="{{publication.number}}"
+                page="{{#if publication.page}}{{publication.number}}{{/if}}"
                 owner="{{id}}"></cat-master-phone-btn>
 
-        {{#if publication.number}}
+        {{#if publication.page}}
             <a elem="to-page" href="/{{publication.number}}">На страницу мастера<i>{{icon "strelka"}}</i></a>
         {{/if}}
         <a elem="show-services" href="#" mix="block:js-services-toggle">Показать услуги</a>
@@ -39,7 +39,7 @@
             {{/each}}
         </ul>
     {{/if}}
-    {{#if publication}}
+    {{#if publication.page}}
         <ul block="master-content-widget">
             <li elem="gift" class="{{#if publication.sales}}{{#if sales.0.title}}act{{/if}}{{/if}}">
                 <i>{{icon "gift"}}</i>

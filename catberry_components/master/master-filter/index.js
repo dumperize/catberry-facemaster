@@ -63,11 +63,15 @@ MasterFilter.prototype.render = function () {
 
     return this.$context.getStoreData()
         .then(function (data) {
+            console.log(data.sort);
             path = '/' + data.rubrika.parent.unique + '/' + data.rubrika.unique;
             self._currentSection = data.section;
             result = self._setSection(path);
             self._decoreOpenSection(result, data);
-            return {filterSection: result};
+            return {
+                filterSection: result,
+                sort: data.sort
+            };
         });
 };
 

@@ -31,7 +31,11 @@
 
                                 <form elem="form" action="" method="">
                                     <div block="filter-radio">
-                                        <input elem="input" type="radio" name="sort-by" value="name" id="sort-by-name">
+                                        {{#is ../../sort '==' 'name'}}
+                                            <input elem="input" type="radio" name="sort-by" value="name" id="sort-by-name" checked>
+                                        {{else}}
+                                            <input elem="input" type="radio" name="sort-by" value="name" id="sort-by-name">
+                                        {{/is}}
                                         <label elem="label" for="sort-by-name">по фамилии по алфавиту</label>
                                     </div>
                                     <div block="filter-radio">

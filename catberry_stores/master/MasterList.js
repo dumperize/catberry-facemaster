@@ -26,12 +26,12 @@ function MasterList($uhr) {
     this._currentFeed = [];
     this._pathBase = '/master';
     this._path = this._pathBase + '/active';
-    this._order = 'sort';
+    this._order = null;
     this._options = {
         data: {
             filter: '["and",["=", "rubrikaID", ":rubrikaID"]]',
             expand: 'activeComments,activeSales,activeVideos,vkLikes,activeAlbums,contacts,company',
-            order: 'sort',
+            order: 'mpublic.page desc, sort',
             limit: 20
         }
     };
@@ -44,7 +44,8 @@ MasterList.prototype.load = function () {
     var self = this;
     return this.$context.getStoreData('Tag')
         .then(function (tag) {
-            if (!tag.rubrika)
+            //console.log(tag);
+            if (!tag.rubrika && !self._order)
                 return;
             //сменилась рубрика отчистим списки
             self._clearFeed(tag);
@@ -72,8 +73,12 @@ MasterList.prototype._clearFeed = function (tag) {
 };
 
 MasterList.prototype.handleSetOrder = function (order) {
-    console.log(order);
     if (this._order == order) return;
     this._order = order;
+    if (this._order == 'name') {
+        this._options.data.order = 'mpublic.page desc,' + this._order;
+    }
+    this._isFinished = false;
+    this._currentPage = 1;
     this.$context.changed();
 };

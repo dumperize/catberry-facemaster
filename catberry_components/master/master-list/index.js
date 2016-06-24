@@ -33,6 +33,7 @@ MasterList.prototype.render = function () {
     var self = this;
     return this.$context.getStoreData()
         .then(function (data) {
+            //console.log(data);
             data.model = self.$context.attributes['cat-store'];
             data.isHaveMaster = (Object.keys(data.list).length);
             self.structurData(data);

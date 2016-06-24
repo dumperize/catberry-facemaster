@@ -29,11 +29,20 @@
     @include at(md) {
       margin-top: 5px;
     }
-
     .catalog-list {
       &__item {
         @extend .col-lg-3;
         @extend .col-sm-4;
+        &:first-child {
+          span {
+            margin-top: 2px;
+          }
+        }
+        span {
+          height: 30px;
+          line-height: 30px;
+          margin-top: 3px;
+        }
         &-link {
           border: 1px solid transparent;
           &:hover {
@@ -93,7 +102,7 @@
         font-size: 1.7rem;
         line-height: 1;
         &-link {
-          padding: 17px 0px;
+          padding: 17px 0;
         }
       }
     }

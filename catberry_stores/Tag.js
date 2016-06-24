@@ -25,7 +25,7 @@ function Tag() {
     StoreBase.call(this);
     this.$context.setDependency('rubrika/Rubrika');
     this._path = '/tag';
-    this._order = 'sort';
+    this._order = null;
     this._options = {
         data: {
             filter: '["and",["=", "unique", ":unique"],["=","status","1"]]',
@@ -63,6 +63,7 @@ Tag.prototype.load = function () {
                 self.$context.notFound();
             data.tag = tagData;
             data.currentSeo = tag ? self._getCurrentSeo(data.tag, data.section) : self._getCurrentSeo(data.rubrika, data.section);
+            data.sort = self._order;
             return data;
         });
 };
@@ -130,7 +131,6 @@ Tag.prototype._getCurrentSeo = function (data, section) {
 };
 
 Tag.prototype.handleSetOrder = function (order) {
-    console.log(order);
     if (this._order == order) return;
     this._order = order;
     this.$context.sendAction('master/MasterList', 'setOrder', 'name');
