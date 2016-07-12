@@ -23,25 +23,23 @@ function PageKonkursItem() {
  * for template engine.
  */
 PageKonkursItem.prototype.render = function () {
-    var self = this;
     return this.$context.getStoreData()
         .then(function (data) {
-            var now = new Date();
-            var voteStartDate = self.getDate(data.voteStartDate);
-            var voteEndDate = self.getDate(data.voteEndDate);
-            var receptionStartDate = self.getDate(data.receptionStartDate);
-            var receptionEndDate = self.getDate(data.receptionEndDate);
-
-            if (now > voteStartDate && now < voteEndDate) {
-                data.statusMember = 'vote';
-            } else if (now > receptionStartDate && now < receptionEndDate) {
-                data.statusMember = 'reception';
-            } else if (now < receptionStartDate){
-                data.statusMember = 'not-start';
-            } else {
-                data.statusMember = 'end-yet';
+            //console.log(data);
+            switch (data.konkursStatus) {
+                case '0':
+                    data.statusMember = 'not-start';
+                    break;
+                case '1':
+                    data.statusMember = 'reception';
+                    break;
+                case '2':
+                    data.statusMember = 'vote';
+                    break;
+                case '3':
+                    data.statusMember = 'end-yet';
+                    break;
             }
-
             return data;
         })
 };

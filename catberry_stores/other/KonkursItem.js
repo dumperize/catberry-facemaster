@@ -23,14 +23,15 @@ function KonkursItem() {
 	this._path = '/konkurs';
 	this._options = {
 		data: {
-			filter: '["and",["=","status",1],["=","id",":id"]]'
+			filter: '["and",["=","status",1],["=","id",":id"]]',
+			expand: 'statusNames,konkursStatusNames'
 		}
 	};
 }
 
 KonkursItem.prototype.load = function () {
-	var id = this.$context.state.item;
-	this._optionsData.data.filter[':id'] = id;
+	var self = this;
+	this._optionsData.data.filter[':id'] = this.$context.state.item;
 
 	return this._load()
 		.then(function (result) {

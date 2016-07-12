@@ -1,5 +1,6 @@
 .news {
   @extend .bg_grey;
+  @extend .fade-in;
   padding: 10px;
   margin: 20px 0;
   img {

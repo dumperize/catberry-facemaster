@@ -4,7 +4,11 @@
 
     <p elem="desc">{{description}}</p>
 
-    <p elem="apply"><a href="/konkurs/item/{{id}}/add-member">Добавить участника</a></p>
+    {{#is konkursStatus '==' 1}}
+        <p elem="apply"><a href="/konkurs/item/{{id}}/add-member">Добавить участника</a></p>
+    {{else}}
+        <br>
+    {{/is}}
 
     <p elem="dates">
         Приём заявок с {{receptionStartDate}} по {{receptionEndDate}}<br>

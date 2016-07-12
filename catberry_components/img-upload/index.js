@@ -166,5 +166,5 @@ ImgUpload.prototype.bind = function () {
  * @returns {Promise|undefined} Promise or nothing.
  */
 ImgUpload.prototype.unbind = function () {
-
+    $('.js-photo-upload').unbind('click');
 };

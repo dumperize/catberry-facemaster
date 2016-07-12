@@ -23,7 +23,8 @@ util.inherits(FileUpload, StoreBase);
  */
 function FileUpload() {
     StoreBase.call(this);
-    this._path = '/files/upload';
+    this._path = '/upload.php';
+    this._api = 'http://files.facemaster.ru';
 }
 
 FileUpload.prototype.$lifetime = 0;
@@ -35,6 +36,7 @@ FileUpload.prototype.$lifetime = 0;
 FileUpload.prototype.load = function (data) {
     var self = this;
 
+    //console.log(data);
     return this.send(this._path, {data: data})
         .then(function (res) {
             return res.list;

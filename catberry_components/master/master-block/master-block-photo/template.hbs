@@ -2,36 +2,40 @@
 
     <div elem="row">
         {{#each this}}
-            {{#is status '==' 1}}
-                <div elem="item-cont">
-                    <div elem="album-cover" mix="block: js-select-album" id="album-{{id}}">
-                        <a href="">
-                            <img src="{{imgSrc photos.0.imgID 222 222}}" alt="{{name}}"><br>
-                            <span>{{name}}</span>
-                        </a>
+            {{#if imgID}}
+                {{#is status '==' 1}}
+                    <div elem="item-cont">
+                        <div elem="album-cover" mix="block: js-select-album" id="album-{{id}}">
+                            <a href="">
+                                <img src="{{imgSrc photos.0.imgID 222 222}}" alt="{{name}}"><br>
+                                <span>{{name}}</span>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            {{/is}}
+                {{/is}}
+            {{/if}}
         {{/each}}
     </div>
 
     <div elem="cf">
         {{#each this}}
-            {{#is status '==' 1}}
-                <div elem="album-cont" id="cont-album-{{id}}">
-                    <p elem="album-title">{{name}}</p>
+            {{#if photos.0.imgID}}
+                {{#is status '==' 1}}
+                    <div elem="album-cont" id="cont-album-{{id}}">
+                        <p elem="album-title">{{name}}</p>
 
-                    <div elem="wrapper">
-                        {{#each photos}}
-                            <div elem="item-cont">
-                                <a href="{{imgSrc imgID}}" title="{{description}}" elem="img-prev">
-                                    <img src="{{imgSrc imgID 209 209}}" alt="{{description}}"><br>
-                                </a>
-                            </div>
-                        {{/each}}
+                        <div elem="wrapper">
+                            {{#each photos}}
+                                <div elem="item-cont">
+                                    <a href="{{imgSrc imgID}}" title="{{description}}" elem="img-prev">
+                                        <img src="{{imgSrc imgID 209 209}}" alt="{{description}}"><br>
+                                    </a>
+                                </div>
+                            {{/each}}
+                        </div>
                     </div>
-                </div>
-            {{/is}}
+                {{/is}}
+            {{/if}}
         {{/each}}
     </div>
 

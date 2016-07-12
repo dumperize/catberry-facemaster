@@ -93,3 +93,8 @@ PageNewsForm.prototype.fileSave = function (base64) {
             //заставить при всех отправках форм больше не сохранять файл, пока не будет нажата кнопка "крестик" и загружена новая картинка
         });
 };
+
+PageNewsForm.prototype.unbind = function () {
+    $('.submit-news').unbind('click');
+    $('.js-hide-submit-news').unbind('click');
+};

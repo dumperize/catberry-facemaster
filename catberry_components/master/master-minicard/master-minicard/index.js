@@ -45,7 +45,6 @@ MasterMinicard.prototype.render = function () {
         .then(function (master) {
             if (!master)
                 return;
-
             master.isWidget = (master.publication && (
                 (master.publication.sales && master.sales[0]) ||
                 (master.publication.albums && master.albums[0]) ||

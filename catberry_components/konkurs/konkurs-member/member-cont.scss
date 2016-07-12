@@ -8,20 +8,33 @@
 .member-cont {
   background-color: $color-bg-grey-light;
   padding: 10px;
+  &__member-number {
+    font-size: 1.8rem;
+  }
+  &__img-cont {
+    width: 210px;
+    line-height: 210px;
+    height: 210px;
+    display: inline-block;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
   a {
     display: block;
     overflow: hidden;
     text-align: center;
     text-decoration: none;
     color: $color-text-dark;
-    span {
-      font-size: 1.8rem;
-    }
+    height: 246px;
   }
   img {
     width: 100%;
     vertical-align: middle;
-    margin-bottom: 8px;
+    //margin-bottom: 8px;
+    margin: -100%;
+    line-height: 210px;
+    //max-height: 210px;
+    overflow: hidden;
   }
 }
 .vote-cont {

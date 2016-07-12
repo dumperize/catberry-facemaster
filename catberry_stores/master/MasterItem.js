@@ -61,8 +61,13 @@ MasterItem.prototype.load = function () {
             data.articles = data.activeArticles;
             //конец из-за ильи так произошло!
 
-
-            data.services = JSON.parse(data.services);
+            if (data.services == 'string') {
+                try {
+                    data.services = JSON.parse(data.services);
+                } catch (err) {
+                    data.services = [];
+                }
+            }
             data.publication = masterPublication;
             data.isBlock = self._generateIsBlock(data);
 

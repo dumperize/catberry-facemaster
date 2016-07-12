@@ -29,7 +29,7 @@
 
     <p elem="name">{{name}}</p>
 
-    <p elem="spec">{{spec}}</p>
+    <p elem="spec">{{#if publication.page}}{{spec}}{{else}}{{rubrika.name}}{{/if}}</p>
 
     {{#if services}}
         <ul elem="services" mix="block: js-minicard-services-cut"

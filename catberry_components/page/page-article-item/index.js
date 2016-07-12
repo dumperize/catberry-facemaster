@@ -34,3 +34,21 @@ PageArticleItem.prototype.render = function () {
             return data;
         });
 };
+
+/**
+ * Returns event binding settings for the component.
+ * This method is optional.
+ * @returns {Promise<Object>|Object|null|undefined} Binding settings.
+ */
+PageArticleItem.prototype.bind = function () {
+    window.scrollTo(0,0);
+};
+
+/**
+ * Does cleaning for everything that have NOT been set by .bind() method.
+ * This method is optional.
+ * @returns {Promise|undefined} Promise or nothing.
+ */
+PageArticleItem.prototype.unbind = function () {
+
+};

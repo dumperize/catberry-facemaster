@@ -87,8 +87,12 @@
 
                     <li><i>{{icon "placemark"}}</i>
                         {{#if contacts.addr}}
-                            {{contacts.addr}}
-                            <span elem="onmap"><a href="#on-map" data-coord="{{contacts.addrCoord}}" elem="anch" mix="block: js-show-map">на карте</a> →</span>
+                            <span elem="addr">{{contacts.addr}}</span>
+                            <span elem="onmap">
+                                <a href="#on-map" data-addr="{{contacts.addrEncodeURI}}" data-coord="{{contacts.addrCoord}}"
+                                   elem="anch" mix="block: js-show-map">на карте</a>
+                                →
+                            </span>
                         {{else}}
                             не указано
                         {{/if}}

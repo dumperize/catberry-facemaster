@@ -11,7 +11,11 @@
     </div>
 
     <div elem="text">
-        {{{text}}}
+        {{#if source}}
+            <noindex>{{{text}}}</noindex>
+        {{else}}
+            {{{text}}}
+        {{/if}}
     </div>
 
     {{#if source}}

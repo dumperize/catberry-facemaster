@@ -4,12 +4,14 @@
 
             <div block="member-cont">
                 {{#each photos}}
-                    <a href="http://konkurs.facemaster.ru/photo?key={{id}}" title="{{../nameWork}}"
+                    <a href="{{imgSrc key 800}}" title="{{../nameWork}}"
                        style="{{#is @index '>' 0}}display:none{{/is}}">
                         {{#is @index '==' 0}}
-                            <img src="{{imgSrc key 210 210}}" alt="{{../description}}">
+                            <span elem="img-cont">
+                                <img src="{{imgSrc key 210 210}}" alt="{{../description}}">
+                            </span>
                         {{/is}}
-                        <span>Участник {{../id}}</span>
+                        <span elem="member-number">Участник {{../id}}</span>
                     </a>
                 {{/each}}
             </div>

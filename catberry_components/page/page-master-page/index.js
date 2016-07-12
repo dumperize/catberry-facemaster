@@ -16,6 +16,8 @@ function PageMasterPage() {
 
 }
 
+PageMasterPage.prototype.geocode = null;
+
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -29,11 +31,26 @@ PageMasterPage.prototype.render = function () {
                 if (!data.contacts.addr || data.contacts.addr == '') {
                     data.contacts.addr = 'Тольятти';
                 }
-                data.contacts.addrCoord = encodeURIComponent(data.contacts.addr);
+                data.contacts.addrEncodeURI = encodeURIComponent(data.contacts.addr);
             }
             return data;
         });
 };
+
+PageMasterPage.prototype._codeAddress = function (address) {
+    var elem = this.$context.element;
+    var linkOnMap = elem.querySelector('.contacts-mp__onmap a').dataset;
+    this.geocoder = new google.maps.Geocoder();
+    this.geocoder.geocode({'address': address, 'region': 'ru', 'componentRestrictions': {'administrativeArea': 'Самарская область, город Тольятти'}}, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            //console.log(results[0].formatted_address);
+            linkOnMap.addr = encodeURIComponent(results[0].formatted_address);
+        } else {
+            console.log("Вычислить координаты не удалось по следующим причинам: " + status);
+        }
+    });
+};
+
 
 PageMasterPage.prototype._menuOffset = null;
 /**
@@ -42,7 +59,7 @@ PageMasterPage.prototype._menuOffset = null;
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 PageMasterPage.prototype.bind = function () {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 
     //функции для jquery работающие с window
     this.function = {
@@ -91,7 +108,10 @@ PageMasterPage.prototype.unbind = function () {
 PageMasterPage.prototype._showMap = function (e) {
     e.preventDefault();
 
-    var coord = e.currentTarget.getAttribute('data-coord');
+    var coord = e.currentTarget.dataset.coord;
+    if (coord == '') {
+        coord = e.currentTarget.dataset.addr;
+    }
     var iframe = '<div class="map-cont"><iframe frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=' + coord + '&key=AIzaSyC14driclnh9TFQ9_1NJOk_rOxtgiptvnw" allowfullscreen></iframe></div>'
 
     $.fancybox(iframe, {
@@ -173,11 +193,29 @@ PageMasterPage.prototype.fixedSectionMenu = function (event) {
  * показать контакты
  * @param event
  */
-PageMasterPage.prototype.showContacts = function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.$context.element.querySelector('.contacts-mp__cap').style.display = 'none';
-    this.$context.element.querySelector('.contacts-mp__list').style.display = 'block';
+PageMasterPage.prototype.showContacts = function (e) {
+    e.preventDefault();
+
+    var elem = this.$context.element;
+    var self = this;
+    elem.querySelector('.contacts-mp__cap').style.display = 'none';
+    elem.querySelector('.contacts-mp__list').style.display = 'block';
+
+    var addr = elem.querySelector('.contacts-mp__addr').innerHTML;
+    var linkOnMap = elem.querySelector('.contacts-mp__onmap a').dataset;
+
+    if (linkOnMap.coord != '') return;
+    if (!window.google) {
+        var script = document.createElement('script');
+        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyC14driclnh9TFQ9_1NJOk_rOxtgiptvnw";
+
+        document.body.appendChild(script);
+        script.onload = function () {
+            self._codeAddress(addr);
+        };
+    } else {
+        self._codeAddress(addr);
+    }
 };
 /**
  * показать popup - заказать звонок

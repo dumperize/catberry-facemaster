@@ -22,9 +22,5 @@ function NewsAdd() {
 }
 
 NewsAdd.prototype.handleFileUpload = function (data) {
-    var self = this;
-    return this.$context.sendAction('FileUpload', 'setData', data)
-        .then(function () {
-            return self.$context.getStoreData('FileUpload')
-        });
+    return this.$context.sendAction('FileUpload', 'load', data);
 };

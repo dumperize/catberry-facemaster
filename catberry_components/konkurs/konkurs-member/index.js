@@ -29,6 +29,7 @@ KonkursMember.prototype.render = function () {
 
     return this.$context.getStoreData()
         .then(function (data) {
+            //console.log(data);
             if (status == 'end-yet') {
                 data.sort(function (a, b) {
                     return b.countHits.countHits - a.countHits.countHits;

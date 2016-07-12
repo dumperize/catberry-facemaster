@@ -87,7 +87,7 @@ CompanyItem.prototype.load = function () {
                 },
                 about: {
                     access: true,
-                    name: "О себе",
+                    name: "О компании",
                     active: (company.about)
                 },
                 photo: {
