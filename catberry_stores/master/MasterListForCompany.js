@@ -30,6 +30,7 @@ function MasterListForCompany($uhr) {
             order: 'sort'
         }
     };
+    this.$context.setDependency('company/CompanyItem');
 }
 
 MasterListForCompany.prototype._listID = null;

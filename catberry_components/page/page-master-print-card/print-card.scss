@@ -33,9 +33,9 @@
 }
 
 .vcard .contInfo {
-  width: 110pt;
-  height: 89pt;
-  padding: 10pt 14pt 14pt 18pt;
+  width: 142pt;
+  height: 113pt;
+  padding: 10pt 10pt 14pt 14pt;
   position: absolute;
   top: 0;
   left: 113pt;
@@ -53,9 +53,11 @@
   display: inline-block;
   position: relative;
   left: -2pt;
-  padding: 2pt 0 5pt 2pt;
+  padding: 4pt 0 5pt 2pt;
   font-size: 10pt;
   line-height: 10pt;
+  height: 44pt;
+  overflow: hidden;
   border-top: 1pt dashed #000000;
 }
 

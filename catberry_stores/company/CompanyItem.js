@@ -45,8 +45,7 @@ CompanyItem.prototype.load = function () {
     var id = this.$context.state.id;
     var company = [];
     var promises = [];
-    if (!id)
-        return;
+    if (!id) return;
 
     this._optionsData.data.filter[':number'] = id;
     return this._load()
@@ -66,13 +65,13 @@ CompanyItem.prototype.load = function () {
         .then(function (r) {
             promises[0] = self.$context.getStoreData('master/MasterListForCompany');
             // Если есть альбом, подтаскиваем фотографии отдельным запросом
-            if (company.albums[0].id) {
+            if (company.albums[0]) {
                 promises[1] = self._uhr.get(self._api + '/album/' + company.albums[0].id, {data: {expand: 'photos'}});
             }
             return Promise.all(promises);
         })
         .then(function (resultArr) {
-            company.albums = [resultArr[1].content];
+            company.albums = resultArr[1] ? [resultArr[1].content] : [];
             company.masters = resultArr[0];
             company.isBlock = {
                 master: {

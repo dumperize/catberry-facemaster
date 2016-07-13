@@ -45,9 +45,21 @@ PageNewsForm.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 PageNewsForm.prototype.bind = function () {
+    var elem = this.$context.element;
+    var self = this;
     var submitNews = $('.submit-news');
+    var success = elem.querySelector('.success');
+    var btn = elem.querySelector('.submit-news');
+
     submitNews.bind('click', showAddNews);
     $('.js-hide-submit-news').bind('click', hideAddNews);
+    if (success) {
+        $(success).delay(3000).fadeOut(600, function () {
+            if (btn) {
+                $(btn).fadeIn(600);
+            }
+        })
+    }
 
     function showAddNews() {
         submitNews.addClass('show');

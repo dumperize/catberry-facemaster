@@ -32,13 +32,17 @@ PageKonkursMemberAdd.prototype.img = [];
  */
 PageKonkursMemberAdd.prototype.render = function () {
     var self = this;
+    var path = this.$context.location.path.match(/^\/konkurs\/item\/(\d+)\/add-member/i);
     return this._render()
         .then(function (data) {
+            if (!data.form) data.form = {};
+            data.form.konkursID = path ? path[1] : 0;
             if (data.success) {
                 self.img = [];
             } else {
                 data.img = self.img;
             }
+            //console.log(data);
             return data;
         });
 };

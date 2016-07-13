@@ -89,6 +89,21 @@
   {
     "root": true,
     "parent": {
+      "id": "root9",
+      "name": "Сад, дача, благоустройство",
+      "saleCount": 0,
+      "color": "#109300",
+      "podrubriksID": []
+    },
+    "childID": [
+      238
+    ],
+    "podrubriks": [],
+    "sale": []
+  },
+  {
+    "root": true,
+    "parent": {
       "id": "root6",
       "name": "Недвижимость",
       "saleCount": 0,

@@ -61,7 +61,7 @@ MasterItem.prototype.load = function () {
             data.articles = data.activeArticles;
             //конец из-за ильи так произошло!
 
-            if (data.services == 'string') {
+            if (typeof(data.services) == 'string') {
                 try {
                     data.services = JSON.parse(data.services);
                 } catch (err) {

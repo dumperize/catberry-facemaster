@@ -102,20 +102,21 @@ RubrikatorSale.prototype._loadData = function () {
             tree.forEach(function (el) {
                 var index = self._parentToGroup[el.parent.id];
 
-                if (data[index].childID.length == 1) {
-                    data[index].parent = el.parent;
-                    data[index].podrubriks = el.podrubriks;
-                } else {
-                    data[index].parent.saleCount += +el.parent.saleCount;
-                    data[index].podrubriks.push({
-                        root: true,
-                        parent: el.parent,
-                        podrubriks: el.podrubriks
-                    });
+                if (index !== undefined) {
+                    if (data[index].childID.length == 1) {
+                        data[index].parent = el.parent;
+                        data[index].podrubriks = el.podrubriks;
+                    } else {
+                        data[index].parent.saleCount += +el.parent.saleCount;
+                        data[index].podrubriks.push({
+                            root: true,
+                            parent: el.parent,
+                            podrubriks: el.podrubriks
+                        });
+                    }
+                    data[index].root = true;
+                    data[index].parent.podrubriksID = data[index].parent.podrubriksID.concat(el.parent.podrubriksID);
                 }
-                data[index].root = true;
-                data[index].parent.podrubriksID = data[index].parent.podrubriksID.concat(el.parent.podrubriksID);
-
             });
 
             //отмечаем акивные вершины в соответсвии с деревом

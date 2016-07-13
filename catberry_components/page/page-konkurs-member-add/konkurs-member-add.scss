@@ -55,7 +55,7 @@
     color: #999;
     margin-top: 4px;
   }
-  &__btn {
+  &__btn, &__cancel {
     @extend .basic-button-auto;
     margin-bottom: 20px;
     &_grey {

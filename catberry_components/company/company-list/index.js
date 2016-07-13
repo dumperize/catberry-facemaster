@@ -22,10 +22,10 @@ class CompanyList {
      */
     render() {
         var store = this.$context.attributes['cat-store'];
-        console.log(store);
+        //console.log(store);
         return this.$context.getStoreData()
             .then(function (data) {
-                console.log(data);
+                //console.log(data);
                 return {
                     list: data,
                     model: store
