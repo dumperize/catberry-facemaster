@@ -36,6 +36,9 @@ module.exports = [
 				'master/MasterPublication': {
 					item: matches[1]
 				},
+				'master/Comment': {
+					masterID: matches[1]
+				},
 				Pages: {
 					page: "master-page"
 				}

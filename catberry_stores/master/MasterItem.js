@@ -29,7 +29,7 @@ function MasterItem($uhr) {
     this._options = {
         data: {
             filter: '["and", ["=", "id", ":id"],["=","status", "2"]]',
-            expand: 'contacts,activeArticles,activeComments,districts,activeAlbums,activeSales,schedule,activeVideos,workCondition,callbacks,vkLikes,rubrika,tags,company'
+            expand: 'contacts,activeArticles,districts,activeAlbums,activeSales,schedule,activeVideos,workCondition,callbacks,vkLikes,rubrika,tags,company'
         }
     };
 }
@@ -54,7 +54,7 @@ MasterItem.prototype.load = function () {
             data = result.content[0];
 
             //из-за ильи так произошло!
-            data.comments = data.activeComments;
+            //data.comments = data.activeComments;
             data.sales = data.activeSales;
             data.videos = data.activeVideos;
             data.albums = data.activeAlbums;

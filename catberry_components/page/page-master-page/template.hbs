@@ -89,7 +89,8 @@
                         {{#if contacts.addr}}
                             <span elem="addr">{{contacts.addr}}</span>
                             <span elem="onmap">
-                                <a href="#on-map" data-addr="{{contacts.addrEncodeURI}}" data-coord="{{contacts.addrCoord}}"
+                                <a href="#on-map" data-addr="{{contacts.addrEncodeURI}}"
+                                   data-coord="{{contacts.addrCoord}}"
                                    elem="anch" mix="block: js-show-map">на карте</a>
                                 →
                             </span>
@@ -121,8 +122,15 @@
                     <p elem="section-title">{{name}}</p>
 
                     <div elem="section-cont">
-                        <cat-master-block-{{@key}} id="master-block-{{@key}}"
-                                                   cat-store="master/MasterItem"></cat-master-block-{{@key}}>
+                        {{#is @key '==' 'review'}}
+                            <cat-master-block-{{@key}} id="master-block-{{@key}}"
+                                                       cat-store="master/MasterItem"></cat-master-block-{{@key}}>
+                            <cat-master-block-comment id="master-block-comment"
+                                                       cat-store="master/Comment"></cat-master-block-comment>
+                        {{else}}
+                            <cat-master-block-{{@key}} id="master-block-{{@key}}"
+                                                       cat-store="master/MasterItem"></cat-master-block-{{@key}}>
+                        {{/is}}
                     </div>
                 {{/if}}
             {{/if}}

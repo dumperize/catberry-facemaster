@@ -1,0 +1,24 @@
+<div block="paginator">
+    <p elem="title">Перейти к странице:</p>
+    <ul>
+        {{#unless urls.0.show}}
+            <li><a href="{{urls.0.path}}" elem="number">‹</a></li>
+        {{/unless}}
+        {{#each urls}}
+            {{#if this.show}}
+                <li>
+                    {{#is this.currentPage '==' ../currentPage}}
+                        <span>{{this.currentPage}}</span>
+                    {{else}}
+                        <a href="{{this.path}}" elem="number">{{this.currentPage}}</a>
+                    {{/is}}
+                </li>
+            {{/if}}
+            {{#is this.currentPage '==' ../pageCount}}
+                {{#unless show}}
+                    <li><a href="{{this.path}}" elem="number">›</a></li>
+                {{/unless}}
+            {{/is}}
+        {{/each}}
+    </ul>
+</div>

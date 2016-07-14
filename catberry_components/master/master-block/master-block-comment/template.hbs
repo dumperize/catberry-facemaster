@@ -1,0 +1,23 @@
+{{#if comments}}
+    <div block="comment">
+        <p elem="title">Мои отзывы</p>
+
+        <div elem="comments">
+            {{#each comments}}
+                <div elem="item-cont">
+
+                    <p elem="name">{{authorName}}<span elem="date">{{formatDate date "%R | %d %Z %Y"}}</span></p>
+
+                    <p elem="text">{{text}}</p>
+
+                </div>
+            {{/each}}
+        </div>
+
+        {{#is comments.pageCount '>' 1}}
+            <cat-common-paginator-live id="common-paginator-live" cat-store="master/Comment"
+                                       current-page="{{comments.currentPage}}" page-count="{{comments.pageCount}}">
+            </cat-common-paginator-live>
+        {{/is}}
+    </div>
+{{/if}}

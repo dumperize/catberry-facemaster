@@ -1,19 +1,19 @@
 <div block="reviews-cont-md">
 
     <div block="recommendations">
-            <p elem="total">Мастера рекомендуют <span elem="total-count">{{vkLikes.countLikes}} человек</span></p>
+        <p elem="total">Мастера рекомендуют <span elem="total-count">{{vkLikes.countLikes}} человек</span></p>
 
-            <div elem="list">
-                {{#each vkLikes.data}}
-                    {{#if this}}
+        <div elem="list">
+            {{#each vkLikes.data}}
+                {{#if this}}
                     <a elem="item" target="_blank" href="http://vk.com/id{{uid}}">
                         <img src="{{photo_100}}" alt="{{first_name}} {{last_name}}">
                     </a>
-                    {{else}}
-                        <span elem="item" mod="empty"></span>
-                    {{/if}}
-                {{/each}}
-            </div>
+                {{else}}
+                    <span elem="item" mod="empty"></span>
+                {{/if}}
+            {{/each}}
+        </div>
 
         <div elem="buttons-block">
             <p elem="buttons-block-title">Порекомендуйте мастера:</p>
@@ -26,7 +26,8 @@
 
     <div elem="row">
 
-       <cat-master-block-review-form id="master-block-review-form" cat-store="master/MasterReview" master-id="{{id}}"></cat-master-block-review-form>
+        <cat-master-block-review-form id="master-block-review-form" cat-store="master/MasterReview"
+                                      master-id="{{id}}"></cat-master-block-review-form>
 
         <div block="social-links">
             <div elem="wrapper">
@@ -48,22 +49,5 @@
         </div>
 
     </div>
-
-
-    {{#if comments}}
-        <p elem="title">Мои отзывы</p>
-
-        <div elem="comments">
-            {{#each comments}}
-                <div elem="item-cont">
-
-                    <p elem="name">{{authorName}}<span elem="date">{{formatDate date "%R | %d %Z %Y"}}</span></p>
-
-                    <p elem="text">{{text}}</p>
-
-                </div>
-            {{/each}}
-        </div>
-    {{/if}}
 
 </div><!--mde-reviews-->

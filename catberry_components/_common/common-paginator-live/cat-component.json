@@ -1,0 +1,5 @@
+{
+	"name": "common-paginator-live",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}
