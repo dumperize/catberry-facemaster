@@ -23,28 +23,31 @@ util.inherits(Search, StoreAutoLoadList);
  */
 function Search() {
     StoreAutoLoadList.call(this);
-    this._path = '/search/search';
-    this._data = {data: {}};
+    this._path = '/search';
+    this._options = {
+        data: {
+            expand: 'activeComments,activeSales,activeVideos,vkLikes,activeAlbums,contacts,company,rubrika'
+        }
+    };
 }
 
 
 Search.prototype._loadDataPerPage = function (page) {
+    //console.log(page);
     var self = this;
-    this._data.data.page = page;
+    this._options.data.page = page;
     try {
-        this._data.data['query'] = this.$context.location.query.values.query;
-        this._data.data['rubrikaID'] = this.$context.state.rubrikaID;
+        this._options.data['query'] = this.$context.location.query.values.query;
+        this._options.data.filter = JSON.stringify({rubrikaID: this.$context.state.rubrikaID});
     } catch (e) {
     }
-    return this.send(this._path, this._data)
+    return this._load()
         .then(function (result) {
             //console.log(result);
-            if (result.success) {
-                if (self._currentPage >= result.total)
-                    self._isFinished = true;
-                return result.list;
+            console.log(self._currentPage, result.status.headers['x-pagination-page-count']);
+            if (self._currentPage >= result.status.headers['x-pagination-page-count']) {
+                self._isFinished = true;
             }
-            self._isFinished = true;
-            return [];
+            return result.content;
         })
 };

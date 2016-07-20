@@ -24,18 +24,20 @@ util.inherits(SearchFacets, StoreBase);
 function SearchFacets() {
     StoreBase.call(this);
     this._path = '/search/facets';
-    this._data = {data: {}};
+    this._options = {
+        data: {}
+    };
 }
 
 
 SearchFacets.prototype.load = function (page) {
     var self = this;
     try {
-        this._data.data['query'] = this.$context.location.query.values.query;
+        this._options.data['query'] = this.$context.location.query.values.query;
     } catch (e) {
     }
-    return this.send(this._path, this._data)
+    return this._load()
         .then(function (result) {
-            return result.success ? result.list : [];
+            return result.content;
         })
 };
