@@ -23,31 +23,5 @@ function PageSaleCatalog() {
  * for template engine.
  */
 PageSaleCatalog.prototype.render = function () {
-    var self = this;
-    return this.$context.getStoreData()
-        .then(function (data) {
-            //console.log(data);
-            return {
-                model: self.$context.attributes['cat-store'],
-                list: data
-            };
-        });
-};
-
-/**
- * Returns event binding settings for the component.
- * This method is optional.
- * @returns {Promise<Object>|Object|null|undefined} Binding settings.
- */
-PageSaleCatalog.prototype.bind = function () {
-    $('li.act:has(.act)').removeClass('act');
-};
-
-/**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
- */
-PageSaleCatalog.prototype.unbind = function () {
 
 };
