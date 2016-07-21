@@ -25,7 +25,7 @@ function Search() {
 Search.prototype.render = function () {
     var query = '';
     try {
-        query = this.$context.location.query.values.query;
+        query = this.$context.location.query.values.query.replace('+', ' ');
     } catch (e) {
     }
 
