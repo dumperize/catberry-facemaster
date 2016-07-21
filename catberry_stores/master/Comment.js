@@ -43,27 +43,32 @@ Comment.prototype.currentPage = 1;
 
 Comment.prototype.load = function () {
     var self = this;
-    var ownerID = this.$context.state.masterID;
 
-    return self._uhr.get(this._api + '/comment', {
-        data: {
-            order: 'date DESC',
-            limit: 5,
-            page: self.currentPage,
-            filter: JSON.stringify({ownerType: 1, ownerID: ownerID, status: 2})
-        }
-    }).then(function (result) {
-        //console.log(result.content);
-        if (result.status.code != 200) return false;
-        result.content.pageCount = result.status.headers['x-pagination-page-count'];
-        result.content.currentPage = result.status.headers['x-pagination-current-page'];
-        result.content.forEach(function (item, i) {
-            item.text = self.tp.execute(item.text);
+    return this.$context.getStoreData('master/MasterPublication')
+        .then(function (publication) {
+            return publication.masterID;
+        })
+        .then(function (masterID) {
+            return self._uhr.get(self._api + '/comment', {
+                data: {
+                    order: 'date DESC',
+                    limit: 10,
+                    page: self.currentPage,
+                    filter: JSON.stringify({ownerType: 1, ownerID: masterID, status: 2})
+                }
+            }).then(function (result) {
+                //console.log(result.content);
+                if (result.status.code != 200) return false;
+                result.content.pageCount = result.status.headers['x-pagination-page-count'];
+                result.content.currentPage = result.status.headers['x-pagination-current-page'];
+                result.content.forEach(function (item, i) {
+                    item.text = self.tp.execute(item.text);
+                });
+                return {
+                    comments: result.content
+                }
+            })
         });
-        return {
-            comments: result.content
-        }
-    })
 };
 
 Comment.prototype.handleChangePage = function (page) {

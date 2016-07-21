@@ -63,24 +63,32 @@ MasterMinicard.prototype.render = function () {
             if (master.publication && master.publication.comments && master.comments) {
                 master.commentsCount = master.comments.length;
             }
-            // TODO доделать поисковыую выдачу и highlight
-            //console.log(master);
+            var servicesNormally = [];
+            //если есть поисковая выдача заводим переменную servHightlight
             //console.log(master.highlight);
-            if (master.services) {
-                var servicesNormally = [];
-                //если есть поисковая выдача заводим переменную servHightlight
-                if (master.highlight) {
-                    var servHightlight = master.highlight.services;
-                    var findText = [];
-                    Object.keys(master.highlight).forEach(function (item) {
-                        if (item != 'services' || item != 'name' || item != 'spec') {
-                            findText[0] = '<p class="find-text"><strong>Текст найден на странице мастера:</strong><br>'
-                                + self.tp.execute(master.highlight[item][0]) + '</p>';
-                            //return false;
+            if (master.highlight) {
+                var servHightlight = master.highlight.services;
+                var findText = [];
+                Object.keys(master.highlight).forEach(function (item) {
+                    if (item != 'services' || item != 'name' || item != 'spec') {
+                        findText[0] = '<p class="find-text"><strong>Текст найден на странице мастера:</strong><br>'
+                            + self.tp.execute(master.highlight[item][0]) + '</p>';
+                        //return false;
+                    }
+                    if (item == 'name' || item == 'spec') {
+                        var highlight = master.highlight[item][0];
+                        var findStr = highlight.slice(highlight.indexOf('<em>') + 4, highlight.indexOf('</em>'));
+                        var re = new RegExp(findStr, 'g');
+                        if (item == 'name') {
+                            master.name = master.name.replace(re, '<em>' + findStr + '</em>');
+                        } else {
+                            master.spec = master.spec.replace(re, '<em>' + findStr + '</em>');
                         }
-                    });
-                    //console.log(findText)
-                }
+                    }
+                });
+                //console.log(findText)
+            }
+            if (master.services) {
                 Object.keys(master.services).forEach(function (item) {
                     var service = master.services[item];
                     if (servHightlight) {
@@ -95,7 +103,11 @@ MasterMinicard.prototype.render = function () {
                     servicesNormally.push(service);
                 });
                 if (findText && !servHightlight) {
-                    servicesNormally = findText.concat(servicesNormally);
+                    // избегаем дублирования плашки "Текст найден на странице мастера:"
+                    if (!servicesNormally[0] || (servicesNormally[0] && servicesNormally[0].indexOf('find-text') == -1)) {
+                        servicesNormally = findText.concat(servicesNormally);
+                    }
+
                     //console.log(servicesNormally);
                 }
                 master.services = servicesNormally;
