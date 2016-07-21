@@ -63,7 +63,7 @@ MasterFilter.prototype.render = function () {
 
     return this.$context.getStoreData()
         .then(function (data) {
-            console.log(data.sort);
+            //console.log(data.sort);
             path = '/' + data.rubrika.parent.unique + '/' + data.rubrika.unique;
             self._currentSection = data.section;
             result = self._setSection(path);

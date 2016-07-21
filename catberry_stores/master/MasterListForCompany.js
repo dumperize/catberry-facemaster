@@ -26,7 +26,7 @@ function MasterListForCompany($uhr) {
     this._options = {
         data: {
             filter: '["and",["IN", "user_master.id", [:masterID]]]',
-            expand: 'activeComments,activeSales,activeVideos,vkLikes,activeAlbums,contacts,publication,company',
+            expand: 'activeComments,activeSales,activeVideos,vkLikes,activeAlbums,contacts,publication,company,likesCount',
             order: 'sort'
         }
     };
