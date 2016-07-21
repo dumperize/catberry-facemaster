@@ -30,7 +30,7 @@ function MasterList($uhr) {
     this._options = {
         data: {
             filter: '["and",["=", "rubrikaID", ":rubrikaID"]]',
-            expand: 'activeComments,activeSales,activeVideos,vkLikes,activeAlbums,contacts,company,rubrika',
+            expand: 'activeComments,activeSales,activeVideos,vkLikes,likesCount,activeAlbums,contacts,company,rubrika',
             order: 'mpublic.page desc, sort',
             limit: 20
         }

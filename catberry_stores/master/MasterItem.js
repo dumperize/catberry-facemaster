@@ -29,7 +29,7 @@ function MasterItem($uhr) {
     this._options = {
         data: {
             filter: '["and", ["=", "id", ":id"],["=","status", "2"]]',
-            expand: 'contacts,activeArticles,districts,activeAlbums,activeSales,schedule,activeVideos,workCondition,callbacks,vkLikes,rubrika,tags,company'
+            expand: 'contacts,activeArticles,districts,activeAlbums,activeSales,schedule,activeVideos,workCondition,callbacks,vkLikes,likesCount,rubrika,tags,company'
         }
     };
 }

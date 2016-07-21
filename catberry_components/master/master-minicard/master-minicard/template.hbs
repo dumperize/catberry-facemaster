@@ -2,8 +2,8 @@
 
     <div elem="photo-cont">
         <img elem="photo" src="{{imgSrc imgID 200 200}}" alt="{{name}}">
-        {{#if publication}}
-            <i elem="like">{{icon "like"}} {{vkLikes.countLikes}}</i>
+        {{#if publication.number}}
+            <i elem="like">{{icon "like"}} {{likesCount}}</i>
         {{/if}}
     </div>
 
