@@ -52,6 +52,14 @@
       }
     }
   }
+  &__buttons-block-title {
+    line-height: 22px;
+    float: left;
+    margin-right: 4px;
+  }
+  #vk_like {
+    display: inline-block;
+  }
 }
 .social-links {
   margin-bottom: 30px;
