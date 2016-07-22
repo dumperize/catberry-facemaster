@@ -26,7 +26,7 @@ function Search() {
     this._path = '/search';
     this._options = {
         data: {
-            expand: 'activeComments,activeSales,activeVideos,vkLikes,activeAlbums,contacts,company,rubrika'
+            expand: 'activeComments,activeSales,activeVideos,vkLikes,activeAlbums,contacts,company,rubrika,publication'
         }
     };
 }
@@ -43,9 +43,9 @@ Search.prototype._loadDataPerPage = function (page) {
     }
     return this._load()
         .then(function (result) {
-            //console.log(result);
-            console.log(self._currentPage, result.status.headers['x-pagination-page-count']);
-            if (self._currentPage >= result.status.headers['x-pagination-page-count']) {
+            var pageCount = result.status.headers['x-pagination-page-count'];
+            if (self._currentPage > pageCount) return [];
+            if (self._currentPage == pageCount) {
                 self._isFinished = true;
             }
             return result.content;

@@ -16,9 +16,12 @@
         </div>
 
         <div elem="buttons-block">
-            <p elem="buttons-block-title">Порекомендуйте мастера:</p>
+            <p elem="buttons-block-title">Порекомендуйте мастера: </p>
 
-            <div></div>
+            <div id="vk_like"></div>
+            <script type="text/javascript">
+                VK.Widgets.Like("vk_like", {type: "button"});
+            </script>
         </div>
     </div>
 
@@ -43,7 +46,13 @@
                 <p elem="note">Порекомендуйте этого специалиста своим друзям в&nbsp;социальной сети</p>
 
                 <div elem="buttons">
-                    <p style="color:red">Ссылки! VK, OK, FB, TW</p>
+                    <script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"
+                            async="async"></script>
+                    <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,twitter"
+                         data-title="{{name}}" data-url="{{url}}"
+                         data-image="http://facemaster.ru/design/risPhoto.php?masterID=1019&masterNumber=1019&masterName=Фалюшняк Павел Федорович&spec=Психотерапевт"
+                         data-description="Тест">
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,3 +60,5 @@
     </div>
 
 </div><!--mde-reviews-->
+
+<img src="" alt="" id="test1">
