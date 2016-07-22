@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = MasterMinicard;
-var Typograf = require('typograf');
+//var Typograf = require('typograf');
 
 /*
  * This is a Catberry Cat-component file.
@@ -17,8 +17,7 @@ function MasterMinicard($serviceLocator) {
     if (this.$context.isBrowser) {
         this._window = $serviceLocator.resolve('window');
     }
-    //var config = this.$context.locator.resolve('config');
-    this.tp = new Typograf({lang: 'ru'});
+    //this.tp = new Typograf({lang: 'ru'});
 }
 
 /**
@@ -85,24 +84,21 @@ MasterMinicard.prototype.render = function () {
                     var service = master.services[item];
                     if (servHightlight) {
                         servHightlight.forEach(function (item2) {
-                            //console.log('service: ' + service + '\n\n' + 'highlight: ' + tmp + '\n\n\n\n');
                             var findStr = item2.slice(item2.indexOf('<em>') + 4, item2.indexOf('</em>'));
                             var re = new RegExp(findStr, 'g');
                             service = service.replace(re, '<em>' + findStr + '</em>');
                         });
                     }
-                    service = self.tp.execute(service);
+                    //service = self.tp.execute(service);
                     servicesNormally.push(service);
                 });
                 if (findText && !servHightlight) {
                     servicesNormally = findText.concat(servicesNormally);
-                    //console.log(servicesNormally);
                 }
                 master.services = servicesNormally;
             }
             master.index = index;
             master.store = store;
-            //console.log(master);
             return master;
         });
 };
