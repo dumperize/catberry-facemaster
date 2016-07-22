@@ -48,7 +48,7 @@ MasterBlockReview.prototype.render = function () {
             var location = self.$context.location;
             var url = location.authority.host + location.path;
             url = location.scheme ? location.scheme + url : url;
-            console.log();
+            console.log(url);
             return {
                 id: data.id,
                 vkLikes: data.vkLikes,
@@ -68,7 +68,7 @@ MasterBlockReview.prototype.bind = function () {
     var elem = this.$context.element;
     domtoimage.toPng(elem.querySelector('.social-links'))
         .then(function (img) {
-            elem.querySelector('.ya-share2').dataset.image = img;
+            //elem.querySelector('.ya-share2').dataset.image = img;
             document.getElementById('test1').src = img;
         })
 };
