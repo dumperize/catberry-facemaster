@@ -58,7 +58,6 @@ MasterBlockReview.prototype.render = function () {
             }
         });
 };
-
 /**
  * Returns event binding settings for the component.
  * This method is optional.
@@ -66,11 +65,11 @@ MasterBlockReview.prototype.render = function () {
  */
 MasterBlockReview.prototype.bind = function () {
     var elem = this.$context.element;
-    domtoimage.toPng(elem.querySelector('.social-links'))
-        .then(function (img) {
-            //elem.querySelector('.ya-share2').dataset.image = img;
-            document.getElementById('test1').src = img;
-        })
+    //domtoimage.toPng(elem.querySelector('.social-links'))
+    //    .then(function (img) {
+    //        //elem.querySelector('.ya-share2').dataset.image = img;
+    //        document.getElementById('test1').src = img;
+    //    })
 };
 
 MasterBlockReview.prototype.unbind = function () {
