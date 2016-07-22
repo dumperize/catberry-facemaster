@@ -45,12 +45,16 @@ MasterBlockReview.prototype.render = function () {
             if (data.vkLikes.data.length != 9) {
                 data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов (больше не требуется)
             }
-            //console.log(data.vkLikes);
+            var location = self.$context.location;
+            var url = location.authority.host + location.path;
+            url = location.scheme ? location.scheme + url : url;
+            console.log();
             return {
                 id: data.id,
                 vkLikes: data.vkLikes,
                 name: data.name,
-                imgID: data.imgID
+                imgID: data.imgID,
+                url: url
             }
         });
 };
@@ -61,4 +65,14 @@ MasterBlockReview.prototype.render = function () {
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
 MasterBlockReview.prototype.bind = function () {
+    var elem = this.$context.element;
+    domtoimage.toPng(elem.querySelector('.social-links'))
+        .then(function (img) {
+            elem.querySelector('.ya-share2').dataset.image = img;
+            document.getElementById('test1').src = img;
+        })
+};
+
+MasterBlockReview.prototype.unbind = function () {
+
 };

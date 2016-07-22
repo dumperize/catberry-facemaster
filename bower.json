@@ -24,7 +24,8 @@
     "slick-carousel": "~1.5.9",
     "jquery-ui": "~1.11.4",
     "canvasresize-dist": "~1.2.7",
-    "cropit": "~0.4.5"
+    "cropit": "~0.4.5",
+    "dom-to-image": "~2.5.0"
   },
   "overrides": {
     "jquery": {
@@ -89,6 +90,9 @@
         "jquery": "~2.1.4",
         "jquery-ui": "~1.11.4"
       }
+    },
+    "dom-to-image": {
+      "main": "dist/dom-to-image.min.js"
     }
   },
   "devDependencies": {
