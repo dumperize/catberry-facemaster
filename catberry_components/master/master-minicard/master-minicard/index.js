@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = MasterMinicard;
-var Typograf = require('typograf');
+//var Typograf = require('typograf');
 
 /*
  * This is a Catberry Cat-component file.
@@ -17,8 +17,7 @@ function MasterMinicard($serviceLocator) {
     if (this.$context.isBrowser) {
         this._window = $serviceLocator.resolve('window');
     }
-    //var config = this.$context.locator.resolve('config');
-    this.tp = new Typograf({lang: 'ru'});
+    //this.tp = new Typograf({lang: 'ru'});
 }
 
 /**
@@ -65,14 +64,13 @@ MasterMinicard.prototype.render = function () {
             }
             var servicesNormally = [];
             //если есть поисковая выдача заводим переменную servHightlight
-            //console.log(master.highlight);
             if (master.highlight) {
                 var servHightlight = master.highlight.services;
                 var findText = [];
                 Object.keys(master.highlight).forEach(function (item) {
                     if (item != 'services' || item != 'name' || item != 'spec') {
                         findText[0] = '<p class="find-text"><strong>Текст найден на странице мастера:</strong><br>'
-                            + self.tp.execute(master.highlight[item][0]) + '</p>';
+                            + master.highlight[item][0] + '</p>';
                         //return false;
                     }
                     if (item == 'name' || item == 'spec') {
@@ -86,20 +84,18 @@ MasterMinicard.prototype.render = function () {
                         }
                     }
                 });
-                //console.log(findText)
             }
             if (master.services) {
                 Object.keys(master.services).forEach(function (item) {
                     var service = master.services[item];
                     if (servHightlight) {
                         servHightlight.forEach(function (item2) {
-                            //console.log('service: ' + service + '\n\n' + 'highlight: ' + tmp + '\n\n\n\n');
                             var findStr = item2.slice(item2.indexOf('<em>') + 4, item2.indexOf('</em>'));
                             var re = new RegExp(findStr, 'g');
                             service = service.replace(re, '<em>' + findStr + '</em>');
                         });
                     }
-                    service = self.tp.execute(service);
+                    //service = self.tp.execute(service);
                     servicesNormally.push(service);
                 });
                 if (findText && !servHightlight) {
@@ -107,14 +103,11 @@ MasterMinicard.prototype.render = function () {
                     if (!servicesNormally[0] || (servicesNormally[0] && servicesNormally[0].indexOf('find-text') == -1)) {
                         servicesNormally = findText.concat(servicesNormally);
                     }
-
-                    //console.log(servicesNormally);
                 }
                 master.services = servicesNormally;
             }
             master.index = index;
             master.store = store;
-            //console.log(master);
             return master;
         });
 };
