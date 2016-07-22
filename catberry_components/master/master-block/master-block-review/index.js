@@ -56,6 +56,7 @@ MasterBlockReview.prototype.render = function () {
             //    });
             //});
 
+
             return {
                 id: data.id,
                 vkLikes: data.vkLikes,
