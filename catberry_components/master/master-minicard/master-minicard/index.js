@@ -70,7 +70,7 @@ MasterMinicard.prototype.render = function () {
                 Object.keys(master.highlight).forEach(function (item) {
                     if (item != 'services' || item != 'name' || item != 'spec') {
                         findText[0] = '<p class="find-text"><strong>Текст найден на странице мастера:</strong><br>'
-                            + self.tp.execute(master.highlight[item][0]) + '</p>';
+                            + master.highlight[item][0] + '</p>';
                         //return false;
                     }
                     if (item == 'name' || item == 'spec') {
