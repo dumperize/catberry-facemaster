@@ -47,8 +47,8 @@ MasterBlockReview.prototype.render = function () {
             }
             var location = self.$context.location;
             var url = location.authority.host + location.path;
-            url = location.scheme ? location.scheme + url : url;
-            console.log(location, location.scheme);
+            url = location.scheme ? location.scheme + '://' + url : url;
+            console.log(location, location.scheme, (location.scheme));
             var desc = '#FM_vizitka ' + data.rubrika.name + ' в Тольятти. ';
             Object.keys(data.services).forEach(function (item) {
                 data.services[item].forEach(function (item) {
