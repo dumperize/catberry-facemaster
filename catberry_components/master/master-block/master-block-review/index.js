@@ -46,13 +46,7 @@ MasterBlockReview.prototype.render = function () {
                 data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов (больше не требуется)
             }
             var location = self.$context.location;
-            var url = location.authority.host + location.path;
-            //url = (typeof(location.scheme) == 'string') ? location.scheme + '://' + url : url;
-            if (typeof(location.scheme) == 'string') {
-                url = '' + location.scheme + '://' + url;
-            }
-            //url = 'http://dev.facemaster.ru/1019';
-            console.log(url);
+            var url = 'http://' + location.authority.host + location.path;
             var desc = '#FM_vizitka ' + data.rubrika.name + ' в Тольятти. ';
             Object.keys(data.services).forEach(function (item) {
                 data.services[item].forEach(function (item) {
