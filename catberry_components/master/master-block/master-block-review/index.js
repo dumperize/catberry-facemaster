@@ -48,6 +48,7 @@ MasterBlockReview.prototype.render = function () {
             var location = self.$context.location;
             var url = location.authority.host + location.path;
             url = (typeof(location.scheme) == 'string') ? location.scheme + '://' + url : url;
+            url = 'http://dev.facemaster.ru/1019';
             console.log(url);
             var desc = '#FM_vizitka ' + data.rubrika.name + ' в Тольятти. ';
             Object.keys(data.services).forEach(function (item) {
