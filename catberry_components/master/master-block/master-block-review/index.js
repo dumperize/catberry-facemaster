@@ -48,7 +48,7 @@ MasterBlockReview.prototype.render = function () {
             var location = self.$context.location;
             var url = location.authority.host + location.path;
             url = (typeof(location.scheme) == 'string') ? location.scheme + '://' + url : url;
-            console.log(location);
+            console.log(url);
             var desc = '#FM_vizitka ' + data.rubrika.name + ' в Тольятти. ';
             Object.keys(data.services).forEach(function (item) {
                 data.services[item].forEach(function (item) {
