@@ -11,8 +11,8 @@
 
 module.exports = [
 	'/:page[Pages]',
-	// поиск в рубрике мастера
-	// путь: /:masterID/article/:id
+	// поиск мастеров в рубрике
+	// путь: /search/:id
 	{
 		expression: /^\/search\/(\d+)$/i,
 		map: function (urlPath) {

@@ -37,7 +37,9 @@ Search.prototype._loadDataPerPage = function (page) {
     this._options.data.page = page;
     try {
         this._options.data['query'] = this.$context.location.query.values.query;
-        this._options.data.filter = JSON.stringify({rubrikaID: this.$context.state.rubrikaID});
+        if (this.$context.state.rubrikaID) {
+            this._options.data.filter = JSON.stringify({rubrikaID: this.$context.state.rubrikaID});
+        }
     } catch (e) {
     }
     return this._load()
