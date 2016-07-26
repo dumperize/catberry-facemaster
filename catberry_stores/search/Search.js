@@ -26,14 +26,13 @@ function Search() {
     this._path = '/search';
     this._options = {
         data: {
-            expand: 'activeComments,activeSales,activeVideos,vkLikes,activeAlbums,contacts,company,rubrika,publication'
+            expand: 'activeComments,activeSales,activeVideos,likesCount,vkLikes,activeAlbums,contacts,company,rubrika,publication'
         }
     };
 }
 
 
 Search.prototype._loadDataPerPage = function (page) {
-    //console.log(page);
     var self = this;
     this._options.data.page = page;
     try {
