@@ -64,7 +64,6 @@ MasterMinicard.prototype.render = function () {
             }
             var servicesNormally = [];
             //если есть поисковая выдача заводим переменную servHightlight
-            console.log(master.highlight);
             if (master.highlight) {
                 var servHightlight = master.highlight.services;
                 var findText = [];
