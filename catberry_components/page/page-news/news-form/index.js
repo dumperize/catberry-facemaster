@@ -74,7 +74,7 @@ PageNewsForm.prototype.bind = function () {
         });
         return false;
     }
-
+    
     return this._bind();
 };
 

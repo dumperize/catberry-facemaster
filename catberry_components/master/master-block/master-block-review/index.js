@@ -46,15 +46,21 @@ MasterBlockReview.prototype.render = function () {
                 data.vkLikes.data.length = 9; //укорачиваем массив до 9 элементов (больше не требуется)
             }
             var location = self.$context.location;
-            var url = location.authority.host + location.path;
-            url = location.scheme ? location.scheme + url : url;
-            console.log(url);
+            var url = 'http://' + location.authority.host + location.path;
+            var desc = '#FM_vizitka ' + data.rubrika.name + ' в Тольятти. ';
+            Object.keys(data.services).forEach(function (item) {
+                data.services[item].forEach(function (item) {
+                    desc += item + '; '
+                });
+            });
+
             return {
                 id: data.id,
                 vkLikes: data.vkLikes,
                 name: data.name,
                 imgID: data.imgID,
-                url: url
+                url: url,
+                desc: desc
             }
         });
 };
@@ -67,7 +73,7 @@ MasterBlockReview.prototype.bind = function () {
     var elem = this.$context.element;
     //domtoimage.toPng(elem.querySelector('.social-links'))
     //    .then(function (img) {
-    //        //elem.querySelector('.ya-share2').dataset.image = img;
+    //        elem.querySelector('.share42init').dataset.image = img;
     //        document.getElementById('test1').src = img;
     //    })
 };
