@@ -64,6 +64,7 @@ MasterMinicard.prototype.render = function () {
             }
             var servicesNormally = [];
             //если есть поисковая выдача заводим переменную servHightlight
+            console.log(master.highlight);
             if (master.highlight) {
                 var servHightlight = master.highlight.services;
                 var findText = [];
@@ -88,7 +89,7 @@ MasterMinicard.prototype.render = function () {
                     }
                 });
             }
-            if (master.services) {
+            if (master.services && master.publication && master.publication.page) {
                 Object.keys(master.services).forEach(function (item) {
                     var service = master.services[item];
                     if (servHightlight) {

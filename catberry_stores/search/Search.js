@@ -31,14 +31,22 @@ function Search() {
     };
 }
 
+Search.prototype.rubrikaID = null;
 
 Search.prototype._loadDataPerPage = function (page) {
     //console.log(page);
     var self = this;
+    if (this.rubrikaID != this.$context.state.rubrikaID) {
+        this.rubrikaID = this.$context.state.rubrikaID;
+        this._clearFeed();
+    }
+
     this._options.data.page = page;
     try {
         this._options.data['query'] = this.$context.location.query.values.query;
-        this._options.data.filter = JSON.stringify({rubrikaID: this.$context.state.rubrikaID});
+        if (this.rubrikaID) {
+            this._options.data.filter = JSON.stringify({rubrikaID: this.rubrikaID});
+        }
     } catch (e) {
     }
     return this._load()
