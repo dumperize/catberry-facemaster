@@ -41,8 +41,3 @@ SearchFacets.prototype.load = function (page) {
             return result.content;
         })
 };
-
-SearchFacets.prototype.handleSearchChanged = function () {
-    console.log('handleSearchChanged');
-    this.$context.sendAction('search/Search', 'changed');
-};

@@ -43,6 +43,7 @@ MasterMinicard.prototype.render = function () {
         })
         .then(function (master) {
             if (!master) return;
+
             //console.log(master.services);
             master.isWidget = (master.publication && (
                 (master.publication.sales && master.sales[0]) ||
@@ -63,11 +64,15 @@ MasterMinicard.prototype.render = function () {
                 master.commentsCount = master.comments.length;
             }
             var servicesNormally = [];
-            //если есть поисковая выдача заводим переменную servHightlight
-            console.log(master.highlight);
+            // если есть поисковая выдача заводим переменную servHightlight
+            // console.log(master.highlight);
             if (master.highlight) {
                 var servHightlight = master.highlight.services;
                 var findText = [];
+                // бесплатникам заменяем специализацию на найденное значение в хайлайтах
+                if (master.publication && !master.publication.page && master.highlight.rubrikaName) {
+                    master.spec = master.highlight.rubrikaName;
+                }
                 Object.keys(master.highlight).forEach(function (item) {
                     if (item != 'services' && item != 'name' && item != 'spec') {
                         findText[0] = '<p class="find-text"><strong>Текст найден на странице мастера:</strong><br>'
@@ -89,11 +94,14 @@ MasterMinicard.prototype.render = function () {
                     }
                 });
             }
-            if (master.services && master.publication && master.publication.page) {
+            if (master.services) {
+                var i = 0;
                 Object.keys(master.services).forEach(function (item) {
                     var service = master.services[item];
+                    // если для сервайсов есть хайлайты
                     if (servHightlight) {
                         servHightlight.forEach(function (item2) {
+                            // заменяем в сервайсах все вхождения из хайлайтов
                             while (item2.indexOf('<em>') > -1) {
                                 var findStr = item2.slice(item2.indexOf('<em>') + 4, item2.indexOf('</em>'));
                                 var re = new RegExp(findStr, 'g');
@@ -101,11 +109,20 @@ MasterMinicard.prototype.render = function () {
                                 item2 = item2.slice(0, item2.indexOf('<em>')) + item2.slice(item2.indexOf('</em>') + 5);
                             }
                         });
+                        // копируем строки с вхождениями на позицию i в массиве servicesNormally (вверх)
+                        if (service.indexOf('<em>') > -1) {
+                            servicesNormally.push(servicesNormally[i] ? servicesNormally[i] : service);
+                            servicesNormally[i] = service;
+                            i++;
+                        } else {
+                            servicesNormally.push(service);
+                        }
+                    } else {
+                        servicesNormally.push(service);
                     }
                     //service = self.tp.execute(service);
-                    servicesNormally.push(service);
                 });
-                if (findText && !servHightlight) {
+                if (findText && !servHightlight && master.publication && master.publication.page) {
                     // избегаем дублирования плашки "Текст найден на странице мастера:"
                     if (!servicesNormally[0] || (servicesNormally[0] && servicesNormally[0].indexOf('find-text') == -1)) {
                         servicesNormally = findText.concat(servicesNormally);

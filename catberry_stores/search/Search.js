@@ -34,7 +34,6 @@ function Search() {
 Search.prototype.rubrikaID = null;
 
 Search.prototype._loadDataPerPage = function (page) {
-    //console.log(page);
     var self = this;
     if (this.rubrikaID != this.$context.state.rubrikaID) {
         this.rubrikaID = this.$context.state.rubrikaID;

@@ -75,6 +75,7 @@ MasterList.prototype.structurData = function (data) {
  */
 MasterList.prototype.bind = function () {
     this._window.addEventListener('scroll', this._handleScroll);
+    //this._isFinish = false;
 };
 
 MasterList.prototype.unbind = function () {

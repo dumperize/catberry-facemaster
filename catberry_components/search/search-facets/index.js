@@ -44,16 +44,7 @@ class SearchFacets {
      * @returns {Promise<Object>|Object|null|undefined} The binding settings or nothing.
      */
     bind() {
-        return {
-            'click': {
-                '.search-menu li:first-child a': this._searchChanged
-            }
-        }
-    }
 
-    _searchChanged(e) {
-        console.log('_searchChanged');
-        this.$context.sendAction('searchChanged');
     }
 
     /**
