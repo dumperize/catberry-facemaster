@@ -26,6 +26,12 @@ MasterBlockLink.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
             data.contacts.links = JSON.parse(data.contacts.links);
+            Object.keys(data.contacts.links).forEach(function (key) {
+                var link = data.contacts.links[key];
+                if (link != '' && link.indexOf('http://') == -1 && link.indexOf('https://') == -1) {
+                    data.contacts.links[key] = 'http://' + link;
+                }
+            });
             return {
                 links: data.contacts.links
             }

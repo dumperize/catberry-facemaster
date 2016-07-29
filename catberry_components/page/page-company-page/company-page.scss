@@ -24,21 +24,26 @@
   background-color: $color-bg-grey-light;
   position: relative;
   margin-left: 225px;
+  display: table;
   @include at(xs) {
     margin-left: 0;
   }
+  &__wrap {
+    display: table-cell;
+    vertical-align: middle;
+    height: inherit;
+  }
   &__name {
-    display: table;
     width: 100%;
     line-height: 1.4;
     margin: 0;
-    height: inherit;
+    padding: 0 18px;
     span {
-      display: table-cell;
-      vertical-align: middle;
-      padding: 20px;
       font-weight: bold;
     }
+  }
+  &__addr {
+    padding-left: 18px;
   }
 }
 .contacts-cp {
@@ -48,24 +53,20 @@
   @include to(md) {
     min-height: 250px;
   }
-  &__addr {
-    margin: 0 0 3px 10px;
-    padding-top: 4px;
-  }
   &__map-cont {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 200px;
+    height: 225px;
     width: 100%;
     @include to(md) {
-      min-height: 225px;
+      min-height: 250px;
     }
     iframe {
       width: 100%;
-      min-height: 200px;
+      min-height: 225px;
       @include to(md) {
-        min-height: 225px;
+        min-height: 250px;
       }
     }
   }

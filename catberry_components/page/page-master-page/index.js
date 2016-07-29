@@ -112,7 +112,7 @@ PageMasterPage.prototype._showMap = function (e) {
     if (coord == '') {
         coord = e.currentTarget.dataset.addr;
     }
-    var iframe = '<div class="map-cont"><iframe frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=' + coord + '&key=AIzaSyC14driclnh9TFQ9_1NJOk_rOxtgiptvnw" allowfullscreen></iframe></div>'
+    var iframe = '<div class="map-cont"><iframe frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=' + coord + '&key=AIzaSyC14driclnh9TFQ9_1NJOk_rOxtgiptvnw&language=ru" allowfullscreen></iframe></div>'
 
     $.fancybox(iframe, {
         margin: 40,

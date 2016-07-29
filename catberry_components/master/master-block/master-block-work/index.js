@@ -45,7 +45,6 @@ MasterBlockWork.prototype.render = function () {
                     if (data.workCondition.data.comming) {
                         data.workCondition.data.comming = data.workCondition.data.comming.split(',');
                     }
-                    console.log((data.workCondition.data.payment || data.workCondition.data.coop));
                     data.workCondition.data.isActive = (data.workCondition.data.payment || data.workCondition.data.coop);
                 }
                 data.isEdit = true;
