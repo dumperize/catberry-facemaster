@@ -33,7 +33,7 @@
 
 
     {{#if districts}}
-        <div elem="list-big-cont" style="{{#unless isActive}}width: 100%{{/unless}}">
+        <div elem="list-big-cont" style="{{#unless workCondition.isActive}}width: 100%{{/unless}}">
             <p elem="list-caption">Районы обслуживания</p>
 
             <div elem="list-cont">
@@ -66,7 +66,7 @@
     {{/if}}
 
 
-    {{#if isActive}}
+    {{#if workCondition.isActive}}
     <div elem="list-big-cont">
         <p elem="list-caption">Оплата</p>
 

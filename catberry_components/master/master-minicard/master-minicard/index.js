@@ -64,6 +64,10 @@ MasterMinicard.prototype.render = function () {
                 master.commentsCount = master.comments.length;
             }
             var servicesNormally = [];
+            //console.log(master.name, 'spec: ' + master.spec, 'rubrika.name: ' + master.rubrika.name);
+            if (master.spec == '' || (master.publication && !master.publication.page)) {
+                master.spec = master.rubrika.name;
+            }
             // если есть поисковая выдача заводим переменную servHightlight
             // console.log(master.highlight);
             if (master.highlight) {

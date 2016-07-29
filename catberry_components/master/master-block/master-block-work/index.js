@@ -26,6 +26,7 @@ MasterBlockWork.prototype.render = function () {
     return this.$context.getStoreData()
         .then(function (data) {
             if (!data) return;
+            //console.log(data);
             // проверяем редактировали ли мы данные
             if (!data.isEdit) {
                 var tempArr = ['', '', '', '', '', '', ''];
@@ -44,7 +45,8 @@ MasterBlockWork.prototype.render = function () {
                     if (data.workCondition.data.comming) {
                         data.workCondition.data.comming = data.workCondition.data.comming.split(',');
                     }
-                    data.workCondition.isActive = (data.workCondition.data.payment || data.workCondition.data.coop);
+                    console.log((data.workCondition.data.payment || data.workCondition.data.coop));
+                    data.workCondition.data.isActive = (data.workCondition.data.payment || data.workCondition.data.coop);
                 }
                 data.isEdit = true;
             }

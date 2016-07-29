@@ -111,6 +111,7 @@ MasterItem.prototype._getPhotoAlbums = function (data) {
 
 MasterItem.prototype._generateIsBlock = function (data) {
     var masterPublication = data.publication;
+    //console.log(data);
     return {
         service: {
             access: masterPublication.services,
