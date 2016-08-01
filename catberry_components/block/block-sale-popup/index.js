@@ -24,7 +24,16 @@ function BlockSalePopup() {
  */
 BlockSalePopup.prototype.render = function () {
     //console.log(this.$context.attributes);
-    return this.$context.attributes;
+    var self = this;
+    return this.$context.sendAction('setMasterID', this.$context.attributes['masterid'])
+        .then(function (data) {
+            var popUpData = self.$context.attributes;
+            popUpData.name = data.name;
+            popUpData.number = data.number;
+            popUpData.imgid2 = data.imgID;
+            return popUpData;
+        });
+
 };
 
 /**

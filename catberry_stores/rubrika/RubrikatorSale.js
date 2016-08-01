@@ -27,15 +27,15 @@ util.inherits(RubrikatorSale, StoreBase);
 function RubrikatorSale($uhr) {
     StoreBase.call(this);
 
-    this._path = '/rubrika';
-    this._options = {
-        data: {
-            filter: '["and",["=", "status", "1"]]',
-            expand: 'saleCount',
-            order: 'sort',
-            limit: 300
-        }
-    };
+    this._path = '/sale/rubriks';
+    //this._options = {
+    //    data: {
+    //        filter: '["and",["=", "status", "1"]]',
+    //        expand: 'saleCount',
+    //        order: 'sort',
+    //        limit: 300
+    //    }
+    //};
     this._groups = this._cloneRubrikator(Rubrikator);
     this._parentToGroup = this._getParentToGroup(this._groups);
     this.loadRubriks = false;
@@ -52,6 +52,7 @@ RubrikatorSale.prototype._currentRubrikaObj = null;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 RubrikatorSale.prototype.load = function () {
+    console.time('RubrikatorSale - load');
     var self = this;
     var currentRubrika = self.$context.state.catalog;
 
@@ -66,6 +67,7 @@ RubrikatorSale.prototype.load = function () {
     return this._loadData()
         .then(function () {
             self.loadRubriks = true;
+            console.timeEnd('RubrikatorSale - load');
             return {
                 active: self._currentRubrikaObj,
                 list: self._groups

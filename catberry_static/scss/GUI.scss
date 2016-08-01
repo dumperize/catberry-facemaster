@@ -216,6 +216,7 @@ body.blackout:after {
   display: none;
   position: relative;
   overflow: hidden;
+  padding-bottom: 20px;
   @include to(md) {
     padding-bottom: 60px;
   }

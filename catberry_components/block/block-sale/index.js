@@ -42,17 +42,19 @@ Sale.prototype.render = function () {
             if (model == 'sale/SaleByRubrika') {
                 var num = self.$context.attributes['num'];
                 var sale = data[num].sale[index];
-                sale.publication = sale.owner.publication;
+                //sale.publication = sale.owner.publication;
 
                 self._salePopUpData.id = 'popup-sale-' + data[num].sale[index].id;
                 self._salePopUpData.imgid = data[num].sale[index].imgID;
                 self._salePopUpData.type = data[num].sale[index].type;
                 self._salePopUpData.text = data[num].sale[index].text;
                 self._salePopUpData.discount = data[num].sale[index].discount;
+                self._salePopUpData['cat-store'] = 'master/Master';
+                self._salePopUpData['masterID'] = data[num].sale[index].ownerID;
 
-                self._salePopUpData.name = sale.owner.name;
-                self._salePopUpData.number = sale.owner.publication.number;
-                self._salePopUpData.imgid2 = sale.owner.imgID;
+                //self._salePopUpData.name = sale.owner.name;
+                //self._salePopUpData.number = sale.owner.publication.number;
+                //self._salePopUpData.imgid2 = sale.owner.imgID;
                 return sale;
             }
             self._salePopUpData.id = 'popup-sale-' + data.list[index].id;

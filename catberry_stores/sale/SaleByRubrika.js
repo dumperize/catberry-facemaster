@@ -20,7 +20,7 @@ util.inherits(SaleByRubrika, StoreCatalog);
  * @constructor
  */
 function SaleByRubrika($uhr) {
-    //вызываем базовый Store с параметром video
+    //вызываем базовый Store с параметром sale
     StoreCatalog.call(this, "sale");
 }
 /**
@@ -37,6 +37,7 @@ SaleByRubrika.prototype._listID = [];
  * @private
  */
 SaleByRubrika.prototype._getData = function (list, currentRubrika) {
+    console.time('SaleByRubrika - load');
     var self = this;
     var limit = currentRubrika ? 20 : 4;
 
@@ -59,6 +60,7 @@ SaleByRubrika.prototype._getData = function (list, currentRubrika) {
             if (!currentRubrika)
                 self._pageCount = 1;
             // и отдадим все это в hbs
+            console.timeEnd('SaleByRubrika - load');
             return list;
         });
 };
@@ -71,6 +73,7 @@ SaleByRubrika.prototype._getData = function (list, currentRubrika) {
  */
 SaleByRubrika.prototype._getSaleData = function (id, limit) {
     var self = this;
+    //if (!id) return false;
     if (!id && id.length == 0) {
         self._pageCount = 1;
         return null;
