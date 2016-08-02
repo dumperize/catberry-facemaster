@@ -10,13 +10,13 @@ util.inherits(RubrikatorCompany, Rubrikator);
 function RubrikatorCompany($uhr) {
     Rubrikator.call(this);
 
-    this._path = '/rubrika-company';
+    this._path = '/rubrika-company/catalog';
     this._options = {
         data: {
-            filter: '["and",["=", "status", "1"]]',
-            order: 'sort',
-            expand: "companyCount",
-            limit: 200
+            //filter: '["and",["=", "status", "1"]]',
+            //order: 'sort',
+            //expand: "companyCount",
+            //limit: 200
         }
     };
     this._countName = "companyCount";

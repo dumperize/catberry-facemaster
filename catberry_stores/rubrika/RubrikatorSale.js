@@ -52,7 +52,6 @@ RubrikatorSale.prototype._currentRubrikaObj = null;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 RubrikatorSale.prototype.load = function () {
-    console.time('RubrikatorSale - load');
     var self = this;
     var currentRubrika = self.$context.state.catalog;
 
@@ -67,7 +66,6 @@ RubrikatorSale.prototype.load = function () {
     return this._loadData()
         .then(function () {
             self.loadRubriks = true;
-            console.timeEnd('RubrikatorSale - load');
             return {
                 active: self._currentRubrikaObj,
                 list: self._groups
