@@ -28,6 +28,7 @@
     }
   }
   &__item {
+    @extend .fade-in;
     //border: 1px solid blue;
     background-color: $color-bg-grey-light;
     margin-bottom: 20px;

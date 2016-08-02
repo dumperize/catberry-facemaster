@@ -29,7 +29,7 @@ BlockSalePopup.prototype.render = function () {
         .then(function (data) {
             var popUpData = self.$context.attributes;
             popUpData.name = data.name;
-            popUpData.number = data.number;
+            popUpData.number = data.publication.number;
             popUpData.imgid2 = data.imgID;
             return popUpData;
         });

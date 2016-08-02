@@ -9,10 +9,20 @@
             </li>
             {{#each rubrikator}}
                 {{#with parent}}
-                    <li class="{{#is ../../currentRubrika.id '==' id}}act{{/is}}">
-                        {{icon "strelka"}}
-                        <a href="/{{../../catalog}}/catalog/{{id}}">{{name}}<span>{{articleCount}} {{videoCount}}</span></a>
-                    </li>
+                    {{#is videoCount '>' 0}}
+                        <li class="{{#is ../../currentRubrika.id '==' id}}act{{/is}}">
+                            {{icon "strelka"}}
+                            <a href="/{{../../catalog}}/catalog/{{id}}">{{name}}
+                                <span>{{videoCount}}</span></a>
+                        </li>
+                    {{/is}}
+                    {{#is articleCount '>' 0}}
+                        <li class="{{#is ../../currentRubrika.id '==' id}}act{{/is}}">
+                            {{icon "strelka"}}
+                            <a href="/{{../../catalog}}/catalog/{{id}}">{{name}}
+                                <span>{{articleCount}}</span></a>
+                        </li>
+                    {{/is}}
                 {{/with}}
             {{/each}}
         </ul>

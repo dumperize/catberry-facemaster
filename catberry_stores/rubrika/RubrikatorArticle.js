@@ -24,13 +24,13 @@ util.inherits(RubrikatorArticle, StoreBase);
 function RubrikatorArticle($uhr) {
     StoreBase.call(this);
 
-    this._path = '/rubrika';
+    this._path = '/article/rubriks';
     this._options = {
         data: {
-            filter: '["and",["=", "status", "1"]]',
-            expand: 'articleCount',
-            order: 'sort',
-            limit: 300
+            //filter: '["and",["=", "status", "1"]]',
+            //expand: 'articleCount',
+            //order: 'sort',
+            //limit: 300
         }
     };
 }

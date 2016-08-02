@@ -4,6 +4,7 @@
   max-height: 260px;
   position: relative;
   overflow: hidden;
+  @extend .fade-in;
   &:hover {
     background-color: #FFF;
     .sale__title {

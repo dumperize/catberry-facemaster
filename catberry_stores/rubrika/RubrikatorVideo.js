@@ -26,15 +26,18 @@ util.inherits(RubrikatorVideo, StoreBase);
 function RubrikatorVideo($uhr) {
     StoreBase.call(this);
 
-    this._path = '/rubrika';
+    this._path = '/video/rubriks';
     this._options = {
-        data: {
-            filter: '["and",["=", "status", "1"]]',
-            expand: 'videoCount',
-            order: 'sort',
-            limit: 300
-        }
+        data: {}
     };
+    //this._options = {
+    //    data: {
+    //        filter: '["and",["=", "status", "1"]]',
+    //        expand: 'videoCount',
+    //        order: 'sort',
+    //        limit: 300
+    //    }
+    //};
 }
 
 /**
