@@ -16,7 +16,7 @@ const logger = require('catberry-logger');
 logger.register(cat.locator);
 
 const fmGulp = require('fm-catberry-walle');
-fmGulp.register(cat.locator);
+fmGulp.register(cat.locator, isRelease);
 
 // run the build
 cat.build();
